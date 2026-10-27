@@ -10,6 +10,7 @@
 - [课程资料](课程资料/README.md)：DeepTutor专业课资料、入库与使用验收。
 - [共同知识](共同知识/README.md)：共享笔记、DeepTutor源码分析、方法与纠错。
 - [GitHub Discussions](https://github.com/lizhuofan-curry/team-learning/discussions)：普通学习讨论、答疑与排错。
+- [文件组织规范](文件组织规范.md)：资料放置、命名、附件与目录入口规则。
 - [Agent资料整理指南](Agent资料整理指南.md)：共享Skill、调用方法及PR互审。
 - [协作约定](协作约定.md)、[Git入门](Git协作入门.md)、[资源索引](资源索引.md)。
 
