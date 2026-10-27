@@ -6,10 +6,11 @@
 
 - [成员与课程分工](分工与课程覆盖.md)：按真实课表认领课程、更新状态。
 - [周报归档](周报/README.md)：按成员与周次保存本人确认的周报原文。
-- [实验资料](experiments/README.md)：Agent Book实验、实际运行与实验记录。
-- [课程资料](courses/README.md)：DeepTutor专业课资料、入库与使用验收。
-- [共同知识](knowledge/README.md)：共享笔记、DeepTutor源码分析、方法与纠错。
+- [实验资料](实验资料/README.md)：Agent Book实验、实际运行与实验记录。
+- [课程资料](课程资料/README.md)：DeepTutor专业课资料、入库与使用验收。
+- [共同知识](共同知识/README.md)：共享笔记、DeepTutor源码分析、方法与纠错。
 - [GitHub Discussions](https://github.com/lizhuofan-curry/team-learning/discussions)：普通学习讨论、答疑与排错。
+- [Agent资料整理指南](Agent资料整理指南.md)：共享Skill、调用方法及PR互审。
 - [协作约定](协作约定.md)、[Git入门](Git协作入门.md)、[资源索引](资源索引.md)。
 
 ## 当前状态
@@ -17,10 +18,10 @@
 - 三人小组已确定，另两位成员姓名与GitHub账号待补充；尚未邀请。
 - 已按原文归档李卓凡9/28—10/25的四期周报，相关图片一并保留；另两人的材料待本人提供。
 - 尚无三人共同提交、互审、同伴复现或课程共享复测记录。
-- 目录说明由AI辅助整理，不作为任何成员的个人心得或老师要求禁用大模型的读后感。
+- 目录说明由AI辅助整理，不代表成员已经完成实际实验、课程学习或同伴审阅。
 
 ## 普通讨论如何留下可复用结果
 
 微信群或大模型交流后，有价值的普通学习问题可以由本人简要记入Discussions：问题背景、已经尝试的办法、必要证据、结论或待验证项。无需逐条搬运聊天，也不记录私人对话全文。
 
-Discussions是GitHub平台讨论内容，不会随git clone/pull保存到本地。需要作为正式文档交流、复现或提交的内容，仍整理成Markdown文件，通过Git提交；重要结论写入knowledge并引用讨论链接。AI回答注明辅助来源与核对情况。
+Discussions是GitHub平台讨论内容，不会随git clone/pull保存到本地。需要作为正式文档交流、复现或提交的内容，仍整理成Markdown文件，通过Git提交；重要结论写入共同知识并引用讨论链接。AI回答注明辅助来源与核对情况。
