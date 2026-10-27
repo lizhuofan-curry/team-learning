@@ -88,6 +88,18 @@ class CheckDocsTests(unittest.TestCase):
         self.write('README.md', '- 资料\n\n正文\n\n    [代码例子](missing.pdf)\n')
         self.assertEqual([], self.issues())
 
+    def test_thematic_break_does_not_start_list_context(self):
+        for divider in ['* * *', '- - -', '_ _ _', '***', '---', ' *  *  * ', '  - - -']:
+            with self.subTest(divider=divider):
+                self.write('README.md', divider + '\n\n    [代码例子](missing.pdf)\n')
+                self.assertEqual([], self.issues())
+
+    def test_thematic_break_inside_list_preserves_parent_context(self):
+        self.write('README.md', '- 资料\n  * * *\n\n      [代码例子](missing.pdf)\n\n  [课件](missing2.pdf)\n')
+        issues = self.issues()
+        self.assertEqual(1, len(issues))
+        self.assertEqual('missing2.pdf', issues[0].destination)
+
     def test_escaped_parentheses_and_fragment(self):
         self.write('资料(上).pdf')
         self.write('README.md', '[课件](资料\\(上\\).pdf#page=1)')

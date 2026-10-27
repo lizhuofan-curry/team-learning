@@ -61,7 +61,15 @@ def visible_markdown(text: str) -> str:
         base = list_indents[-1] if list_indents else 0
         body = expanded[base:]
         if not fence:
-            item = re.match(r'^ {0,3}(?:[-+*]|\d{1,9}[.)])( +)', body)
+            # Thematic breaks take precedence over list markers, including
+            # spaced forms such as "* * *" and "- - -".
+            thematic_break = re.fullmatch(
+                r' {0,3}(?:(?:\* *){3,}|(?:- *){3,}|(?:_ *){3,})',
+                body.rstrip('\r\n'),
+            )
+            item = None if thematic_break else re.match(
+                r'^ {0,3}(?:[-+*]|\d{1,9}[.)])( +)', body,
+            )
             if item:
                 # More than four padding spaces means one list separator
                 # followed by indented content (possibly a code block).

@@ -21,6 +21,10 @@ TECH_DIRS = {'.github', '.agents', 'scripts', 'tests'}
 TOPIC_DIRS = {'课程资料', '实验资料', '共同知识'}
 LEARNING_DIRS = TOPIC_DIRS | {'周报'}
 FORBIDDEN = re.compile(r'[<>:"\\|?*]|[\x00-\x1f]')
+WINDOWS_RESERVED = re.compile(
+    r'^(?:CON|PRN|AUX|NUL|COM[1-9¹²³]|LPT[1-9¹²³])(?:\.|$)',
+    re.IGNORECASE,
+)
 TEMPORARY = re.compile(
     r'^(?:未命名\s*\d*|新建文件\s*\d*|新建文本文档\s*\d*)$'
     r'|final[_ -]+final|(?:[_ -]?副本(?:\s*\d*)?|[（(]副本[）)])$',
@@ -61,6 +65,8 @@ def check_layout(root: Path) -> tuple[list[str], int]:
             for part in parts[1:]:
                 if FORBIDDEN.search(part) or part.endswith((' ', '.')):
                     issues.add(f'{path}: 名称含跨平台不兼容字符或结尾空格、点')
+                if WINDOWS_RESERVED.match(part):
+                    issues.add(f'{path}: 名称使用Windows保留名称，请修改文件或目录名')
                 if TEMPORARY.search(Path(part).stem):
                     issues.add(f'{path}: 名称含临时或模糊副本标记，请写明主题或版本')
     for topic in topics:
