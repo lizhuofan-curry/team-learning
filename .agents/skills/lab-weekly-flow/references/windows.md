@@ -19,6 +19,8 @@ py -3 "$skillDir\scripts\configure.py" --root "E:\学习工作流" --mode local 
 
 `--archive-wechat-originals`仅在本人选择追加归档微信原话时使用；其他raw保持只读。配置生成器自动转义Windows反斜杠，保留原有自定义字段，配置变化前保存一份备份；不必手写含反斜杠的JSON。实例目录按自己电脑替换，原生Windows无需安装bash来跑这些Python脚本。
 
+已有周报目录会保留。自己的库没有raw/wiki结构时，先选实际归档位置，再用`--obsidian-reports "E:\自己的库\周报"`填写；不要照搬另一位成员的目录结构。
+
 让Hermes读取新采集技能，向微信机器人发一条文字，核对素材编号，再让Codex整理。单独测试中文语音后才能说语音可用；腾讯云上已装的silk/whisper脚本不会自动出现在Windows。
 
 ## Windows连接Linux云端Hermes

@@ -16,3 +16,14 @@ __pycache__/
 .idea/
 .vscode/
 node_modules/
+
+# 成员个人学习工作流：不共享运行配置、原话收件或未确认周报
+config.local*.json
+config.local.backups/
+capture.local.json
+接入检查.json
+收件箱/
+待审核/
+批准记录/
+审核索引/
+运行状态/

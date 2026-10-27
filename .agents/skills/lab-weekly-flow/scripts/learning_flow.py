@@ -132,7 +132,7 @@ def receipt(root, report_hash, statement, channel):
         if existing["report_sha256"] != report_hash:
             raise ValueError("已有批准记录哈希不匹配")
         if existing != obj:
-            store(root / "批准记录" / "附加记录" / report_hash / (digest(canonical(obj)) + ".json"), canonical(obj) + b"\n")
+            return store(root / "批准记录" / "附加记录" / report_hash / (digest(canonical(obj)) + ".json"), canonical(obj) + b"\n")
         return path
     return store(path, canonical(obj) + b"\n")
 
@@ -148,7 +148,8 @@ def validate_receipt(obj):
 
 def export(root):
     events = [validate_event(read_json(p)) for p in sorted((root / "收件箱").glob("*/*.json"))]
-    approvals = [validate_receipt(read_json(p)) for p in sorted((root / "批准记录").glob("*.json"))]
+    approval_files=sorted((root / "批准记录").glob("*.json"))+sorted((root / "批准记录" / "附加记录").glob("*/*.json"))
+    approvals = [validate_receipt(read_json(p)) for p in approval_files]
     return dict(version=1, events=events, approvals=approvals)
 
 
@@ -316,8 +317,11 @@ def archive(root, config, draft, start, end):
     approval = root / "批准记录" / (key + ".json")
     if not approval.is_file():
         raise ValueError("没有这个精确版本的本人批准，不能归档")
-    approved = validate_receipt(read_json(approval))
-    if approved["report_sha256"] != key or approved["channel"] == "test":
+    candidates=[approval]+sorted((root / "批准记录" / "附加记录" / key).glob("*.json"))
+    approvals=[validate_receipt(read_json(p)) for p in candidates]
+    if any(a["report_sha256"]!=key for a in approvals):
+        raise ValueError("批准记录哈希不匹配")
+    if not any(a["channel"] in ("codex","wechat") for a in approvals):
         raise ValueError("批准不匹配或仅为测试")
     # Destinations are supplied by the owner's local config, never an event.
     targets = [root / "已归档" / f"{start}_{end}_周报.md"]

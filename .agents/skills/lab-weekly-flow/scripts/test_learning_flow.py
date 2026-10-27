@@ -142,6 +142,27 @@ class FlowTests(unittest.TestCase):
         flow.approve_review(self.root, key, '本人在微信再次确认此稿', 'wechat')
         flow.archive(self.root, {}, p, '2026-10-26', '2026-11-01')
 
+    def test_test_approval_does_not_block_later_explicit_real_confirmation(self):
+        p,key=self.reviewed()
+        flow.approve_review(self.root,key,'仅供隔离流程测试','test')
+        with self.assertRaises(ValueError):
+            flow.archive(self.root,{},p,'2026-10-26','2026-11-01')
+        canonical_before=(self.root/'批准记录'/f'{key}.json').read_bytes()
+        flow.approve_review(self.root,key,'本人已查看并确认这个版本','codex')
+        flow.archive(self.root,{},p,'2026-10-26','2026-11-01')
+        self.assertEqual((self.root/'批准记录'/f'{key}.json').read_bytes(),canonical_before)
+
+    def test_additional_real_approval_survives_export_import(self):
+        p,key=self.reviewed()
+        flow.approve_review(self.root,key,'隔离测试，不可当作本人批准','test')
+        flow.approve_review(self.root,key,'本人已查看并确认这个版本','wechat')
+        target=self.root/'另一节点'
+        flow.review_import(target,dict(sha256=key,content_b64=base64.b64encode(p.read_bytes()).decode(),period=dict(start='2026-10-26',end='2026-11-01')))
+        flow.import_bundle(target,flow.export(self.root))
+        flow.import_bundle(target,flow.export(self.root))
+        self.assertEqual(len(flow.export(target)['approvals']),2)
+        flow.archive(target,{},target/'待审核'/f'{key}.md','2026-10-26','2026-11-01')
+
     def test_approved_report_cannot_be_archived_as_another_week(self):
         p, key = self.reviewed()
         flow.approve_review(self.root, key, '本人已核对这个版本', 'codex')

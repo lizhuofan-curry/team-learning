@@ -52,6 +52,50 @@ class PortableTests(unittest.TestCase):
         self.assertEqual(obj['custom'],'保留此键')
         self.assertEqual(Path(obj['raw_captures']),vault.resolve()/'raw/学习记录/微信素材')
 
+    def test_configure_preserves_existing_report_location_unless_explicit(self):
+        workflow=self.root/'工作流';workflow.mkdir()
+        vault=self.root/'已有库';vault.mkdir()
+        reports=vault/'我的日记和周报'
+        path=workflow/'config.local.json'
+        path.write_text(json.dumps({'mode':'local','personal_vault':str(vault),'obsidian_reports':str(reports)},ensure_ascii=False),encoding='utf-8')
+        self.run_cli('configure.py','--root',workflow,'--personal-vault',vault)
+        self.assertEqual(json.loads(path.read_text(encoding='utf-8'))['obsidian_reports'],str(reports))
+        selected=vault/'本人新选的周报目录'
+        self.run_cli('configure.py','--root',workflow,'--obsidian-reports',selected)
+        self.assertEqual(Path(json.loads(path.read_text(encoding='utf-8'))['obsidian_reports']),selected.resolve())
+
+    def test_configure_does_not_impose_wiki_layout_on_flat_vault(self):
+        vault=self.root/'普通Obsidian库';vault.mkdir()
+        note=vault/'本人笔记.md';note.write_text('保持原笔记',encoding='utf-8')
+        workflow=self.root/'工作流'
+        result=self.run_cli('configure.py','--root',workflow,'--personal-vault',vault)
+        config=json.loads((workflow/'config.local.json').read_text(encoding='utf-8'))
+        self.assertNotIn('obsidian_reports',config)
+        self.assertTrue(json.loads(result.stdout)['needs_configuration'])
+        self.assertFalse((vault/'wiki').exists())
+        self.assertEqual(note.read_text(encoding='utf-8'),'保持原笔记')
+
+    def test_configuration_can_progress_from_local_to_cloud_with_history(self):
+        workflow=self.root/'工作流';home=self.root/'Hermes数据';vault=self.root/'个人库'
+        self.run_cli('install_hermes.py','--hermes-home',home,'--workflow-root',workflow)
+        self.run_cli('configure.py','--root',workflow,'--personal-vault',vault,'--archive-wechat-originals')
+        self.run_cli('configure.py','--root',workflow,'--mode','cloud','--remote-host','my-hermes','--remote-root','/home/member/.hermes/lab-learning')
+        self.run_cli('configure.py','--root',workflow,'--mode','local')
+        config=json.loads((workflow/'config.local.json').read_text(encoding='utf-8'))
+        self.assertEqual(config['mode'],'local')
+        self.assertEqual(len(list((workflow/'config.local.backups').glob('*.json'))),3)
+
+    def test_vault_migration_does_not_silently_keep_old_raw_destination(self):
+        workflow=self.root/'工作流';first=self.root/'旧库';second=self.root/'新库'
+        self.run_cli('configure.py','--root',workflow,'--personal-vault',first,'--archive-wechat-originals')
+        before=(workflow/'config.local.json').read_bytes()
+        self.run_cli('configure.py','--root',workflow,'--personal-vault',second,ok=False)
+        self.assertEqual((workflow/'config.local.json').read_bytes(),before)
+        self.run_cli('configure.py','--root',workflow,'--personal-vault',second,'--archive-wechat-originals','--obsidian-reports',second/'周报')
+        obj=json.loads((workflow/'config.local.json').read_text(encoding='utf-8'))
+        self.assertEqual(Path(obj['raw_captures']),second.resolve()/'raw/学习记录/微信素材')
+        self.assertEqual(Path(obj['obsidian_reports']),second.resolve()/'周报')
+
     def test_full_local_review_archive_retains_crlf_bytes(self):
         workflow=self.root/'workflow';formal=self.root/'正式周报';vault=self.root/'个人知识库'
         self.run_cli('configure.py','--root',workflow,'--personal-vault',vault,'--weekly-archive',formal)
@@ -90,6 +134,17 @@ class PortableTests(unittest.TestCase):
         (vault/'AGENTS.md').write_text('成员自己的规则',encoding='utf-8')
         self.run_cli('onboard_member.py',*args)
         self.assertEqual((vault/'AGENTS.md').read_text(encoding='utf-8'),'成员自己的规则')
+
+    def test_member_can_attach_existing_team_after_multiple_config_steps(self):
+        workflow=self.root/'工作流';vault=self.root/'个人库';home=self.root/'Hermes数据';team=self.root/'团队克隆'
+        self.run_cli('install_hermes.py','--hermes-home',home,'--workflow-root',workflow)
+        self.run_cli('configure.py','--root',workflow,'--personal-vault',vault)
+        self.run_cli('configure.py','--root',workflow,'--weekly-archive',self.root/'正式周报')
+        self.run_cli('onboard_member.py','--root',workflow,'--personal-vault',vault,'--team-repo',team,'--team-url','https://github.com/example/shared-team')
+        obj=json.loads((workflow/'config.local.json').read_text(encoding='utf-8'))
+        self.assertEqual(Path(obj['team_repo']),team.resolve())
+        self.assertEqual(Path(obj['personal_vault']),vault.resolve())
+        self.assertFalse(team.exists())
 
     def test_member_onboarding_preserves_unrecognized_nonempty_directory(self):
         workflow=self.root/'工作流';vault=self.root/'已有笔记';vault.mkdir()

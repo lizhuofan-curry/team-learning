@@ -5,6 +5,7 @@ No downloads, account login, remote repository creation, Git mutation, or gatewa
 restart. Existing notes, configs and identities are preserved.
 """
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import shutil
@@ -73,9 +74,12 @@ def main():
     # Validate the configuration backup before creating anything.
     raw_config = encoded(config)
     backup = root / 'config.local.previous.json'
+    history = None
     if config_path.exists() and config_path.read_bytes() != raw_config:
-        if backup.exists() and backup.read_bytes() != config_path.read_bytes():
-            parser.error('已有不同配置备份，未修改；请先核对config.local.previous.json。')
+        old_config=config_path.read_bytes()
+        history=root/'config.local.backups'/(hashlib.sha256(old_config).hexdigest()+'.json')
+        if history.exists() and history.read_bytes()!=old_config:
+            parser.error('已有配置历史内容不匹配，未修改。')
 
     status = 'existing-preserved' if has_contents else 'not-created'
     if a.initialize_personal_vault and not has_contents:
@@ -112,7 +116,11 @@ def main():
 
     root.mkdir(parents=True, exist_ok=True)
     if config_path.exists() and config_path.read_bytes() != raw_config:
-        backup.write_bytes(config_path.read_bytes())
+        history.parent.mkdir(parents=True,exist_ok=True)
+        if not history.exists():
+            history.write_bytes(config_path.read_bytes())
+        if not backup.exists():
+            backup.write_bytes(config_path.read_bytes())
     if not config_path.exists() or config_path.read_bytes() != raw_config:
         config_path.write_bytes(raw_config)
     if team and ((team / '.git').is_dir() or (team / '.git').is_file()):

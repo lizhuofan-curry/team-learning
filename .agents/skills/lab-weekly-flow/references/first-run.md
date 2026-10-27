@@ -43,6 +43,8 @@ Hermes已可普通私聊后，使用`install_hermes.py --hermes-home 本人的�
 
 使用`configure.py`填个人库及归档路径。只有本人希望追加原话时才使用`--archive-wechat-originals`。原话、AI摘要、测试、计划与成果分开。
 
+已有个人库的`obsidian_reports`会保留，不因再次指定库路径就换成默认目录。普通平铺Obsidian库未选归档目录时，工具会提示待配置；让本人选定后用`--obsidian-reports`明确填写，不擅自给旧库增加wiki层级。
+
 ## 6. 首次实际验收
 
 1. 本人从微信发一条真实文字学习记录，得到素材编号。
