@@ -9,13 +9,15 @@ description: 通过本地或云端Hermes收集微信学习素材，由Codex按�
 
 ## 使用入口
 
-首次部署或队友接入：阅读[部署与微信接入](references/deployment.md)，选择本地或云端方式。先完成微信私聊一次收件，再接知识整理，避免同时排查所有系统。保留已配置的网关，不重复扫码、不改模型凭据。
+首次部署或队友接入：阅读[新成员首次接入](references/first-run.md)，先检查个人库、共同团队库和运行位置；按需使用`scripts/onboard_member.py`建立成员选定的空个人库与本机配置。该脚本不安装Hermes本体，不代替账号授权。再按[部署与微信接入](references/deployment.md)选择本地或云端方式；已有组件跳过，保留现有配置。
 
 日常运行：读取用户选定工作流根目录的`config.local.json`。每位成员使用自己选定的个人工作流根目录。可执行脚本在本技能的`scripts/learning_flow.py`，使用Python 3.9及以上，支持Windows/macOS/Linux路径。
 
 详细命令与审核规则见[日常运行](references/operations.md)。Hermes侧技能源在[采集技能模板](assets/hermes-skill/capture-skill.md)，通过`scripts/install_hermes.py`安装为Hermes中的SKILL.md；模板不作为Codex独立技能发现。脚本及这份技能需要一起安装，不能只复制说明文件。
 
 汇总每天与Codex的学习对话和微信学习计划，或收到语音、视频/文章链接时，阅读[对话与多媒体](references/conversations-and-media.md)。仅从可见消息与实际读取内容抽取，保留来源和日期；计划不算完成，同一事项跨入口不重复统计。
+
+语音转写不准、慢或有人建议切换云端时，先按[语音排查](references/speech.md)确认实际处理路径与本人选择。不要向聊天索要API Key，未获选择不切换服务或把历史语音批量外发。
 
 ## 原话与知识整理
 

@@ -4,6 +4,8 @@
 
 ## Windows本地Hermes
 
+没有个人知识库时先使用[首次接入](first-run.md)中的onboard_member.py，建立本人选定的空库；已有库不会自动重构。
+
 1. 安装可用Python：PowerShell执行`py -3 --version`；若`py`不可用且`python --version`正常，可换成`python`。避免使用会打开商店的空命令别名。
 2. 从Hermes当前设置确认真实数据目录。原生Windows数据路径与WSL的`~/.hermes`不同，不能把Mac或腾讯云的home直接搬过去。
 3. 解压技能包，以下示例将它放在`E:\学习技能包`，工作流放`E:\学习工作流`。PowerShell命令使用双引号包含空格/中文路径：

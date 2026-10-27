@@ -77,6 +77,36 @@ class PortableTests(unittest.TestCase):
         draft=client/'待审核'/f'{key}.md'
         self.run_cli('learning_flow.py','--root',client,'archive','--draft',draft,'--start','2026-10-26','--end','2026-11-01')
 
+    def test_member_onboarding_creates_only_empty_personal_vault(self):
+        workflow=self.root/'个人工作流';vault=self.root/'个人知识库';team=self.root/'团队克隆'
+        args=['--root',workflow,'--personal-vault',vault,'--team-repo',team,'--team-url','https://github.com/example/shared-team','--initialize-personal-vault']
+        self.run_cli('onboard_member.py',*args)
+        self.assertTrue((vault/'raw').is_dir())
+        self.assertFalse(list((vault/'raw').iterdir()))
+        self.assertTrue((vault/'wiki/index.md').is_file())
+        self.assertFalse(team.exists())
+        config=json.loads((workflow/'config.local.json').read_text(encoding='utf-8'))
+        self.assertEqual(Path(config['personal_vault']),vault.resolve())
+        (vault/'AGENTS.md').write_text('成员自己的规则',encoding='utf-8')
+        self.run_cli('onboard_member.py',*args)
+        self.assertEqual((vault/'AGENTS.md').read_text(encoding='utf-8'),'成员自己的规则')
+
+    def test_member_onboarding_preserves_unrecognized_nonempty_directory(self):
+        workflow=self.root/'工作流';vault=self.root/'已有笔记';vault.mkdir()
+        note=vault/'笔记.md';note.write_text('重要原件',encoding='utf-8')
+        self.run_cli('onboard_member.py','--root',workflow,'--personal-vault',vault,'--initialize-personal-vault',ok=False)
+        self.assertEqual(note.read_text(encoding='utf-8'),'重要原件')
+        self.assertFalse((vault/'wiki').exists());self.assertFalse(workflow.exists())
+
+    def test_member_onboarding_rejects_nested_team_and_wrong_existing_config(self):
+        workflow=self.root/'workflow';vault=self.root/'vault'
+        self.run_cli('onboard_member.py','--root',workflow,'--personal-vault',vault,'--team-repo',vault/'团队',ok=False)
+        self.assertFalse(workflow.exists())
+        workflow.mkdir();original=b'{"mode":"local","personal_vault":"other-vault"}'
+        (workflow/'config.local.json').write_bytes(original)
+        self.run_cli('onboard_member.py','--root',workflow,'--personal-vault',vault,ok=False)
+        self.assertEqual((workflow/'config.local.json').read_bytes(),original)
+
 
 if __name__=='__main__':
     unittest.main(verbosity=2)
