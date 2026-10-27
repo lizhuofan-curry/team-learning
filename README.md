@@ -28,6 +28,8 @@
 先检查已有环境和资料，再引导我完成；保留本人原话，说明真实结果与待办。
 ```
 
+[团队完整教程](协作指南/团队知识库完整使用手册.md) · [DeepTutor教程](协作指南/DeepTutor完整使用手册.md)
+
 [完整用法与可复制提示词](协作指南/Skill使用指南.md) · [新成员首次接入](.agents/skills/lab-weekly-flow/references/first-run.md) · [Windows 指南](协作指南/Windows与学习工作流.md)
 
 每人维护自己的个人库和工作流，团队共用这个远端仓库。个人收件箱、草稿、密钥与本机配置不上传；Skill 不会自动装好 Hermes、账号或定时任务，Git 更新也不会自动更新 DeepTutor 索引。
