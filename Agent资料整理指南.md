@@ -34,6 +34,40 @@ GitHub Actions 是自动运行任务的平台。运行什么取决于仓库的�
 
 本次只新增团队 Skill 和完善 PR 模板，没有配置本仓库的 Actions 或 AI 自动审阅。
 
+## 自动检查和 AI 审阅怎么配置
+
+两者可以配合使用，承担不同任务：
+
+| 方式 | 适合检查 | 需要配置什么 |
+|---|---|---|
+| 普通 Actions | 文件存在、链接附件、目录和索引一致性等固定规则 | 实际检查脚本，以及 `.github/workflows/` 内的工作流 |
+| Codex GitHub 审阅 | PR 改动中的代码问题和符合仓库审阅规则的疑点 | 将仓库接入 Codex，启用 Code Review；可手动或自动触发 |
+| 自定义 AI Actions | 按自定义提示词处理 PR，例如指定学习资料的核对范围 | 模型调用、凭据、权限、提示词和发布结果的工作流 |
+
+### 普通 Actions
+
+1. 仓库 Settings → Actions → General，确认允许使用工作流所需的 Actions。只做读取和检查时，工作流权限使用 `contents: read` 即可。
+2. 编写适合本仓库的检查脚本，明确失败时返回非零退出码；例如检查正文引用的图片是否随文件上传。
+3. 添加 `.github/workflows/资料检查.yml`，设置 PR 触发并执行检查脚本。提交变更后在 PR 的 Checks 或仓库 Actions 页面看本次提交的运行结果。
+
+仅在设置中打开 Actions，不会凭空获得资料检查功能；需要实际脚本和工作流。[GitHub 官方设置说明](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository)。
+
+### Codex GitHub 审阅
+
+在 Codex 中连接 GitHub 并授权目标团队仓库，在 Codex 审阅设置中选择该仓库、启用 Review code。接入后可在 PR 评论中使用 `@codex review`；需要自动运行时，再核对仓库的 Automatic review 和个人偏好的触发设置。
+
+如需长期遵循本团队的审阅重点，可在仓库的 `AGENTS.md` 中维护简短的 Code Review Rules。当前 Skill 文件不等于已经启用 GitHub 自动审阅。[官方 OpenAI 配置说明](https://learn.chatgpt.com/docs/third-party/github)。
+
+通用 Code Review 主要面向代码改动。对于课程笔记和 PDF，需要另行明确检查范围并验证效果，不能据机器人未评论就认定全文正确或每页均已检查。
+
+如果以后需要自定义 AI 工作流，可考虑 `openai/codex-action`；这一路径需要把 API 密钥保存在仓库 Secrets，由工作流引用，不把密钥写进文件。[官方 Action 说明](https://learn.chatgpt.com/docs/github-action)。
+
+### 对本团队的建议与当前状态
+
+先落地链接、附件等固定检查，再用一两个真实 PR 试验 AI 审阅是否能发现有用问题。AI 反馈由成员核对，同伴审阅和合并职责继续保留。
+
+截至本次核对，PR #1 是草稿，Checks 列表为空；仓库没有检查工作流。本轮完善了 Skill 和配置说明，没有启用 Actions、接入 AI 审阅或触发模型调用。现有草稿 PR 与后续新建 PR 都需要分别确认实际触发条件，不能以保存配置代替检查成功。
+
 ## 资源索引和 manifest 到底是什么
 
 先分清“实际资料”和“介绍资料的目录”。下面只是假设示例，仓库中尚未新增这份课件。
