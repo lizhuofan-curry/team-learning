@@ -53,6 +53,41 @@ class CheckDocsTests(unittest.TestCase):
         self.write('README.md', '```markdown\n![例子](missing1.png)\n```\n~~~\n[例子](missing2.md)\n~~~\n`[例子](missing3.md)`\n    [例子](missing4.md)\n<!-- [例子](missing5.md) -->')
         self.assertEqual([], self.issues())
 
+    def test_nested_list_links_fail_until_attachment_exists(self):
+        self.write('README.md', '- 资料\n    - [课件](missing.pdf)\n')
+        issues = self.issues()
+        self.assertEqual(1, len(issues))
+        self.assertEqual(2, issues[0].line)
+        self.write('missing.pdf')
+        self.assertEqual([], self.issues())
+
+    def test_list_continuations_and_multiple_nesting_levels(self):
+        for text in [
+            '- 资料\n    [课件](missing.pdf)\n',
+            '1. 资料\n    - 子目录\n        - [课件](missing.pdf)\n',
+            '- 资料\n\n    - ![图片](missing.png)\n',
+            '- 资料\n\t- [课件](missing.pdf)\n',
+        ]:
+            with self.subTest(text=text):
+                self.write('README.md', text)
+                self.assertEqual(1, len(self.issues()))
+
+    def test_code_blocks_inside_lists_remain_ignored(self):
+        for text in [
+            '- 资料\n\n      [代码例子](missing.pdf)\n',
+            '- 资料\n    - 子项\n\n          [代码例子](missing.pdf)\n',
+            '- ```markdown\n  [代码例子](missing.pdf)\n  ```\n',
+            '- 资料\n\n    ```markdown\n    [代码例子](missing.pdf)\n    ```\n',
+            '-     [代码例子](missing.pdf)\n',
+        ]:
+            with self.subTest(text=text):
+                self.write('README.md', text)
+                self.assertEqual([], self.issues())
+
+    def test_list_context_ends_before_top_level_code(self):
+        self.write('README.md', '- 资料\n\n正文\n\n    [代码例子](missing.pdf)\n')
+        self.assertEqual([], self.issues())
+
     def test_escaped_parentheses_and_fragment(self):
         self.write('资料(上).pdf')
         self.write('README.md', '[课件](资料\\(上\\).pdf#page=1)')
@@ -70,6 +105,31 @@ class CheckDocsTests(unittest.TestCase):
         self.write('README.md', '[[笔记]]')
         self.assertIn('多个同名文件', self.issues()[0].reason)
         self.write('README.md', '[[甲/笔记]]')
+        self.assertEqual([], self.issues())
+
+    def test_dotted_note_wikilinks_and_aliases(self):
+        self.write('共同知识/lecture.v2.md')
+        self.write('README.md', '[[lecture.v2]]\n[[lecture.v2#概念|解释]]\n[[共同知识/lecture.v2]]')
+        self.assertEqual([], self.issues())
+
+    def test_dotted_note_name_ending_in_md(self):
+        self.write('共同知识/lecture.md.md')
+        self.write('README.md', '[[lecture.md]]')
+        self.assertEqual([], self.issues())
+
+    def test_dotted_notes_still_report_missing_or_ambiguous(self):
+        self.write('README.md', '[[lecture.v2]]')
+        self.assertEqual(1, len(self.issues()))
+        self.write('甲/lecture.v2.md')
+        self.write('乙/lecture.v2.md')
+        self.assertIn('多个同名文件', self.issues()[0].reason)
+        self.write('README.md', '[[甲/lecture.v2]]')
+        self.assertEqual([], self.issues())
+
+    def test_wikilink_attachments_keep_exact_path_resolution(self):
+        self.write('附件/diagram.v2.png')
+        self.write('共同知识/diagram.v2.png.md')
+        self.write('README.md', '![[diagram.v2.png|300]]\n![[附件/diagram.v2.png]]')
         self.assertEqual([], self.issues())
 
     def test_machine_absolute_paths_are_reported(self):

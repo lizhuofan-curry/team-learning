@@ -49,8 +49,27 @@ def visible_markdown(text: str) -> str:
     """Keep offsets/line numbers while masking common code blocks and spans."""
     result = []
     fence = None
+    list_indents = []
     for line in text.splitlines(keepends=True):
-        marker = re.match(r'^ {0,3}(`{3,}|~{3,})(.*)$', line.rstrip('\r\n'))
+        # Interpret code indentation relative to the enclosing list item, not
+        # the document. Keep original text in the result to preserve offsets.
+        expanded = line.expandtabs(4)
+        indentation = len(expanded) - len(expanded.lstrip(' '))
+        if expanded.strip():
+            while list_indents and indentation < list_indents[-1]:
+                list_indents.pop()
+        base = list_indents[-1] if list_indents else 0
+        body = expanded[base:]
+        if not fence:
+            item = re.match(r'^ {0,3}(?:[-+*]|\d{1,9}[.)])( +)', body)
+            if item:
+                # More than four padding spaces means one list separator
+                # followed by indented content (possibly a code block).
+                padding = len(item[1])
+                start = item.end() - padding + (1 if padding > 4 else padding)
+                list_indents.append(base + start)
+                body = body[start:]
+        marker = re.match(r'^ {0,3}(`{3,}|~{3,})(.*)$', body.rstrip('\r\n'))
         if fence:
             result.append(blank(line))
             if marker and marker[1][0] == fence[0] and len(marker[1]) >= fence[1] and not marker[2].strip():
@@ -58,7 +77,7 @@ def visible_markdown(text: str) -> str:
         elif marker:
             fence = (marker[1][0], len(marker[1]))
             result.append(blank(line))
-        elif line.startswith(('    ', '\t')):
+        elif body.startswith('    '):
             result.append(blank(line))
         else:
             result.append(line)
@@ -151,30 +170,31 @@ def check_target(root: Path, source: Path, link: Link, files: list[Path]) -> Opt
     if target is None:
         return None
     variants = [target]
-    if link.wiki and not Path(target).suffix:
+    if link.wiki:
+        # A dot can belong to an Obsidian note's basename: [[lecture.v2]]
+        # resolves to lecture.v2.md. Try the literal path first for attachments.
         variants.append(target + '.md')
     bases = [source.parent]
     if link.wiki:
         bases.append(root)
-    for base in bases:
-        for variant in variants:
+    for variant in variants:
+        for base in bases:
             path = (base / variant).resolve()
             if not path.is_relative_to(root):
                 return '链接指向仓库外部，队友克隆后无法获取'
             if path.exists():
                 return None
-    if link.wiki:
-        matches = {
-            path for path in files
-            if any(path.relative_to(root).as_posix() == variant or
-                   path.relative_to(root).as_posix().endswith('/' + variant)
-                   for variant in variants)
-            and path.exists() and path.resolve().is_relative_to(root)
-        }
-        if len(matches) == 1:
-            return None
-        if len(matches) > 1:
-            return '双链匹配到多个同名文件，请补充目录路径'
+        if link.wiki:
+            matches = {
+                path for path in files
+                if (path.relative_to(root).as_posix() == variant or
+                    path.relative_to(root).as_posix().endswith('/' + variant))
+                and path.exists() and path.resolve().is_relative_to(root)
+            }
+            if len(matches) == 1:
+                return None
+            if len(matches) > 1:
+                return '双链匹配到多个同名文件，请补充目录路径'
     return '目标文件或附件不存在'
 
 
