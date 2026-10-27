@@ -53,6 +53,37 @@ class CheckDocsTests(unittest.TestCase):
         self.write('README.md', '```markdown\n![例子](missing1.png)\n```\n~~~\n[例子](missing2.md)\n~~~\n`[例子](missing3.md)`\n    [例子](missing4.md)\n<!-- [例子](missing5.md) -->')
         self.assertEqual([], self.issues())
 
+    def test_commented_list_markers_do_not_change_block_context(self):
+        for text in [
+            '<!--\n- example\n  -->\n\n    [代码例子](missing.pdf)\n',
+            '<!--\n1. example\n   -->\n\n    [代码例子](missing.pdf)\n',
+            '- 前项\n<!--\n- example\n  -->\n\n    [代码例子](missing.pdf)\n',
+        ]:
+            with self.subTest(text=text):
+                self.write('README.md', text)
+                self.assertEqual([], self.issues())
+
+    def test_commented_dedent_does_not_end_a_real_list(self):
+        self.write('README.md', '- 资料\n  <!--\nignored\n  -->\n\n      [代码例子](missing.pdf)\n\n  [课件](missing2.pdf)\n')
+        self.assertEqual([(8, 'missing2.pdf')],
+                         [(issue.line, issue.destination) for issue in self.issues()])
+
+    def test_comment_markers_in_code_do_not_hide_following_links(self):
+        for text in [
+            '```text\n<!--\n```\n[课件](missing.pdf)\n',
+            '    <!--\n\n[课件](missing.pdf)\n',
+            '`<!--`\n\n[课件](missing.pdf)\n',
+            '-     <!--\n\n[课件](missing.pdf)\n',
+        ]:
+            with self.subTest(text=text):
+                self.write('README.md', text)
+                self.assertEqual(['missing.pdf'], [issue.destination for issue in self.issues()])
+
+    def test_comment_keeps_visible_links_and_original_line_numbers(self):
+        self.write('README.md', '<!-- [忽略](hidden.pdf) -->\n[课件](missing.pdf) <!-- [忽略](hidden2.pdf) -->\n')
+        self.assertEqual([(2, 'missing.pdf')],
+                         [(issue.line, issue.destination) for issue in self.issues()])
+
     def test_nested_list_links_fail_until_attachment_exists(self):
         self.write('README.md', '- 资料\n    - [课件](missing.pdf)\n')
         issues = self.issues()
@@ -177,6 +208,16 @@ class CheckDocsTests(unittest.TestCase):
         self.write('共同知识/lecture.v2.md')
         self.write('README.md', '[[lecture.v2]]\n[[lecture.v2#概念|解释]]\n[[共同知识/lecture.v2]]')
         self.assertEqual([], self.issues())
+
+    def test_parent_relative_wikilink_tries_safe_md_variant(self):
+        self.write('topic.md')
+        self.write('lecture.v2.md')
+        self.write('notes/a.md', '[[../topic]]\n[[../lecture.v2|笔记]]\n')
+        self.assertEqual([], self.issues())
+
+    def test_wikilink_with_only_escaping_candidates_is_rejected(self):
+        self.write('notes/a.md', '[[../../outside]]\n')
+        self.assertIn('仓库外部', self.issues()[0].reason)
 
     def test_dotted_note_name_ending_in_md(self):
         self.write('共同知识/lecture.md.md')

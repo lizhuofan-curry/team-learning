@@ -45,6 +45,35 @@ def blank(text: str) -> str:
     return ''.join('\n' if ch == '\n' else ' ' for ch in text)
 
 
+def mask_line_comments(line: str, active: bool) -> tuple[str, bool]:
+    """Mask comments before block tracking, keeping code spans literal."""
+    code_spans = [(match.start(), match.end())
+                  for match in re.finditer(r'(`+)(.*?)\1', line)]
+    result = []
+    offset = 0
+    while offset < len(line):
+        if active:
+            end = line.find('-->', offset)
+            if end < 0:
+                result.append(blank(line[offset:]))
+                return ''.join(result), True
+            end += 3
+            result.append(blank(line[offset:end]))
+            offset = end
+            active = False
+        else:
+            start = line.find('<!--', offset)
+            while start >= 0 and any(begin <= start < end for begin, end in code_spans):
+                start = line.find('<!--', start + 4)
+            if start < 0:
+                result.append(line[offset:])
+                break
+            result.append(line[offset:start])
+            offset = start
+            active = True
+    return ''.join(result), active
+
+
 def visible_markdown(text: str) -> str:
     """Keep offsets/line numbers while masking common code blocks and spans."""
     result = []
@@ -52,7 +81,13 @@ def visible_markdown(text: str) -> str:
     fence_depth = 0
     list_indents = []
     paragraph = False
+    comment = False
     for line in text.splitlines(keepends=True):
+        # Inside a comment, neither dedents nor apparent list markers can
+        # change the surrounding Markdown containers.
+        continued_comment = comment
+        if continued_comment:
+            line, comment = mask_line_comments(line, comment)
         # Interpret code indentation relative to the enclosing list item, not
         # the document. Keep original text in the result to preserve offsets.
         expanded = line.expandtabs(4)
@@ -112,6 +147,13 @@ def visible_markdown(text: str) -> str:
             paragraph = False
             result.append(blank(line))
         else:
+            # Only start a comment in prose: fenced/indented code was handled
+            # above. A real list marker preceding an opening comment still
+            # owns its item; markers on later commented lines are masked first.
+            body_offset = len(expanded) - len(body)
+            if not continued_comment:
+                line, comment = mask_line_comments(line, False)
+            body = line.expandtabs(4)[body_offset:]
             result.append(line)
             # Headings, setext underlines and thematic breaks end a
             # paragraph even without an intervening blank line.
@@ -119,7 +161,6 @@ def visible_markdown(text: str) -> str:
                 r'^ {0,3}(?:#{1,6}(?:[ \t]|$)|(?:=+|-+)[ \t]*$)', body,
             )
     masked = ''.join(result)
-    masked = re.sub(r'<!--.*?-->', lambda m: blank(m[0]), masked, flags=re.DOTALL)
     return re.sub(r'(`+)(.*?)\1', lambda m: blank(m[0]), masked, flags=re.DOTALL)
 
 
@@ -214,11 +255,15 @@ def check_target(root: Path, source: Path, link: Link, files: list[Path]) -> Opt
     bases = [source.parent]
     if link.wiki:
         bases.append(root)
+    in_repository_candidate = False
     for variant in variants:
         for base in bases:
             path = (base / variant).resolve()
             if not path.is_relative_to(root):
-                return '链接指向仓库外部，队友克隆后无法获取'
+                # A root-relative fallback may escape even when the
+                # source-relative .md variant is valid; try the safe choices.
+                continue
+            in_repository_candidate = True
             if path.exists():
                 return None
         if link.wiki:
@@ -232,6 +277,8 @@ def check_target(root: Path, source: Path, link: Link, files: list[Path]) -> Opt
                 return None
             if len(matches) > 1:
                 return '双链匹配到多个同名文件，请补充目录路径'
+    if not in_repository_candidate:
+        return '链接指向仓库外部，队友克隆后无法获取'
     return '目标文件或附件不存在'
 
 
