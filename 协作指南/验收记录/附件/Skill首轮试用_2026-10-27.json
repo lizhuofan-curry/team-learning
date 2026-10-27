@@ -27,5 +27,13 @@
       "passed": true
     }
   ],
-  "existing_pr_case": "创建本次实际PR后追加核对，当前待完成"
+  "existing_pr_case": {
+    "pr_number": 5,
+    "url": "https://github.com/lizhuofan-curry/team-learning/pull/5",
+    "branch": "feat/computer-network-course-and-navigation",
+    "initial_head": "ef7175871f460b65af3bf2894562aa364c3df36d",
+    "observed_open_pr_count_for_branch": 1,
+    "continuation": "本记录在PR创建后继续提交同一分支；远端后续提交见PR历史",
+    "scope": "同一Agent实际执行，不是独立模型评测"
+  }
 }
