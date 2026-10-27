@@ -14,10 +14,10 @@ from check_docs import repository_files
 
 ROOT_FILES = {
     'README.md', 'AGENTS.md', '.gitignore', '.gitattributes',
-    '协作约定.md', '分工与课程覆盖.md', '资源索引.md',
-    'Git协作入门.md', 'Agent资料整理指南.md', '文件组织规范.md',
+    '分工与课程覆盖.md', '资源索引.md',
 }
 TECH_DIRS = {'.github', '.agents', 'scripts', 'tests'}
+GUIDE_DIRS = {'协作指南'}
 TOPIC_DIRS = {'课程资料', '实验资料', '共同知识'}
 LEARNING_DIRS = TOPIC_DIRS | {'周报'}
 FORBIDDEN = re.compile(r'[<>:"\\|?*]|[\x00-\x1f]')
@@ -41,7 +41,7 @@ def check_layout(root: Path) -> tuple[list[str], int]:
         if len(parts) == 1:
             if parts[0] not in ROOT_FILES:
                 issues.add(f'{path}: 根目录只放约定的入口文件，请将资料归入学习目录或说明新增入口用途')
-        elif parts[0] not in LEARNING_DIRS | TECH_DIRS:
+        elif parts[0] not in LEARNING_DIRS | TECH_DIRS | GUIDE_DIRS:
             issues.add(f'{parts[0]}/: 未约定的顶层目录，请先明确用途并更新规范')
         if parts[0] in TOPIC_DIRS:
             if len(parts) == 2 and parts[1] != 'README.md':
@@ -57,7 +57,7 @@ def check_layout(root: Path) -> tuple[list[str], int]:
                 issues.add(f'{pair[0]} 与 {pair[1]}: 路径仅大小写或Unicode形式不同')
             else:
                 seen[key] = name
-        if parts[0] in LEARNING_DIRS:
+        if parts[0] in LEARNING_DIRS | GUIDE_DIRS:
             for part in parts[1:]:
                 if FORBIDDEN.search(part) or part.endswith((' ', '.')):
                     issues.add(f'{path}: 名称含跨平台不兼容字符或结尾空格、点')
