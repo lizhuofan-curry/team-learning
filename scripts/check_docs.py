@@ -81,10 +81,14 @@ def visible_markdown(text: str) -> str:
             item = None if thematic_break else re.match(
                 r'^ {0,3}(?:[-+*]|([0-9]{1,9})[.)])( +)', body,
             )
-            # An ordered list can interrupt a paragraph only at number one.
+            # A list can interrupt a paragraph only with nonempty content;
+            # ordered lists additionally have to start at number one.
             # Leaving an item above resets paragraph, so numbered siblings
             # and lists following a blank/block are still recognized.
-            if item and paragraph and item[1] is not None and int(item[1]) != 1:
+            if item and paragraph and (
+                not body[item.end():].strip() or
+                (item[1] is not None and int(item[1]) != 1)
+            ):
                 item = None
             if item:
                 # More than four padding spaces means one list separator

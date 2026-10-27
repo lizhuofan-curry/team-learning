@@ -134,6 +134,14 @@ class CheckDocsTests(unittest.TestCase):
                 self.write('README.md', text)
                 self.assertEqual(1, len(self.issues()))
 
+    def test_empty_list_marker_cannot_interrupt_paragraph(self):
+        for marker in ['+ ', '- ', '* ', '1. ', '1) ', '01. ', '+   ']:
+            with self.subTest(marker=marker):
+                self.write('README.md', f'正文\n{marker}\n\n    [代码例子](missing.pdf)\n')
+                self.assertEqual([], self.issues())
+        self.write('README.md', '- 正文\n  + \n\n      [代码例子](missing.pdf)\n')
+        self.assertEqual([], self.issues())
+
     def test_thematic_break_does_not_start_list_context(self):
         for divider in ['* * *', '- - -', '_ _ _', '***', '---', ' *  *  * ', '  - - -']:
             with self.subTest(divider=divider):
