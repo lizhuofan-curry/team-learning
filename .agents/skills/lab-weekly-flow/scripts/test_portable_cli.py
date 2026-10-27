@@ -40,8 +40,7 @@ class PortableTests(unittest.TestCase):
         self.run_cli('learning_flow.py','--root',workflow,'capture','--date','2026-10-27','--text-file','-','--channel','wechat',input=text)
         events=list((workflow/'收件箱').glob('*/*.json'))
         event=json.loads(events[0].read_text(encoding='utf-8'))
-        # Text stdin follows native newline translation; meaning and UTF-8 survive.
-        self.assertEqual(event['text'].replace('\r\n','\n'),text.decode().replace('\r\n','\n'))
+        self.assertEqual(event['text'],text.decode())
 
     def test_configure_paths_and_preserve_custom_keys(self):
         workflow=self.root/'学习工作流';workflow.mkdir()

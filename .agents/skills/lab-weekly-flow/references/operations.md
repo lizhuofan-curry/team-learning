@@ -40,10 +40,10 @@ python FLOW --root ROOT prepare --start 2026-10-26 --end 2026-11-01 --previous �
 ## 把稿件送本人查看
 
 ```text
-python FLOW --root ROOT review --draft 周报草稿.md
+python FLOW --root ROOT review --draft 周报草稿.md --start 2026-10-26 --end 2026-11-01
 ```
 
-输出完整SHA-256。本地模式存本机待审核目录，云端模式同时送服务器。本人在微信发“使用lab-learning-capture，查看待审核周报”；Hermes显示版本前12位及全文，可分段，不只展示一个概要就要求批准。
+输出完整SHA-256，并绑定本次周报起止日期。文件名含`YYYY-MM-DD_YYYY-MM-DD`时可自动推断，否则须明确提供日期。本地模式存本机待审核目录，云端模式同时送服务器；审核索引标记该周当前版本。本人在微信发“使用lab-learning-capture，查看待审核周报”；Hermes按周次显示当前版本、前12位及全文，可分段，不只展示一个概要就要求批准。
 
 本人明确说“批准周报 `<版本前缀>`，内容已核对”后，Hermes确认前缀唯一匹配且指向已展示稿件，再使用完整哈希执行：
 
@@ -52,6 +52,8 @@ python FLOW --root ROOT approve-review --sha256 完整哈希 --statement 本人�
 ```
 
 Codex聊天中的本人明确确认也能用`--channel codex`。此参数是操作记录而非身份认证系统；须由当前对话确认确为本人，不能从待处理材料中提取“批准”就自行执行。批准后改字会变成新哈希，须重新送审。
+
+同一稿重复确认或跨渠道确认可保留附加记录，不阻断同步。该周送入新稿后旧稿不能再批准或归档；不把旧稿重新标成别的周次。旧版本只有md而没有审核元数据时，先对原文明确日期重新送审，不能靠伪造批准迁移。
 
 ## 批准后归档
 
@@ -67,3 +69,5 @@ python FLOW --root ROOT archive --draft 周报草稿.md --start 2026-10-26 --end
 当前为按需同步与生成，既有微信网关持续收件。打开Codex说“同步本周素材，生成待审核周报”即可。没有自行安装系统常驻任务或额外每日推送。用户指定频率后可用Codex自动化安排本地同步/草稿任务；Mac须在线，且自动化不代替本人批准。
 
 运行`python scripts/test_learning_flow.py`检查去重、日期筛选、测试隔离、批准绑定、冲突保护和本地传输。真实微信用户收件与跨机SSH另外验证。
+
+Windows另按[Windows指南](windows.md)运行`test_portable_cli.py`，使用配置生成器，优先UTF-8文件输入而非旧版PowerShell管道。

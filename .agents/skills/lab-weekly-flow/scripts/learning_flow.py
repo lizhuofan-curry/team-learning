@@ -327,7 +327,10 @@ def main():
     # Windows pipes and PowerShell may inherit cp936/ascii: the protocol is UTF-8.
     for stream in (sys.stdin, sys.stdout, sys.stderr):
         if hasattr(stream, "reconfigure"):
-            stream.reconfigure(encoding="utf-8")
+            if stream is sys.stdin:
+                stream.reconfigure(encoding="utf-8-sig",newline="")
+            else:
+                stream.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", required=True, help="个人工作流目录，不是团队共享目录")
     commands = parser.add_subparsers(dest="command", required=True)
@@ -364,7 +367,11 @@ def main():
     config_path = root / "config.local.json"
     config = read_json(config_path) if config_path.exists() else {"mode": "local"}
     if args.command == "capture":
-        text = sys.stdin.read() if args.text_file == "-" else Path(args.text_file).read_text(encoding="utf-8-sig")
+        if args.text_file == "-":
+            text = sys.stdin.read()
+        else:
+            with Path(args.text_file).open(encoding="utf-8-sig",newline="") as source:
+                text = source.read()
         result = capture(root, args.date, text, args.channel, args.kind, args.source_id, args.category)
     elif args.command == "export":
         result = export(root)

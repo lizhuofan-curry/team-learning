@@ -4,11 +4,6 @@ on:
     paths:
       - '.agents/skills/lab-*/**'
       - '.github/workflows/skill-compatibility.yml'
-  push:
-    branches: ['fix/learning-skills-windows-review']
-    paths:
-      - '.agents/skills/lab-*/**'
-      - '.github/workflows/skill-compatibility.yml'
   workflow_dispatch:
 permissions:
   contents: read
