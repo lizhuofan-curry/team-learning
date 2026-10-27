@@ -1,0 +1,4 @@
+interface:
+  display_name: "微信学习素材与周报"
+  short_description: "兼容本地与云端Hermes，收集微信素材并按本人确认的版本整理归档实验室周报"
+  default_prompt: "使用 $lab-weekly-flow，同步本周Hermes学习素材，核对上周计划并生成待我确认的周报草稿。"

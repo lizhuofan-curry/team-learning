@@ -1,0 +1,4 @@
+interface:
+  display_name: "实验室知识联动"
+  short_description: "串联课程学习、DeepTutor、个人知识吸收和团队Git协作，逐项核对真实成果"
+  default_prompt: "使用 $lab-knowledge-loop，将本次真实学习记录关联个人知识库与团队库，并说明已验证成果和待办。"
