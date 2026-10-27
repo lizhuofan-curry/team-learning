@@ -53,6 +53,138 @@ class CheckDocsTests(unittest.TestCase):
         self.write('README.md', '```markdown\n![例子](missing1.png)\n```\n~~~\n[例子](missing2.md)\n~~~\n`[例子](missing3.md)`\n    [例子](missing4.md)\n<!-- [例子](missing5.md) -->')
         self.assertEqual([], self.issues())
 
+    def test_commented_list_markers_do_not_change_block_context(self):
+        for text in [
+            '<!--\n- example\n  -->\n\n    [代码例子](missing.pdf)\n',
+            '<!--\n1. example\n   -->\n\n    [代码例子](missing.pdf)\n',
+            '- 前项\n<!--\n- example\n  -->\n\n    [代码例子](missing.pdf)\n',
+        ]:
+            with self.subTest(text=text):
+                self.write('README.md', text)
+                self.assertEqual([], self.issues())
+
+    def test_commented_dedent_does_not_end_a_real_list(self):
+        self.write('README.md', '- 资料\n  <!--\nignored\n  -->\n\n      [代码例子](missing.pdf)\n\n  [课件](missing2.pdf)\n')
+        self.assertEqual([(8, 'missing2.pdf')],
+                         [(issue.line, issue.destination) for issue in self.issues()])
+
+    def test_comment_markers_in_code_do_not_hide_following_links(self):
+        for text in [
+            '```text\n<!--\n```\n[课件](missing.pdf)\n',
+            '    <!--\n\n[课件](missing.pdf)\n',
+            '`<!--`\n\n[课件](missing.pdf)\n',
+            '-     <!--\n\n[课件](missing.pdf)\n',
+        ]:
+            with self.subTest(text=text):
+                self.write('README.md', text)
+                self.assertEqual(['missing.pdf'], [issue.destination for issue in self.issues()])
+
+    def test_comment_keeps_visible_links_and_original_line_numbers(self):
+        self.write('README.md', '<!-- [忽略](hidden.pdf) -->\n[课件](missing.pdf) <!-- [忽略](hidden2.pdf) -->\n')
+        self.assertEqual([(2, 'missing.pdf')],
+                         [(issue.line, issue.destination) for issue in self.issues()])
+
+    def test_nested_list_links_fail_until_attachment_exists(self):
+        self.write('README.md', '- 资料\n    - [课件](missing.pdf)\n')
+        issues = self.issues()
+        self.assertEqual(1, len(issues))
+        self.assertEqual(2, issues[0].line)
+        self.write('missing.pdf')
+        self.assertEqual([], self.issues())
+
+    def test_list_continuations_and_multiple_nesting_levels(self):
+        for text in [
+            '- 资料\n    [课件](missing.pdf)\n',
+            '1. 资料\n    - 子目录\n        - [课件](missing.pdf)\n',
+            '- 资料\n\n    - ![图片](missing.png)\n',
+            '- 资料\n\t- [课件](missing.pdf)\n',
+        ]:
+            with self.subTest(text=text):
+                self.write('README.md', text)
+                self.assertEqual(1, len(self.issues()))
+
+    def test_code_blocks_inside_lists_remain_ignored(self):
+        for text in [
+            '- 资料\n\n      [代码例子](missing.pdf)\n',
+            '- 资料\n    - 子项\n\n          [代码例子](missing.pdf)\n',
+            '- ```markdown\n  [代码例子](missing.pdf)\n  ```\n',
+            '- 资料\n\n    ```markdown\n    [代码例子](missing.pdf)\n    ```\n',
+            '-     [代码例子](missing.pdf)\n',
+        ]:
+            with self.subTest(text=text):
+                self.write('README.md', text)
+                self.assertEqual([], self.issues())
+
+    def test_list_context_ends_before_top_level_code(self):
+        self.write('README.md', '- 资料\n\n正文\n\n    [代码例子](missing.pdf)\n')
+        self.assertEqual([], self.issues())
+
+    def test_unclosed_list_fence_ends_with_its_containing_item(self):
+        cases = [
+            ('- ```text\n  example\n- [课件](missing.pdf)\n', 3),
+            ('- ~~~text\n  example\n\n[课件](missing.pdf)\n', 4),
+            ('1. ```text\n   example\n2. [课件](missing.pdf)\n', 3),
+            ('- 父项\n  - ```text\n    example\n  - [课件](missing.pdf)\n', 4),
+            ('- 父项\n  - ```text\n    example\n  [课件](missing.pdf)\n', 4),
+        ]
+        for text, line in cases:
+            with self.subTest(text=text):
+                self.write('README.md', text)
+                issues = self.issues()
+                self.assertEqual([(line, 'missing.pdf')],
+                                 [(issue.line, issue.destination) for issue in issues])
+
+    def test_unclosed_fence_keeps_masking_within_its_container(self):
+        for text in [
+            '```text\n- [代码例子](missing.pdf)\n',
+            '- ```text\n\n  [代码例子](missing.pdf)\n',
+            '- 父项\n  - ```text\n\n    [代码例子](missing.pdf)\n',
+        ]:
+            with self.subTest(text=text):
+                self.write('README.md', text)
+                self.assertEqual([], self.issues())
+
+    def test_non_one_ordered_marker_cannot_interrupt_paragraph(self):
+        for marker in ['0.', '2.', '99)', '123456789.']:
+            with self.subTest(marker=marker):
+                self.write('README.md', f'正文\n{marker} 接续正文\n\n    [代码例子](missing.pdf)\n')
+                self.assertEqual([], self.issues())
+        self.write('README.md', '- 正文\n  2. 接续正文\n\n      [代码例子](missing.pdf)\n')
+        self.assertEqual([], self.issues())
+
+    def test_ordered_lists_still_start_after_blocks_or_as_siblings(self):
+        for text in [
+            '正文\n1. 资料\n\n    [课件](missing.pdf)\n',
+            '正文\n\n2. 资料\n\n    [课件](missing.pdf)\n',
+            '# 标题\n2. 资料\n\n    [课件](missing.pdf)\n',
+            '***\n2. 资料\n\n    [课件](missing.pdf)\n',
+            '```text\nexample\n```\n2. 资料\n\n    [课件](missing.pdf)\n',
+            '1. 前项\n2. 资料\n\n    [课件](missing.pdf)\n',
+        ]:
+            with self.subTest(text=text):
+                self.write('README.md', text)
+                self.assertEqual(1, len(self.issues()))
+
+    def test_empty_list_marker_cannot_interrupt_paragraph(self):
+        for marker in ['+ ', '- ', '* ', '1. ', '1) ', '01. ', '+   ']:
+            with self.subTest(marker=marker):
+                self.write('README.md', f'正文\n{marker}\n\n    [代码例子](missing.pdf)\n')
+                self.assertEqual([], self.issues())
+        self.write('README.md', '- 正文\n  + \n\n      [代码例子](missing.pdf)\n')
+        self.assertEqual([], self.issues())
+
+    def test_thematic_break_does_not_start_list_context(self):
+        for divider in ['* * *', '- - -', '_ _ _', '***', '---', ' *  *  * ', '  - - -']:
+            with self.subTest(divider=divider):
+                self.write('README.md', divider + '\n\n    [代码例子](missing.pdf)\n')
+                self.assertEqual([], self.issues())
+
+    def test_thematic_break_inside_list_preserves_parent_context(self):
+        self.write('README.md', '- 资料\n  * * *\n\n      [代码例子](missing.pdf)\n\n  [课件](missing2.pdf)\n')
+        issues = self.issues()
+        self.assertEqual(1, len(issues))
+        self.assertEqual('missing2.pdf', issues[0].destination)
+
     def test_escaped_parentheses_and_fragment(self):
         self.write('资料(上).pdf')
         self.write('README.md', '[课件](资料\\(上\\).pdf#page=1)')
@@ -70,6 +202,41 @@ class CheckDocsTests(unittest.TestCase):
         self.write('README.md', '[[笔记]]')
         self.assertIn('多个同名文件', self.issues()[0].reason)
         self.write('README.md', '[[甲/笔记]]')
+        self.assertEqual([], self.issues())
+
+    def test_dotted_note_wikilinks_and_aliases(self):
+        self.write('共同知识/lecture.v2.md')
+        self.write('README.md', '[[lecture.v2]]\n[[lecture.v2#概念|解释]]\n[[共同知识/lecture.v2]]')
+        self.assertEqual([], self.issues())
+
+    def test_parent_relative_wikilink_tries_safe_md_variant(self):
+        self.write('topic.md')
+        self.write('lecture.v2.md')
+        self.write('notes/a.md', '[[../topic]]\n[[../lecture.v2|笔记]]\n')
+        self.assertEqual([], self.issues())
+
+    def test_wikilink_with_only_escaping_candidates_is_rejected(self):
+        self.write('notes/a.md', '[[../../outside]]\n')
+        self.assertIn('仓库外部', self.issues()[0].reason)
+
+    def test_dotted_note_name_ending_in_md(self):
+        self.write('共同知识/lecture.md.md')
+        self.write('README.md', '[[lecture.md]]')
+        self.assertEqual([], self.issues())
+
+    def test_dotted_notes_still_report_missing_or_ambiguous(self):
+        self.write('README.md', '[[lecture.v2]]')
+        self.assertEqual(1, len(self.issues()))
+        self.write('甲/lecture.v2.md')
+        self.write('乙/lecture.v2.md')
+        self.assertIn('多个同名文件', self.issues()[0].reason)
+        self.write('README.md', '[[甲/lecture.v2]]')
+        self.assertEqual([], self.issues())
+
+    def test_wikilink_attachments_keep_exact_path_resolution(self):
+        self.write('附件/diagram.v2.png')
+        self.write('共同知识/diagram.v2.png.md')
+        self.write('README.md', '![[diagram.v2.png|300]]\n![[附件/diagram.v2.png]]')
         self.assertEqual([], self.issues())
 
     def test_machine_absolute_paths_are_reported(self):

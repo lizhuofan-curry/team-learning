@@ -74,6 +74,25 @@ class CheckLayoutTests(unittest.TestCase):
         self.write('课程资料/数据结构/线性表:课件.pdf')
         self.assertTrue(any('不兼容' in s for s in self.issues()))
 
+    def test_windows_reserved_names_fail_in_files_and_directories(self):
+        for name in ['CON.pdf', 'aux.txt', 'NUL.tar.gz', 'PRN', 'COM1.pdf',
+                     'LPT9.md', 'COM¹.txt', 'LPT².pdf', 'CON/说明.md']:
+            with self.subTest(name=name), mock.patch.object(
+                check_layout, 'repository_files', return_value=[
+                    self.root.resolve() / '课程资料/数据结构/README.md',
+                    self.root.resolve() / ('课程资料/数据结构/' + name),
+                ]
+            ):
+                self.assertTrue(any('Windows保留名称' in s for s in self.issues()))
+
+    def test_names_containing_reserved_words_are_allowed(self):
+        with mock.patch.object(check_layout, 'repository_files', return_value=[
+            self.root.resolve() / '课程资料/数据结构/README.md',
+            *[self.root.resolve() / ('课程资料/数据结构/' + name) for name in
+              ['CONCEPT.md', 'auxiliary.pdf', 'COM10.pdf', 'LPT0.txt', 'CON_笔记.md']],
+        ]):
+            self.assertEqual([], self.issues())
+
     def test_case_collision_also_detects_conflicting_directory_names(self):
         # Pure path fixture remains meaningful on case-insensitive macOS disks.
         with mock.patch.object(check_layout, 'repository_files', return_value=[
