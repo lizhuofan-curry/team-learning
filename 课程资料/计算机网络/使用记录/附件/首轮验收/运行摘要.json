@@ -1,0 +1,56 @@
+{
+  "executed_by": "Agent代执行，不代表本人或同伴已学习",
+  "date": "2026-10-27",
+  "deeptutor_revision": "a31d82624c27d75f4e771d4fcb78dce16470b383",
+  "kb_name": "sophomore-computer-networks",
+  "status": "ready",
+  "raw_documents": 1,
+  "indexed_nodes": 52,
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_dim": 1024,
+  "llm": "deepseek-flash",
+  "parsing": "text_only",
+  "slides": 149,
+  "file_sha256": "c5ad25c74a5632df67bab3a04c28290b12b1a484ffc314ef24de59eeb56719d7",
+  "done_status": "completed",
+  "session_id": "unified_1793102859313_2ef77fbd",
+  "turn_id": "turn_1793102859396_23250afe9a",
+  "event_counts": {
+    "session": 1,
+    "stage_start": 1,
+    "progress": 53,
+    "sources": 2,
+    "thinking": 700,
+    "content": 1474,
+    "tool_call": 4,
+    "tool_result": 4,
+    "stage_end": 1,
+    "result": 1,
+    "done": 1,
+    "session_meta": 1
+  },
+  "source_files": [
+    "计算机网络_课件_第01章概述_第8版.pptx"
+  ],
+  "retrieval_source_count": 5,
+  "retrieval_excerpt_contains_slide86": true,
+  "known_limits": [
+    "PPTX公式上下标会扁平化",
+    "76张EMF/WMF矢量图与179张超出上限的图片未提取，不能宣称全图解析成功",
+    "答复将总时延及主导项提示定位为83页，原文在82页",
+    "74页二进制前缀表述与网络速率十进制单位应区分，问答引用需结合上下文",
+    "未做本人学习效果和同伴跨设备复测"
+  ],
+  "verification": {
+    "delay_ms": 5.008,
+    "calculation": "8/1e6*1000 + 1000/200000*1000",
+    "source_slides": [
+      78,
+      79,
+      80,
+      82,
+      85,
+      86
+    ]
+  }
+}

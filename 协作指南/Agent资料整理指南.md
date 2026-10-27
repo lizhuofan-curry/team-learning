@@ -6,7 +6,7 @@
 
 ## 共享 Skill 在哪里
 
-[团队资料整理与PR协作](.agents/skills/team-learning-materials/SKILL.md)是团队共同维护的操作说明，约定 Agent 如何整理普通资料、标注来源、检查附件以及准备草稿 PR。
+[团队资料整理与PR协作](../.agents/skills/team-learning-materials/SKILL.md)是团队共同维护的操作说明，约定 Agent 如何整理普通资料、标注来源、检查附件以及准备草稿 PR。
 
 它不包含账号、模型服务或后台任务。Git、GitHub 权限及实际运行环境由各成员自己配置；同伴核对内容后再合并。
 
@@ -104,7 +104,7 @@ python3 -m unittest discover -s tests -p 'test_check_*.py' -v
 状态：待核对
 ```
 
-在真实索引中可以把“位置”做成可点击链接。读者从索引跳到 PDF，省去逐层找文件。当前仓库的 [资源索引](资源索引.md) 已经是一篇这样的笔记，目前主要登记教材和项目入口。
+在真实索引中可以把“位置”做成可点击链接。读者从索引跳到 PDF，省去逐层找文件。当前仓库的 [资源索引](../资源索引.md) 已经是一篇这样的笔记，目前主要登记教材和项目入口。
 
 ### manifest.json：给程序读取的资料目录
 
