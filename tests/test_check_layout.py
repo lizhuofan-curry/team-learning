@@ -35,6 +35,14 @@ class CheckLayoutTests(unittest.TestCase):
             self.write(name)
         self.assertEqual([], self.issues())
 
+    def test_concentrated_guides_are_allowed_but_loose_root_guides_fail(self):
+        self.write('协作指南/README.md')
+        self.write('协作指南/文件组织规范.md')
+        self.write('协作指南/模板/共享笔记模板.md')
+        self.assertEqual([], self.issues())
+        self.write('文件组织规范.md')
+        self.assertTrue(any('根目录' in item for item in self.issues()))
+
     def test_root_loose_files_and_unknown_directory_fail(self):
         self.write('线性表.pdf')
         self.write('随便放/笔记.md')

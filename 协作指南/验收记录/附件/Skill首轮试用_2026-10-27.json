@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-27",
+  "evaluator": "本次同一Agent",
+  "scope": "本次受控执行观察；不是独立模型评测，不报告长期通过率",
+  "cases": [
+    {
+      "case": "同名不同内容",
+      "observed": "比较内容后另存明确主题的待核对版本，原件未覆盖",
+      "original_hash_before": "69d9d6def491efdccfe3602ff39641597c9cfc58de512b8b452e3487ad84635c",
+      "original_hash_after": "69d9d6def491efdccfe3602ff39641597c9cfc58de512b8b452e3487ad84635c",
+      "passed": true
+    },
+    {
+      "case": "缺失附件",
+      "observed": "缺图时检查失败，补入存在性测试文件后通过；未把占位文件当真实截图",
+      "before_exit": 1,
+      "after_exit": 0,
+      "before_output": "共同知识/网络基础/附件试用.md:3: 错误：目标文件或附件不存在 ['附件/截图.png']\n检查 4 篇 Markdown、1 个链接；发现 1 个错误。",
+      "after_output": "检查 4 篇 Markdown、1 个链接；发现 0 个错误。",
+      "passed": true
+    },
+    {
+      "case": "只请求学习思路",
+      "observed": "先区分数据长度与链路长度，再分别计算两种时延；这只是学习建议，不代表已经学会。",
+      "files_unchanged": true,
+      "git_or_push_executed": false,
+      "passed": true
+    }
+  ],
+  "existing_pr_case": "创建本次实际PR后追加核对，当前待完成"
+}
