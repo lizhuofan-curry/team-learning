@@ -22,7 +22,10 @@ jobs:
           persist-credentials: false
 
       - name: 验证检查器能发现错误
-        run: python3 -m unittest discover -s tests -p 'test_check_docs.py' -v
+        run: python3 -m unittest discover -s tests -p 'test_check_*.py' -v
+
+      - name: 检查资料放置与命名
+        run: python3 scripts/check_layout.py .
 
       - name: 检查仓库内链接和附件
         run: python3 scripts/check_docs.py .
