@@ -1,0 +1,4 @@
+interface:
+  display_name: "团队资料整理与PR协作"
+  short_description: "按三人团队规则整理实验、课程和共享笔记，核对来源并准备草稿PR"
+  default_prompt: "使用 $team-learning-materials 整理我指定的普通学习资料，核对来源和附件，并创建草稿PR供同伴审阅。"
