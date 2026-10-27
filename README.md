@@ -108,4 +108,3 @@ python3 scripts/check_docs.py .
 
 ---
 
-首页的目录导航、参与说明和 Agent 整理入口参考了 [HENU-Final-Review](https://github.com/jry21223/HENU-Final-Review)，内容与流程按本团队实际情况维护。
