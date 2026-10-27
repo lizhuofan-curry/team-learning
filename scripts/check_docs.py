@@ -49,15 +49,26 @@ def visible_markdown(text: str) -> str:
     """Keep offsets/line numbers while masking common code blocks and spans."""
     result = []
     fence = None
+    fence_depth = 0
     list_indents = []
+    paragraph = False
     for line in text.splitlines(keepends=True):
         # Interpret code indentation relative to the enclosing list item, not
         # the document. Keep original text in the result to preserve offsets.
         expanded = line.expandtabs(4)
         indentation = len(expanded) - len(expanded.lstrip(' '))
         if expanded.strip():
+            depth = len(list_indents)
             while list_indents and indentation < list_indents[-1]:
                 list_indents.pop()
+            if len(list_indents) < depth:
+                paragraph = False
+                # A list-local fence cannot outlive its containing item.
+                # Top-level fences (depth zero) still run until closed/EOF.
+                if fence and len(list_indents) < fence_depth:
+                    fence = None
+        else:
+            paragraph = False
         base = list_indents[-1] if list_indents else 0
         body = expanded[base:]
         if not fence:
@@ -68,27 +79,41 @@ def visible_markdown(text: str) -> str:
                 body.rstrip('\r\n'),
             )
             item = None if thematic_break else re.match(
-                r'^ {0,3}(?:[-+*]|\d{1,9}[.)])( +)', body,
+                r'^ {0,3}(?:[-+*]|([0-9]{1,9})[.)])( +)', body,
             )
+            # An ordered list can interrupt a paragraph only at number one.
+            # Leaving an item above resets paragraph, so numbered siblings
+            # and lists following a blank/block are still recognized.
+            if item and paragraph and item[1] is not None and int(item[1]) != 1:
+                item = None
             if item:
                 # More than four padding spaces means one list separator
                 # followed by indented content (possibly a code block).
-                padding = len(item[1])
+                padding = len(item[2])
                 start = item.end() - padding + (1 if padding > 4 else padding)
                 list_indents.append(base + start)
                 body = body[start:]
         marker = re.match(r'^ {0,3}(`{3,}|~{3,})(.*)$', body.rstrip('\r\n'))
         if fence:
+            paragraph = False
             result.append(blank(line))
             if marker and marker[1][0] == fence[0] and len(marker[1]) >= fence[1] and not marker[2].strip():
                 fence = None
         elif marker:
             fence = (marker[1][0], len(marker[1]))
+            fence_depth = len(list_indents)
+            paragraph = False
             result.append(blank(line))
         elif body.startswith('    '):
+            paragraph = False
             result.append(blank(line))
         else:
             result.append(line)
+            # Headings, setext underlines and thematic breaks end a
+            # paragraph even without an intervening blank line.
+            paragraph = bool(body.strip()) and not thematic_break and not re.match(
+                r'^ {0,3}(?:#{1,6}(?:[ \t]|$)|(?:=+|-+)[ \t]*$)', body,
+            )
     masked = ''.join(result)
     masked = re.sub(r'<!--.*?-->', lambda m: blank(m[0]), masked, flags=re.DOTALL)
     return re.sub(r'(`+)(.*?)\1', lambda m: blank(m[0]), masked, flags=re.DOTALL)

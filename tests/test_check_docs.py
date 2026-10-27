@@ -88,6 +88,52 @@ class CheckDocsTests(unittest.TestCase):
         self.write('README.md', '- 资料\n\n正文\n\n    [代码例子](missing.pdf)\n')
         self.assertEqual([], self.issues())
 
+    def test_unclosed_list_fence_ends_with_its_containing_item(self):
+        cases = [
+            ('- ```text\n  example\n- [课件](missing.pdf)\n', 3),
+            ('- ~~~text\n  example\n\n[课件](missing.pdf)\n', 4),
+            ('1. ```text\n   example\n2. [课件](missing.pdf)\n', 3),
+            ('- 父项\n  - ```text\n    example\n  - [课件](missing.pdf)\n', 4),
+            ('- 父项\n  - ```text\n    example\n  [课件](missing.pdf)\n', 4),
+        ]
+        for text, line in cases:
+            with self.subTest(text=text):
+                self.write('README.md', text)
+                issues = self.issues()
+                self.assertEqual([(line, 'missing.pdf')],
+                                 [(issue.line, issue.destination) for issue in issues])
+
+    def test_unclosed_fence_keeps_masking_within_its_container(self):
+        for text in [
+            '```text\n- [代码例子](missing.pdf)\n',
+            '- ```text\n\n  [代码例子](missing.pdf)\n',
+            '- 父项\n  - ```text\n\n    [代码例子](missing.pdf)\n',
+        ]:
+            with self.subTest(text=text):
+                self.write('README.md', text)
+                self.assertEqual([], self.issues())
+
+    def test_non_one_ordered_marker_cannot_interrupt_paragraph(self):
+        for marker in ['0.', '2.', '99)', '123456789.']:
+            with self.subTest(marker=marker):
+                self.write('README.md', f'正文\n{marker} 接续正文\n\n    [代码例子](missing.pdf)\n')
+                self.assertEqual([], self.issues())
+        self.write('README.md', '- 正文\n  2. 接续正文\n\n      [代码例子](missing.pdf)\n')
+        self.assertEqual([], self.issues())
+
+    def test_ordered_lists_still_start_after_blocks_or_as_siblings(self):
+        for text in [
+            '正文\n1. 资料\n\n    [课件](missing.pdf)\n',
+            '正文\n\n2. 资料\n\n    [课件](missing.pdf)\n',
+            '# 标题\n2. 资料\n\n    [课件](missing.pdf)\n',
+            '***\n2. 资料\n\n    [课件](missing.pdf)\n',
+            '```text\nexample\n```\n2. 资料\n\n    [课件](missing.pdf)\n',
+            '1. 前项\n2. 资料\n\n    [课件](missing.pdf)\n',
+        ]:
+            with self.subTest(text=text):
+                self.write('README.md', text)
+                self.assertEqual(1, len(self.issues()))
+
     def test_thematic_break_does_not_start_list_context(self):
         for divider in ['* * *', '- - -', '_ _ _', '***', '---', ' *  *  * ', '  - - -']:
             with self.subTest(divider=divider):
