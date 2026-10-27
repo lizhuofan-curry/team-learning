@@ -158,6 +158,45 @@ class FlowTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             flow.archive(self.root, {}, p, '2026-10-26', '2026-11-01')
 
+    def test_replayed_approved_draft_cannot_replace_new_review(self):
+        old_path, old_key = self.reviewed()
+        flow.approve_review(self.root, old_key, '本人批准最初的稿件A', 'codex')
+        approval_path = self.root / '批准记录' / (old_key + '.json')
+        original_approval = approval_path.read_bytes()
+        period = {'start': '2026-10-26', 'end': '2026-11-01'}
+        new_content = '稿件B：需要重新审核'.encode()
+        new_key = flow.digest(new_content)
+        new_path = flow.review_import(self.root, dict(
+            sha256=new_key, content_b64=base64.b64encode(new_content).decode(), period=period))
+
+        with self.assertRaises(ValueError):
+            flow.review_import(self.root, dict(
+                sha256=old_key, content_b64=base64.b64encode(old_path.read_bytes()).decode(), period=period))
+
+        index_path = self.root / '审核索引' / '2026-10-26_2026-11-01.json'
+        self.assertEqual(flow.read_json(index_path)['sha256'], new_key)
+        self.assertEqual(approval_path.read_bytes(), original_approval)
+        self.assertEqual(old_path.read_bytes(), '真实内容待本人审核'.encode())
+        with self.assertRaises(ValueError):
+            flow.archive(self.root, {}, old_path, period['start'], period['end'])
+        with self.assertRaises(ValueError):
+            flow.archive(self.root, {}, new_path, period['start'], period['end'])
+        flow.approve_review(self.root, new_key, '本人重新核对并批准稿件B', 'wechat')
+        result = flow.archive(self.root, {}, new_path, period['start'], period['end'])
+        self.assertEqual(Path(result['archived'][0]).read_bytes(), new_content)
+
+    def test_current_review_retry_preserves_approval_and_index(self):
+        path, key = self.reviewed()
+        flow.approve_review(self.root, key, '本人批准当前稿件', 'codex')
+        index_path = self.root / '审核索引' / '2026-10-26_2026-11-01.json'
+        before_index = index_path.read_bytes()
+        retried = flow.review_import(self.root, dict(
+            sha256=key, content_b64=base64.b64encode(path.read_bytes()).decode(),
+            period={'start': '2026-10-26', 'end': '2026-11-01'}))
+        self.assertEqual(retried, path)
+        self.assertEqual(index_path.read_bytes(), before_index)
+        flow.archive(self.root, {}, path, '2026-10-26', '2026-11-01')
+
     def test_utf8_cli_with_non_utf8_parent_environment(self):
         root = self.root / '中文路径 with space'
         env = dict(os.environ, PYTHONIOENCODING='ascii')

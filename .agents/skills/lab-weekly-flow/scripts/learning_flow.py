@@ -245,12 +245,22 @@ def review_import(root, package):
         period = period_value(period)
         meta = dict(version=1, sha256=expected, period=period)
         metadata_path = root / "待审核" / (expected + ".json")
-        if metadata_path.exists() and read_json(metadata_path) != meta:
+        known_review = metadata_path.exists()
+        if known_review and read_json(metadata_path) != meta:
             raise ValueError("同一稿件不能重新标成其他周次")
+        index_path = root / "审核索引" / f"{period['start']}_{period['end']}.json"
+        publish_index = True
+        if known_review and index_path.exists():
+            if read_json(index_path).get("sha256") != expected:
+                raise ValueError("该稿件已被新版本取代；重传历史稿不能恢复旧批准，请使用当前稿")
+            # A retry of the current package is not a new submission. In
+            # particular it must not publish its index after a newer import.
+            publish_index = False
     path = store(root / "待审核" / (expected + ".md"), content)
     if period is not None:
         store(metadata_path, canonical(meta) + b"\n")
-        replace_state(root / "审核索引" / f"{period['start']}_{period['end']}.json", meta)
+        if publish_index:
+            replace_state(index_path, meta)
     return path
 
 
