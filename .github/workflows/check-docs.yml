@@ -1,0 +1,28 @@
+name: 文档与附件检查
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-docs:
+    name: 检查文档链接和附件
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: 获取仓库文件
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+
+      - name: 验证检查器能发现错误
+        run: python3 -m unittest discover -s tests -p 'test_check_docs.py' -v
+
+      - name: 检查仓库内链接和附件
+        run: python3 scripts/check_docs.py .

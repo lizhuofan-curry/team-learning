@@ -1,0 +1,101 @@
+import contextlib
+import io
+from pathlib import Path
+import subprocess
+import sys
+import tempfile
+import unittest
+from unittest import mock
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
+import check_docs
+
+
+class CheckDocsTests(unittest.TestCase):
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name).resolve()
+
+    def write(self, name, content=''):
+        path = self.root / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(content, encoding='utf-8')
+        return path
+
+    def issues(self):
+        return check_docs.check_repository(self.root)[0]
+
+    def test_chinese_paths_encoded_spaces_and_parentheses(self):
+        self.write('附件/实验 (1).png')
+        self.write('资料/README.md', '![图](../附件/实验%20(1).png)\n[图](<../附件/实验 (1).png>)')
+        self.assertEqual([], self.issues())
+
+    def test_missing_image_fails_and_fix_passes(self):
+        self.write('README.md', '# 标题\n\n![图片](附件/缺失.png)\n')
+        issues = self.issues()
+        self.assertEqual(1, len(issues))
+        self.assertEqual(3, issues[0].line)
+        self.assertEqual('目标文件或附件不存在', issues[0].reason)
+        self.write('附件/缺失.png')
+        self.assertEqual([], self.issues())
+
+    def test_references_external_links_and_anchors(self):
+        self.write('附件/图.png')
+        self.write('README.md', '[图片][图]\n\n[图]: 附件/图.png "标题"\n[网页](https://example.com/does-not-exist)\n[邮箱](mailto:a@example.com)\n[目录](#目录)')
+        self.assertEqual([], self.issues())
+
+    def test_broken_reference_definition_is_found(self):
+        self.write('README.md', '[课件][课程]\n\n[课程]: 不存在.pdf')
+        self.assertEqual(1, len(self.issues()))
+
+    def test_code_and_comments_are_not_checked(self):
+        self.write('README.md', '```markdown\n![例子](missing1.png)\n```\n~~~\n[例子](missing2.md)\n~~~\n`[例子](missing3.md)`\n    [例子](missing4.md)\n<!-- [例子](missing5.md) -->')
+        self.assertEqual([], self.issues())
+
+    def test_escaped_parentheses_and_fragment(self):
+        self.write('资料(上).pdf')
+        self.write('README.md', '[课件](资料\\(上\\).pdf#page=1)')
+        self.assertEqual([], self.issues())
+
+    def test_wikilinks_alias_and_image_dimensions(self):
+        self.write('共同知识/ReAct.md', '# ReAct')
+        self.write('附件/示意图.png')
+        self.write('README.md', '[[ReAct#概念|解释]]\n![[示意图.png|300]]')
+        self.assertEqual([], self.issues())
+
+    def test_ambiguous_wikilink_requires_path(self):
+        self.write('甲/笔记.md')
+        self.write('乙/笔记.md')
+        self.write('README.md', '[[笔记]]')
+        self.assertIn('多个同名文件', self.issues()[0].reason)
+        self.write('README.md', '[[甲/笔记]]')
+        self.assertEqual([], self.issues())
+
+    def test_machine_absolute_paths_are_reported(self):
+        self.write('README.md', '[本机](file:///Users/example/note.md)\n[本机](C:/notes/note.md)')
+        self.assertEqual(2, len(self.issues()))
+
+    def test_outside_repository_link_is_reported(self):
+        self.write('README.md', '[外部](../outside.md)')
+        self.assertIn('仓库外部', self.issues()[0].reason)
+
+    def test_gitignore_is_honored_but_new_notes_are_checked(self):
+        subprocess.run(['git', 'init', '-q', str(self.root)], check=True)
+        self.write('.gitignore', 'local-only/\n')
+        self.write('local-only/忽略.md', '[例子](missing.md)')
+        self.write('README.md', '[新笔记](不存在.md)')
+        self.assertEqual(1, len(self.issues()))
+
+    def test_cli_exit_codes_change_after_repair(self):
+        self.write('README.md', '![图片](图.png)')
+        with contextlib.redirect_stdout(io.StringIO()):
+            with mock.patch.object(sys, 'argv', ['check_docs.py', str(self.root)]):
+                self.assertEqual(1, check_docs.main())
+            self.write('图.png')
+            with mock.patch.object(sys, 'argv', ['check_docs.py', str(self.root)]):
+                self.assertEqual(0, check_docs.main())
+
+
+if __name__ == '__main__':
+    unittest.main()
