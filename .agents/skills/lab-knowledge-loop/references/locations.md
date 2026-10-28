@@ -1,5 +1,5 @@
 # 位置配置与便携使用
 
-每位成员在自己的config.local.json中填写personal_vault、team_repo、deeptutor_root、weekly_archive。先核实实际路径及项目AGENTS.md，不使用其他成员的绝对路径。个人库、团队Git克隆、DeepTutor索引分别维护，Git拉取不等于更新向量索引。
+每位成员按本次任务需要，在自己的config.local.json中填写实际位置：personal_vault用于个人库，team_repo用于团队贡献；deeptutor_root仅在使用DeepTutor时需要，weekly_archive仅在周报归档时需要。不因整理阅读或项目记录就要求配置全部组件。先核实实际路径及项目AGENTS.md，不使用其他成员的绝对路径。个人库、团队Git克隆、DeepTutor索引分别维护，Git拉取不等于更新向量索引。
 
 Windows原生、WSL和云端路径分别以实际运行侧为准。本人原话追加归档仅在本人选择的raw_captures目录进行，其他raw保持只读；按个人库自己的schema维护来源、置信度、索引与日志。
