@@ -30,6 +30,8 @@ def main():
     files = {
         skill / 'SKILL.md': (package / 'assets/hermes-skill/capture-skill.md').read_bytes(),
         script: (package / 'scripts/learning_flow.py').read_bytes(),
+        root / 'collaboration_flow.py': (package / 'scripts/collaboration_flow.py').read_bytes(),
+        root / 'auto_capture.py': (package / 'scripts/auto_capture.py').read_bytes(),
         skill / 'capture.local.json': (json.dumps({'workflow_root': str(root), 'script': str(script), 'python': sys.executable}, ensure_ascii=False, indent=2)+'\n').encode()
     }
     for dest, raw in files.items():
@@ -39,6 +41,8 @@ def main():
         write_identical(dest, raw)
     if not (root / 'config.local.json').exists():
         write_identical(root / 'config.local.json', b'{"mode": "local"}\n')
+    if not (root / 'collaboration.local.json').exists():
+        write_identical(root / 'collaboration.local.json', b'{"version":1,"role":"hermes","mode":"local"}\n')
     print(json.dumps({'skill':str(skill),'root':str(root),'script':str(script)},ensure_ascii=False))
 
 

@@ -30,3 +30,7 @@ jobs:
         run: python .agents/skills/lab-weekly-flow/scripts/test_learning_flow.py
       - name: Native CLI installation, UTF-8, CRLF and approval roundtrip
         run: python .agents/skills/lab-weekly-flow/scripts/test_portable_cli.py
+      - name: Bidirectional delivery, exact read receipts and offline retry
+        run: python .agents/skills/lab-weekly-flow/scripts/test_collaboration_flow.py
+      - name: Learning-only current-turn capture and history exclusion
+        run: python .agents/skills/lab-weekly-flow/scripts/test_auto_capture.py
