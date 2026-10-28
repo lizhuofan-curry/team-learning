@@ -1,0 +1,41 @@
+{
+  "checked_at": "2026-10-17T16:52:06.684694+08:00",
+  "scope": "offline verification; zero model/network requests",
+  "record_sha256": "75a302216807a01c890dba2aee6125ed7c6a184c3369284e5cab5570244c9041",
+  "answer_record_sha256": "aa0e9d05cc43c7a79c4782ae2166059d9d7883632b8cbdc4cdcde311e1e50c43",
+  "source_requests_model_digest_frozen_memory_artifacts_and_score_recalculation_verified": true,
+  "judge_summary": {
+    "scores": {
+      "precision": 4,
+      "recall": 4,
+      "reasoning": 3,
+      "proactivity": 4
+    },
+    "hallucination_veto": false,
+    "passed": true,
+    "reward": 0.9375
+  },
+  "usage": {
+    "completion_tokens": 570,
+    "prompt_tokens": 2926,
+    "total_tokens": 3496,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cache_write_tokens": null,
+      "cached_tokens": 1920
+    },
+    "prompt_cache_hit_tokens": 1920,
+    "prompt_cache_miss_tokens": 1006
+  },
+  "reasoning_deduction": {
+    "score": 3,
+    "reasoning": "The core retrieval and distinction between checking and savings accounts is correct. However, the answer references a 'direct_deposits.paycheck section of your records' and claims the account is 'already linked to your direct deposit settings at work,' which is not supported by the conversation—the user only asked for the number to set up direct deposit themselves. This is a minor unsupported embellishment that slightly weakens the reasoning.",
+    "evidence": [
+      "Yes, my paycheck from TechCorp.",
+      "I can provide you with our routing number and your new account number for that."
+    ]
+  },
+  "interpretation_limit": "single-case answer budget diagnostic; actual output was 533, below the old 1200 cap; not a four-mode ranking or proof of unique budget causality",
+  "raw_record_unchanged": true
+}

@@ -1,0 +1,31 @@
+{
+  "question": "请搜索Python3.11官方文档，用100字以内解释ExceptionGroup，给出1个官方链接。完成一次搜索后，根据已有结果回答；如果证据不足，请明确说明。",
+  "model": "kimi-k3",
+  "base_url": "https://api.moonshot.cn/v1",
+  "status": "failed",
+  "model_turns": 0,
+  "finish_reason": null,
+  "answer_complete": false,
+  "answer": "",
+  "tools": null,
+  "conversation_history": [
+    {
+      "role": "system",
+      "content": "你是Kimi搜索助手。请使用web_search查询官方资料，再依据搜索结果回答并提供来源链接。"
+    },
+    {
+      "role": "user",
+      "content": "请搜索Python3.11官方文档，用100字以内解释ExceptionGroup，给出1个官方链接。完成一次搜索后，根据已有结果回答；如果证据不足，请明确说明。"
+    }
+  ],
+  "trace": [],
+  "api_turns": [],
+  "run_options": {
+    "max_steps": 5,
+    "quiet": true
+  },
+  "error": {
+    "type": "HTTPError",
+    "message": "429 Client Error: Too Many Requests for url: https://api.moonshot.cn/v1/formulas/moonshot/web-search:latest/tools"
+  }
+}

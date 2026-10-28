@@ -1,0 +1,473 @@
+{
+  "created_at": "2026-10-11T23:40:56.910599",
+  "model": "qwen3:0.6b",
+  "scope": "固定虚构材料的本地六策略对照，不是官方Kimi实时搜索复现",
+  "character_budget": 6000,
+  "model_context_tokens": 16384,
+  "repeats_per_strategy": 1,
+  "cases": [
+    {
+      "trial": 1,
+      "documents": [
+        {
+          "id": "S1",
+          "date": "2026-09-01",
+          "text": "SOURCE S1\nURL https://fixture.invalid/source-1\nDOCUMENT DATE 2026-09-01\nAs of 2026-09-01: id=P01; affiliation=ORG-838; status=ACTIVE.\nFacilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describe\nAs of 2026-09-01: id=P02; affiliation=ORG-152; status=ACTIVE."
+        },
+        {
+          "id": "S2",
+          "date": "2026-10-03",
+          "text": "SOURCE S2\nURL https://fixture.invalid/source-2\nDOCUMENT DATE 2026-10-03\nAs of 2026-10-03: id=P02; affiliation=ORG-817; status=ADVISOR.\nFacilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describe\nAs of 2026-10-03: id=P03; affiliation=ORG-469; status=LEFT.\nAs of 2026-10-03: id=P04; affiliation=ORG-839; status=ACTIVE."
+        },
+        {
+          "id": "S3",
+          "date": "2026-10-10",
+          "text": "SOURCE S3\nURL https://fixture.invalid/source-3\nDOCUMENT DATE 2026-10-10\nAs of 2026-10-10: id=P05; affiliation=ORG-912; status=ADVISOR.\nFacilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describe\nAs of 2026-10-10: id=P06; affiliation=ORG-277; status=LEFT."
+        }
+      ],
+      "expected": [
+        {
+          "id": "P01",
+          "affiliation": "ORG-838",
+          "status": "ACTIVE",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "id": "P02",
+          "affiliation": "ORG-817",
+          "status": "ADVISOR",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "id": "P03",
+          "affiliation": "ORG-469",
+          "status": "LEFT",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "id": "P04",
+          "affiliation": "ORG-839",
+          "status": "ACTIVE",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "id": "P05",
+          "affiliation": "ORG-912",
+          "status": "ADVISOR",
+          "sources": [
+            "S3"
+          ]
+        },
+        {
+          "id": "P06",
+          "affiliation": "ORG-277",
+          "status": "LEFT",
+          "sources": [
+            "S3"
+          ]
+        }
+      ],
+      "fixture_sha256": "84aea47ef8477384eeb6c843191b704d2d76a4dbe657a905864d2892db1dc195"
+    }
+  ],
+  "results": [
+    {
+      "mode": "individual",
+      "trial": 1,
+      "fixture_sha256": "84aea47ef8477384eeb6c843191b704d2d76a4dbe657a905864d2892db1dc195",
+      "original_evidence_chars": 7852,
+      "status": "answered",
+      "blocks": [
+        {
+          "source_ids": [
+            "S1"
+          ],
+          "text": "[COMPRESSED]\nAs of 2026-09-01: id=P02; affiliation=ORG-152; status=ACTIVE. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies.",
+          "compressed": true
+        },
+        {
+          "source_ids": [
+            "S2"
+          ],
+          "text": "[COMPRESSED]\nAs of 2026-10-03: id=P02; affiliation=ORG-817; status=ADVISOR. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. As of 2026-10-03: id=P03; affiliation=ORG-469; status=LEFT. As of 2026-10-03: id=P04; affiliation=ORG-839; status=ACTIVE.",
+          "compressed": true
+        },
+        {
+          "source_ids": [
+            "S3"
+          ],
+          "text": "[COMPRESSED]\nAs of 2026-10-10: id=P05; affiliation=ORG-912; status=ADVISOR. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. No founder affiliation or status mentioned.",
+          "compressed": true
+        }
+      ],
+      "compression_events": [
+        {
+          "source_ids": [
+            "S1"
+          ],
+          "before_chars": 2596,
+          "after_chars": 150,
+          "ratio": 0.05778120184899846,
+          "summary": "As of 2026-09-01: id=P02; affiliation=ORG-152; status=ACTIVE. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies.",
+          "call_number": 2
+        },
+        {
+          "source_ids": [
+            "S2"
+          ],
+          "before_chars": 2657,
+          "after_chars": 273,
+          "ratio": 0.10274745954083553,
+          "summary": "As of 2026-10-03: id=P02; affiliation=ORG-817; status=ADVISOR. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. As of 2026-10-03: id=P03; affiliation=ORG-469; status=LEFT. As of 2026-10-03: id=P04; affiliation=ORG-839; status=ACTIVE.",
+          "call_number": 3
+        },
+        {
+          "source_ids": [
+            "S3"
+          ],
+          "before_chars": 2595,
+          "after_chars": 195,
+          "ratio": 0.07514450867052024,
+          "summary": "As of 2026-10-10: id=P05; affiliation=ORG-912; status=ADVISOR. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. No founder affiliation or status mentioned.",
+          "call_number": 4
+        }
+      ],
+      "window_checkpoints": [],
+      "retained_evidence_chars": 661,
+      "compression_ratio": 0.08418237391747325,
+      "final_input_chars": 928,
+      "answer": "{\"people\":[{\"id\":\"P01\",\"affiliation\":\"ORG-152\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]},{\"id\":\"P02\",\"affiliation\":\"ORG-817\",\"status\":\"ADVISOR\",\"sources\":[\"S1\"]},{\"id\":\"P03\",\"affiliation\":\"ORG-469\",\"status\":\"LEFT\",\"sources\":[\"S1\"]},{\"id\":\"P04\",\"affiliation\":\"ORG-839\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]},{\"id\":\"P05\",\"affiliation\":\"ORG-912\",\"status\":\"ADVISOR\",\"sources\":[\"S1\"]},{\"id\":\"P06\",\"affiliation\":\"ORG-152\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]}]}",
+      "grade": {
+        "json_valid": true,
+        "structure_valid": true,
+        "fact_fields_correct": 9,
+        "fact_fields_total": 12,
+        "citations_correct": 1,
+        "people_total": 6,
+        "all_facts_correct": false,
+        "all_facts_and_sources_correct": false
+      },
+      "request_count": 4,
+      "compression_request_count": 3,
+      "all_prompt_tokens": 2016,
+      "all_completion_tokens": 372,
+      "compression_seconds": 1.6470098999561742,
+      "total_seconds": 2.5955786000122316
+    },
+    {
+      "mode": "combined",
+      "trial": 1,
+      "fixture_sha256": "84aea47ef8477384eeb6c843191b704d2d76a4dbe657a905864d2892db1dc195",
+      "original_evidence_chars": 7852,
+      "status": "answered",
+      "blocks": [
+        {
+          "source_ids": [
+            "S1",
+            "S2",
+            "S3"
+          ],
+          "text": "[COMPRESSED]\nSOURCE S1: As of 2026-09-01: id=P01; affiliation=ORG-838; status=ACTIVE. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status.  \nSOURCE S2: As of 2026-10-03: id=P02; affiliation=ORG-817; status=ADVISOR. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status.  \nSOURCE S3: As of 2026-10-10: id=P05; affiliation=ORG-912; status=ADVISOR. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status.",
+          "compressed": true
+        }
+      ],
+      "compression_events": [
+        {
+          "source_ids": [
+            "S1",
+            "S2",
+            "S3"
+          ],
+          "before_chars": 7852,
+          "after_chars": 752,
+          "ratio": 0.09577177789098319,
+          "summary": "SOURCE S1: As of 2026-09-01: id=P01; affiliation=ORG-838; status=ACTIVE. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status.  \nSOURCE S2: As of 2026-10-03: id=P02; affiliation=ORG-817; status=ADVISOR. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status.  \nSOURCE S3: As of 2026-10-10: id=P05; affiliation=ORG-912; status=ADVISOR. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status.",
+          "call_number": 6
+        }
+      ],
+      "window_checkpoints": [],
+      "retained_evidence_chars": 765,
+      "compression_ratio": 0.09742740703005603,
+      "final_input_chars": 1032,
+      "answer": "{\"people\":[{\"id\":\"P01\",\"affiliation\":\"ORG-838\",\"status\":\"UNKNOWN\",\"sources\":[\"S1\"]},{\"id\":\"P02\",\"affiliation\":\"ORG-817\",\"status\":\"UNKNOWN\",\"sources\":[\"S1\"]},{\"id\":\"P03\",\"affiliation\":\"ORG-838\",\"status\":\"UNKNOWN\",\"sources\":[\"S1\"]},{\"id\":\"P04\",\"affiliation\":\"ORG-838\",\"status\":\"UNKNOWN\",\"sources\":[\"S1\"]},{\"id\":\"P05\",\"affiliation\":\"ORG-912\",\"status\":\"UNKNOWN\",\"sources\":[\"S1\"]},{\"id\":\"P06\",\"affiliation\":\"ORG-838\",\"status\":\"UNKNOWN\",\"sources\":[\"S1\"]}]}",
+      "grade": {
+        "json_valid": true,
+        "structure_valid": true,
+        "fact_fields_correct": 3,
+        "fact_fields_total": 12,
+        "citations_correct": 1,
+        "people_total": 6,
+        "all_facts_correct": false,
+        "all_facts_and_sources_correct": false
+      },
+      "request_count": 2,
+      "compression_request_count": 1,
+      "all_prompt_tokens": 1876,
+      "all_completion_tokens": 350,
+      "compression_seconds": 1.0611050000297837,
+      "total_seconds": 2.0795717000146396
+    },
+    {
+      "mode": "citations",
+      "trial": 1,
+      "fixture_sha256": "84aea47ef8477384eeb6c843191b704d2d76a4dbe657a905864d2892db1dc195",
+      "original_evidence_chars": 7852,
+      "status": "answered",
+      "blocks": [
+        {
+          "source_ids": [
+            "S1",
+            "S2",
+            "S3"
+          ],
+          "text": "[COMPRESSED]\n```json\n{\"people\":[{\"id\":\"P01\",\"affiliation\":\"ORG-838\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]},{\"id\":\"P02\",\"affiliation\":\"ORG-817\",\"status\":\"ACTIVE\",\"sources\":[\"S2\"]},{\"id\":\"P03\",\"affiliation\":\"ORG-469\",\"status\":\"LEFT\",\"sources\":[\"S3\"]},{\"id\":\"P04\",\"affiliation\":\"ORG-839\",\"status\":\"ACTIVE\",\"sources\":[\"S2\"]},{\"id\":\"P05\",\"affiliation\":\"ORG-912\",\"status\":\"ADVISOR\",\"sources\":[\"S3\"]},{\"id\":\"P06\",\"affiliation\":\"ORG-277\",\"status\":\"LEFT\",\"sources\":[\"S3\"]}]}\n```",
+          "compressed": true
+        }
+      ],
+      "compression_events": [
+        {
+          "source_ids": [
+            "S1",
+            "S2",
+            "S3"
+          ],
+          "before_chars": 7852,
+          "after_chars": 453,
+          "ratio": 0.057692307692307696,
+          "summary": "```json\n{\"people\":[{\"id\":\"P01\",\"affiliation\":\"ORG-838\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]},{\"id\":\"P02\",\"affiliation\":\"ORG-817\",\"status\":\"ACTIVE\",\"sources\":[\"S2\"]},{\"id\":\"P03\",\"affiliation\":\"ORG-469\",\"status\":\"LEFT\",\"sources\":[\"S3\"]},{\"id\":\"P04\",\"affiliation\":\"ORG-839\",\"status\":\"ACTIVE\",\"sources\":[\"S2\"]},{\"id\":\"P05\",\"affiliation\":\"ORG-912\",\"status\":\"ADVISOR\",\"sources\":[\"S3\"]},{\"id\":\"P06\",\"affiliation\":\"ORG-277\",\"status\":\"LEFT\",\"sources\":[\"S3\"]}]}\n```",
+          "call_number": 8
+        }
+      ],
+      "window_checkpoints": [],
+      "retained_evidence_chars": 466,
+      "compression_ratio": 0.05934793683138054,
+      "final_input_chars": 733,
+      "answer": "{\"people\":[{\"id\":\"P01\",\"affiliation\":\"ORG-838\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]},{\"id\":\"P02\",\"affiliation\":\"ORG-817\",\"status\":\"ACTIVE\",\"sources\":[\"S2\"]},{\"id\":\"P03\",\"affiliation\":\"ORG-469\",\"status\":\"LEFT\",\"sources\":[\"S3\"]},{\"id\":\"P04\",\"affiliation\":\"ORG-839\",\"status\":\"ACTIVE\",\"sources\":[\"S2\"]},{\"id\":\"P05\",\"affiliation\":\"ORG-912\",\"status\":\"ADVISOR\",\"sources\":[\"S3\"]},{\"id\":\"P06\",\"affiliation\":\"ORG-277\",\"status\":\"LEFT\",\"sources\":[\"S3\"]}]}",
+      "grade": {
+        "json_valid": true,
+        "structure_valid": true,
+        "fact_fields_correct": 11,
+        "fact_fields_total": 12,
+        "citations_correct": 5,
+        "people_total": 6,
+        "all_facts_correct": false,
+        "all_facts_and_sources_correct": false
+      },
+      "request_count": 2,
+      "compression_request_count": 1,
+      "all_prompt_tokens": 1984,
+      "all_completion_tokens": 317,
+      "compression_seconds": 0.9582060999819078,
+      "total_seconds": 2.144752799998969
+    },
+    {
+      "mode": "windowed",
+      "trial": 1,
+      "fixture_sha256": "84aea47ef8477384eeb6c843191b704d2d76a4dbe657a905864d2892db1dc195",
+      "original_evidence_chars": 7852,
+      "status": "answered",
+      "blocks": [
+        {
+          "source_ids": [
+            "S1"
+          ],
+          "text": "[COMPRESSED]\n```json\n{\"people\":[{\"id\":\"P01\",\"affiliation\":\"ORG-838\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]},{\"id\":\"P02\",\"affiliation\":\"ORG-152\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]},{\"id\":\"P03\",\"affiliation\":\"ORG-838\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]},{\"id\":\"P04\",\"affiliation\":\"ORG-838\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]},{\"id\":\"P05\",\"affiliation\":\"ORG-838\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]},{\"id\":\"P06\",\"affiliation\":\"ORG-838\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]]}]}\n```",
+          "compressed": true
+        },
+        {
+          "source_ids": [
+            "S2"
+          ],
+          "text": "[COMPRESSED]\n```json\n{\"people\":[{\"id\":\"P01\",\"affiliation\":\"ORG-817\",\"status\":\"UNKNOWN\",\"sources\":[\"S1\"]},{\"id\":\"P02\",\"affiliation\":\"ORG-817\",\"status\":\"ADVISOR\",\"sources\":[\"S1\"]},{\"id\":\"P03\",\"affiliation\":\"ORG-469\",\"status\":\"LEFT\",\"sources\":[\"S1\"]},{\"id\":\"P04\",\"affiliation\":\"ORG-839\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]},{\"id\":\"P05\",\"affiliation\":\"ORG-817\",\"status\":\"UNKNOWN\",\"sources\":[\"S1\"]},{\"id\":\"P06\",\"affiliation\":\"ORG-817\",\"status\":\"UNKNOWN\",\"sources\":[\"S1\"]}]}\n```",
+          "compressed": true
+        },
+        {
+          "source_ids": [
+            "S3"
+          ],
+          "text": "SOURCE S3\nURL https://fixture.invalid/source-3\nDOCUMENT DATE 2026-10-10\nAs of 2026-10-10: id=P05; affiliation=ORG-912; status=ADVISOR.\nFacilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describe\nAs of 2026-10-10: id=P06; affiliation=ORG-277; status=LEFT.",
+          "compressed": false
+        }
+      ],
+      "compression_events": [
+        {
+          "source_ids": [
+            "S1"
+          ],
+          "before_chars": 2596,
+          "after_chars": 457,
+          "ratio": 0.17604006163328198,
+          "summary": "```json\n{\"people\":[{\"id\":\"P01\",\"affiliation\":\"ORG-838\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]},{\"id\":\"P02\",\"affiliation\":\"ORG-152\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]},{\"id\":\"P03\",\"affiliation\":\"ORG-838\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]},{\"id\":\"P04\",\"affiliation\":\"ORG-838\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]},{\"id\":\"P05\",\"affiliation\":\"ORG-838\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]},{\"id\":\"P06\",\"affiliation\":\"ORG-838\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]]}]}\n```",
+          "call_number": 10
+        },
+        {
+          "source_ids": [
+            "S2"
+          ],
+          "before_chars": 2657,
+          "after_chars": 458,
+          "ratio": 0.17237485886337975,
+          "summary": "```json\n{\"people\":[{\"id\":\"P01\",\"affiliation\":\"ORG-817\",\"status\":\"UNKNOWN\",\"sources\":[\"S1\"]},{\"id\":\"P02\",\"affiliation\":\"ORG-817\",\"status\":\"ADVISOR\",\"sources\":[\"S1\"]},{\"id\":\"P03\",\"affiliation\":\"ORG-469\",\"status\":\"LEFT\",\"sources\":[\"S1\"]},{\"id\":\"P04\",\"affiliation\":\"ORG-839\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]},{\"id\":\"P05\",\"affiliation\":\"ORG-817\",\"status\":\"UNKNOWN\",\"sources\":[\"S1\"]},{\"id\":\"P06\",\"affiliation\":\"ORG-817\",\"status\":\"UNKNOWN\",\"sources\":[\"S1\"]}]}\n```",
+          "call_number": 11
+        }
+      ],
+      "window_checkpoints": [
+        {
+          "after_source": "S1",
+          "before_chars": 2863,
+          "after_chars": 2863,
+          "compressed_groups": []
+        },
+        {
+          "after_source": "S2",
+          "before_chars": 5522,
+          "after_chars": 3396,
+          "compressed_groups": [
+            [
+              "S1"
+            ]
+          ]
+        },
+        {
+          "after_source": "S3",
+          "before_chars": 5993,
+          "after_chars": 3807,
+          "compressed_groups": [
+            [
+              "S1"
+            ],
+            [
+              "S2"
+            ]
+          ]
+        }
+      ],
+      "retained_evidence_chars": 3540,
+      "compression_ratio": 0.45084055017829855,
+      "final_input_chars": 3807,
+      "answer": "{\"people\":[{\"id\":\"P01\",\"affiliation\":\"ORG-817\",\"status\":\"UNKNOWN\",\"sources\":[\"S1\"]},{\"id\":\"P02\",\"affiliation\":\"ORG-817\",\"status\":\"ADVISOR\",\"sources\":[\"S1\"]},{\"id\":\"P03\",\"affiliation\":\"ORG-469\",\"status\":\"LEFT\",\"sources\":[\"S1\"]},{\"id\":\"P04\",\"affiliation\":\"ORG-839\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]},{\"id\":\"P05\",\"affiliation\":\"ORG-912\",\"status\":\"ADVISOR\",\"sources\":[\"S1\"]},{\"id\":\"P06\",\"affiliation\":\"ORG-277\",\"status\":\"LEFT\",\"sources\":[\"S1\"]}]}",
+      "grade": {
+        "json_valid": true,
+        "structure_valid": true,
+        "fact_fields_correct": 10,
+        "fact_fields_total": 12,
+        "citations_correct": 1,
+        "people_total": 6,
+        "all_facts_correct": false,
+        "all_facts_and_sources_correct": false
+      },
+      "request_count": 3,
+      "compression_request_count": 2,
+      "all_prompt_tokens": 2348,
+      "all_completion_tokens": 478,
+      "compression_seconds": 1.8785359000321478,
+      "total_seconds": 2.813265800010413
+    },
+    {
+      "mode": "no_compression",
+      "trial": 1,
+      "fixture_sha256": "84aea47ef8477384eeb6c843191b704d2d76a4dbe657a905864d2892db1dc195",
+      "original_evidence_chars": 7852,
+      "status": "character_budget_blocked",
+      "blocks": [
+        {
+          "source_ids": [
+            "S1"
+          ],
+          "text": "SOURCE S1\nURL https://fixture.invalid/source-1\nDOCUMENT DATE 2026-09-01\nAs of 2026-09-01: id=P01; affiliation=ORG-838; status=ACTIVE.\nFacilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describe\nAs of 2026-09-01: id=P02; affiliation=ORG-152; status=ACTIVE.",
+          "compressed": false
+        },
+        {
+          "source_ids": [
+            "S2"
+          ],
+          "text": "SOURCE S2\nURL https://fixture.invalid/source-2\nDOCUMENT DATE 2026-10-03\nAs of 2026-10-03: id=P02; affiliation=ORG-817; status=ADVISOR.\nFacilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describe\nAs of 2026-10-03: id=P03; affiliation=ORG-469; status=LEFT.\nAs of 2026-10-03: id=P04; affiliation=ORG-839; status=ACTIVE.",
+          "compressed": false
+        },
+        {
+          "source_ids": [
+            "S3"
+          ],
+          "text": "SOURCE S3\nURL https://fixture.invalid/source-3\nDOCUMENT DATE 2026-10-10\nAs of 2026-10-10: id=P05; affiliation=ORG-912; status=ADVISOR.\nFacilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describes logistics only and contains no founder affiliation or status. Facilities bulletin: meeting rooms, catering menus, visitor parking and office supplies. This paragraph describe\nAs of 2026-10-10: id=P06; affiliation=ORG-277; status=LEFT.",
+          "compressed": false
+        }
+      ],
+      "compression_events": [],
+      "window_checkpoints": [],
+      "retained_evidence_chars": 7852,
+      "compression_ratio": 1.0,
+      "final_input_chars": 8119,
+      "note": "教学字符预算拒绝最终问答；不是服务端token窗口溢出。",
+      "request_count": 0,
+      "compression_request_count": 0,
+      "all_prompt_tokens": 0,
+      "all_completion_tokens": 0,
+      "compression_seconds": 0,
+      "total_seconds": 0.00017199997091665864
+    },
+    {
+      "mode": "context_aware",
+      "trial": 1,
+      "fixture_sha256": "84aea47ef8477384eeb6c843191b704d2d76a4dbe657a905864d2892db1dc195",
+      "original_evidence_chars": 7852,
+      "status": "answered",
+      "blocks": [
+        {
+          "source_ids": [
+            "S1",
+            "S2",
+            "S3"
+          ],
+          "text": "[COMPRESSED]\n```json\n{\"people\":[{\"id\":\"P01\",\"affiliation\":\"ORG-838\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]},{\"id\":\"P02\",\"affiliation\":\"ORG-817\",\"status\":\"ACTIVE\",\"sources\":[\"S2\"]},{\"id\":\"P03\",\"affiliation\":\"ORG-469\",\"status\":\"LEFT\",\"sources\":[\"S3\"]},{\"id\":\"P04\",\"affiliation\":\"ORG-839\",\"status\":\"ACTIVE\",\"sources\":[\"S2\"]},{\"id\":\"P05\",\"affiliation\":\"ORG-912\",\"status\":\"ADVISOR\",\"sources\":[\"S3\"]},{\"id\":\"P06\",\"affiliation\":\"ORG-277\",\"status\":\"LEFT\",\"sources\":[\"S3\"]]}]}\n```",
+          "compressed": true
+        }
+      ],
+      "compression_events": [
+        {
+          "source_ids": [
+            "S1",
+            "S2",
+            "S3"
+          ],
+          "before_chars": 7852,
+          "after_chars": 454,
+          "ratio": 0.05781966377992868,
+          "summary": "```json\n{\"people\":[{\"id\":\"P01\",\"affiliation\":\"ORG-838\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]},{\"id\":\"P02\",\"affiliation\":\"ORG-817\",\"status\":\"ACTIVE\",\"sources\":[\"S2\"]},{\"id\":\"P03\",\"affiliation\":\"ORG-469\",\"status\":\"LEFT\",\"sources\":[\"S3\"]},{\"id\":\"P04\",\"affiliation\":\"ORG-839\",\"status\":\"ACTIVE\",\"sources\":[\"S2\"]},{\"id\":\"P05\",\"affiliation\":\"ORG-912\",\"status\":\"ADVISOR\",\"sources\":[\"S3\"]},{\"id\":\"P06\",\"affiliation\":\"ORG-277\",\"status\":\"LEFT\",\"sources\":[\"S3\"]]}]}\n```",
+          "call_number": 13
+        }
+      ],
+      "window_checkpoints": [],
+      "retained_evidence_chars": 467,
+      "compression_ratio": 0.05947529291900153,
+      "final_input_chars": 734,
+      "answer": "{\"people\":[{\"id\":\"P01\",\"affiliation\":\"ORG-838\",\"status\":\"ACTIVE\",\"sources\":[\"S1\"]},{\"id\":\"P02\",\"affiliation\":\"ORG-817\",\"status\":\"ACTIVE\",\"sources\":[\"S2\"]},{\"id\":\"P03\",\"affiliation\":\"ORG-469\",\"status\":\"LEFT\",\"sources\":[\"S3\"]},{\"id\":\"P04\",\"affiliation\":\"ORG-839\",\"status\":\"ACTIVE\",\"sources\":[\"S2\"]},{\"id\":\"P05\",\"affiliation\":\"ORG-912\",\"status\":\"ADVISOR\",\"sources\":[\"S3\"]},{\"id\":\"P06\",\"affiliation\":\"ORG-277\",\"status\":\"UNKNOWN\",\"sources\":[\"S3\"]}]}",
+      "grade": {
+        "json_valid": true,
+        "structure_valid": true,
+        "fact_fields_correct": 10,
+        "fact_fields_total": 12,
+        "citations_correct": 5,
+        "people_total": 6,
+        "all_facts_correct": false,
+        "all_facts_and_sources_correct": false
+      },
+      "request_count": 2,
+      "compression_request_count": 1,
+      "all_prompt_tokens": 1967,
+      "all_completion_tokens": 317,
+      "compression_seconds": 0.9911689999862574,
+      "total_seconds": 1.9271609000279568
+    }
+  ],
+  "measurement_completed": true,
+  "actual_request_count_including_warmup": 14,
+  "finished_at": "2026-10-11T23:41:17.308807"
+}

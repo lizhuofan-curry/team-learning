@@ -1,0 +1,119 @@
+{
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "question": "请使用calculate工具计算(246 + 754) * 6，依据工具结果回答。",
+  "max_turns": 3,
+  "status": "answered",
+  "answer_complete": true,
+  "answer": "计算结果为 **6000**。\n\n计算过程：(246 + 754) = 1000，再乘以 6，得到 1000 × 6 = 6000。",
+  "turns": [
+    {
+      "turn": 1,
+      "sent_message_count": 2,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "id": "call_00_DoxmOKTnP9FP9xmUQtIH7016",
+          "type": "function",
+          "function": {
+            "name": "calculate",
+            "arguments": "{\"expression\": \"(246 + 754) * 6\"}"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "tool_call_id": "call_00_DoxmOKTnP9FP9xmUQtIH7016",
+          "name": "calculate",
+          "arguments": {
+            "expression": "(246 + 754) * 6"
+          },
+          "result": {
+            "expression": "(246 + 754) * 6",
+            "result": 6000,
+            "type": "int"
+          }
+        }
+      ],
+      "usage": {
+        "completion_tokens": 70,
+        "prompt_tokens": 348,
+        "total_tokens": 418,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 21,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 220
+      }
+    },
+    {
+      "turn": 2,
+      "sent_message_count": 4,
+      "finish_reason": "stop",
+      "tool_calls": [],
+      "tool_results": [],
+      "usage": {
+        "completion_tokens": 38,
+        "prompt_tokens": 456,
+        "total_tokens": 494,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 200
+      }
+    }
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "你是计算助手。需要计算时调用calculate，依据实际工具结果回答。"
+    },
+    {
+      "role": "user",
+      "content": "请使用calculate工具计算(246 + 754) * 6，依据工具结果回答。"
+    },
+    {
+      "role": "assistant",
+      "content": "我来计算这个算式。",
+      "reasoning_content": "The user asks to calculate (246 + 754) * 6. Let me call the tool.",
+      "tool_calls": [
+        {
+          "id": "call_00_DoxmOKTnP9FP9xmUQtIH7016",
+          "type": "function",
+          "function": {
+            "name": "calculate",
+            "arguments": "{\"expression\": \"(246 + 754) * 6\"}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "call_00_DoxmOKTnP9FP9xmUQtIH7016",
+      "content": "{\"expression\": \"(246 + 754) * 6\", \"result\": 6000, \"type\": \"int\"}"
+    },
+    {
+      "role": "assistant",
+      "content": "计算结果为 **6000**。\n\n计算过程：(246 + 754) = 1000，再乘以 6，得到 1000 × 6 = 6000。",
+      "reasoning_content": "",
+      "tool_calls": []
+    }
+  ]
+}

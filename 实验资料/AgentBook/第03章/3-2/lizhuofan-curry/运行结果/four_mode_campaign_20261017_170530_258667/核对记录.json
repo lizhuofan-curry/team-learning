@@ -1,0 +1,633 @@
+{
+  "checked_at": "2026-10-17T09:28:43.049754+00:00",
+  "scope": "First 12 of 240 fixed-configuration variants; generation audit only, no independent grades",
+  "checks": {
+    "pinned_official_source": true,
+    "all_240_entry_identities_and_configuration": true,
+    "raw_requests_responses_and_artifacts": true,
+    "session_isolation_and_memory_checkpoints": true,
+    "recomputed_summary_matches": true,
+    "original_files_unchanged": true,
+    "judge_preview_only_no_inference": true
+  },
+  "summary": {
+    "planned_cases": 60,
+    "planned_variants": 240,
+    "writer_states": {
+      "incomplete": 9,
+      "saved": 3,
+      "pending": 228
+    },
+    "judge_states": {
+      "pending": 240
+    },
+    "scored_variants": 0,
+    "passed_variants": 0,
+    "all_attempts_and_outcomes_finished": false,
+    "pipeline_pass_rate_all_variants": null,
+    "pass_rate_scored_only": null,
+    "mean_reward_scored_only": null,
+    "writer_calls": 22,
+    "judge_calls": 0,
+    "generation_failure_kinds": {
+      "generation_error": 8,
+      "truncated": 1
+    },
+    "input_tokens": 39651,
+    "output_tokens": 26289,
+    "memory_input_tokens": 34525,
+    "memory_output_tokens": 18411,
+    "answer_input_tokens": 5126,
+    "answer_output_tokens": 7878,
+    "request_seconds": 1005.656348599965,
+    "tag_queries": 12,
+    "full_240_judge_scores_available": false,
+    "by_mode": {
+      "notes": {
+        "planned_variants": 60,
+        "writer_states": {
+          "incomplete": 3,
+          "pending": 57
+        },
+        "judge_states": {
+          "pending": 60
+        },
+        "scored_variants": 0,
+        "passed_variants": 0,
+        "all_attempts_and_outcomes_finished": false,
+        "pipeline_pass_rate_all_variants": null,
+        "pass_rate_scored_only": null,
+        "mean_reward_scored_only": null,
+        "writer_calls": 3,
+        "judge_calls": 0,
+        "generation_failure_kinds": {
+          "generation_error": 3
+        },
+        "input_tokens": 5932,
+        "output_tokens": 3417,
+        "memory_input_tokens": 5932,
+        "memory_output_tokens": 3417,
+        "answer_input_tokens": 0,
+        "answer_output_tokens": 0,
+        "request_seconds": 125.85206519997155,
+        "tag_queries": 3
+      },
+      "enhanced_notes": {
+        "planned_variants": 60,
+        "writer_states": {
+          "incomplete": 3,
+          "pending": 57
+        },
+        "judge_states": {
+          "pending": 60
+        },
+        "scored_variants": 0,
+        "passed_variants": 0,
+        "all_attempts_and_outcomes_finished": false,
+        "pipeline_pass_rate_all_variants": null,
+        "pass_rate_scored_only": null,
+        "mean_reward_scored_only": null,
+        "writer_calls": 3,
+        "judge_calls": 0,
+        "generation_failure_kinds": {
+          "generation_error": 3
+        },
+        "input_tokens": 3893,
+        "output_tokens": 2894,
+        "memory_input_tokens": 3893,
+        "memory_output_tokens": 2894,
+        "answer_input_tokens": 0,
+        "answer_output_tokens": 0,
+        "request_seconds": 141.32944009998755,
+        "tag_queries": 3
+      },
+      "json_cards": {
+        "planned_variants": 60,
+        "writer_states": {
+          "saved": 1,
+          "incomplete": 2,
+          "pending": 57
+        },
+        "judge_states": {
+          "pending": 60
+        },
+        "scored_variants": 0,
+        "passed_variants": 0,
+        "all_attempts_and_outcomes_finished": false,
+        "pipeline_pass_rate_all_variants": null,
+        "pass_rate_scored_only": null,
+        "mean_reward_scored_only": null,
+        "writer_calls": 8,
+        "judge_calls": 0,
+        "generation_failure_kinds": {
+          "generation_error": 1,
+          "truncated": 1
+        },
+        "input_tokens": 14345,
+        "output_tokens": 10315,
+        "memory_input_tokens": 12898,
+        "memory_output_tokens": 4456,
+        "answer_input_tokens": 1447,
+        "answer_output_tokens": 5859,
+        "request_seconds": 350.94393040002615,
+        "tag_queries": 3
+      },
+      "advanced_json_cards": {
+        "planned_variants": 60,
+        "writer_states": {
+          "saved": 2,
+          "incomplete": 1,
+          "pending": 57
+        },
+        "judge_states": {
+          "pending": 60
+        },
+        "scored_variants": 0,
+        "passed_variants": 0,
+        "all_attempts_and_outcomes_finished": false,
+        "pipeline_pass_rate_all_variants": null,
+        "pass_rate_scored_only": null,
+        "mean_reward_scored_only": null,
+        "writer_calls": 8,
+        "judge_calls": 0,
+        "generation_failure_kinds": {
+          "generation_error": 1
+        },
+        "input_tokens": 15481,
+        "output_tokens": 9663,
+        "memory_input_tokens": 11802,
+        "memory_output_tokens": 7644,
+        "answer_input_tokens": 3679,
+        "answer_output_tokens": 2019,
+        "request_seconds": 387.53091289997974,
+        "tag_queries": 3
+      }
+    },
+    "by_layer": {
+      "layer1": {
+        "planned_variants": 80,
+        "writer_states": {
+          "incomplete": 2,
+          "saved": 2,
+          "pending": 76
+        },
+        "judge_states": {
+          "pending": 80
+        },
+        "scored_variants": 0,
+        "passed_variants": 0,
+        "all_attempts_and_outcomes_finished": false,
+        "pipeline_pass_rate_all_variants": null,
+        "pass_rate_scored_only": null,
+        "mean_reward_scored_only": null,
+        "writer_calls": 6,
+        "judge_calls": 0,
+        "generation_failure_kinds": {
+          "generation_error": 2
+        },
+        "input_tokens": 11803,
+        "output_tokens": 7208,
+        "memory_input_tokens": 8886,
+        "memory_output_tokens": 4927,
+        "answer_input_tokens": 2917,
+        "answer_output_tokens": 2281,
+        "request_seconds": 255.97303409999586,
+        "tag_queries": 4
+      },
+      "layer2": {
+        "planned_variants": 80,
+        "writer_states": {
+          "incomplete": 3,
+          "saved": 1,
+          "pending": 76
+        },
+        "judge_states": {
+          "pending": 80
+        },
+        "scored_variants": 0,
+        "passed_variants": 0,
+        "all_attempts_and_outcomes_finished": false,
+        "pipeline_pass_rate_all_variants": null,
+        "pass_rate_scored_only": null,
+        "mean_reward_scored_only": null,
+        "writer_calls": 7,
+        "judge_calls": 0,
+        "generation_failure_kinds": {
+          "generation_error": 3
+        },
+        "input_tokens": 13382,
+        "output_tokens": 7451,
+        "memory_input_tokens": 11811,
+        "memory_output_tokens": 5950,
+        "answer_input_tokens": 1571,
+        "answer_output_tokens": 1501,
+        "request_seconds": 307.84754549998615,
+        "tag_queries": 4
+      },
+      "layer3": {
+        "planned_variants": 80,
+        "writer_states": {
+          "incomplete": 4,
+          "pending": 76
+        },
+        "judge_states": {
+          "pending": 80
+        },
+        "scored_variants": 0,
+        "passed_variants": 0,
+        "all_attempts_and_outcomes_finished": false,
+        "pipeline_pass_rate_all_variants": null,
+        "pass_rate_scored_only": null,
+        "mean_reward_scored_only": null,
+        "writer_calls": 9,
+        "judge_calls": 0,
+        "generation_failure_kinds": {
+          "generation_error": 3,
+          "truncated": 1
+        },
+        "input_tokens": 14466,
+        "output_tokens": 11630,
+        "memory_input_tokens": 13828,
+        "memory_output_tokens": 7534,
+        "answer_input_tokens": 638,
+        "answer_output_tokens": 4096,
+        "request_seconds": 441.835768999983,
+        "tag_queries": 4
+      }
+    },
+    "note": "技术失败无裁判分数，不填0；已评分均分与通过率只对应已评分子集。"
+  },
+  "failure_details": {
+    "memory_validation": 6,
+    "token_repeat_abort": 2,
+    "answer_truncated": 1
+  },
+  "first_12": [
+    {
+      "test_id": "layer1_01_bank_account",
+      "mode": "notes",
+      "status": "incomplete",
+      "error": {
+        "type": "ValueError",
+        "message": "JSON字段重复：account_type"
+      },
+      "failure_detail": "memory_validation",
+      "writer_sha256": "6faa908794eebe29a4ee7f76320a0df4eca9b8afbb7925fb2d15ee5f17759feb",
+      "memory_checkpoints": 0,
+      "calls": [
+        {
+          "purpose": "memory_session_1",
+          "ok": true,
+          "done_reason": "stop",
+          "http_status": 200,
+          "error_body": null
+        }
+      ]
+    },
+    {
+      "test_id": "layer1_01_bank_account",
+      "mode": "enhanced_notes",
+      "status": "incomplete",
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      },
+      "failure_detail": "memory_validation",
+      "writer_sha256": "889716b803d49086932cc78ee6f359b38f54d6b21d85b7d122b26e201cc705e8",
+      "memory_checkpoints": 0,
+      "calls": [
+        {
+          "purpose": "memory_session_1",
+          "ok": true,
+          "done_reason": "stop",
+          "http_status": 200,
+          "error_body": null
+        }
+      ]
+    },
+    {
+      "test_id": "layer1_01_bank_account",
+      "mode": "json_cards",
+      "status": "saved",
+      "error": null,
+      "failure_detail": null,
+      "writer_sha256": "ca8f410d5eec4fc021a6682df668c48d6f05bd354369d91ad3c049cdac958723",
+      "memory_checkpoints": 1,
+      "calls": [
+        {
+          "purpose": "memory_session_1",
+          "ok": true,
+          "done_reason": "stop",
+          "http_status": 200,
+          "error_body": null
+        },
+        {
+          "purpose": "answer",
+          "ok": true,
+          "done_reason": "stop",
+          "http_status": 200,
+          "error_body": null
+        }
+      ]
+    },
+    {
+      "test_id": "layer1_01_bank_account",
+      "mode": "advanced_json_cards",
+      "status": "saved",
+      "error": null,
+      "failure_detail": null,
+      "writer_sha256": "63dd9378f4a7a487df151bc63599185c7daae213dc758dad0088bdc1a2e7a959",
+      "memory_checkpoints": 1,
+      "calls": [
+        {
+          "purpose": "memory_session_1",
+          "ok": true,
+          "done_reason": "stop",
+          "http_status": 200,
+          "error_body": null
+        },
+        {
+          "purpose": "answer",
+          "ok": true,
+          "done_reason": "stop",
+          "http_status": 200,
+          "error_body": null
+        }
+      ]
+    },
+    {
+      "test_id": "layer2_01_multiple_vehicles",
+      "mode": "notes",
+      "status": "incomplete",
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      },
+      "failure_detail": "memory_validation",
+      "writer_sha256": "14c37232fc440ecc753a6ecdadb651585dcf5ac7fb0ab2c7473325ed46ff7981",
+      "memory_checkpoints": 0,
+      "calls": [
+        {
+          "purpose": "memory_session_1",
+          "ok": true,
+          "done_reason": "stop",
+          "http_status": 200,
+          "error_body": null
+        }
+      ]
+    },
+    {
+      "test_id": "layer2_01_multiple_vehicles",
+      "mode": "enhanced_notes",
+      "status": "incomplete",
+      "error": {
+        "type": "RuntimeError",
+        "message": "Ollama HTTP 500"
+      },
+      "failure_detail": "token_repeat_abort",
+      "writer_sha256": "8a3a11c484df9ce86a12c15eafb75332cbd557862290cd779d2806d4e98add25",
+      "memory_checkpoints": 0,
+      "calls": [
+        {
+          "purpose": "memory_session_1",
+          "ok": false,
+          "done_reason": null,
+          "http_status": 500,
+          "error_body": "{\"error\":\"prediction aborted, token repeat limit reached\"}"
+        }
+      ]
+    },
+    {
+      "test_id": "layer2_01_multiple_vehicles",
+      "mode": "json_cards",
+      "status": "incomplete",
+      "error": {
+        "type": "ValueError",
+        "message": "官方提取结果必须为仅含\"memory\"的JSON对象"
+      },
+      "failure_detail": "memory_validation",
+      "writer_sha256": "e5e922f5cda53b2ebc1430bca7774c2e0cdf269646a6e510a385837512016919",
+      "memory_checkpoints": 1,
+      "calls": [
+        {
+          "purpose": "memory_session_1",
+          "ok": true,
+          "done_reason": "stop",
+          "http_status": 200,
+          "error_body": null
+        },
+        {
+          "purpose": "memory_session_2",
+          "ok": true,
+          "done_reason": "stop",
+          "http_status": 200,
+          "error_body": null
+        }
+      ]
+    },
+    {
+      "test_id": "layer2_01_multiple_vehicles",
+      "mode": "advanced_json_cards",
+      "status": "saved",
+      "error": null,
+      "failure_detail": null,
+      "writer_sha256": "b325853b1791f8780efcce742ebdd6c1e02612080c8e73134bfd1d631010d632",
+      "memory_checkpoints": 2,
+      "calls": [
+        {
+          "purpose": "memory_session_1",
+          "ok": true,
+          "done_reason": "stop",
+          "http_status": 200,
+          "error_body": null
+        },
+        {
+          "purpose": "memory_session_2",
+          "ok": true,
+          "done_reason": "stop",
+          "http_status": 200,
+          "error_body": null
+        },
+        {
+          "purpose": "answer",
+          "ok": true,
+          "done_reason": "stop",
+          "http_status": 200,
+          "error_body": null
+        }
+      ]
+    },
+    {
+      "test_id": "layer3_01_travel_coordination",
+      "mode": "notes",
+      "status": "incomplete",
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      },
+      "failure_detail": "memory_validation",
+      "writer_sha256": "80018c71cff0210d49a65226e631dd81b0e76ea4717df85c849ea2720be9db83",
+      "memory_checkpoints": 0,
+      "calls": [
+        {
+          "purpose": "memory_session_1",
+          "ok": true,
+          "done_reason": "stop",
+          "http_status": 200,
+          "error_body": null
+        }
+      ]
+    },
+    {
+      "test_id": "layer3_01_travel_coordination",
+      "mode": "enhanced_notes",
+      "status": "incomplete",
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      },
+      "failure_detail": "memory_validation",
+      "writer_sha256": "0e0ae61f9a74f2fcd454e6c981cb1e7cbba5eb5c74a76aeba7ac6701268d86d5",
+      "memory_checkpoints": 0,
+      "calls": [
+        {
+          "purpose": "memory_session_1",
+          "ok": true,
+          "done_reason": "stop",
+          "http_status": 200,
+          "error_body": null
+        }
+      ]
+    },
+    {
+      "test_id": "layer3_01_travel_coordination",
+      "mode": "json_cards",
+      "status": "incomplete",
+      "error": {
+        "type": "ValueError",
+        "message": "模型未正常结束：done_reason=length，输出4096 token，上限4096；保留响应，不补齐JSON"
+      },
+      "failure_detail": "answer_truncated",
+      "writer_sha256": "5dfc52f49093e3e21539068d25b563683050dccada314e3b1af49b1b2f3e8d01",
+      "memory_checkpoints": 3,
+      "calls": [
+        {
+          "purpose": "memory_session_1",
+          "ok": true,
+          "done_reason": "stop",
+          "http_status": 200,
+          "error_body": null
+        },
+        {
+          "purpose": "memory_session_2",
+          "ok": true,
+          "done_reason": "stop",
+          "http_status": 200,
+          "error_body": null
+        },
+        {
+          "purpose": "memory_session_3",
+          "ok": true,
+          "done_reason": "stop",
+          "http_status": 200,
+          "error_body": null
+        },
+        {
+          "purpose": "answer",
+          "ok": false,
+          "done_reason": "length",
+          "http_status": 200,
+          "error_body": null
+        }
+      ]
+    },
+    {
+      "test_id": "layer3_01_travel_coordination",
+      "mode": "advanced_json_cards",
+      "status": "incomplete",
+      "error": {
+        "type": "RuntimeError",
+        "message": "Ollama HTTP 500"
+      },
+      "failure_detail": "token_repeat_abort",
+      "writer_sha256": "8bfb689645fd38a037b2e882e50b887bf9e803bba349c648c93692771a230a55",
+      "memory_checkpoints": 2,
+      "calls": [
+        {
+          "purpose": "memory_session_1",
+          "ok": true,
+          "done_reason": "stop",
+          "http_status": 200,
+          "error_body": null
+        },
+        {
+          "purpose": "memory_session_2",
+          "ok": true,
+          "done_reason": "stop",
+          "http_status": 200,
+          "error_body": null
+        },
+        {
+          "purpose": "memory_session_3",
+          "ok": false,
+          "done_reason": null,
+          "http_status": 500,
+          "error_body": "{\"error\":\"prediction aborted, token repeat limit reached\"}"
+        }
+      ]
+    }
+  ],
+  "manual_content_observations": [
+    {
+      "test_id": "layer1_01_bank_account",
+      "mode": "json_cards",
+      "observation": "Correct checking account, but claims direct deposit is already configured without confirmation in original dialogue. No judge score assigned."
+    },
+    {
+      "test_id": "layer1_01_bank_account",
+      "mode": "advanced_json_cards",
+      "observation": "Answer recommends Wells Fargo routing 121000248 for new First National account; correct new-bank routing is 123006800. No judge score assigned."
+    },
+    {
+      "test_id": "layer2_01_multiple_vehicles",
+      "mode": "advanced_json_cards",
+      "observation": "Second memory checkpoint omits Firestone Honda appointment FS-447291; answer denies scheduled records and adds an unsupported Tesla battery-health recommendation. No judge score assigned."
+    }
+  ],
+  "original_file_hashes": {
+    "batch.json": "df9304b898c4dec8cd13c47ab71068acaaa1155bb1bbec0a2535cfc753a7a801",
+    "summary.json": "72a258b1a517feeed31272f430b5d48b9238d87d46e9499a75118d110c92f4ab",
+    "summary.md": "8c2bac5abc97c6a3015e11d175a4034d42ac5c4614c05cbebc3ff357dcc5b534",
+    "layer1_01_bank_account\\advanced_json_cards\\answer.txt": "dc8f253310519ceeae4fd19ab536b101566fd0b3e1766dfa70962edfaf614012",
+    "layer1_01_bank_account\\advanced_json_cards\\memory.json": "2a1cee365dab5138ce5de169750c124f6385bc4d9fa2e85ecf5db8fa1ed33f9e",
+    "layer1_01_bank_account\\advanced_json_cards\\writer.json": "63dd9378f4a7a487df151bc63599185c7daae213dc758dad0088bdc1a2e7a959",
+    "layer1_01_bank_account\\enhanced_notes\\writer.json": "889716b803d49086932cc78ee6f359b38f54d6b21d85b7d122b26e201cc705e8",
+    "layer1_01_bank_account\\json_cards\\answer.txt": "83a62334fa61bae144899e28ac92d43d1695e931e99a2f0d0a84783b368bba1e",
+    "layer1_01_bank_account\\json_cards\\memory.json": "0c15e735e672988c7ad9f93390f39bb10fd72d334459ace41512c85d880d8a84",
+    "layer1_01_bank_account\\json_cards\\writer.json": "ca8f410d5eec4fc021a6682df668c48d6f05bd354369d91ad3c049cdac958723",
+    "layer1_01_bank_account\\notes\\writer.json": "6faa908794eebe29a4ee7f76320a0df4eca9b8afbb7925fb2d15ee5f17759feb",
+    "layer2_01_multiple_vehicles\\advanced_json_cards\\answer.txt": "fa95806f0eabae3b2e47842c4ddab412c371c6c9cd37bded4be15636673ddcb8",
+    "layer2_01_multiple_vehicles\\advanced_json_cards\\memory.json": "1a5081ad9ac9d42a7d550c853d084b00d067749f8d25aea4f27db5837a581b2d",
+    "layer2_01_multiple_vehicles\\advanced_json_cards\\writer.json": "b325853b1791f8780efcce742ebdd6c1e02612080c8e73134bfd1d631010d632",
+    "layer2_01_multiple_vehicles\\enhanced_notes\\writer.json": "8a3a11c484df9ce86a12c15eafb75332cbd557862290cd779d2806d4e98add25",
+    "layer2_01_multiple_vehicles\\json_cards\\writer.json": "e5e922f5cda53b2ebc1430bca7774c2e0cdf269646a6e510a385837512016919",
+    "layer2_01_multiple_vehicles\\notes\\writer.json": "14c37232fc440ecc753a6ecdadb651585dcf5ac7fb0ab2c7473325ed46ff7981",
+    "layer3_01_travel_coordination\\advanced_json_cards\\writer.json": "8bfb689645fd38a037b2e882e50b887bf9e803bba349c648c93692771a230a55",
+    "layer3_01_travel_coordination\\enhanced_notes\\writer.json": "0e0ae61f9a74f2fcd454e6c981cb1e7cbba5eb5c74a76aeba7ac6701268d86d5",
+    "layer3_01_travel_coordination\\json_cards\\writer.json": "5dfc52f49093e3e21539068d25b563683050dccada314e3b1af49b1b2f3e8d01",
+    "layer3_01_travel_coordination\\notes\\writer.json": "80018c71cff0210d49a65226e631dd81b0e76ea4717df85c849ea2720be9db83"
+  },
+  "assistant_inference_requests": 0,
+  "next_step": {
+    "stage": "judge",
+    "limit": 3,
+    "eligible_complete_answers": 3,
+    "remaining_unattempted_variants": 228
+  },
+  "limits": [
+    "saved means complete generation and valid shape, not semantic correctness",
+    "no scores for incomplete outputs",
+    "old diagnostics not imported",
+    "no overall format ranking from this partial coverage"
+  ]
+}

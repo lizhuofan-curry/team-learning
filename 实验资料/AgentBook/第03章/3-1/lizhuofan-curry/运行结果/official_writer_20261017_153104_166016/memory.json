@@ -1,0 +1,260 @@
+{
+  "mode": "advanced_json_cards",
+  "memory": [
+    {
+      "category": "Account",
+      "card_key": "checking_account",
+      "backstory": "New checking account opened by Michael James Robertson",
+      "person": "Michael James Robertson",
+      "relationship": "Account holder",
+      "timestamp": "2024-11-15T10:30:00",
+      "status": "active",
+      "facts": {
+        "account_number": "4429853327",
+        "account_type": "Premium Checking",
+        "minimum_balance": "2500",
+        "initial_deposit": "5000",
+        "routing_number": "121000248",
+        "bank": "First National Bank",
+        "currency": "USD",
+        "opening_date": "2024-11-15",
+        "status": "active"
+      }
+    },
+    {
+      "category": "Account",
+      "card_key": "savings_account",
+      "backstory": "New savings account opened by Michael James Robertson",
+      "person": "Michael James Robertson",
+      "relationship": "Account holder",
+      "timestamp": "2024-11-15T10:30:00",
+      "status": "active",
+      "facts": {
+        "account_number": "4429853328",
+        "account_type": "Basic Savings",
+        "minimum_balance": "100",
+        "initial_deposit": "500",
+        "bank": "First National Bank",
+        "currency": "USD",
+        "opening_date": "2024-11-15",
+        "status": "active"
+      }
+    },
+    {
+      "category": "Security",
+      "card_key": "debt_card",
+      "backstory": "Debit card for Premium Checking account",
+      "person": "Michael James Robertson",
+      "relationship": "Primary cardholder",
+      "timestamp": "2024-11-15T10:30:00",
+      "status": "active",
+      "facts": {
+        "card_type": "Debit",
+        "account_number": "4429853327",
+        "pin": "4827",
+        "delivery_time": "7-10 business days",
+        "bank": "First National Bank",
+        "currency": "USD"
+      }
+    },
+    {
+      "category": "Security",
+      "card_key": "security_questions",
+      "backstory": "Security questions set up for account",
+      "person": "Michael James Robertson",
+      "relationship": "Account holder",
+      "timestamp": "2024-11-15T10:30:00",
+      "status": "active",
+      "facts": {
+        "question1": "First pet name",
+        "answer1": "Buddy",
+        "question2": "City of birth",
+        "answer2": "Denver",
+        "question3": "Mother's maiden name",
+        "answer3": "Harrison"
+      }
+    },
+    {
+      "category": "Payment",
+      "card_key": "automatic_transfer",
+      "backstory": "Monthly transfer setup from checking to savings",
+      "person": "Michael James Robertson",
+      "relationship": "Account holder",
+      "timestamp": "2024-11-15T10:30:00",
+      "status": "active",
+      "facts": {
+        "amount": "200",
+        "frequency": "monthly",
+        "date": "15th",
+        "from_account": "4429853327",
+        "to_account": "4429853328"
+      }
+    },
+    {
+      "category": "Payment",
+      "card_key": "direct_deposit",
+      "backstory": "Direct deposit setup for TechCorp paycheck",
+      "person": "Michael James Robertson",
+      "relationship": "Account holder",
+      "timestamp": "2024-11-15T10:30:00",
+      "status": "active",
+      "facts": {
+        "payee": "TechCorp Industries",
+        "account_type": "Direct deposit",
+        "routing_number": "123006800",
+        "account_number": "4429853327",
+        "frequency": "monthly",
+        "pay_amount": "unknown",
+        "pay_date": "unknown"
+      }
+    },
+    {
+      "category": "Identity",
+      "card_key": "user_identity",
+      "backstory": "User identity information for account",
+      "person": "Michael James Robertson",
+      "relationship": "Account holder",
+      "timestamp": "2024-11-15T10:30:00",
+      "status": "active",
+      "facts": {
+        "full_name": "Michael James Robertson",
+        "date_of_birth": "1985-03-15",
+        "residential_address": "1847 Maple Street, Apartment 3B, Portland, Oregon, 97205",
+        "phone_number": "503-555-8924",
+        "email": "mrobertson85@email.com",
+        "employment_status": "Full-time",
+        "employer": "TechCorp Industries",
+        "employment_duration": "4 years",
+        "annual_income": "125000",
+        "ssn": "547-82-9163",
+        "driver_license_number": "D758392",
+        "city_of_birth": "Denver",
+        "state_of_birth": "Colorado"
+      }
+    },
+    {
+      "category": "Product",
+      "card_key": "premium_checking",
+      "backstory": "Premium Checking account features",
+      "person": "Michael James Robertson",
+      "relationship": "Account holder",
+      "timestamp": "2024-11-15T10:30:00",
+      "status": "active",
+      "facts": {
+        "benefits": [
+          "No monthly fees if minimum balance maintained",
+          "Free checks",
+          "Free domestic wire transfers",
+          "0.5% APY on balance"
+        ]
+      }
+    },
+    {
+      "category": "Product",
+      "card_key": "elite_checking",
+      "backstory": "Elite Checking account features",
+      "person": "Michael James Robertson",
+      "relationship": "Account holder",
+      "timestamp": "2024-11-15T10:30:00",
+      "status": "inactive",
+      "facts": {
+        "benefits": [
+          "Everything in Premium",
+          "1.2% APY on balance",
+          "Free international wire transfers",
+          "Complimentary safe deposit box",
+          "Access to financial advisory services"
+        ]
+      }
+    },
+    {
+      "category": "Product",
+      "card_key": "cashback_card",
+      "backstory": "CashBack credit card options",
+      "person": "Michael James Robertson",
+      "relationship": "Potential account holder",
+      "timestamp": "2024-11-15T10:30:00",
+      "status": "inactive",
+      "facts": {
+        "annual_fee": "95",
+        "waived_first_year": "yes",
+        "benefits": "2% cashback on all purchases"
+      }
+    },
+    {
+      "category": "Product",
+      "card_key": "travel_rewards_card",
+      "backstory": "Travel Rewards credit card options",
+      "person": "Michael James Robertson",
+      "relationship": "Potential account holder",
+      "timestamp": "2024-11-15T10:30:00",
+      "status": "inactive",
+      "facts": {
+        "annual_fee": "unknown",
+        "benefits": "3x points on travel and dining"
+      }
+    },
+    {
+      "category": "Product",
+      "card_key": "basic_card",
+      "backstory": "Basic credit card options",
+      "person": "Michael James Robertson",
+      "relationship": "Potential account holder",
+      "timestamp": "2024-11-15T10:30:00",
+      "status": "inactive",
+      "facts": {
+        "annual_fee": "0",
+        "benefits": "No annual fee"
+      }
+    },
+    {
+      "category": "Banking",
+      "card_key": "atm_network",
+      "backstory": "ATM network information for First National Bank",
+      "person": "Michael James Robertson",
+      "relationship": "Account holder",
+      "timestamp": "2024-11-15T10:30:00",
+      "status": "active",
+      "facts": {
+        "portland_atms": "47",
+        "nationwide_atms": "55000+",
+        "allpoint_atms": "55000+"
+      }
+    },
+    {
+      "category": "Banking",
+      "card_key": "overdraft_protection",
+      "backstory": "Overdraft protection options",
+      "person": "Michael James Robertson",
+      "relationship": "Account holder",
+      "timestamp": "2024-11-15T10:30:00",
+      "status": "inactive",
+      "facts": {
+        "options": [
+          "Link to savings account",
+          "Link to credit card",
+          "Standard overdraft coverage ($35 fee)"
+        ]
+      }
+    },
+    {
+      "category": "Banking",
+      "card_key": "transfer_details",
+      "backstory": "Initial deposit transfer details",
+      "person": "Michael James Robertson",
+      "relationship": "Account holder",
+      "timestamp": "2024-11-15T10:30:00",
+      "status": "active",
+      "facts": {
+        "source_bank": "Wells Fargo",
+        "source_account_number": "8847293001",
+        "routing_number": "121000248",
+        "destination_account": "4429853327",
+        "destination_account_type": "Checking",
+        "transfer_amount": "5000",
+        "transfer_type": "Electronic",
+        "completion_time": "2-3 business days"
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "review_date": "2026-10-15",
+  "scope": "06 offline synthetic response checks only; not real task results",
+  "real_model_search_web_requests": 0,
+  "checks": [
+    "gate verifies passed 05 and code hashes",
+    "15 unique task/config pairs",
+    "42 mocked responses pass all 15 goals using original simulator/scorer",
+    "actual cloud messages match original episode inputs",
+    "native tool IDs and results propagate",
+    "usage totals aggregate",
+    "no forced tools, seed or Ollama-specific reasoning parameter",
+    "plain text completion is not an executed task"
+  ],
+  "new_script_sha256": "639df08bc91d91bf2894ba3fef3d836c0ce5f5f204f3f528caae7e9512617827",
+  "real_15_task_run": "pending_user_execution"
+}

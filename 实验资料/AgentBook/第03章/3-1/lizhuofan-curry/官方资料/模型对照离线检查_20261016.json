@@ -1,0 +1,75 @@
+{
+  "checked_on": "2026-10-16",
+  "status": "offline_checks_passed",
+  "checks": [
+    "python_syntax",
+    "all_historical_requests_compatible",
+    "same_input_only_model_changes",
+    "both_steps_receive_selected_model",
+    "synthetic_4b_record_replay",
+    "mixed_models_and_header_mismatch_rejected",
+    "unknown_model_rejected",
+    "baseline_hashes_unchanged",
+    "installed_manifest_and_blob_sizes_match"
+  ],
+  "negative_checks": 4,
+  "synthetic_protocol_only": true,
+  "live_model_calls": 0,
+  "real_4b_inference_completed": false,
+  "baseline_record_sha256": {
+    "第三章\\3.1用户记忆评估\\运行结果\\official_writer_20261015_095136_602421\\record.json": "efde7e721575f3fa95458f71bdcddb5faefc648ebd6345f52d393cf75aa37619",
+    "第三章\\3.1用户记忆评估\\运行结果\\official_writer_20261016_210019_023457\\record.json": "e167498148af8c621610de1824878980241d9db83fdeccd2ee9d3e8d6afd6e2c",
+    "第三章\\3.1用户记忆评估\\运行结果\\official_writer_20261016_210824_819650\\record.json": "a0dbd8325791b9f9648806cf41d46ae9e18d40c7bad46bea5e9f7b501e3149d6",
+    "第三章\\3.1用户记忆评估\\运行结果\\official_writer_20261016_212229_211234\\record.json": "5b9bc614f09ddfd4f8d8efee8fe2d4cce85e18b8947c2f3adb4f2a29d462a880"
+  },
+  "installed_model": {
+    "model": "qwen3:4b",
+    "directory": "E:\\OllamaModels",
+    "manifest_sha256": "31d9857b5705086d352d4d6db04e86c5d0f6a2b5d59a4dc7ce5cdb271ccf9141",
+    "blobs": [
+      {
+        "digest": "sha256:e18a783aae5525fd2852fc94c985541a77e791e034abc2d3056474d59de336fc",
+        "declared_size": 487,
+        "actual_size": 487
+      },
+      {
+        "digest": "sha256:3e4cb14174460404e7a233e531675303b2fbf7749c02f91864fe311ab6344e4f",
+        "declared_size": 2497280480,
+        "actual_size": 2497280480
+      },
+      {
+        "digest": "sha256:2d54db2b9bb29ce7db54fea63a891f5859603813c555b1f88b5e0994652897f9",
+        "declared_size": 1506,
+        "actual_size": 1506
+      },
+      {
+        "digest": "sha256:d18a5cc71b84bc4af394a31116bd3932b42241de70c77d2b76d69a314ec8aa12",
+        "declared_size": 11338,
+        "actual_size": 11338
+      },
+      {
+        "digest": "sha256:cff3f395ef3756ab63e58b0ad1b32bb6f802905cae1472e6a12034e4246fbbdb",
+        "declared_size": 120,
+        "actual_size": 120
+      },
+      {
+        "digest": "sha256:359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+        "declared_size": 859,
+        "actual_size": 859
+      }
+    ],
+    "weight_digest_independently_rehashed": false,
+    "digest_verification_evidence": "User terminal shows verifying sha256 digest, writing manifest, success."
+  },
+  "cli_previews": {
+    "writer_4b": {
+      "passed": true,
+      "network_requests": 0,
+      "run_directory_created": false
+    },
+    "judge_06b_baseline": {
+      "passed": true,
+      "network_requests": 0
+    }
+  }
+}

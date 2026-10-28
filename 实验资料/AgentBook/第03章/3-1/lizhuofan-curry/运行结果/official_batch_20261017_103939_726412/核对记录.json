@@ -1,0 +1,433 @@
+{
+  "checked_at": "2026-10-17T15:08:12.565176+08:00",
+  "scope": "offline evidence audit; zero model/network requests",
+  "batch_sha256": "51da68f80818fbaef2964ca462c55b98d95d797837137fe3a5d7dea821841415",
+  "original_records_unchanged": true,
+  "config_and_case_source_verified": true,
+  "request_and_artifact_integrity_verified": true,
+  "failure_stages": {
+    "answer": 52,
+    "memory": 2
+  },
+  "summary": {
+    "planned_cases": 60,
+    "writer_states": {
+      "saved": 6,
+      "incomplete": 54
+    },
+    "judge_states": {
+      "scored": 1,
+      "pending": 59
+    },
+    "scored_cases": 1,
+    "passed_cases": 1,
+    "unscored_cases": 59,
+    "all_case_attempts_and_outcomes_finished": false,
+    "full_60_judge_scores_available": false,
+    "pipeline_pass_rate_over_all_cases": null,
+    "pass_rate_scored_cases_only": 1.0,
+    "mean_reward_scored_cases_only": 0.8125,
+    "writer_calls_including_imported": 197,
+    "new_writer_calls": 192,
+    "judge_calls_including_imported": 1,
+    "generation_failure_kinds": {
+      "truncated": 54
+    },
+    "by_layer": {
+      "layer1": {
+        "planned": 20,
+        "writer_saved": 5,
+        "generation_failures": 15,
+        "scored": 1,
+        "passed": 1,
+        "mean_reward_scored_cases_only": 0.8125
+      },
+      "layer2": {
+        "planned": 20,
+        "writer_saved": 1,
+        "generation_failures": 19,
+        "scored": 0,
+        "passed": 0,
+        "mean_reward_scored_cases_only": null
+      },
+      "layer3": {
+        "planned": 20,
+        "writer_saved": 0,
+        "generation_failures": 20,
+        "scored": 0,
+        "passed": 0,
+        "mean_reward_scored_cases_only": null
+      }
+    },
+    "note": "生成或评分失败单列，无裁判分数不填0；已评分均分不代表60题均分。"
+  },
+  "verified_writers": [
+    {
+      "test_id": "layer1_01_bank_account",
+      "writer_sha256": "a17768202c409eeb25dbc079ab54f3470ac01bd5d56b26c1196a35fa360ec55c",
+      "writer_status": "saved",
+      "calls": 2
+    },
+    {
+      "test_id": "layer1_02_insurance_claim",
+      "writer_sha256": "2140570d64773f53cfd42207c665d92076ad61ea8a1c6d4d8bbbe132fdf76f56",
+      "writer_status": "incomplete",
+      "calls": 2
+    },
+    {
+      "test_id": "layer1_03_medical_appointment",
+      "writer_sha256": "5d7e6834da9c3d43f3149b4cc5fec2b7313584f4cb078e11f0cdad51b0e24772",
+      "writer_status": "incomplete",
+      "calls": 2
+    },
+    {
+      "test_id": "layer1_04_airline_booking",
+      "writer_sha256": "03f0924ac56d9fb1021033aa8e76888809d6bfd15f43a370a6d9c8c8ae68bfa6",
+      "writer_status": "saved",
+      "calls": 2
+    },
+    {
+      "test_id": "layer1_05_internet_service",
+      "writer_sha256": "0b0d0f035a37c2e579c1e8d8d70b9a859c0cd622d58c5768d639336f8ab98776",
+      "writer_status": "saved",
+      "calls": 2
+    },
+    {
+      "test_id": "layer1_06_credit_card_app",
+      "writer_sha256": "521f06e1945d0967d9ea113ce268d77986c847930dc7df819bbcfb2c951c837c",
+      "writer_status": "incomplete",
+      "calls": 2
+    },
+    {
+      "test_id": "layer1_07_car_rental",
+      "writer_sha256": "2b7384b5f3ffce645bf9c696c1e180d9dee5de2032d69786f7f7497fb015a36d",
+      "writer_status": "incomplete",
+      "calls": 2
+    },
+    {
+      "test_id": "layer1_08_hotel_reservation",
+      "writer_sha256": "1715bf8e5b1aa7ed976815cd351b0296156ca24a0b46f5a1d2cd07e355382f17",
+      "writer_status": "incomplete",
+      "calls": 2
+    },
+    {
+      "test_id": "layer1_09_home_security",
+      "writer_sha256": "f585242156ee76163cc352d24e6eb83da43530ad9e5d858fde71e4627413a20b",
+      "writer_status": "saved",
+      "calls": 2
+    },
+    {
+      "test_id": "layer1_10_pharmacy_transfer",
+      "writer_sha256": "307c15d31a8806e288a1f3ff055d12b1d6a9fc85d6e5d899d04392f6fb284bba",
+      "writer_status": "saved",
+      "calls": 2
+    },
+    {
+      "test_id": "layer1_11_mortgage_application",
+      "writer_sha256": "016952ece2dbb996b55cf48ac5ad69b3567db8a521f6d635fffbff1664699cd0",
+      "writer_status": "incomplete",
+      "calls": 2
+    },
+    {
+      "test_id": "layer1_12_gym_membership",
+      "writer_sha256": "59c40181c563ee65f95302fec959d89de08c09742e121fe02f20b9f09419589c",
+      "writer_status": "incomplete",
+      "calls": 2
+    },
+    {
+      "test_id": "layer1_13_tax_preparation",
+      "writer_sha256": "62dcb20b47a9b60ed57199e51568bab7aa2c666f30ea1c0ae0e97433e0903daf",
+      "writer_status": "incomplete",
+      "calls": 2
+    },
+    {
+      "test_id": "layer1_14_cellphone_upgrade",
+      "writer_sha256": "dec081604eff00645f310070716a87b160ff797a56d9bda2d8beb8cfec502d0c",
+      "writer_status": "incomplete",
+      "calls": 2
+    },
+    {
+      "test_id": "layer1_15_college_enrollment",
+      "writer_sha256": "e9720b29ab77473bbc78fe73389a4072df976e1d901de0a09bef3c71b77ac6e1",
+      "writer_status": "incomplete",
+      "calls": 2
+    },
+    {
+      "test_id": "layer1_16_home_renovation",
+      "writer_sha256": "b5af93f67091ca368277887c437009a1f25248a9429e50a6252a3c1e6841f6af",
+      "writer_status": "incomplete",
+      "calls": 2
+    },
+    {
+      "test_id": "layer1_17_veterinary_care",
+      "writer_sha256": "f3ad7accd6238aa9aa159cbf3199f52140efa0dff4b8544ec643c2a78e64d799",
+      "writer_status": "incomplete",
+      "calls": 2
+    },
+    {
+      "test_id": "layer1_18_retirement_planning",
+      "writer_sha256": "1d2a6ecac1caeafed56ea0797f1f4593d766911a982aff49f93d4adc173cffe2",
+      "writer_status": "incomplete",
+      "calls": 2
+    },
+    {
+      "test_id": "layer1_19_wedding_venue",
+      "writer_sha256": "4e88962d994debc5f7110e8ba6f0e5c6080695d099700bcb8e7f6724c695c493",
+      "writer_status": "incomplete",
+      "calls": 2
+    },
+    {
+      "test_id": "layer1_20_daycare_enrollment",
+      "writer_sha256": "695efe15a33245a77e64ecfb88bd3336e49389d0d0310361cd893abd6e9fbc23",
+      "writer_status": "incomplete",
+      "calls": 2
+    },
+    {
+      "test_id": "layer2_01_multiple_vehicles",
+      "writer_sha256": "e6b1add3c0666ef77c729b1f2d9452d28f18cae26ea3707cec15d6817b0abb71",
+      "writer_status": "incomplete",
+      "calls": 3
+    },
+    {
+      "test_id": "layer2_02_multiple_properties",
+      "writer_sha256": "61b5bd2d615720c0bd30ec16851c9b7bba1b10d1dcda70baeb36f12b66d0c285",
+      "writer_status": "incomplete",
+      "calls": 3
+    },
+    {
+      "test_id": "layer2_03_multiple_credit_cards",
+      "writer_sha256": "6ef9f22ebff4ba07538dcd6db1ad42e2fa48d2dc4237055ba342acc606b52b98",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer2_04_multiple_subscriptions",
+      "writer_sha256": "3e47934c90d5f35386c55ad3410ce9fd0dda0c1c4778b2b2216a210fd250831b",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer2_05_multiple_bank_accounts",
+      "writer_sha256": "aadc7992686a6e52ea6267f6e6f796b7e1c0d2706e52366ca14d9e1ac7bc0d7f",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer2_06_multiple_insurance_policies",
+      "writer_sha256": "4f23b52a0f07c11988f863051deaaf0178f0ff48fe612d89449586040ed76888",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer2_07_multiple_medications",
+      "writer_sha256": "069814e01cd8df1852e8ae628368e8ede7772301841c3431a84b01a79bab0c79",
+      "writer_status": "saved",
+      "calls": 4
+    },
+    {
+      "test_id": "layer2_08_multiple_rental_properties",
+      "writer_sha256": "730b3807ab1c5746933714a44316d0b1c4662476aa271708af63950c4f432043",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer2_09_multiple_children_schools",
+      "writer_sha256": "5a6bd8f2180337cf1e1dfdb9ddba7b10312df3a230ca05409111efcec0e32478",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer2_10_travel_rebooking_chain",
+      "writer_sha256": "a83d1e666aefea2bd103aad8afd9afe0a6778ff23c3136496b1f7d60c45e28ca",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer2_11_medical_treatment_evolution",
+      "writer_sha256": "efc72cc51c21af453b9c9b41ac1c4bd5b9b1a8bd8df25ef59393bca061d6d805",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer2_12_contradictory_financial_instructions",
+      "writer_sha256": "3fb4684e53261599d7b280fee65b858104aa5cf28f66754390fc7162aaa994d4",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer2_13_home_services_cascade",
+      "writer_sha256": "a9ed0625ba79aeee1d5d493a3c35547494c0777d22255796beb531c0cf2576bf",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer2_14_product_order_modifications",
+      "writer_sha256": "81ad1f8e79655c49f306e48d2728c2d0c974aaaaf4f1245280f9e6cbab2f229c",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer2_15_employment_negotiation",
+      "writer_sha256": "85dea1e6bf1b787791e0fe64ff5783975f2483f678e966540df1b42a86b85946",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer2_16_family_event_conflicting_input",
+      "writer_sha256": "08761f27f89123c6a98408c3e308e49e4f712821fc069624eccb4175f1f8d2fa",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer2_17_tech_support_cascade",
+      "writer_sha256": "8f04ac234550e5a5de652efba753160e6490a37ae7aa5848d31f669a408adc2e",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer2_18_education_prerequisite_chain",
+      "writer_sha256": "6de6cd9bc6f10009d148d72b4e14bd4d84bb1f0a14f3d6e437ede7e32f4e778e",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer2_19_investment_market_response",
+      "writer_sha256": "0957fbe41d28d434db9efe4612f918e6cf31276b4bf53834b217506462030ca5",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer2_20_healthcare_coverage_changes",
+      "writer_sha256": "501619fa173fbf9e09e8a5e95e81fde2073860f46aa6dd1e4d76204dc7440e0f",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer3_01_travel_coordination",
+      "writer_sha256": "057e7d24ddd5a5e6f3e6449bb5ba11f22b18994aed5ecd638790697d411b78d0",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer3_02_medical_insurance_coordination",
+      "writer_sha256": "02cdac6599da98d4f69941dfbf787abc699ef6f193ed1eff00806f01eaac6d12",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer3_03_home_purchase_coordination",
+      "writer_sha256": "d12dd7718756d2a2e1743b521e39c3d4747857a37e8cfe7fe0e16224f3e4a646",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer3_04_warranty_coordination",
+      "writer_sha256": "26c9843a46edeb755327bf0455c72272b8cf9f5967d4e61ba0afad83ba83019a",
+      "writer_status": "incomplete",
+      "calls": 5
+    },
+    {
+      "test_id": "layer3_05_tax_preparation_synthesis",
+      "writer_sha256": "cca9001f4b229c530bd95bbe28022be3fb74d323f5c12994bb6f4dd464d5db93",
+      "writer_status": "incomplete",
+      "calls": 5
+    },
+    {
+      "test_id": "layer3_06_business_expansion_coordination",
+      "writer_sha256": "8b391a71f255b3297d382baab6e4dbb39fa724d4474f2a30074e7f8b230b12df",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer3_07_eldercare_coordination",
+      "writer_sha256": "3150fef6dbebd1f8967fbcdacaaaf6ee09432c6ff21b5a91848a67ce58e91be4",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer3_08_divorce_settlement_complexity",
+      "writer_sha256": "323010053ee23df5b79bed1f26e6cbc7ca8a79507163115016b77d7de2ca8894",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer3_09_vehicle_accident_cascade",
+      "writer_sha256": "0fb4802398cdaef5ad3325a5143d9eb1e670a9a5fa8fc2a2f95a659805823257",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer3_10_education_financing_maze",
+      "writer_sha256": "b38e5f8d293a792cae0a3fdb61daa923445bfc934c5b8b35a327248eb5e5da28",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer3_11_immigration_status_complexity",
+      "writer_sha256": "d7ca9fd68c4219e0e4a95316e19abfdc9b8228c1a254a6fb7bfbdbd1c20f8e4a",
+      "writer_status": "incomplete",
+      "calls": 2
+    },
+    {
+      "test_id": "layer3_12_real_estate_investment_tangle",
+      "writer_sha256": "4fe5213516062543857dc60b93154d78e68e3995009576eaa24f78dd669e3ca5",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer3_13_emergency_medical_cascade",
+      "writer_sha256": "a63994325c4b0bc4bdec35eb14f6738979cfa8a3958c4cda934f40b13282a509",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer3_14_hidden_medical_insurance_web",
+      "writer_sha256": "7ee325ace32bc1830cc2de0240e886586c46a01ee1cf3d411b7d01cdeb243e68",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer3_15_identity_theft_discovery",
+      "writer_sha256": "980df3105f8afae06715718b7a62e7d52729b2c9928d2985119825612327b301",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer3_16_cryptocurrency_inheritance_puzzle",
+      "writer_sha256": "76c1eb3f4855e4a8e604d870834d96afca731cf3af3cc2d9a6fd45b646c8e58c",
+      "writer_status": "incomplete",
+      "calls": 3
+    },
+    {
+      "test_id": "layer3_17_environmental_contamination_cascade",
+      "writer_sha256": "fea37d1ca76754a96d514ab9a56cacee3a1859a8a012ab3082147d606ad55556",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer3_18_genetic_testing_revelation",
+      "writer_sha256": "133ce5751ba0655d80fb3f536d7173df9bfb2bdd30662dcbb231c8391dc81cd4",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer3_19_employment_fraud_network",
+      "writer_sha256": "ab1fc2da7d6b984f4279df0aa48793405b1ee7033d6841ac576503b3cc9cf43b",
+      "writer_status": "incomplete",
+      "calls": 4
+    },
+    {
+      "test_id": "layer3_20_medical_malpractice_pattern",
+      "writer_sha256": "508125852d613c5872ddce787232a4c8973334626efa38e36f65b1c2453ecd50",
+      "writer_status": "incomplete",
+      "calls": 4
+    }
+  ],
+  "next_eligible_judge_cases": [
+    "layer1_04_airline_booking",
+    "layer1_05_internet_service",
+    "layer1_09_home_security",
+    "layer1_10_pharmacy_transfer",
+    "layer2_07_multiple_medications"
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "created_at": "2026-10-17T10:12:27.550869+00:00",
+  "user_instruction": "再跑26组就不跑了吧，要接着完成后面的实验了",
+  "batch_directory": "E:\\AI_Agents_Book\\第三章\\3.2记忆格式对照\\运行结果\\four_mode_campaign_20261017_170530_258667",
+  "scope_status": "planned_not_run",
+  "original_planned_variants": 240,
+  "already_attempted": 24,
+  "additional_generation_attempts": 26,
+  "target_cumulative_attempts": 50,
+  "remaining_original_variants_not_to_run_after_target": 190,
+  "generation_limit": 26,
+  "max_local_inference_calls": 52,
+  "max_model_list_queries": 26,
+  "cloud_calls_during_writer": 0,
+  "selected_next_26": [
+    {
+      "test_id": "layer1_05_internet_service",
+      "mode": "notes",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_05_internet_service",
+      "mode": "enhanced_notes",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_05_internet_service",
+      "mode": "json_cards",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_05_internet_service",
+      "mode": "advanced_json_cards",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_06_credit_card_app",
+      "mode": "notes",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_06_credit_card_app",
+      "mode": "enhanced_notes",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_06_credit_card_app",
+      "mode": "json_cards",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_06_credit_card_app",
+      "mode": "advanced_json_cards",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_07_car_rental",
+      "mode": "notes",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_07_car_rental",
+      "mode": "enhanced_notes",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_07_car_rental",
+      "mode": "json_cards",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_07_car_rental",
+      "mode": "advanced_json_cards",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_08_hotel_reservation",
+      "mode": "notes",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_08_hotel_reservation",
+      "mode": "enhanced_notes",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_08_hotel_reservation",
+      "mode": "json_cards",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_08_hotel_reservation",
+      "mode": "advanced_json_cards",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_09_home_security",
+      "mode": "notes",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_09_home_security",
+      "mode": "enhanced_notes",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_09_home_security",
+      "mode": "json_cards",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_09_home_security",
+      "mode": "advanced_json_cards",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_10_pharmacy_transfer",
+      "mode": "notes",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_10_pharmacy_transfer",
+      "mode": "enhanced_notes",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_10_pharmacy_transfer",
+      "mode": "json_cards",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_10_pharmacy_transfer",
+      "mode": "advanced_json_cards",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_11_mortgage_application",
+      "mode": "notes",
+      "category": "layer1",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_11_mortgage_application",
+      "mode": "enhanced_notes",
+      "category": "layer1",
+      "session_count": 1
+    }
+  ],
+  "next_steps": [
+    "User runs writer once with limit 26 in same batch",
+    "Audit actual new outcomes; if interrupted, recalculate missing count before resuming",
+    "One final independent scoring stage only for new complete answers; preserve failed grades without retry",
+    "Write learning summary for observed 50 groups; no overall format ranking",
+    "Proceed to experiment 3-3 log sanitization; do not resume remaining 190 groups"
+  ],
+  "sampling_limits": [
+    "Original ordering preserved; selected extra 26 all layer1",
+    "Final expected distribution: layer1 42, layer2 4, layer3 4",
+    "Mortgage case has only notes and enhanced_notes, not a full four-format comparison"
+  ],
+  "preserve_original_protocol": {
+    "configuration_and_code_unchanged": true,
+    "batch_planned_variants_remains_240": true,
+    "expected_original_pending_after_target": 190,
+    "full_campaign_completion_remains_false": true,
+    "no_relabel_unrun_as_failure_or_zero": true
+  },
+  "model_requests_by_assistant": 0,
+  "writer_preview_only_passed": true,
+  "batch_sha256_at_decision": "30c6f205044fa4d22a6fcc4500c02d7c8253549437b905eb9043112de2aab353",
+  "code_fingerprints": {
+    "E:\\AI_Agents_Book\\第三章\\3.2记忆格式对照\\我的代码\\04_四格式固定配置评估.py": "4fa73b1f0658306db456bc7190b05e1e54ab668a3ad53948f5a930bde1b6f757",
+    "E:\\AI_Agents_Book\\第三章\\3.1用户记忆评估\\我的代码\\官方评估工具.py": "d0fa24d477e3e489edb498c8c748d1b8e268ed374b79fe7115ad2e4547f15975",
+    "E:\\AI_Agents_Book\\第三章\\3.1用户记忆评估\\我的代码\\03_官方用例独立裁判评分.py": "2f76d8540ebd58fb85a64f5fc1dc0d5c73c092ceb9b5dce6914680a1c094ec82"
+  }
+}

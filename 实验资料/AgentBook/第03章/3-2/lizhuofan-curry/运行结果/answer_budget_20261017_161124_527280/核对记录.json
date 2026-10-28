@@ -1,0 +1,34 @@
+{
+  "checked_at": "2026-10-17T16:47:32.463653+08:00",
+  "scope": "offline budget-diagnostic audit; no model/network requests and no judge score assigned",
+  "record_sha256": "aa0e9d05cc43c7a79c4782ae2166059d9d7883632b8cbdc4cdcde311e1e50c43",
+  "source_record": "E:\\AI_Agents_Book\\第三章\\3.1用户记忆评估\\运行结果\\official_writer_20261017_152949_577923\\record.json",
+  "source_record_sha256": "5fc57ade38e8da0640ebd1daef2a284e48133bc81222842b7bc0b7a60c25b4cb",
+  "source_memory_frozen_and_artifact_integrity_verified": true,
+  "code_fingerprints_and_model_digest_verified": true,
+  "request_differences": [
+    "options.num_predict"
+  ],
+  "old_budget": 1200,
+  "new_budget": 4096,
+  "old_observed_output_tokens": 1200,
+  "new_observed_output_tokens": 533,
+  "old_done_reason": "length",
+  "new_done_reason": "stop",
+  "input_tokens_both_runs": 809,
+  "observed_request_seconds": 25.80736250001064,
+  "target_numbers_correct": {
+    "checking_account": "4429853327",
+    "direct_deposit_routing": "123006800"
+  },
+  "extra_claims_to_check_in_independent_judging": [
+    "already linked to your direct deposit settings at work",
+    "account number is secure in our system"
+  ],
+  "interpretation_limit": "This run completed below the old 1200-token cap. One comparison does not prove that more than 1200 tokens were necessary or that the budget change alone guarantees success.",
+  "raw_answer_with_analysis_and_closing_think_marker_preserved": true,
+  "eligible_new_judge_requests": 1,
+  "judge_completed": false,
+  "not_merged_into_original_four_mode_pilot": true,
+  "original_record_unchanged": true
+}

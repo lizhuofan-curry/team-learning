@@ -1,0 +1,322 @@
+{
+  "stage": "chapter3_log_sanitization_single",
+  "status": "single_sample_comparison_saved",
+  "created_at": "2026-10-17T11:16:45.451056+00:00",
+  "upstream_commit": "dbc046eb896ac4e39aa19c7774c8bf49583b89a6",
+  "official_manifest_sha256": "56f30a9d0e2fb3f5d788fab51bde907d7fdc1275f658ef626aa228623a963f80",
+  "code_sha256": "2ac5dbbfe48098f00d7bd4dd49dec29beaa6ecdc35d43903cd1be1f1237fc8d7",
+  "fixture_sha256": "4ec0d1f46f2319d151097a71db611429282160c8a9d3d33069d5b10789c5ea59",
+  "model": "qwen3:4b",
+  "sample": {
+    "sample_id": "synthetic_pii_01",
+    "synthetic_only": true,
+    "text": "[2024-11-01 09:00:00] ERROR request_id=demo-001 stage=payment_retry status=failed\nUSER: My SSN is 123-45-6789. My card is 4111 1111 1111 1111.\nUSER: My password is demo_pass_42. I was diagnosed with type 2 diabetes.\nASSISTANT: The request failed with HTTP 503; please retry later.\n",
+    "gold_sensitive_values": [
+      {
+        "type": "ssn",
+        "value": "123-45-6789"
+      },
+      {
+        "type": "credit_card",
+        "value": "4111 1111 1111 1111"
+      },
+      {
+        "type": "password",
+        "value": "demo_pass_42"
+      },
+      {
+        "type": "medical_diagnosis",
+        "value": "type 2 diabetes"
+      }
+    ],
+    "preserve_debug_values": [
+      "request_id=demo-001",
+      "stage=payment_retry",
+      "status=failed",
+      "HTTP 503"
+    ]
+  },
+  "calls": [
+    {
+      "started_at": "2026-10-17T11:16:45.550812+00:00",
+      "request": {
+        "model": "qwen3:4b",
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are a privacy protection agent that detects Level 3 PII.\n\nLevel 3 PII includes:\n- Social Security Numbers (SSN) - format: XXX-XX-XXXX or XXXXXXXXX\n- Credit Card Numbers - format: XXXX XXXX XXXX XXXX or 16 digits\n- Credit Card Expiry Date and CVV\n- Bank Account Numbers\n- Full Residential Addresses\n- Medical Record Numbers\n- Medical Diagnoses and Treatment Details\n- Prescription Information\n- Driver's License Numbers\n- Passport Numbers\n- Financial PINs\n- Tax ID Numbers\n- Health Insurance IDs\n- Biometric Data\n- Usernames for Financial Accounts\n- Passwords\n\nAnalyze the conversation and return JSON with a pii_items array. Each item must include:\n- type: the PII category label\n- value: the exact sensitive substring copied verbatim from the input text\n\nDo not include labels or explanations inside value. NEVER use placeholders."
+          },
+          {
+            "role": "user",
+            "content": "Analyze the following conversation for Level 3 PII:\n\n[2024-11-01 09:00:00] ERROR request_id=demo-001 stage=payment_retry status=failed\nUSER: My SSN is 123-45-6789. My card is 4111 1111 1111 1111.\nUSER: My password is demo_pass_42. I was diagnosed with type 2 diabetes.\nASSISTANT: The request failed with HTTP 503; please retry later.\n"
+          }
+        ],
+        "format": {
+          "type": "object",
+          "properties": {
+            "pii_items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "description": "PII category label, e.g. ssn, credit_card_number, email"
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "Exact sensitive substring copied verbatim from the input text"
+                  }
+                },
+                "required": [
+                  "type",
+                  "value"
+                ],
+                "additionalProperties": false
+              },
+              "description": "Array of structured PII items. The value field must be copied verbatim from the input text."
+            }
+          },
+          "required": [
+            "pii_items"
+          ],
+          "additionalProperties": false
+        },
+        "stream": false,
+        "think": false,
+        "options": {
+          "temperature": 0.1,
+          "num_predict": 1000,
+          "num_ctx": 8192,
+          "seed": 37
+        }
+      },
+      "ok": true,
+      "http_status": 200,
+      "raw_http_body": "{\"model\":\"qwen3:4b\",\"created_at\":\"2026-10-17T11:16:53.5731843Z\",\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"pii_items\\\": [\\n    {\\n      \\\"type\\\": \\\"Social Security Numbers\\\",\\n      \\\"value\\\": \\\"123-45-6789\\\"\\n    },\\n    {\\n      \\\"type\\\": \\\"Credit Card Numbers\\\",\\n      \\\"value\\\": \\\"4111 1111 1111 1111\\\"\\n    },\\n    {\\n      \\\"type\\\": \\\"Passwords\\\",\\n      \\\"value\\\": \\\"demo_pass_42\\\"\\n    },\\n    {\\n      \\\"type\\\": \\\"Medical Diagnoses and Treatment Details\\\",\\n      \\\"value\\\": \\\"type 2 diabetes\\\"\\n    }\\n  ]\\n}\"},\"done\":true,\"done_reason\":\"stop\",\"total_duration\":8017434500,\"load_duration\":6312292200,\"prompt_eval_count\":343,\"prompt_eval_cached_count\":0,\"prompt_eval_duration\":240374000,\"eval_count\":128,\"eval_duration\":1450547000}",
+      "raw_response": {
+        "model": "qwen3:4b",
+        "created_at": "2026-10-17T11:16:53.5731843Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"pii_items\": [\n    {\n      \"type\": \"Social Security Numbers\",\n      \"value\": \"123-45-6789\"\n    },\n    {\n      \"type\": \"Credit Card Numbers\",\n      \"value\": \"4111 1111 1111 1111\"\n    },\n    {\n      \"type\": \"Passwords\",\n      \"value\": \"demo_pass_42\"\n    },\n    {\n      \"type\": \"Medical Diagnoses and Treatment Details\",\n      \"value\": \"type 2 diabetes\"\n    }\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 8017434500,
+        "load_duration": 6312292200,
+        "prompt_eval_count": 343,
+        "prompt_eval_cached_count": 0,
+        "prompt_eval_duration": 240374000,
+        "eval_count": 128,
+        "eval_duration": 1450547000
+      },
+      "content": "{\n  \"pii_items\": [\n    {\n      \"type\": \"Social Security Numbers\",\n      \"value\": \"123-45-6789\"\n    },\n    {\n      \"type\": \"Credit Card Numbers\",\n      \"value\": \"4111 1111 1111 1111\"\n    },\n    {\n      \"type\": \"Passwords\",\n      \"value\": \"demo_pass_42\"\n    },\n    {\n      \"type\": \"Medical Diagnoses and Treatment Details\",\n      \"value\": \"type 2 diabetes\"\n    }\n  ]\n}",
+      "prompt_tokens": 343,
+      "completion_tokens": 128,
+      "done_reason": "stop",
+      "elapsed_seconds": 8.024736300008954
+    }
+  ],
+  "requested_stage": "compare",
+  "adapter_differences": [
+    "single synthetic sample with separate local annotations",
+    "4B fixed digest",
+    "HTTP nonstreaming, think=false, context8192, seed37",
+    "strict output check without fallback repair",
+    "long-span-first exact replacement",
+    "no cloud fallback or model download; stop on failed request"
+  ],
+  "regex": {
+    "sanitized_text": "[2024-11-01 09:00:00] ERROR request_id=demo-001 stage=payment_retry status=failed\nUSER: My SSN is [REDACTED_SSN]. My card is [REDACTED_CREDIT_CARD].\nUSER: My password is demo_pass_42. I was diagnosed with type 2 diabetes.\nASSISTANT: The request failed with HTTP 503; please retry later.\n",
+    "findings": [
+      {
+        "category": "us_ssn",
+        "value": "123-45-6789",
+        "placeholder": "[REDACTED_SSN]",
+        "start": 98,
+        "end": 109
+      },
+      {
+        "category": "credit_card",
+        "value": "4111 1111 1111 1111",
+        "placeholder": "[REDACTED_CREDIT_CARD]",
+        "start": 122,
+        "end": 141
+      }
+    ],
+    "evaluation": {
+      "annotated_sensitive_occurrences": 4,
+      "fully_redacted": 2,
+      "missed_or_partial": 2,
+      "extra_spans_outside_annotations": [],
+      "per_sensitive_value": [
+        {
+          "type": "ssn",
+          "value": "123-45-6789",
+          "start": 98,
+          "end": 109,
+          "fully_redacted": true,
+          "partly_redacted": false
+        },
+        {
+          "type": "credit_card",
+          "value": "4111 1111 1111 1111",
+          "start": 122,
+          "end": 141,
+          "fully_redacted": true,
+          "partly_redacted": false
+        },
+        {
+          "type": "password",
+          "value": "demo_pass_42",
+          "start": 164,
+          "end": 176,
+          "fully_redacted": false,
+          "partly_redacted": false
+        },
+        {
+          "type": "medical_diagnosis",
+          "value": "type 2 diabetes",
+          "start": 199,
+          "end": 214,
+          "fully_redacted": false,
+          "partly_redacted": false
+        }
+      ],
+      "preserved_debug_values": {
+        "request_id=demo-001": true,
+        "stage=payment_retry": true,
+        "status=failed": true,
+        "HTTP 503": true
+      },
+      "limits": "仅本条人工标注的敏感值覆盖及调试字段检查，不是整体PII召回率、类别准确率或真实日志安全保证"
+    }
+  },
+  "model_list_query": {
+    "started_at": "2026-10-17T11:16:45.461070+00:00",
+    "url": "http://127.0.0.1:11434/api/tags",
+    "http_status": 200,
+    "raw_http_body": "{\"models\":[{\"name\":\"qwen3:4b\",\"model\":\"qwen3:4b\",\"modified_at\":\"2026-10-16T22:23:34.1259444+08:00\",\"size\":2497293931,\"digest\":\"359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7\",\"details\":{\"parent_model\":\"\",\"format\":\"gguf\",\"family\":\"qwen3\",\"families\":[\"qwen3\"],\"parameter_size\":\"4.0B\",\"quantization_level\":\"Q4_K_M\",\"context_length\":262144,\"embedding_length\":2560,\"runner\":\"ggml\"},\"capabilities\":[\"completion\",\"tools\",\"thinking\"]},{\"name\":\"qwen3:0.6b\",\"model\":\"qwen3:0.6b\",\"modified_at\":\"2026-10-11T17:42:30.9086144+08:00\",\"size\":522653767,\"digest\":\"7df6b6e09427a769808717c0a93cadc4ae99ed4eb8bf5ca557c90846becea435\",\"details\":{\"parent_model\":\"\",\"format\":\"gguf\",\"family\":\"qwen3\",\"families\":[\"qwen3\"],\"parameter_size\":\"751.63M\",\"quantization_level\":\"Q4_K_M\",\"context_length\":40960,\"embedding_length\":1024,\"runner\":\"ggml\"},\"capabilities\":[\"completion\",\"tools\",\"thinking\"]}]}"
+  },
+  "model_metadata": {
+    "name": "qwen3:4b",
+    "model": "qwen3:4b",
+    "modified_at": "2026-10-16T22:23:34.1259444+08:00",
+    "size": 2497293931,
+    "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen3",
+      "families": [
+        "qwen3"
+      ],
+      "parameter_size": "4.0B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 262144,
+      "embedding_length": 2560,
+      "runner": "ggml"
+    },
+    "capabilities": [
+      "completion",
+      "tools",
+      "thinking"
+    ]
+  },
+  "llm": {
+    "pii_items": [
+      {
+        "type": "Social Security Numbers",
+        "value": "123-45-6789"
+      },
+      {
+        "type": "Credit Card Numbers",
+        "value": "4111 1111 1111 1111"
+      },
+      {
+        "type": "Passwords",
+        "value": "demo_pass_42"
+      },
+      {
+        "type": "Medical Diagnoses and Treatment Details",
+        "value": "type 2 diabetes"
+      }
+    ],
+    "replacement_spans": [
+      {
+        "start": 98,
+        "end": 109,
+        "value": "123-45-6789",
+        "category": "Social Security Numbers"
+      },
+      {
+        "start": 122,
+        "end": 141,
+        "value": "4111 1111 1111 1111",
+        "category": "Credit Card Numbers"
+      },
+      {
+        "start": 164,
+        "end": 176,
+        "value": "demo_pass_42",
+        "category": "Passwords"
+      },
+      {
+        "start": 199,
+        "end": 214,
+        "value": "type 2 diabetes",
+        "category": "Medical Diagnoses and Treatment Details"
+      }
+    ],
+    "sanitized_text": "[2024-11-01 09:00:00] ERROR request_id=demo-001 stage=payment_retry status=failed\nUSER: My SSN is [REDACTED]. My card is [REDACTED].\nUSER: My password is [REDACTED]. I was diagnosed with [REDACTED].\nASSISTANT: The request failed with HTTP 503; please retry later.\n",
+    "evaluation": {
+      "annotated_sensitive_occurrences": 4,
+      "fully_redacted": 4,
+      "missed_or_partial": 0,
+      "extra_spans_outside_annotations": [],
+      "per_sensitive_value": [
+        {
+          "type": "ssn",
+          "value": "123-45-6789",
+          "start": 98,
+          "end": 109,
+          "fully_redacted": true,
+          "partly_redacted": false
+        },
+        {
+          "type": "credit_card",
+          "value": "4111 1111 1111 1111",
+          "start": 122,
+          "end": 141,
+          "fully_redacted": true,
+          "partly_redacted": false
+        },
+        {
+          "type": "password",
+          "value": "demo_pass_42",
+          "start": 164,
+          "end": 176,
+          "fully_redacted": true,
+          "partly_redacted": false
+        },
+        {
+          "type": "medical_diagnosis",
+          "value": "type 2 diabetes",
+          "start": 199,
+          "end": 214,
+          "fully_redacted": true,
+          "partly_redacted": false
+        }
+      ],
+      "preserved_debug_values": {
+        "request_id=demo-001": true,
+        "stage=payment_retry": true,
+        "status=failed": true,
+        "HTTP 503": true
+      },
+      "limits": "仅本条人工标注的敏感值覆盖及调试字段检查，不是整体PII召回率、类别准确率或真实日志安全保证"
+    }
+  },
+  "finished_at": "2026-10-17T11:16:53.585684+00:00"
+}

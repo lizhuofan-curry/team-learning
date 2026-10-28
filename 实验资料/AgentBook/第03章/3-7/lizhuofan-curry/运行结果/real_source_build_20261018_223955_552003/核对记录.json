@@ -1,0 +1,149 @@
+{
+  "status": "real_source_build_record_verified_with_semantic_findings",
+  "verified_at": "2026-10-18T22:43:37.205836+08:00",
+  "record_sha256": "c1346aadb9ff8264d848e3123af1b3f0d7904e0c50b8835c324edfe71f636cea",
+  "artifact_sha256": "ecd7e02dd568ea49b12cd6ac54808558368992b860183bc846f67939b76332c1",
+  "audit_script_sha256": "737671d09e1c28cbd36b74c656b4e643fa96eeb8f725c002571322af17cdcc7d",
+  "checks": [
+    "original stage and model",
+    "saved source, script, fixture and artifact hashes",
+    "source LICENSE",
+    "source chapter3/structured-index/IMPLEMENTATION_GUIDE.md",
+    "source chapter3/structured-index/README.md",
+    "source chapter3/structured-index/api_service.py",
+    "source chapter3/structured-index/campaign.py",
+    "source chapter3/structured-index/config.py",
+    "source chapter3/structured-index/data/intel-sdm-volume-1.pdf",
+    "source chapter3/structured-index/data/intel-sdm-volume-1.txt",
+    "source chapter3/structured-index/document_processor.py",
+    "source chapter3/structured-index/download_sample.py",
+    "source chapter3/structured-index/env.example",
+    "source chapter3/structured-index/graphrag_indexer.py",
+    "source chapter3/structured-index/hybrid_retriever.py",
+    "source chapter3/structured-index/main.py",
+    "source chapter3/structured-index/raptor_indexer.py",
+    "source chapter3/structured-index/requirements.txt",
+    "source chapter3/structured-index/structured_vs_flat_demo.py",
+    "source chapter3/structured-index/test_graphrag_search_top_k.py",
+    "source chapter3/structured-index/test_hybrid_retriever.py",
+    "source chapter3/structured-index/test_indexing.py",
+    "source chapter3/structured-index/test_raptor_chunk_step.py",
+    "source chapter3/structured-index/validation/checkpoints/intel-9d862bd7592d/ark.json",
+    "source chapter3/structured-index/validation/checkpoints/intel-9d862bd7592d/moonshot.json",
+    "source chapter3/structured-index/validation/latest.json",
+    "source chapter3/structured-index/validation/runs/20260729T200642Z-3_7-4d2d5f9c/evidence.json",
+    "source chapter3/structured-index/validation/runs/20260729T200642Z-3_7-4d2d5f9c/manifest.json",
+    "source chapter3/structured-index/validation/runs/20260729T200642Z-3_7-4d2d5f9c/receipts.json",
+    "original source checksum",
+    "raw excerpt sse_overview",
+    "raw excerpt sse_transfer",
+    "three normal responses and one recorded tag query",
+    "model digest pinned",
+    "request protocol limits",
+    "raw response 0",
+    "request settings and complete source 0",
+    "full paragraph in extraction prompt 0",
+    "raw response 1",
+    "request settings and complete source 1",
+    "full paragraph in extraction prompt 1",
+    "raw response 2",
+    "request settings and complete source 2",
+    "summary receives both paragraphs, not extracted graph or reference facts",
+    "independent item decisions and citation coordinates sse_overview",
+    "independent item decisions and citation coordinates sse_transfer",
+    "graph nodes, merging, directed edge endpoints and provenance",
+    "summary has exact evidence for each selected chunk",
+    "summary has exact evidence for each selected chunk",
+    "summary has exact evidence for each selected chunk",
+    "all summary claims and original spans reconstructed",
+    "saved artifact matches record and fixed source chunks",
+    "original result files unchanged"
+  ],
+  "check_count": 53,
+  "mechanical_verification": "passed",
+  "semantic_review": "findings_recorded; not all content validated",
+  "counts": {
+    "proposed_entity_items": 15,
+    "accepted_entity_mentions": 14,
+    "merged_graph_nodes": 13,
+    "proposed_relationships": 10,
+    "accepted_relationships": 2,
+    "rejected_items": 9,
+    "rejected_reasons": {
+      "endpoints_not_both_in_quote": 5,
+      "quote_not_found": 1,
+      "endpoint_not_in_accepted_chunk_entities": 3
+    },
+    "isolated_nodes": 9,
+    "two_hop_path_exists": false,
+    "summary_claims": 3,
+    "summary_words": 63
+  },
+  "recorded_calls": {
+    "local_model_calls": 3,
+    "local_tag_queries": 1,
+    "input_tokens": 1682,
+    "output_tokens": 2043,
+    "request_seconds": 33.85930039998493
+  },
+  "semantic_findings": [
+    {
+      "item": "graph edge 0",
+      "assessment": "relation_type_needs_revision",
+      "reason": "Quote says SSE instructions can execute only on supporting processors. uses is too broad; an execution/support constraint should be represented. The original description does preserve the support qualifier.",
+      "suggestion_for_later_review": "Retain original; a separate reviewed graph could use executes_on_supported_processors or requires_processor_support with the qualifier."
+    },
+    {
+      "item": "graph edge 1",
+      "assessment": "supported_as_coarse_relation",
+      "reason": "The MOVAPS source explicitly mentions transfers involving XMM registers; uses is acceptable at this granularity. The graph does not encode all register/memory transfer alternatives."
+    },
+    {
+      "item": "summary claim 0",
+      "assessment": "supported_by_supplied_paragraph",
+      "reason": "Extension from MMX execution model, SSE support requirement and CPUID detection are stated in the paragraph."
+    },
+    {
+      "item": "summary claim 1",
+      "assessment": "supported_by_supplied_paragraph",
+      "reason": "All four subgroups occur in the quoted list."
+    },
+    {
+      "item": "summary claim 2",
+      "assessment": "scope_ambiguity_needs_revision",
+      "reason": "Combines the instruction-group statement about packed/scalar operands with MOVAPS. MOVAPS is specifically described as four aligned packed values; do not read the sentence as scalar MOVAPS support.",
+      "suggestion_for_later_review": "Separate the data-transfer group statement from the MOVAPS packed-four-values statement; preserve original output."
+    },
+    {
+      "item": "entity descriptions with name-only quotes",
+      "assessment": "needs_context_for_support",
+      "reason": "Some accepted quotes only contain names (e.g. XMM registers or packed arithmetic); they locate the name but do not independently support the full generated description. Read the enclosing paragraph."
+    },
+    {
+      "item": "rejected CPUID relationship",
+      "assessment": "relation_type_also_questionable",
+      "reason": "The text describes feature detection, not an execution dependency on running CPUID. Lexical rejection does not settle semantic correctness."
+    },
+    {
+      "item": "rejected part_of relationships",
+      "assessment": "direction_needs_review",
+      "reason": "Several edges point from an instruction group to one of its subgroups with part_of. If part_of means source is part of target, the direction conflicts with the subgroup description."
+    },
+    {
+      "item": "nine rejected items",
+      "assessment": "not_nine_factual_errors",
+      "reason": "Five lack both endpoint names in their quote; three have endpoints absent from accepted entities; one contains an altered non-source quote. Some reference-dependent relations may be supported by broader paragraph context."
+    },
+    {
+      "item": "graph topology",
+      "assessment": "no_observed_two_hop_path",
+      "reason": "The two accepted edges are disconnected. This is a generated graph core, not a successful multi-hop retrieval demonstration."
+    }
+  ],
+  "new_model_requests_for_audit": 0,
+  "new_embedding_forward_batches": 0,
+  "network_requests_for_audit": 0,
+  "formal_entrypoint_rerun": false,
+  "official_full_reproduction_completed": false,
+  "scope": "Independent saved-data and source audit plus paragraph-level human/assistant review; no external judge, extraction benchmark or automatic semantic guarantee."
+}

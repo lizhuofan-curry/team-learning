@@ -1,0 +1,45 @@
+{
+  "review_type": "offline_recalculation",
+  "raw_record_sha256": "765f2cd84deec0c73c7a9780b7b990b4ab4b1d1280e1198d0017e6194f779ff5",
+  "calls_sha256": "155d3fba2fb9dbadd8435ea09c64c21c4d216ea989216c06c2e5c7e204fee532",
+  "request_attempts": 3,
+  "source_and_script_hashes_match": true,
+  "same_final_question_and_options": true,
+  "actual_summary_forwarded": true,
+  "all_recorded_metrics_match": true,
+  "model_calls_during_review": 0,
+  "network_calls_during_review": 0,
+  "counts": [
+    {
+      "number": 1,
+      "stage": "answer",
+      "prompt_tokens": 1119,
+      "completion_tokens": 95
+    },
+    {
+      "number": 2,
+      "stage": "compression",
+      "prompt_tokens": 1111,
+      "completion_tokens": 102
+    },
+    {
+      "number": 3,
+      "stage": "answer",
+      "prompt_tokens": 225,
+      "completion_tokens": 122
+    }
+  ],
+  "full_text_total_tokens": 1214,
+  "task_summary_total_tokens": 1560,
+  "final_prompt_reduction_fraction": 0.7989276139410187,
+  "pipeline_prompt_increase_fraction": 0.193923145665773,
+  "language_requirement_met": {
+    "full_text": false,
+    "task_summary": false
+  },
+  "length_requirement_met": {
+    "full_text": false,
+    "task_summary": false
+  },
+  "source_url_policy": "Program supplies the same URL independently in both arms; this does not establish citation preservation."
+}

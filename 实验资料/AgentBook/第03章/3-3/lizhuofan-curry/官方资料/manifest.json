@@ -1,0 +1,217 @@
+{
+  "repository": "https://github.com/bojieli/ai-agent-book",
+  "commit": "dbc046eb896ac4e39aa19c7774c8bf49583b89a6",
+  "retrieved_on": "2026-10-17",
+  "files": [
+    {
+      "path": "chapter3/log-sanitization/README.md",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/README.md",
+      "bytes": 17909,
+      "sha256": "c2bcc3676c1b7042479bc5c38542cdc96488e8845bba4716ea72d3ebbd78d28e",
+      "git_blob_sha1": "7b735dee9a1be88ad13d0c9df10489a008d60a88"
+    },
+    {
+      "path": "chapter3/log-sanitization/agent.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/agent.py",
+      "bytes": 16074,
+      "sha256": "66513fbdeb8c9430b2f793b50a5f6a133285cec61b79d1cb95c1b50b2d1643a8",
+      "git_blob_sha1": "5568ddfbacf18f52fbf4a9c401f1b6c0eadd1b21"
+    },
+    {
+      "path": "chapter3/log-sanitization/campaign.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/campaign.py",
+      "bytes": 12375,
+      "sha256": "0074ee040934c172403c07d5fd8b0c18c91f6ced43526bfc83fd0c1f87dab394",
+      "git_blob_sha1": "e26beb347d12f9fa78de2176789e6ca5ce1364cd"
+    },
+    {
+      "path": "chapter3/log-sanitization/config.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/config.py",
+      "bytes": 2858,
+      "sha256": "8a869857c393082520a3f914a3931716f7e48d122a6a8ad2a8d76d8bbf9aa3ba",
+      "git_blob_sha1": "e30e2cf4c0ddf1d09651b03855d48ea58b336dde"
+    },
+    {
+      "path": "chapter3/log-sanitization/env.example",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/env.example",
+      "bytes": 472,
+      "sha256": "6e2c48bf205fc6ea1457659b41a0cc1f790a3382d5cad90197d08049558d9be1",
+      "git_blob_sha1": "4e212b02d7d4be8e069662ddaa013d5b1a986034"
+    },
+    {
+      "path": "chapter3/log-sanitization/main.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/main.py",
+      "bytes": 10602,
+      "sha256": "140122151567f873c98ec822bc648c51621ae708cf6a5e7629ab2d65eb1072ef",
+      "git_blob_sha1": "5a110e5b3a3a6bd20c00c8eaafaf32e61cca7c24"
+    },
+    {
+      "path": "chapter3/log-sanitization/metrics.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/metrics.py",
+      "bytes": 6746,
+      "sha256": "67db1f8be45729262939dd4091dff19aaedcbffab6b83fddb2d2f10d1ce8c5a8",
+      "git_blob_sha1": "cc07437c76e9eacedeb6daf873f7bf33f3f9e61b"
+    },
+    {
+      "path": "chapter3/log-sanitization/regex_sanitizer.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/regex_sanitizer.py",
+      "bytes": 9209,
+      "sha256": "fb74bbc9d2a8cced1397c7f1021e6b6e33f6c701a9ba01baa17e1fe03470bbe6",
+      "git_blob_sha1": "39290beb5b1e894512b5f9f0b407152b593e5a77"
+    },
+    {
+      "path": "chapter3/log-sanitization/requirements.txt",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/requirements.txt",
+      "bytes": 215,
+      "sha256": "45eb8b2f4ffcff7adacc6df894e5bddaa8faee6804d48b7257058f992cdab6ec",
+      "git_blob_sha1": "1eda3c332a904a846a8b6e59a9861e3702749868"
+    },
+    {
+      "path": "chapter3/log-sanitization/samples.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/samples.py",
+      "bytes": 2726,
+      "sha256": "19c140a60bca5e0b673dfbef499d735c36cdc2c48f0e1ed45ae7105a2e96e9d6",
+      "git_blob_sha1": "1ef5184874b05d2e8f3a9e036b312b170423cda8"
+    },
+    {
+      "path": "chapter3/log-sanitization/test_loader.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/test_loader.py",
+      "bytes": 5323,
+      "sha256": "dcda4eab00a90bcc18fd874c9a1f3cf38c8e51c73c7a876406b1f8d4e69664ef",
+      "git_blob_sha1": "8c6aade63657c4e4ef88404ff3533a669db100ce"
+    },
+    {
+      "path": "chapter3/log-sanitization/tests/conftest.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/tests/conftest.py",
+      "bytes": 591,
+      "sha256": "61278e5cd2c0cf4e0e01c297853b6e9e92a5221346ef9a3086063dcbcfd6cce5",
+      "git_blob_sha1": "e4a89442e4d25b68bf534d6e59002f2163d0eac3"
+    },
+    {
+      "path": "chapter3/log-sanitization/tests/test_authorization_basic.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/tests/test_authorization_basic.py",
+      "bytes": 1394,
+      "sha256": "9215adc8c70ab980dfc571472d0e0ed7a761854cd809283ef0279a4ca4888e11",
+      "git_blob_sha1": "70b93692b44fd64ae589340c9372466be0c487fc"
+    },
+    {
+      "path": "chapter3/log-sanitization/tests/test_github_pat.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/tests/test_github_pat.py",
+      "bytes": 650,
+      "sha256": "163cd80e9e24e6b0142170f43657283a12c48aaf6a6d9ced996fd2d710b4ea40",
+      "git_blob_sha1": "7d0f882c3e49f088d507eb5e0cb21fbfc7816573"
+    },
+    {
+      "path": "chapter3/log-sanitization/tests/test_null_pii_values.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/tests/test_null_pii_values.py",
+      "bytes": 1019,
+      "sha256": "67f46e0260444e4baeb8e48bde3ca9c5b8e07cdfc2fd05aaceece003422f6d30",
+      "git_blob_sha1": "466e665c2e78eee8b2373ee0f8bf76ad2d43e3c8"
+    },
+    {
+      "path": "chapter3/log-sanitization/tests/test_quoted_secret_spaces.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/tests/test_quoted_secret_spaces.py",
+      "bytes": 795,
+      "sha256": "775bb56a265280501f2a76490ddd184dc0324935db695d10fd9b89cb23bed168",
+      "git_blob_sha1": "d841414882f7dfb3952ebe9ded1eff32ab9e252d"
+    },
+    {
+      "path": "chapter3/log-sanitization/tests/test_sanitize_conversation.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/tests/test_sanitize_conversation.py",
+      "bytes": 4544,
+      "sha256": "1f76360e54d2839499a12ae93081201c93ac65deb897a97ee910d0c85f0691a9",
+      "git_blob_sha1": "db913ef019053f4962e3f8a7a521b5275403d641"
+    },
+    {
+      "path": "chapter3/log-sanitization/tests/test_truncated_pem.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/tests/test_truncated_pem.py",
+      "bytes": 1136,
+      "sha256": "12eddde5a06289dcfa6f3c329ff8f387984158d06a663493e336ba6ce189a9c9",
+      "git_blob_sha1": "2f7f55ac1e77b008e25b3ddda0b0e27670b56a5c"
+    },
+    {
+      "path": "chapter3/log-sanitization/tests/test_url_credential_colon_slash.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/tests/test_url_credential_colon_slash.py",
+      "bytes": 880,
+      "sha256": "23080c0feff57605902f2793d4739dbf1876379e464cc65716f251cf139e4afd",
+      "git_blob_sha1": "5411d9b84825bb667cd90cf1fcdc868ccd08964d"
+    },
+    {
+      "path": "chapter3/log-sanitization/tests/test_url_credential_empty_user.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/tests/test_url_credential_empty_user.py",
+      "bytes": 835,
+      "sha256": "f85d7c01255f313b0db79f599e414681cd8b8003c89d60bbce0c56b6c172d5d7",
+      "git_blob_sha1": "c5120986a866552473e02b2e4d448b0fae1246a3"
+    },
+    {
+      "path": "chapter3/log-sanitization/validation/latest.json",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/validation/latest.json",
+      "bytes": 1730,
+      "sha256": "066af42b0ace99b547f355184f2663b8ea894454bd040a03f49d93916c0b651c",
+      "git_blob_sha1": "3055f7510a2a511d91107ab94853a255055b25ab"
+    },
+    {
+      "path": "chapter3/log-sanitization/tests/manual/loader_debug.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/tests/manual/loader_debug.py",
+      "bytes": 1281,
+      "sha256": "db76f364181d2008ffccaa1ac8841d4d86fec687e1281aebd7f9d3f2e45e4357",
+      "git_blob_sha1": "f9c1df30d4ab5d4a19dc0acd9a5e13ff36875568"
+    },
+    {
+      "path": "chapter3/log-sanitization/validation/runs/20260729T181925Z-3_3-cd097048/evidence.json",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/validation/runs/20260729T181925Z-3_3-cd097048/evidence.json",
+      "bytes": 34022,
+      "sha256": "7eea7d8235ca381b2cc0354b857968bc08c735443d843f641d95d491fd8e203c",
+      "git_blob_sha1": "9d63b2d5544b5b60258a5ccc1c4ad20919515871"
+    },
+    {
+      "path": "chapter3/log-sanitization/validation/runs/20260729T181925Z-3_3-cd097048/manifest.json",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/validation/runs/20260729T181925Z-3_3-cd097048/manifest.json",
+      "bytes": 1470,
+      "sha256": "0ab9fe55cde7b18a02ff40a084ed89ff52bcb194761e19c156ad342f29c360c8",
+      "git_blob_sha1": "97995004f16dac9831be8c2a6e650f59012f7e11"
+    },
+    {
+      "path": "chapter3/log-sanitization/validation/runs/20260729T181925Z-3_3-cd097048/receipts.json",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/validation/runs/20260729T181925Z-3_3-cd097048/receipts.json",
+      "bytes": 8419,
+      "sha256": "6ea59a988a86a659fbb83032d8f7c6df5ffb1120e70e86538251b78cd2281c56",
+      "git_blob_sha1": "3a9f7dd0aa058e3d88f4e5d8a9ec6cd2a3bb1ade"
+    },
+    {
+      "path": "chapter3/log-sanitization/validation/runs/20260729T185603Z-3_3-7f84f416/evidence.json",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/validation/runs/20260729T185603Z-3_3-7f84f416/evidence.json",
+      "bytes": 61524,
+      "sha256": "9a07a5b4e99b7f8468170a3c4593be2f7b4a703e2ac6fd28a9d3390c49c9f7f7",
+      "git_blob_sha1": "2d20cf663dfe396e97e623057a46ef482c3e60a9"
+    },
+    {
+      "path": "chapter3/log-sanitization/validation/runs/20260729T185603Z-3_3-7f84f416/manifest.json",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/validation/runs/20260729T185603Z-3_3-7f84f416/manifest.json",
+      "bytes": 1641,
+      "sha256": "c8bca3e33bce0ca06ab9f6d695cc8b5481ac71861b41f35940d50c34007702b9",
+      "git_blob_sha1": "a11592179db21a5bcc481a2214e9db1c3efd3197"
+    },
+    {
+      "path": "chapter3/log-sanitization/validation/runs/20260729T185603Z-3_3-7f84f416/receipts.json",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/log-sanitization/validation/runs/20260729T185603Z-3_3-7f84f416/receipts.json",
+      "bytes": 101156,
+      "sha256": "3faf1e5e59ed7679d5f26ee23e3c61081566e7391af5ad2ab9d9a927afcf4e86",
+      "git_blob_sha1": "b6302e33abc3c80350fd22abbe357c62082ce68b"
+    },
+    {
+      "path": "chapter3/experiment_utils.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/experiment_utils.py",
+      "bytes": 7084,
+      "sha256": "736968d4844624b13647de1f907426a7098b5696f7865257c86bab2225cd064b",
+      "git_blob_sha1": "1feced9f9eab1f80a4b86b93b2534442311489e1"
+    },
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/LICENSE",
+      "bytes": 11338,
+      "sha256": "2a9d82c7f37caadf72436764de67e4042942b8dea2ec9456ed5c43daf7eba074",
+      "git_blob_sha1": "bd3e071f150cf46f86c91d3341d36644f16e11cb"
+    }
+  ]
+}

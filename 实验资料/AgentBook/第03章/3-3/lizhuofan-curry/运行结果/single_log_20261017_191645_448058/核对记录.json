@@ -1,0 +1,59 @@
+{
+  "checked_at": "2026-10-17T11:25:53.341569+00:00",
+  "record_sha256": "750c53ed89730f2e96488a9bee22c2b63cb2ad8f20873c82104d07e403ba9435",
+  "checks": {
+    "official_source_code_fixture_hashes": true,
+    "fixed_model_digest": true,
+    "official_prompt_schema_parameters_and_no_gold_annotations_in_request": true,
+    "single_local_call_raw_http_response_and_stop": true,
+    "exact_original_sensitive_values": true,
+    "replacement_spans_and_coverage_recomputed": true,
+    "artifacts_match_record": true,
+    "all_annotated_debug_fields_preserved": true,
+    "original_files_unchanged": true
+  },
+  "results": {
+    "regex_fully_redacted": 2,
+    "llm_fully_redacted": 4,
+    "annotated_sensitive_values": 4,
+    "unannotated_replacement_spans": 0,
+    "input_tokens": 343,
+    "output_tokens": 128,
+    "request_seconds": 8.024736300008954,
+    "engine_load_seconds": 6.3122922
+  },
+  "pii_value_results": [
+    {
+      "type": "ssn",
+      "regex_redacted": true,
+      "llm_redacted": true
+    },
+    {
+      "type": "credit_card",
+      "regex_redacted": true,
+      "llm_redacted": true
+    },
+    {
+      "type": "password",
+      "regex_redacted": false,
+      "llm_redacted": true
+    },
+    {
+      "type": "medical_diagnosis",
+      "regex_redacted": false,
+      "llm_redacted": true
+    }
+  ],
+  "original_file_hashes": {
+    "llm_sanitized.txt": "705f29e467fad584d81eb92fd5c544d808c4825bbd748bb8ed90f854cbf28399",
+    "record.json": "750c53ed89730f2e96488a9bee22c2b63cb2ad8f20873c82104d07e403ba9435",
+    "regex_sanitized.txt": "bb987824419362e6ee7fa426945a62e437b314bf7868fa2d193af483657b61e6"
+  },
+  "assistant_inference_requests": 0,
+  "limits": [
+    "Single synthetic sample only; not general PII recall or real-log safety guarantee",
+    "Gold labels withheld from model; model produced all four values itself",
+    "Returned type labels not evaluated as taxonomy accuracy",
+    "Single elapsed time includes model loading and is not stable performance benchmark"
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "scope": "Offline mocked verification only, not real-model accuracy",
+  "checks": {
+    "official_prompt_schema_and_no_annotations_in_request": true,
+    "structured_output_strict": true,
+    "duplicate_keys_rejected": true,
+    "not_verbatim_rejected": true,
+    "complete_span_redaction_and_debug_preservation": true,
+    "partial_mask_not_counted_as_full": true,
+    "overlap_long_value_first": true,
+    "preview_zero_network_no_results": true,
+    "regex_zero_network": true,
+    "mock_single_local_request_complete_artifacts": true,
+    "badvalue_failure_retained_no_retry": true,
+    "length_failure_retained_no_retry": true,
+    "http500_failure_retained_no_retry": true,
+    "wrong_digest_no_inference": true,
+    "source_syntax_valid": true
+  },
+  "passed": 15,
+  "real_model_requests": 0,
+  "real_network_requests": 0,
+  "mock_fixture_full_coverage_is_not_live_result": true,
+  "temporary_mock_records_removed": true,
+  "source_sha256": "2ac5dbbfe48098f00d7bd4dd49dec29beaa6ecdc35d43903cd1be1f1237fc8d7",
+  "offline_regex_on_single_synthetic_sample": {
+    "annotated_sensitive_occurrences": 4,
+    "fully_redacted": 2,
+    "missed_or_partial": 2,
+    "extra_spans_outside_annotations": [],
+    "per_sensitive_value": [
+      {
+        "type": "ssn",
+        "value": "123-45-6789",
+        "start": 98,
+        "end": 109,
+        "fully_redacted": true,
+        "partly_redacted": false
+      },
+      {
+        "type": "credit_card",
+        "value": "4111 1111 1111 1111",
+        "start": 122,
+        "end": 141,
+        "fully_redacted": true,
+        "partly_redacted": false
+      },
+      {
+        "type": "password",
+        "value": "demo_pass_42",
+        "start": 164,
+        "end": 176,
+        "fully_redacted": false,
+        "partly_redacted": false
+      },
+      {
+        "type": "medical_diagnosis",
+        "value": "type 2 diabetes",
+        "start": 199,
+        "end": 214,
+        "fully_redacted": false,
+        "partly_redacted": false
+      }
+    ],
+    "preserved_debug_values": {
+      "request_id=demo-001": true,
+      "stage=payment_retry": true,
+      "status=failed": true,
+      "HTTP 503": true
+    },
+    "limits": "仅本条人工标注的敏感值覆盖及调试字段检查，不是整体PII召回率、类别准确率或真实日志安全保证"
+  }
+}

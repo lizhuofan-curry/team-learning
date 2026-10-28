@@ -1,0 +1,181 @@
+{
+  "status": "bm25_aligned_record_verified",
+  "checked_at": "2026-10-17T22:38:55.790523+08:00",
+  "record_sha256": "6488a6afaac472ca2b8448d6d6b86758d7104609ab8ba28d3cfcedb33a43ef97",
+  "official_sources_and_dense_provenance_verified": true,
+  "tokenization_postings_tf_df_idf_contributions_rankings_and_metrics_recomputed": true,
+  "recomputed_statistics": {
+    "documents": 12,
+    "total_tokens": 138,
+    "unique_tokens": 117,
+    "avgdl": 11.5
+  },
+  "common_macro": {
+    "bm25": {
+      "recall_at_5": 0.6,
+      "precision_at_5_fixed_slots": 0.16,
+      "mrr_at_5": 0.6
+    },
+    "dense_saved": {
+      "recall_at_5": 1.0,
+      "precision_at_5_fixed_slots": 0.32,
+      "mrr_at_5": 1.0
+    }
+  },
+  "official_bm25_macro_separate": {
+    "recall": 0.6,
+    "precision": 0.3,
+    "rr": 0.6
+  },
+  "queries": [
+    {
+      "query": "a cat playing",
+      "bm25_top_5": [],
+      "relevant": [
+        "doc_7",
+        "doc_8"
+      ],
+      "common_bm25": {
+        "recall_at_5": 0.0,
+        "precision_at_5_fixed_slots": 0.0,
+        "rr_at_5": 0.0,
+        "hits": [],
+        "returned_at_5": 0
+      },
+      "common_dense": {
+        "recall_at_5": 1.0,
+        "precision_at_5_fixed_slots": 0.4,
+        "rr_at_5": 1.0,
+        "hits": [
+          "doc_7",
+          "doc_8"
+        ],
+        "returned_at_5": 5
+      }
+    },
+    {
+      "query": "model distillation",
+      "bm25_top_5": [
+        "doc_3",
+        "doc_4",
+        "doc_12"
+      ],
+      "relevant": [
+        "doc_3",
+        "doc_4"
+      ],
+      "common_bm25": {
+        "recall_at_5": 1.0,
+        "precision_at_5_fixed_slots": 0.4,
+        "rr_at_5": 1.0,
+        "hits": [
+          "doc_3",
+          "doc_4"
+        ],
+        "returned_at_5": 3
+      },
+      "common_dense": {
+        "recall_at_5": 1.0,
+        "precision_at_5_fixed_slots": 0.4,
+        "rr_at_5": 1.0,
+        "hits": [
+          "doc_3",
+          "doc_4"
+        ],
+        "returned_at_5": 5
+      }
+    },
+    {
+      "query": "training neural networks",
+      "bm25_top_5": [
+        "doc_4"
+      ],
+      "relevant": [
+        "doc_11",
+        "doc_12"
+      ],
+      "common_bm25": {
+        "recall_at_5": 0.0,
+        "precision_at_5_fixed_slots": 0.0,
+        "rr_at_5": 0.0,
+        "hits": [],
+        "returned_at_5": 1
+      },
+      "common_dense": {
+        "recall_at_5": 1.0,
+        "precision_at_5_fixed_slots": 0.4,
+        "rr_at_5": 1.0,
+        "hits": [
+          "doc_11",
+          "doc_12"
+        ],
+        "returned_at_5": 5
+      }
+    },
+    {
+      "query": "self attention in sequence models",
+      "bm25_top_5": [
+        "doc_10",
+        "doc_9",
+        "doc_2"
+      ],
+      "relevant": [
+        "doc_10"
+      ],
+      "common_bm25": {
+        "recall_at_5": 1.0,
+        "precision_at_5_fixed_slots": 0.2,
+        "rr_at_5": 1.0,
+        "hits": [
+          "doc_10"
+        ],
+        "returned_at_5": 3
+      },
+      "common_dense": {
+        "recall_at_5": 1.0,
+        "precision_at_5_fixed_slots": 0.2,
+        "rr_at_5": 1.0,
+        "hits": [
+          "doc_10"
+        ],
+        "returned_at_5": 5
+      }
+    },
+    {
+      "query": "web server resource not found",
+      "bm25_top_5": [
+        "doc_6",
+        "doc_2"
+      ],
+      "relevant": [
+        "doc_6"
+      ],
+      "common_bm25": {
+        "recall_at_5": 1.0,
+        "precision_at_5_fixed_slots": 0.2,
+        "rr_at_5": 1.0,
+        "hits": [
+          "doc_6"
+        ],
+        "returned_at_5": 2
+      },
+      "common_dense": {
+        "recall_at_5": 1.0,
+        "precision_at_5_fixed_slots": 0.2,
+        "rr_at_5": 1.0,
+        "hits": [
+          "doc_6"
+        ],
+        "returned_at_5": 5
+      }
+    }
+  ],
+  "code_demo_doc_ids": [
+    "doc_9"
+  ],
+  "original_record_unchanged": true,
+  "new_model_requests": 0,
+  "new_embedding_batches": 0,
+  "new_search_engine_builds": 0,
+  "scope": "只复用官方分词器，按文档词频独立重算公式和指标；不重跑完整检索入口或嵌入，不将5条小样例推广为整体排名"
+}

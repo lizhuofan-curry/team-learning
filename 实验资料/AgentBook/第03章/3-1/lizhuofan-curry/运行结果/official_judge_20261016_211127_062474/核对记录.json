@@ -1,0 +1,60 @@
+{
+  "checked_on": "2026-10-16",
+  "status": "judge_result_verified",
+  "judge_record_sha256": "e73c0ef7453480ee2e232c3f3746d8c5b6257fb5a1a65cde35d387b381a1bf2b",
+  "writer_record_sha256": "a0dbd8325791b9f9648806cf41d46ae9e18d40c7bad46bea5e9f7b501e3149d6",
+  "judge_model": "deepseek-flash",
+  "calls": 1,
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 437,
+    "prompt_tokens": 2492,
+    "total_tokens": 2929,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cache_write_tokens": null,
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 2492
+  },
+  "official_request_and_summary_match": true,
+  "evidence_quotes": [
+    {
+      "dimension": "precision",
+      "quote": "Your checking account number is still being set up, and it's already been successfully processed.",
+      "matches_source_or_answer": true
+    },
+    {
+      "dimension": "recall",
+      "quote": "your new checking account number is 4429853327",
+      "matches_source_or_answer": true
+    },
+    {
+      "dimension": "recall",
+      "quote": "Our routing number is 123006800",
+      "matches_source_or_answer": true
+    },
+    {
+      "dimension": "reasoning",
+      "quote": "Your checking account number is still being set up, and it's already been successfully processed.",
+      "matches_source_or_answer": true
+    }
+  ],
+  "hallucination_claims_match_answer": true,
+  "judge_summary": {
+    "scores": {
+      "precision": 1,
+      "recall": 1,
+      "reasoning": 1,
+      "proactivity": 1
+    },
+    "hallucination_veto": true,
+    "passed": false,
+    "reward": 0.0
+  },
+  "review": "Core failure is supported: the source includes an exact checking account number, the memory and answer omit it, and the answer claims ongoing setup despite the source having issued the number. Routing number is desirable supplementary assistance, not the sole reason for failure. Proactivity evidence list is empty; its rationale can be checked against source and answer, but no quoted evidence was supplied for that dimension. One case under modified bounded-memory settings does not establish global model or format rankings.",
+  "assistant_model_calls": 0,
+  "original_unchanged": true
+}

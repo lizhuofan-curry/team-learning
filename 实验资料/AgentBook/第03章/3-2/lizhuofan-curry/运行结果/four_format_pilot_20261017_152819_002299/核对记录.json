@@ -1,0 +1,107 @@
+{
+  "checked_at": "2026-10-17T15:35:55.095430+08:00",
+  "scope": "offline audit of user-run four-format pilot; no network or model requests",
+  "batch_sha256": "a36497e68731e0cac1783640b959f3b838bf45a064df78283ec60c7a48d9aedb",
+  "raw_records_and_batch_unchanged": true,
+  "configuration_source_isolation_raw_responses_and_artifacts_verified": true,
+  "summary": {
+    "scope": "银行单题四格式预实验；不是60题×四格式完整评估，不与3-1的schema成绩合并",
+    "planned_cases": 1,
+    "planned_mode_variants": 4,
+    "writer_states": {
+      "incomplete": 3,
+      "saved": 1
+    },
+    "judge_states": {
+      "pending": 4
+    },
+    "scored_variants": 0,
+    "passed_variants": 0,
+    "pilot_all_outcomes_finished": false,
+    "full_60_case_four_mode_evaluation_completed": false,
+    "all_four_variants_scored": false,
+    "writer_calls": 6,
+    "judge_calls": 0,
+    "failure_kinds": {
+      "generation_error": 2,
+      "truncated": 1
+    }
+  },
+  "total_input_tokens": 11803,
+  "total_output_tokens": 6645,
+  "rows": [
+    {
+      "mode": "notes",
+      "writer_path": "E:\\AI_Agents_Book\\第三章\\3.1用户记忆评估\\运行结果\\official_writer_20261017_152825_771379\\record.json",
+      "writer_sha256": "583af6a906f406ac22f2002e3be878345f5ce699421fb09cb287c5cf86cbd1e4",
+      "status": "incomplete",
+      "calls": 1,
+      "input_tokens": 2217,
+      "output_tokens": 681,
+      "error": {
+        "type": "ValueError",
+        "message": "JSON字段重复：account_type"
+      },
+      "observations": [
+        "memory JSON duplicate account_type key; object-shaped notes violate string-array contract"
+      ]
+    },
+    {
+      "mode": "enhanced_notes",
+      "writer_path": "E:\\AI_Agents_Book\\第三章\\3.1用户记忆评估\\运行结果\\official_writer_20261017_152904_922252\\record.json",
+      "writer_sha256": "212de09ba9e67742270544244aa9f199254401d386d9f181671839d2893050ce",
+      "status": "incomplete",
+      "calls": 1,
+      "input_tokens": 2220,
+      "output_tokens": 1084,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      },
+      "observations": [
+        "memory array elements are objects, not contextual paragraph strings"
+      ]
+    },
+    {
+      "mode": "json_cards",
+      "writer_path": "E:\\AI_Agents_Book\\第三章\\3.1用户记忆评估\\运行结果\\official_writer_20261017_152949_577923\\record.json",
+      "writer_sha256": "5fc57ade38e8da0640ebd1daef2a284e48133bc81222842b7bc0b7a60c25b4cb",
+      "status": "incomplete",
+      "calls": 2,
+      "input_tokens": 3022,
+      "output_tokens": 2040,
+      "error": {
+        "type": "ValueError",
+        "message": "模型未正常结束：done_reason=length，输出1200 token，上限1200；保留响应，不补齐JSON"
+      },
+      "observations": [
+        "valid memory checkpoint; unfinished answer reached 1200-token cap; no formal answer or grade"
+      ]
+    },
+    {
+      "mode": "advanced_json_cards",
+      "writer_path": "E:\\AI_Agents_Book\\第三章\\3.1用户记忆评估\\运行结果\\official_writer_20261017_153104_166016\\record.json",
+      "writer_sha256": "aca23eb657588623cc20761e7c782f6f8836a4694a6baeac3bc1295c54fceff9",
+      "status": "saved",
+      "calls": 2,
+      "input_tokens": 4344,
+      "output_tokens": 2840,
+      "error": null,
+      "observations": [
+        "15 valid-shape cards and complete answer; checking account number correct; source-bank routing number misbound to destination bank",
+        "correct direct-deposit routing also exists in another card; answer repeats incorrect checking-card routing",
+        "no independent judge score yet; original analysis and closing think marker retained"
+      ]
+    }
+  ],
+  "routing_evidence": {
+    "source_bank": "Wells Fargo",
+    "source_routing_number": "121000248",
+    "source_message_index_0_based": 54,
+    "destination_bank": "First National Bank",
+    "destination_routing_number": "123006800",
+    "destination_message_index_0_based": 61
+  },
+  "eligible_new_judge_requests": 1,
+  "no_scores_assigned_by_auditor": true
+}

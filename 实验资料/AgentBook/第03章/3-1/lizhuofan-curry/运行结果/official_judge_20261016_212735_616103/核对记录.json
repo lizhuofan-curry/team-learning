@@ -1,0 +1,86 @@
+{
+  "checked_on": "2026-10-16",
+  "status": "judge_result_verified_with_interpretation_caveat",
+  "judge_record_sha256": "618baa8bb86e44a7bc69902916495b974c47dcfa721f2b4764dbd74fc6d5a1ca",
+  "writer_record_sha256": "5b9bc614f09ddfd4f8d8efee8fe2d4cce85e18b8947c2f3adb4f2a29d462a880",
+  "judge_model": "deepseek-flash",
+  "calls": 1,
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 456,
+    "prompt_tokens": 2485,
+    "total_tokens": 2941,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cache_write_tokens": null,
+      "cached_tokens": 1920
+    },
+    "prompt_cache_hit_tokens": 1920,
+    "prompt_cache_miss_tokens": 565
+  },
+  "official_request_and_summary_match": true,
+  "writer_artifacts_and_isolation_verified": true,
+  "evidence_quotes": [
+    {
+      "dimension": "precision",
+      "quote": "ASSISTANT: Our routing number is 123006800, and your new checking account number is 4429853327.",
+      "exact_match": false,
+      "body_substring_match": true
+    },
+    {
+      "dimension": "precision",
+      "quote": "USER: Let me write that down... 4429853327, right?",
+      "exact_match": true,
+      "body_substring_match": true
+    },
+    {
+      "dimension": "precision",
+      "quote": "ASSISTANT: Correct.",
+      "exact_match": true,
+      "body_substring_match": true
+    },
+    {
+      "dimension": "recall",
+      "quote": "ASSISTANT: Our routing number is 123006800, and your new checking account number is 4429853327.",
+      "exact_match": false,
+      "body_substring_match": true
+    },
+    {
+      "dimension": "recall",
+      "quote": "ASSISTANT: You've opened a Premium Checking with account number 4429853327",
+      "exact_match": false,
+      "body_substring_match": true
+    },
+    {
+      "dimension": "reasoning",
+      "quote": "The provided information does not include a checking account number.",
+      "exact_match": true,
+      "body_substring_match": true
+    },
+    {
+      "dimension": "proactivity",
+      "quote": "If you need assistance with setting up a direct deposit, please provide the necessary details, such as the account holder's name, account number, and other relevant information.",
+      "exact_match": true,
+      "body_substring_match": true
+    }
+  ],
+  "evidence_review": "Four quotes match verbatim; three quotes prefix ASSISTANT to an excerpt from the middle of an assistant message. Their quoted bodies match source text, but the full prefixed strings are not verbatim source substrings. No raw quotes were rewritten.",
+  "hallucination_claims_match_answer": true,
+  "judge_summary": {
+    "scores": {
+      "precision": 1,
+      "recall": 1,
+      "reasoning": 1,
+      "proactivity": 1
+    },
+    "hallucination_veto": true,
+    "passed": false,
+    "reward": 0.0
+  },
+  "paired_scores_equal": true,
+  "judge_configuration_unchanged": true,
+  "review": "Core recall failure is clear: the source includes the checking account number, but the three stored metadata notes and final answer omit it. The judge treats the assertion that the provided information lacks the number as contradicting the full source. The answering model actually saw only the final memory; this wording has a reference-scope ambiguity. Preserve the official raw verdict, distinguish failure to retain facts from fabricating an account number or account status, and do not infer stable sampling effects or sole model-size causation from one observation per configuration.",
+  "assistant_model_calls": 0,
+  "original_unchanged": true
+}

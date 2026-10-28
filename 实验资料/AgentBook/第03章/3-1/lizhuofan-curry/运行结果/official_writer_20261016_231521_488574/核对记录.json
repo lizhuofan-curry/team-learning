@@ -1,0 +1,46 @@
+{
+  "checked_on": "2026-10-16",
+  "status": "memory_and_answer_verified_judge_pending",
+  "record_sha256": "a17768202c409eeb25dbc079ab54f3470ac01bd5d56b26c1196a35fa360ec55c",
+  "model": "qwen3:4b",
+  "model_digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+  "calls": 2,
+  "memory": {
+    "http_status": 200,
+    "done_reason": "stop",
+    "input_tokens": 2217,
+    "output_tokens": 666,
+    "notes": 42,
+    "format_valid": true,
+    "target_account_note_index_one_based": 23,
+    "target_routing_note_index_one_based": 29,
+    "contains_target_account": true,
+    "contains_target_routing": true
+  },
+  "answer": {
+    "http_status": 200,
+    "done_reason": "stop",
+    "input_tokens": 714,
+    "output_tokens": 380,
+    "core_account_correct": true,
+    "routing_number_mentioned": false,
+    "contains_analysis_and_closing_think_marker": true,
+    "think_request": false,
+    "separate_thinking_field_present": false,
+    "text_cleaned": false
+  },
+  "source_requests_responses_isolation_and_artifacts_verified": true,
+  "prior_bounded_record_sha256": "7c956a3b66c4315407e4e29fd7e4f9261d609d7c36e33b0311cdda316f700eb1",
+  "paired_differences": [
+    "Remove appended bounded-memory system instructions",
+    "Remove maxItems=20 and maxLength=120 schema bounds",
+    "Answer memory input changes with generated memory"
+  ],
+  "paired_model_digest_sampling_context_and_output_budgets_equal": true,
+  "judge_score_available": false,
+  "review": "The source account and routing values appear in the 42-note memory, and the completed raw answer supplies the correct checking account without confusing the savings or external-bank account. The answer omits the desirable routing-number supplement and contains analysis prose plus a closing think marker despite think=false. Preserve the full original answer for judging; no cleaning, scoring prediction, or claim that all 42 facts are correct. This one new observation changes both memory constraints and appended instructions, so it cannot attribute success solely to model size or the note limit.",
+  "assistant_model_calls": 0,
+  "original_unchanged": true,
+  "judge_preview_verified": true,
+  "judge_preview_network_requests": 0
+}

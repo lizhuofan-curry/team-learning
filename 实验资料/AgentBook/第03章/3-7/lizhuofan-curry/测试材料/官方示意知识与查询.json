@@ -1,0 +1,148 @@
+{
+  "demo_source_sha256": "e7769dea7aac64a85ef82ee79d521081d994504f38cce1d8e5ee5a1247bfff14",
+  "entities": {
+    "ADDPS": {
+      "type": "instruction",
+      "desc": "ADDPS：对打包的单精度浮点数执行并行加法，一次处理四路单精度浮点运算。"
+    },
+    "MOVAPS": {
+      "type": "instruction",
+      "desc": "MOVAPS：在向量寄存器与对齐内存之间搬运 128 位打包单精度浮点数据。"
+    },
+    "VADDPS": {
+      "type": "instruction",
+      "desc": "VADDPS：AVX 版本的打包单精度浮点加法，一次处理八路单精度浮点运算。"
+    },
+    "CPUID": {
+      "type": "instruction",
+      "desc": "CPUID：返回处理器标识与特性信息，用于探测处理器是否支持 SSE、AVX 等扩展。"
+    },
+    "SSE": {
+      "type": "extension",
+      "desc": "SSE（Streaming SIMD Extensions）：引入 128 位向量寄存器，支持打包单精度浮点并行运算。"
+    },
+    "AVX": {
+      "type": "extension",
+      "desc": "AVX（Advanced Vector Extensions）：把向量寄存器扩展到 256 位，进一步增强 SIMD 能力。"
+    },
+    "XMM": {
+      "type": "register",
+      "desc": "XMM0-XMM15：128 位向量寄存器，供 SSE 指令存放打包数据。"
+    },
+    "YMM": {
+      "type": "register",
+      "desc": "YMM0-YMM15：256 位向量寄存器，供 AVX 指令使用，低 128 位与 XMM 共享。"
+    },
+    "CR4.OSFXSR": {
+      "type": "control-bit",
+      "desc": "CR4.OSFXSR：操作系统支持 FXSAVE/FXRSTOR 的控制位，置 1 后才允许使用 SSE 指令。"
+    },
+    "CR0.EM": {
+      "type": "control-bit",
+      "desc": "CR0.EM：仿真标志位，为 1 时禁用 SIMD，必须清零才能执行 SSE / AVX 指令。"
+    }
+  },
+  "triples": [
+    [
+      "ADDPS",
+      "属于",
+      "SSE"
+    ],
+    [
+      "MOVAPS",
+      "属于",
+      "SSE"
+    ],
+    [
+      "VADDPS",
+      "属于",
+      "AVX"
+    ],
+    [
+      "ADDPS",
+      "操作",
+      "XMM"
+    ],
+    [
+      "VADDPS",
+      "操作",
+      "YMM"
+    ],
+    [
+      "SSE",
+      "使用寄存器",
+      "XMM"
+    ],
+    [
+      "AVX",
+      "使用寄存器",
+      "YMM"
+    ],
+    [
+      "AVX",
+      "扩展自",
+      "SSE"
+    ],
+    [
+      "SSE",
+      "需要启用",
+      "CR4.OSFXSR"
+    ],
+    [
+      "AVX",
+      "需要启用",
+      "CR4.OSFXSR"
+    ],
+    [
+      "SSE",
+      "要求清零",
+      "CR0.EM"
+    ],
+    [
+      "CPUID",
+      "探测",
+      "SSE"
+    ],
+    [
+      "CPUID",
+      "探测",
+      "AVX"
+    ]
+  ],
+  "tree_summary": {
+    "id": "SIMD 指令集综述",
+    "summary": "x86 的 SIMD 指令集自 MMX 起步，SSE 引入 128 位 XMM 向量寄存器并支持打包单精度浮点运算，AVX 进一步把寄存器扩展到 256 位 YMM，逐代提升单指令多数据的并行宽度；使用前需通过 CR0/CR4 控制位使能，并可用 CPUID 探测支持情况。",
+    "children": [
+      "ADDPS",
+      "MOVAPS",
+      "VADDPS",
+      "SSE",
+      "AVX",
+      "XMM",
+      "YMM"
+    ]
+  },
+  "queries": [
+    {
+      "case_id": "multi_hop",
+      "task": "多跳关系路径",
+      "query": "运行 ADDPS 指令前，操作系统必须把哪个控制寄存器位置 1？"
+    },
+    {
+      "case_id": "cross_entity",
+      "task": "跨实体关系对齐",
+      "query": "SSE 与 AVX 使用的向量寄存器有什么区别？",
+      "extension_entities": [
+        "SSE",
+        "AVX"
+      ],
+      "relation": "使用寄存器"
+    },
+    {
+      "case_id": "hierarchical",
+      "task": "父摘要与叶子导航",
+      "query": "概述一下 x86 的 SIMD 指令集"
+    }
+  ],
+  "scope": "Hand-curated upstream toy knowledge and fixed question routing; not document extraction or equal-budget model evaluation."
+}

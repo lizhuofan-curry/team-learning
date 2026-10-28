@@ -1,0 +1,1590 @@
+{
+  "stage": "chapter3_hybrid_fusion",
+  "status": "hybrid_fusion_saved",
+  "created_at": "2026-10-17T22:53:32.051535+08:00",
+  "script_sha256": "3b2e8d199919c1456c95d63980b8fcd7f122157e19106d5b8f5656607ad11da4",
+  "upstream_commit": "dbc046eb896ac4e39aa19c7774c8bf49583b89a6",
+  "official_manifest_sha256": "8db475f5145291cf715adc1878ac70227ab0bb4ff3088bcbbf2f694b538eb28a",
+  "fixture_sha256": "09cfda0b998efbbac5dc92abc151e812ed3b0e2ab81d807adcbb2ac7dfcd5a79",
+  "sources": {
+    "dense": {
+      "record_relative_to_project": "第三章/3.4稠密向量检索/运行结果/text_embedding_20261017_213507_432933/record.json",
+      "allowed_results_relative_to_project": "第三章/3.4稠密向量检索/运行结果",
+      "record_sha256": "c5beeef30ba92df39051d00574d4d2fc3d803a952762b34e82080a284d888456",
+      "audit_sha256": "850db9b54f6d1cefb32be7f92cf0d0da6d89f5b4a74d9a5f894e3c09ebad6bb7",
+      "expected_status": "text_embedding_eval_saved",
+      "expected_audit_status": "real_text_embedding_record_verified"
+    },
+    "sparse": {
+      "record_relative_to_project": "第三章/3.5BM25稀疏检索/运行结果/bm25_aligned_20261017_222322_578910/record.json",
+      "allowed_results_relative_to_project": "第三章/3.5BM25稀疏检索/运行结果",
+      "record_sha256": "6488a6afaac472ca2b8448d6d6b86758d7104609ab8ba28d3cfcedb33a43ef97",
+      "audit_sha256": "721e7950d318e0b89b2d6783137d1e140382321f01a5873caf14d7a0a2e0d917",
+      "expected_status": "bm25_aligned_eval_saved",
+      "expected_audit_status": "bm25_aligned_record_verified"
+    }
+  },
+  "corpus": [
+    {
+      "doc_id": "doc_1",
+      "title": "Python Language",
+      "text": "Python is a high-level programming language known for readability and a simple syntax."
+    },
+    {
+      "doc_id": "doc_2",
+      "title": "JavaScript Runtime",
+      "text": "JavaScript runs in the browser and on servers via Node.js for full-stack web development."
+    },
+    {
+      "doc_id": "doc_3",
+      "title": "Model Distillation",
+      "text": "Model distillation compresses a large teacher model into a smaller student model while preserving accuracy."
+    },
+    {
+      "doc_id": "doc_4",
+      "title": "Knowledge Distillation",
+      "text": "Knowledge distillation transfers knowledge from a big neural network to a compact model for efficient inference."
+    },
+    {
+      "doc_id": "doc_5",
+      "title": "BM25 Ranking",
+      "text": "BM25 is a probabilistic ranking function using term frequency and inverse document frequency."
+    },
+    {
+      "doc_id": "doc_6",
+      "title": "HTTP Errors",
+      "text": "The HTTP 404 error code means the requested resource was not found on the web server."
+    },
+    {
+      "doc_id": "doc_7",
+      "title": "A Playful Kitten",
+      "text": "A cute kitten chased a ball of yarn across the living room floor all afternoon."
+    },
+    {
+      "doc_id": "doc_8",
+      "title": "Silent Hunter",
+      "text": "The feline predator stalked its prey silently through the tall grass at dusk."
+    },
+    {
+      "doc_id": "doc_9",
+      "title": "Hardware Fault",
+      "text": "Error code XK9-2B4-7Q1 indicates a hardware fault in the storage controller board."
+    },
+    {
+      "doc_id": "doc_10",
+      "title": "Transformers",
+      "text": "Transformer models use self-attention to process input sequences in parallel efficiently."
+    },
+    {
+      "doc_id": "doc_11",
+      "title": "Deep Learning",
+      "text": "Deep learning stacks many layers of neurons to extract hierarchical features from raw data."
+    },
+    {
+      "doc_id": "doc_12",
+      "title": "Gradient Descent",
+      "text": "Gradient descent minimizes a loss function by iteratively updating the model parameters."
+    }
+  ],
+  "labels": {
+    "a cat playing": [
+      "doc_7",
+      "doc_8"
+    ],
+    "model distillation": [
+      "doc_3",
+      "doc_4"
+    ],
+    "training neural networks": [
+      "doc_11",
+      "doc_12"
+    ],
+    "self attention in sequence models": [
+      "doc_10"
+    ],
+    "web server resource not found": [
+      "doc_6"
+    ]
+  },
+  "protocol": {
+    "per_source_top_k": 5,
+    "output_top_k": 5,
+    "rrf_k": 60,
+    "rrf_weights": {
+      "dense": 1.0,
+      "sparse": 1.0
+    },
+    "weighted_weights": {
+      "dense": 0.5,
+      "sparse": 0.5
+    },
+    "weighted_normalization": "per-source min-max on returned top-5; equal scores -> 1",
+    "missing_source_contribution": 0,
+    "ties": "upstream stable sort; dense source inserted first",
+    "candidates": "union of both source top-5; preserve all union candidates for later reranking",
+    "precision_denominator": 5,
+    "rr_scope": "top 5",
+    "source_code_extra_query_included": false
+  },
+  "model_requests": 0,
+  "embedding_forward_batches": 0,
+  "network_requests": 0,
+  "reranking_performed": false,
+  "scope": "同语料离线候选融合学习；非官方默认语料、非神经重排或完整服务部署",
+  "queries": [
+    {
+      "query": "a cat playing",
+      "fused_rankings": {
+        "rrf": [
+          {
+            "rank": 1,
+            "doc_id": "doc_7",
+            "score": 0.01639344262295082
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_8",
+            "score": 0.016129032258064516
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_1",
+            "score": 0.015873015873015872
+          },
+          {
+            "rank": 4,
+            "doc_id": "doc_5",
+            "score": 0.015625
+          },
+          {
+            "rank": 5,
+            "doc_id": "doc_2",
+            "score": 0.015384615384615385
+          }
+        ],
+        "weighted": [
+          {
+            "rank": 1,
+            "doc_id": "doc_7",
+            "score": 0.5
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_8",
+            "score": 0.36071431154759065
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_1",
+            "score": 0.04157527327761606
+          },
+          {
+            "rank": 4,
+            "doc_id": "doc_5",
+            "score": 0.011948541283687922
+          },
+          {
+            "rank": 5,
+            "doc_id": "doc_2",
+            "score": 0.0
+          }
+        ]
+      },
+      "fusion_contributions": {
+        "rrf": [
+          {
+            "doc_id": "doc_7",
+            "contributions": {
+              "dense": 0.01639344262295082,
+              "sparse": 0.0
+            },
+            "score": 0.01639344262295082
+          },
+          {
+            "doc_id": "doc_8",
+            "contributions": {
+              "dense": 0.016129032258064516,
+              "sparse": 0.0
+            },
+            "score": 0.016129032258064516
+          },
+          {
+            "doc_id": "doc_1",
+            "contributions": {
+              "dense": 0.015873015873015872,
+              "sparse": 0.0
+            },
+            "score": 0.015873015873015872
+          },
+          {
+            "doc_id": "doc_5",
+            "contributions": {
+              "dense": 0.015625,
+              "sparse": 0.0
+            },
+            "score": 0.015625
+          },
+          {
+            "doc_id": "doc_2",
+            "contributions": {
+              "dense": 0.015384615384615385,
+              "sparse": 0.0
+            },
+            "score": 0.015384615384615385
+          }
+        ],
+        "weighted": [
+          {
+            "doc_id": "doc_7",
+            "contributions": {
+              "dense": 0.5,
+              "sparse": 0.0
+            },
+            "score": 0.5
+          },
+          {
+            "doc_id": "doc_8",
+            "contributions": {
+              "dense": 0.36071431154759065,
+              "sparse": 0.0
+            },
+            "score": 0.36071431154759065
+          },
+          {
+            "doc_id": "doc_1",
+            "contributions": {
+              "dense": 0.04157527327761606,
+              "sparse": 0.0
+            },
+            "score": 0.04157527327761606
+          },
+          {
+            "doc_id": "doc_5",
+            "contributions": {
+              "dense": 0.011948541283687922,
+              "sparse": 0.0
+            },
+            "score": 0.011948541283687922
+          },
+          {
+            "doc_id": "doc_2",
+            "contributions": {
+              "dense": 0.0,
+              "sparse": 0.0
+            },
+            "score": 0.0
+          }
+        ]
+      },
+      "source_rankings": {
+        "dense": [
+          {
+            "rank": 1,
+            "doc_id": "doc_7",
+            "score": 0.5245553255081177
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_8",
+            "score": 0.3960069417953491
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_1",
+            "score": 0.10146980732679367
+          },
+          {
+            "rank": 4,
+            "doc_id": "doc_5",
+            "score": 0.0741269513964653
+          },
+          {
+            "rank": 5,
+            "doc_id": "doc_2",
+            "score": 0.06309950351715088
+          }
+        ],
+        "sparse": []
+      },
+      "relevant_doc_ids": [
+        "doc_7",
+        "doc_8"
+      ],
+      "candidate_union": [
+        "doc_7",
+        "doc_8",
+        "doc_1",
+        "doc_5",
+        "doc_2"
+      ],
+      "candidate_recall": 1.0,
+      "metrics": {
+        "dense": {
+          "recall_at_5": 1.0,
+          "precision_at_5_fixed_slots": 0.4,
+          "rr_at_5": 1.0,
+          "hits": [
+            "doc_7",
+            "doc_8"
+          ],
+          "returned_at_5": 5
+        },
+        "sparse": {
+          "recall_at_5": 0.0,
+          "precision_at_5_fixed_slots": 0.0,
+          "rr_at_5": 0.0,
+          "hits": [],
+          "returned_at_5": 0
+        },
+        "rrf": {
+          "recall_at_5": 1.0,
+          "precision_at_5_fixed_slots": 0.4,
+          "rr_at_5": 1.0,
+          "hits": [
+            "doc_7",
+            "doc_8"
+          ],
+          "returned_at_5": 5
+        },
+        "weighted": {
+          "recall_at_5": 1.0,
+          "precision_at_5_fixed_slots": 0.4,
+          "rr_at_5": 1.0,
+          "hits": [
+            "doc_7",
+            "doc_8"
+          ],
+          "returned_at_5": 5
+        }
+      },
+      "rank_changes": [
+        {
+          "doc_id": "doc_7",
+          "dense": 1,
+          "sparse": null,
+          "rrf": 1,
+          "weighted": 1
+        },
+        {
+          "doc_id": "doc_8",
+          "dense": 2,
+          "sparse": null,
+          "rrf": 2,
+          "weighted": 2
+        },
+        {
+          "doc_id": "doc_1",
+          "dense": 3,
+          "sparse": null,
+          "rrf": 3,
+          "weighted": 3
+        },
+        {
+          "doc_id": "doc_5",
+          "dense": 4,
+          "sparse": null,
+          "rrf": 4,
+          "weighted": 4
+        },
+        {
+          "doc_id": "doc_2",
+          "dense": 5,
+          "sparse": null,
+          "rrf": 5,
+          "weighted": 5
+        }
+      ]
+    },
+    {
+      "query": "model distillation",
+      "fused_rankings": {
+        "rrf": [
+          {
+            "rank": 1,
+            "doc_id": "doc_3",
+            "score": 0.03278688524590164
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_4",
+            "score": 0.03225806451612903
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_12",
+            "score": 0.031746031746031744
+          },
+          {
+            "rank": 4,
+            "doc_id": "doc_10",
+            "score": 0.015625
+          },
+          {
+            "rank": 5,
+            "doc_id": "doc_11",
+            "score": 0.015384615384615385
+          }
+        ],
+        "weighted": [
+          {
+            "rank": 1,
+            "doc_id": "doc_3",
+            "score": 1.0
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_4",
+            "score": 0.6726126308673216
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_12",
+            "score": 0.11278530117520405
+          },
+          {
+            "rank": 4,
+            "doc_id": "doc_10",
+            "score": 0.061687994951771664
+          },
+          {
+            "rank": 5,
+            "doc_id": "doc_11",
+            "score": 0.0
+          }
+        ]
+      },
+      "fusion_contributions": {
+        "rrf": [
+          {
+            "doc_id": "doc_3",
+            "contributions": {
+              "dense": 0.01639344262295082,
+              "sparse": 0.01639344262295082
+            },
+            "score": 0.03278688524590164
+          },
+          {
+            "doc_id": "doc_4",
+            "contributions": {
+              "dense": 0.016129032258064516,
+              "sparse": 0.016129032258064516
+            },
+            "score": 0.03225806451612903
+          },
+          {
+            "doc_id": "doc_12",
+            "contributions": {
+              "dense": 0.015873015873015872,
+              "sparse": 0.015873015873015872
+            },
+            "score": 0.031746031746031744
+          },
+          {
+            "doc_id": "doc_10",
+            "contributions": {
+              "dense": 0.015625,
+              "sparse": 0.0
+            },
+            "score": 0.015625
+          },
+          {
+            "doc_id": "doc_11",
+            "contributions": {
+              "dense": 0.015384615384615385,
+              "sparse": 0.0
+            },
+            "score": 0.015384615384615385
+          }
+        ],
+        "weighted": [
+          {
+            "doc_id": "doc_3",
+            "contributions": {
+              "dense": 0.5,
+              "sparse": 0.5
+            },
+            "score": 1.0
+          },
+          {
+            "doc_id": "doc_4",
+            "contributions": {
+              "dense": 0.3694310958669212,
+              "sparse": 0.3031815350004004
+            },
+            "score": 0.6726126308673216
+          },
+          {
+            "doc_id": "doc_12",
+            "contributions": {
+              "dense": 0.11278530117520405,
+              "sparse": 0.0
+            },
+            "score": 0.11278530117520405
+          },
+          {
+            "doc_id": "doc_10",
+            "contributions": {
+              "dense": 0.061687994951771664,
+              "sparse": 0.0
+            },
+            "score": 0.061687994951771664
+          },
+          {
+            "doc_id": "doc_11",
+            "contributions": {
+              "dense": 0.0,
+              "sparse": 0.0
+            },
+            "score": 0.0
+          }
+        ]
+      },
+      "source_rankings": {
+        "dense": [
+          {
+            "rank": 1,
+            "doc_id": "doc_3",
+            "score": 0.7351679801940918
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_4",
+            "score": 0.5739810466766357
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_12",
+            "score": 0.2571525573730469
+          },
+          {
+            "rank": 4,
+            "doc_id": "doc_10",
+            "score": 0.19407308101654053
+          },
+          {
+            "rank": 5,
+            "doc_id": "doc_11",
+            "score": 0.1179194301366806
+          }
+        ],
+        "sparse": [
+          {
+            "rank": 1,
+            "doc_id": "doc_3",
+            "score": 2.9671818854204037
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_4",
+            "score": 2.2167567197707068
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_12",
+            "score": 1.060792752542999
+          }
+        ]
+      },
+      "relevant_doc_ids": [
+        "doc_3",
+        "doc_4"
+      ],
+      "candidate_union": [
+        "doc_3",
+        "doc_4",
+        "doc_12",
+        "doc_10",
+        "doc_11"
+      ],
+      "candidate_recall": 1.0,
+      "metrics": {
+        "dense": {
+          "recall_at_5": 1.0,
+          "precision_at_5_fixed_slots": 0.4,
+          "rr_at_5": 1.0,
+          "hits": [
+            "doc_3",
+            "doc_4"
+          ],
+          "returned_at_5": 5
+        },
+        "sparse": {
+          "recall_at_5": 1.0,
+          "precision_at_5_fixed_slots": 0.4,
+          "rr_at_5": 1.0,
+          "hits": [
+            "doc_3",
+            "doc_4"
+          ],
+          "returned_at_5": 3
+        },
+        "rrf": {
+          "recall_at_5": 1.0,
+          "precision_at_5_fixed_slots": 0.4,
+          "rr_at_5": 1.0,
+          "hits": [
+            "doc_3",
+            "doc_4"
+          ],
+          "returned_at_5": 5
+        },
+        "weighted": {
+          "recall_at_5": 1.0,
+          "precision_at_5_fixed_slots": 0.4,
+          "rr_at_5": 1.0,
+          "hits": [
+            "doc_3",
+            "doc_4"
+          ],
+          "returned_at_5": 5
+        }
+      },
+      "rank_changes": [
+        {
+          "doc_id": "doc_3",
+          "dense": 1,
+          "sparse": 1,
+          "rrf": 1,
+          "weighted": 1
+        },
+        {
+          "doc_id": "doc_4",
+          "dense": 2,
+          "sparse": 2,
+          "rrf": 2,
+          "weighted": 2
+        },
+        {
+          "doc_id": "doc_12",
+          "dense": 3,
+          "sparse": 3,
+          "rrf": 3,
+          "weighted": 3
+        },
+        {
+          "doc_id": "doc_10",
+          "dense": 4,
+          "sparse": null,
+          "rrf": 4,
+          "weighted": 4
+        },
+        {
+          "doc_id": "doc_11",
+          "dense": 5,
+          "sparse": null,
+          "rrf": 5,
+          "weighted": 5
+        }
+      ]
+    },
+    {
+      "query": "training neural networks",
+      "fused_rankings": {
+        "rrf": [
+          {
+            "rank": 1,
+            "doc_id": "doc_4",
+            "score": 0.03252247488101534
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_11",
+            "score": 0.01639344262295082
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_12",
+            "score": 0.015873015873015872
+          },
+          {
+            "rank": 4,
+            "doc_id": "doc_10",
+            "score": 0.015625
+          },
+          {
+            "rank": 5,
+            "doc_id": "doc_3",
+            "score": 0.015384615384615385
+          }
+        ],
+        "weighted": [
+          {
+            "rank": 1,
+            "doc_id": "doc_4",
+            "score": 0.9762559876263845
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_11",
+            "score": 0.5
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_12",
+            "score": 0.31058333849174713
+          },
+          {
+            "rank": 4,
+            "doc_id": "doc_10",
+            "score": 0.26909982488017115
+          },
+          {
+            "rank": 5,
+            "doc_id": "doc_3",
+            "score": 0.0
+          }
+        ]
+      },
+      "fusion_contributions": {
+        "rrf": [
+          {
+            "doc_id": "doc_4",
+            "contributions": {
+              "dense": 0.016129032258064516,
+              "sparse": 0.01639344262295082
+            },
+            "score": 0.03252247488101534
+          },
+          {
+            "doc_id": "doc_11",
+            "contributions": {
+              "dense": 0.01639344262295082,
+              "sparse": 0.0
+            },
+            "score": 0.01639344262295082
+          },
+          {
+            "doc_id": "doc_12",
+            "contributions": {
+              "dense": 0.015873015873015872,
+              "sparse": 0.0
+            },
+            "score": 0.015873015873015872
+          },
+          {
+            "doc_id": "doc_10",
+            "contributions": {
+              "dense": 0.015625,
+              "sparse": 0.0
+            },
+            "score": 0.015625
+          },
+          {
+            "doc_id": "doc_3",
+            "contributions": {
+              "dense": 0.015384615384615385,
+              "sparse": 0.0
+            },
+            "score": 0.015384615384615385
+          }
+        ],
+        "weighted": [
+          {
+            "doc_id": "doc_4",
+            "contributions": {
+              "dense": 0.47625598762638455,
+              "sparse": 0.5
+            },
+            "score": 0.9762559876263845
+          },
+          {
+            "doc_id": "doc_11",
+            "contributions": {
+              "dense": 0.5,
+              "sparse": 0.0
+            },
+            "score": 0.5
+          },
+          {
+            "doc_id": "doc_12",
+            "contributions": {
+              "dense": 0.31058333849174713,
+              "sparse": 0.0
+            },
+            "score": 0.31058333849174713
+          },
+          {
+            "doc_id": "doc_10",
+            "contributions": {
+              "dense": 0.26909982488017115,
+              "sparse": 0.0
+            },
+            "score": 0.26909982488017115
+          },
+          {
+            "doc_id": "doc_3",
+            "contributions": {
+              "dense": 0.0,
+              "sparse": 0.0
+            },
+            "score": 0.0
+          }
+        ]
+      },
+      "source_rankings": {
+        "dense": [
+          {
+            "rank": 1,
+            "doc_id": "doc_11",
+            "score": 0.4369935989379883
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_4",
+            "score": 0.4249446988105774
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_12",
+            "score": 0.3408741056919098
+          },
+          {
+            "rank": 4,
+            "doc_id": "doc_10",
+            "score": 0.319823294878006
+          },
+          {
+            "rank": 5,
+            "doc_id": "doc_3",
+            "score": 0.18326857686042786
+          }
+        ],
+        "sparse": [
+          {
+            "rank": 1,
+            "doc_id": "doc_4",
+            "score": 1.855377597109066
+          }
+        ]
+      },
+      "relevant_doc_ids": [
+        "doc_11",
+        "doc_12"
+      ],
+      "candidate_union": [
+        "doc_11",
+        "doc_4",
+        "doc_12",
+        "doc_10",
+        "doc_3"
+      ],
+      "candidate_recall": 1.0,
+      "metrics": {
+        "dense": {
+          "recall_at_5": 1.0,
+          "precision_at_5_fixed_slots": 0.4,
+          "rr_at_5": 1.0,
+          "hits": [
+            "doc_11",
+            "doc_12"
+          ],
+          "returned_at_5": 5
+        },
+        "sparse": {
+          "recall_at_5": 0.0,
+          "precision_at_5_fixed_slots": 0.0,
+          "rr_at_5": 0.0,
+          "hits": [],
+          "returned_at_5": 1
+        },
+        "rrf": {
+          "recall_at_5": 1.0,
+          "precision_at_5_fixed_slots": 0.4,
+          "rr_at_5": 0.5,
+          "hits": [
+            "doc_11",
+            "doc_12"
+          ],
+          "returned_at_5": 5
+        },
+        "weighted": {
+          "recall_at_5": 1.0,
+          "precision_at_5_fixed_slots": 0.4,
+          "rr_at_5": 0.5,
+          "hits": [
+            "doc_11",
+            "doc_12"
+          ],
+          "returned_at_5": 5
+        }
+      },
+      "rank_changes": [
+        {
+          "doc_id": "doc_11",
+          "dense": 1,
+          "sparse": null,
+          "rrf": 2,
+          "weighted": 2
+        },
+        {
+          "doc_id": "doc_4",
+          "dense": 2,
+          "sparse": 1,
+          "rrf": 1,
+          "weighted": 1
+        },
+        {
+          "doc_id": "doc_12",
+          "dense": 3,
+          "sparse": null,
+          "rrf": 3,
+          "weighted": 3
+        },
+        {
+          "doc_id": "doc_10",
+          "dense": 4,
+          "sparse": null,
+          "rrf": 4,
+          "weighted": 4
+        },
+        {
+          "doc_id": "doc_3",
+          "dense": 5,
+          "sparse": null,
+          "rrf": 5,
+          "weighted": 5
+        }
+      ]
+    },
+    {
+      "query": "self attention in sequence models",
+      "fused_rankings": {
+        "rrf": [
+          {
+            "rank": 1,
+            "doc_id": "doc_10",
+            "score": 0.03278688524590164
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_4",
+            "score": 0.016129032258064516
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_9",
+            "score": 0.016129032258064516
+          },
+          {
+            "rank": 4,
+            "doc_id": "doc_5",
+            "score": 0.015873015873015872
+          },
+          {
+            "rank": 5,
+            "doc_id": "doc_2",
+            "score": 0.015873015873015872
+          },
+          {
+            "rank": 6,
+            "doc_id": "doc_11",
+            "score": 0.015625
+          },
+          {
+            "rank": 7,
+            "doc_id": "doc_12",
+            "score": 0.015384615384615385
+          }
+        ],
+        "weighted": [
+          {
+            "rank": 1,
+            "doc_id": "doc_10",
+            "score": 1.0
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_4",
+            "score": 0.09914408223365719
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_9",
+            "score": 0.027318606686037007
+          },
+          {
+            "rank": 4,
+            "doc_id": "doc_5",
+            "score": 0.021472985347183678
+          },
+          {
+            "rank": 5,
+            "doc_id": "doc_11",
+            "score": 0.002257573714924022
+          },
+          {
+            "rank": 6,
+            "doc_id": "doc_12",
+            "score": 0.0
+          },
+          {
+            "rank": 7,
+            "doc_id": "doc_2",
+            "score": 0.0
+          }
+        ]
+      },
+      "fusion_contributions": {
+        "rrf": [
+          {
+            "doc_id": "doc_10",
+            "contributions": {
+              "dense": 0.01639344262295082,
+              "sparse": 0.01639344262295082
+            },
+            "score": 0.03278688524590164
+          },
+          {
+            "doc_id": "doc_4",
+            "contributions": {
+              "dense": 0.016129032258064516,
+              "sparse": 0.0
+            },
+            "score": 0.016129032258064516
+          },
+          {
+            "doc_id": "doc_9",
+            "contributions": {
+              "dense": 0.0,
+              "sparse": 0.016129032258064516
+            },
+            "score": 0.016129032258064516
+          },
+          {
+            "doc_id": "doc_5",
+            "contributions": {
+              "dense": 0.015873015873015872,
+              "sparse": 0.0
+            },
+            "score": 0.015873015873015872
+          },
+          {
+            "doc_id": "doc_2",
+            "contributions": {
+              "dense": 0.0,
+              "sparse": 0.015873015873015872
+            },
+            "score": 0.015873015873015872
+          },
+          {
+            "doc_id": "doc_11",
+            "contributions": {
+              "dense": 0.015625,
+              "sparse": 0.0
+            },
+            "score": 0.015625
+          },
+          {
+            "doc_id": "doc_12",
+            "contributions": {
+              "dense": 0.015384615384615385,
+              "sparse": 0.0
+            },
+            "score": 0.015384615384615385
+          }
+        ],
+        "weighted": [
+          {
+            "doc_id": "doc_10",
+            "contributions": {
+              "dense": 0.5,
+              "sparse": 0.5
+            },
+            "score": 1.0
+          },
+          {
+            "doc_id": "doc_4",
+            "contributions": {
+              "dense": 0.09914408223365719,
+              "sparse": 0.0
+            },
+            "score": 0.09914408223365719
+          },
+          {
+            "doc_id": "doc_9",
+            "contributions": {
+              "dense": 0.0,
+              "sparse": 0.027318606686037007
+            },
+            "score": 0.027318606686037007
+          },
+          {
+            "doc_id": "doc_5",
+            "contributions": {
+              "dense": 0.021472985347183678,
+              "sparse": 0.0
+            },
+            "score": 0.021472985347183678
+          },
+          {
+            "doc_id": "doc_11",
+            "contributions": {
+              "dense": 0.002257573714924022,
+              "sparse": 0.0
+            },
+            "score": 0.002257573714924022
+          },
+          {
+            "doc_id": "doc_12",
+            "contributions": {
+              "dense": 0.0,
+              "sparse": 0.0
+            },
+            "score": 0.0
+          },
+          {
+            "doc_id": "doc_2",
+            "contributions": {
+              "dense": 0.0,
+              "sparse": 0.0
+            },
+            "score": 0.0
+          }
+        ]
+      },
+      "source_rankings": {
+        "dense": [
+          {
+            "rank": 1,
+            "doc_id": "doc_10",
+            "score": 0.6308598518371582
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_4",
+            "score": 0.28969767689704895
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_5",
+            "score": 0.22359302639961243
+          },
+          {
+            "rank": 4,
+            "doc_id": "doc_11",
+            "score": 0.2072390913963318
+          },
+          {
+            "rank": 5,
+            "doc_id": "doc_12",
+            "score": 0.20531770586967468
+          }
+        ],
+        "sparse": [
+          {
+            "rank": 1,
+            "doc_id": "doc_10",
+            "score": 3.095984364503763
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_9",
+            "score": 1.060792752542999
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_2",
+            "score": 0.9431689155053768
+          }
+        ]
+      },
+      "relevant_doc_ids": [
+        "doc_10"
+      ],
+      "candidate_union": [
+        "doc_10",
+        "doc_4",
+        "doc_5",
+        "doc_11",
+        "doc_12",
+        "doc_9",
+        "doc_2"
+      ],
+      "candidate_recall": 1.0,
+      "metrics": {
+        "dense": {
+          "recall_at_5": 1.0,
+          "precision_at_5_fixed_slots": 0.2,
+          "rr_at_5": 1.0,
+          "hits": [
+            "doc_10"
+          ],
+          "returned_at_5": 5
+        },
+        "sparse": {
+          "recall_at_5": 1.0,
+          "precision_at_5_fixed_slots": 0.2,
+          "rr_at_5": 1.0,
+          "hits": [
+            "doc_10"
+          ],
+          "returned_at_5": 3
+        },
+        "rrf": {
+          "recall_at_5": 1.0,
+          "precision_at_5_fixed_slots": 0.2,
+          "rr_at_5": 1.0,
+          "hits": [
+            "doc_10"
+          ],
+          "returned_at_5": 5
+        },
+        "weighted": {
+          "recall_at_5": 1.0,
+          "precision_at_5_fixed_slots": 0.2,
+          "rr_at_5": 1.0,
+          "hits": [
+            "doc_10"
+          ],
+          "returned_at_5": 5
+        }
+      },
+      "rank_changes": [
+        {
+          "doc_id": "doc_10",
+          "dense": 1,
+          "sparse": 1,
+          "rrf": 1,
+          "weighted": 1
+        },
+        {
+          "doc_id": "doc_4",
+          "dense": 2,
+          "sparse": null,
+          "rrf": 2,
+          "weighted": 2
+        },
+        {
+          "doc_id": "doc_5",
+          "dense": 3,
+          "sparse": null,
+          "rrf": 4,
+          "weighted": 4
+        },
+        {
+          "doc_id": "doc_11",
+          "dense": 4,
+          "sparse": null,
+          "rrf": 6,
+          "weighted": 5
+        },
+        {
+          "doc_id": "doc_12",
+          "dense": 5,
+          "sparse": null,
+          "rrf": 7,
+          "weighted": 6
+        },
+        {
+          "doc_id": "doc_9",
+          "dense": null,
+          "sparse": 2,
+          "rrf": 3,
+          "weighted": 3
+        },
+        {
+          "doc_id": "doc_2",
+          "dense": null,
+          "sparse": 3,
+          "rrf": 5,
+          "weighted": 7
+        }
+      ]
+    },
+    {
+      "query": "web server resource not found",
+      "fused_rankings": {
+        "rrf": [
+          {
+            "rank": 1,
+            "doc_id": "doc_6",
+            "score": 0.03278688524590164
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_2",
+            "score": 0.03225806451612903
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_9",
+            "score": 0.015873015873015872
+          },
+          {
+            "rank": 4,
+            "doc_id": "doc_7",
+            "score": 0.015625
+          },
+          {
+            "rank": 5,
+            "doc_id": "doc_8",
+            "score": 0.015384615384615385
+          }
+        ],
+        "weighted": [
+          {
+            "rank": 1,
+            "doc_id": "doc_6",
+            "score": 1.0
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_2",
+            "score": 0.1925233005823934
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_9",
+            "score": 0.07446538890962116
+          },
+          {
+            "rank": 4,
+            "doc_id": "doc_7",
+            "score": 0.021598198327841687
+          },
+          {
+            "rank": 5,
+            "doc_id": "doc_8",
+            "score": 0.0
+          }
+        ]
+      },
+      "fusion_contributions": {
+        "rrf": [
+          {
+            "doc_id": "doc_6",
+            "contributions": {
+              "dense": 0.01639344262295082,
+              "sparse": 0.01639344262295082
+            },
+            "score": 0.03278688524590164
+          },
+          {
+            "doc_id": "doc_2",
+            "contributions": {
+              "dense": 0.016129032258064516,
+              "sparse": 0.016129032258064516
+            },
+            "score": 0.03225806451612903
+          },
+          {
+            "doc_id": "doc_9",
+            "contributions": {
+              "dense": 0.015873015873015872,
+              "sparse": 0.0
+            },
+            "score": 0.015873015873015872
+          },
+          {
+            "doc_id": "doc_7",
+            "contributions": {
+              "dense": 0.015625,
+              "sparse": 0.0
+            },
+            "score": 0.015625
+          },
+          {
+            "doc_id": "doc_8",
+            "contributions": {
+              "dense": 0.015384615384615385,
+              "sparse": 0.0
+            },
+            "score": 0.015384615384615385
+          }
+        ],
+        "weighted": [
+          {
+            "doc_id": "doc_6",
+            "contributions": {
+              "dense": 0.5,
+              "sparse": 0.5
+            },
+            "score": 1.0
+          },
+          {
+            "doc_id": "doc_2",
+            "contributions": {
+              "dense": 0.1925233005823934,
+              "sparse": 0.0
+            },
+            "score": 0.1925233005823934
+          },
+          {
+            "doc_id": "doc_9",
+            "contributions": {
+              "dense": 0.07446538890962116,
+              "sparse": 0.0
+            },
+            "score": 0.07446538890962116
+          },
+          {
+            "doc_id": "doc_7",
+            "contributions": {
+              "dense": 0.021598198327841687,
+              "sparse": 0.0
+            },
+            "score": 0.021598198327841687
+          },
+          {
+            "doc_id": "doc_8",
+            "contributions": {
+              "dense": 0.0,
+              "sparse": 0.0
+            },
+            "score": 0.0
+          }
+        ]
+      },
+      "source_rankings": {
+        "dense": [
+          {
+            "rank": 1,
+            "doc_id": "doc_6",
+            "score": 0.6740857362747192
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_2",
+            "score": 0.2710524797439575
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_9",
+            "score": 0.11630493402481079
+          },
+          {
+            "rank": 4,
+            "doc_id": "doc_7",
+            "score": 0.047007858753204346
+          },
+          {
+            "rank": 5,
+            "doc_id": "doc_8",
+            "score": 0.018697446212172508
+          }
+        ],
+        "sparse": [
+          {
+            "rank": 1,
+            "doc_id": "doc_6",
+            "score": 9.773839529475394
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_2",
+            "score": 1.3555213175217422
+          }
+        ]
+      },
+      "relevant_doc_ids": [
+        "doc_6"
+      ],
+      "candidate_union": [
+        "doc_6",
+        "doc_2",
+        "doc_9",
+        "doc_7",
+        "doc_8"
+      ],
+      "candidate_recall": 1.0,
+      "metrics": {
+        "dense": {
+          "recall_at_5": 1.0,
+          "precision_at_5_fixed_slots": 0.2,
+          "rr_at_5": 1.0,
+          "hits": [
+            "doc_6"
+          ],
+          "returned_at_5": 5
+        },
+        "sparse": {
+          "recall_at_5": 1.0,
+          "precision_at_5_fixed_slots": 0.2,
+          "rr_at_5": 1.0,
+          "hits": [
+            "doc_6"
+          ],
+          "returned_at_5": 2
+        },
+        "rrf": {
+          "recall_at_5": 1.0,
+          "precision_at_5_fixed_slots": 0.2,
+          "rr_at_5": 1.0,
+          "hits": [
+            "doc_6"
+          ],
+          "returned_at_5": 5
+        },
+        "weighted": {
+          "recall_at_5": 1.0,
+          "precision_at_5_fixed_slots": 0.2,
+          "rr_at_5": 1.0,
+          "hits": [
+            "doc_6"
+          ],
+          "returned_at_5": 5
+        }
+      },
+      "rank_changes": [
+        {
+          "doc_id": "doc_6",
+          "dense": 1,
+          "sparse": 1,
+          "rrf": 1,
+          "weighted": 1
+        },
+        {
+          "doc_id": "doc_2",
+          "dense": 2,
+          "sparse": 2,
+          "rrf": 2,
+          "weighted": 2
+        },
+        {
+          "doc_id": "doc_9",
+          "dense": 3,
+          "sparse": null,
+          "rrf": 3,
+          "weighted": 3
+        },
+        {
+          "doc_id": "doc_7",
+          "dense": 4,
+          "sparse": null,
+          "rrf": 4,
+          "weighted": 4
+        },
+        {
+          "doc_id": "doc_8",
+          "dense": 5,
+          "sparse": null,
+          "rrf": 5,
+          "weighted": 5
+        }
+      ]
+    }
+  ],
+  "macro": {
+    "dense": {
+      "recall_at_5": 1.0,
+      "precision_at_5_fixed_slots": 0.32,
+      "mrr_at_5": 1.0
+    },
+    "sparse": {
+      "recall_at_5": 0.6,
+      "precision_at_5_fixed_slots": 0.16,
+      "mrr_at_5": 0.6
+    },
+    "rrf": {
+      "recall_at_5": 1.0,
+      "precision_at_5_fixed_slots": 0.32,
+      "mrr_at_5": 0.9
+    },
+    "weighted": {
+      "recall_at_5": 1.0,
+      "precision_at_5_fixed_slots": 0.32,
+      "mrr_at_5": 0.9
+    }
+  },
+  "candidate_recall_macro": 1.0
+}

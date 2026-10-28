@@ -1,0 +1,3690 @@
+{
+  "model": "qwen3:0.6b",
+  "parameters": {
+    "reasoning_effort": "none",
+    "temperature": 0,
+    "max_tokens": 128
+  },
+  "repeats_per_group": 3,
+  "warmup_excluded_from_summary": true,
+  "warmup": {
+    "group": "warmup",
+    "marker": "9065394017003868",
+    "request_messages": [
+      {
+        "role": "system",
+        "content": "9065394017003868\n你是中文助手。\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\n"
+      },
+      {
+        "role": "user",
+        "content": "请用两句简短中文说明Agent为什么需要工具。"
+      }
+    ],
+    "answer": "Agent需要工具，因为工具可以提供必要的信息或帮助，以解决用户的问题。",
+    "finish_reason": "stop",
+    "first_content_seconds": 18.61404000001494,
+    "total_seconds": 18.714066200016532,
+    "prompt_tokens": 1454,
+    "completion_tokens": 19,
+    "cached_tokens": 0,
+    "completion_tokens_per_total_second": 1.0152790845627775,
+    "usage": {
+      "completion_tokens": 19,
+      "prompt_tokens": 1454,
+      "total_tokens": 1473,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cache_write_tokens": null,
+        "cached_tokens": 0
+      }
+    },
+    "raw_chunks": [
+      {
+        "id": "chatcmpl-254",
+        "choices": [
+          {
+            "delta": {
+              "content": "Agent",
+              "function_call": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": null
+            },
+            "finish_reason": null,
+            "index": 0,
+            "logprobs": null
+          }
+        ],
+        "created": 1791713474,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion.chunk",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": null
+      },
+      {
+        "id": "chatcmpl-254",
+        "choices": [
+          {
+            "delta": {
+              "content": "需要",
+              "function_call": null,
+              "refusal": null,
+              "role": null,
+              "tool_calls": null
+            },
+            "finish_reason": null,
+            "index": 0,
+            "logprobs": null
+          }
+        ],
+        "created": 1791713474,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion.chunk",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": null
+      },
+      {
+        "id": "chatcmpl-254",
+        "choices": [
+          {
+            "delta": {
+              "content": "工具",
+              "function_call": null,
+              "refusal": null,
+              "role": null,
+              "tool_calls": null
+            },
+            "finish_reason": null,
+            "index": 0,
+            "logprobs": null
+          }
+        ],
+        "created": 1791713474,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion.chunk",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": null
+      },
+      {
+        "id": "chatcmpl-254",
+        "choices": [
+          {
+            "delta": {
+              "content": "，",
+              "function_call": null,
+              "refusal": null,
+              "role": null,
+              "tool_calls": null
+            },
+            "finish_reason": null,
+            "index": 0,
+            "logprobs": null
+          }
+        ],
+        "created": 1791713474,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion.chunk",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": null
+      },
+      {
+        "id": "chatcmpl-254",
+        "choices": [
+          {
+            "delta": {
+              "content": "因为",
+              "function_call": null,
+              "refusal": null,
+              "role": null,
+              "tool_calls": null
+            },
+            "finish_reason": null,
+            "index": 0,
+            "logprobs": null
+          }
+        ],
+        "created": 1791713474,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion.chunk",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": null
+      },
+      {
+        "id": "chatcmpl-254",
+        "choices": [
+          {
+            "delta": {
+              "content": "工具",
+              "function_call": null,
+              "refusal": null,
+              "role": null,
+              "tool_calls": null
+            },
+            "finish_reason": null,
+            "index": 0,
+            "logprobs": null
+          }
+        ],
+        "created": 1791713474,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion.chunk",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": null
+      },
+      {
+        "id": "chatcmpl-254",
+        "choices": [
+          {
+            "delta": {
+              "content": "可以",
+              "function_call": null,
+              "refusal": null,
+              "role": null,
+              "tool_calls": null
+            },
+            "finish_reason": null,
+            "index": 0,
+            "logprobs": null
+          }
+        ],
+        "created": 1791713474,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion.chunk",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": null
+      },
+      {
+        "id": "chatcmpl-254",
+        "choices": [
+          {
+            "delta": {
+              "content": "提供",
+              "function_call": null,
+              "refusal": null,
+              "role": null,
+              "tool_calls": null
+            },
+            "finish_reason": null,
+            "index": 0,
+            "logprobs": null
+          }
+        ],
+        "created": 1791713474,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion.chunk",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": null
+      },
+      {
+        "id": "chatcmpl-254",
+        "choices": [
+          {
+            "delta": {
+              "content": "必要的",
+              "function_call": null,
+              "refusal": null,
+              "role": null,
+              "tool_calls": null
+            },
+            "finish_reason": null,
+            "index": 0,
+            "logprobs": null
+          }
+        ],
+        "created": 1791713474,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion.chunk",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": null
+      },
+      {
+        "id": "chatcmpl-254",
+        "choices": [
+          {
+            "delta": {
+              "content": "信息",
+              "function_call": null,
+              "refusal": null,
+              "role": null,
+              "tool_calls": null
+            },
+            "finish_reason": null,
+            "index": 0,
+            "logprobs": null
+          }
+        ],
+        "created": 1791713474,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion.chunk",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": null
+      },
+      {
+        "id": "chatcmpl-254",
+        "choices": [
+          {
+            "delta": {
+              "content": "或",
+              "function_call": null,
+              "refusal": null,
+              "role": null,
+              "tool_calls": null
+            },
+            "finish_reason": null,
+            "index": 0,
+            "logprobs": null
+          }
+        ],
+        "created": 1791713474,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion.chunk",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": null
+      },
+      {
+        "id": "chatcmpl-254",
+        "choices": [
+          {
+            "delta": {
+              "content": "帮助",
+              "function_call": null,
+              "refusal": null,
+              "role": null,
+              "tool_calls": null
+            },
+            "finish_reason": null,
+            "index": 0,
+            "logprobs": null
+          }
+        ],
+        "created": 1791713474,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion.chunk",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": null
+      },
+      {
+        "id": "chatcmpl-254",
+        "choices": [
+          {
+            "delta": {
+              "content": "，",
+              "function_call": null,
+              "refusal": null,
+              "role": null,
+              "tool_calls": null
+            },
+            "finish_reason": null,
+            "index": 0,
+            "logprobs": null
+          }
+        ],
+        "created": 1791713474,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion.chunk",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": null
+      },
+      {
+        "id": "chatcmpl-254",
+        "choices": [
+          {
+            "delta": {
+              "content": "以",
+              "function_call": null,
+              "refusal": null,
+              "role": null,
+              "tool_calls": null
+            },
+            "finish_reason": null,
+            "index": 0,
+            "logprobs": null
+          }
+        ],
+        "created": 1791713474,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion.chunk",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": null
+      },
+      {
+        "id": "chatcmpl-254",
+        "choices": [
+          {
+            "delta": {
+              "content": "解决",
+              "function_call": null,
+              "refusal": null,
+              "role": null,
+              "tool_calls": null
+            },
+            "finish_reason": null,
+            "index": 0,
+            "logprobs": null
+          }
+        ],
+        "created": 1791713474,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion.chunk",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": null
+      },
+      {
+        "id": "chatcmpl-254",
+        "choices": [
+          {
+            "delta": {
+              "content": "用户",
+              "function_call": null,
+              "refusal": null,
+              "role": null,
+              "tool_calls": null
+            },
+            "finish_reason": null,
+            "index": 0,
+            "logprobs": null
+          }
+        ],
+        "created": 1791713474,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion.chunk",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": null
+      },
+      {
+        "id": "chatcmpl-254",
+        "choices": [
+          {
+            "delta": {
+              "content": "的问题",
+              "function_call": null,
+              "refusal": null,
+              "role": null,
+              "tool_calls": null
+            },
+            "finish_reason": null,
+            "index": 0,
+            "logprobs": null
+          }
+        ],
+        "created": 1791713474,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion.chunk",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": null
+      },
+      {
+        "id": "chatcmpl-254",
+        "choices": [
+          {
+            "delta": {
+              "content": "。",
+              "function_call": null,
+              "refusal": null,
+              "role": null,
+              "tool_calls": null
+            },
+            "finish_reason": null,
+            "index": 0,
+            "logprobs": null
+          }
+        ],
+        "created": 1791713474,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion.chunk",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": null
+      },
+      {
+        "id": "chatcmpl-254",
+        "choices": [
+          {
+            "delta": {
+              "content": null,
+              "function_call": null,
+              "refusal": null,
+              "role": null,
+              "tool_calls": null
+            },
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null
+          }
+        ],
+        "created": 1791713474,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion.chunk",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": null
+      },
+      {
+        "id": "chatcmpl-254",
+        "choices": [],
+        "created": 1791713474,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion.chunk",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 19,
+          "prompt_tokens": 1454,
+          "total_tokens": 1473,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 0
+          }
+        },
+        "timings": {
+          "prompt_n": 1454,
+          "prompt_ms": 11291,
+          "prompt_per_token_ms": 7.765474552957359,
+          "prompt_per_second": 128.77513063501905,
+          "predicted_n": 19,
+          "predicted_ms": 105,
+          "predicted_per_token_ms": 5.526315789473684,
+          "predicted_per_second": 180.95238095238096
+        }
+      }
+    ]
+  },
+  "rows": [
+    {
+      "group": "changed",
+      "marker": "0433987051808984",
+      "request_messages": [
+        {
+          "role": "system",
+          "content": "0433987051808984\n你是中文助手。\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\n"
+        },
+        {
+          "role": "user",
+          "content": "请用两句简短中文说明Agent为什么需要工具。"
+        }
+      ],
+      "answer": "Agent需要工具，因为工具可以提供必要的信息或帮助，以解决用户的问题。",
+      "finish_reason": "stop",
+      "first_content_seconds": 0.2770909999962896,
+      "total_seconds": 0.38509150000754744,
+      "prompt_tokens": 1454,
+      "completion_tokens": 19,
+      "cached_tokens": 3,
+      "completion_tokens_per_total_second": 49.33892334582201,
+      "usage": {
+        "completion_tokens": 19,
+        "prompt_tokens": 1454,
+        "total_tokens": 1473,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 3
+        }
+      },
+      "raw_chunks": [
+        {
+          "id": "chatcmpl-186",
+          "choices": [
+            {
+              "delta": {
+                "content": "Agent",
+                "function_call": null,
+                "refusal": null,
+                "role": "assistant",
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713474,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-186",
+          "choices": [
+            {
+              "delta": {
+                "content": "需要",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713474,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-186",
+          "choices": [
+            {
+              "delta": {
+                "content": "工具",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713474,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-186",
+          "choices": [
+            {
+              "delta": {
+                "content": "，",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713474,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-186",
+          "choices": [
+            {
+              "delta": {
+                "content": "因为",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713474,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-186",
+          "choices": [
+            {
+              "delta": {
+                "content": "工具",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713474,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-186",
+          "choices": [
+            {
+              "delta": {
+                "content": "可以",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713474,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-186",
+          "choices": [
+            {
+              "delta": {
+                "content": "提供",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713474,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-186",
+          "choices": [
+            {
+              "delta": {
+                "content": "必要的",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713474,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-186",
+          "choices": [
+            {
+              "delta": {
+                "content": "信息",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713474,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-186",
+          "choices": [
+            {
+              "delta": {
+                "content": "或",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713474,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-186",
+          "choices": [
+            {
+              "delta": {
+                "content": "帮助",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713474,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-186",
+          "choices": [
+            {
+              "delta": {
+                "content": "，",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713474,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-186",
+          "choices": [
+            {
+              "delta": {
+                "content": "以",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713474,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-186",
+          "choices": [
+            {
+              "delta": {
+                "content": "解决",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713474,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-186",
+          "choices": [
+            {
+              "delta": {
+                "content": "用户",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713474,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-186",
+          "choices": [
+            {
+              "delta": {
+                "content": "的问题",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713474,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-186",
+          "choices": [
+            {
+              "delta": {
+                "content": "。",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713474,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-186",
+          "choices": [
+            {
+              "delta": {
+                "content": null,
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713474,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-186",
+          "choices": [],
+          "created": 1791713474,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": {
+            "completion_tokens": 19,
+            "prompt_tokens": 1454,
+            "total_tokens": 1473,
+            "completion_tokens_details": null,
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 3
+            }
+          },
+          "timings": {
+            "prompt_n": 1454,
+            "prompt_ms": 115,
+            "prompt_per_token_ms": 0.07909215955983494,
+            "prompt_per_second": 12643.478260869566,
+            "predicted_n": 19,
+            "predicted_ms": 107,
+            "predicted_per_token_ms": 5.631578947368421,
+            "predicted_per_second": 177.57009345794393
+          }
+        }
+      ]
+    },
+    {
+      "group": "stable",
+      "marker": "9065394017003868",
+      "request_messages": [
+        {
+          "role": "system",
+          "content": "9065394017003868\n你是中文助手。\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\n"
+        },
+        {
+          "role": "user",
+          "content": "请用两句简短中文说明Agent为什么需要工具。"
+        }
+      ],
+      "answer": "Agent需要工具，因为工具可以提供必要的信息或帮助，以解决用户的问题。",
+      "finish_reason": "stop",
+      "first_content_seconds": 0.22867839998798445,
+      "total_seconds": 0.3241897999541834,
+      "prompt_tokens": 1454,
+      "completion_tokens": 19,
+      "cached_tokens": 1453,
+      "completion_tokens_per_total_second": 58.60764281505835,
+      "usage": {
+        "completion_tokens": 19,
+        "prompt_tokens": 1454,
+        "total_tokens": 1473,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 1453
+        }
+      },
+      "raw_chunks": [
+        {
+          "id": "chatcmpl-744",
+          "choices": [
+            {
+              "delta": {
+                "content": "Agent",
+                "function_call": null,
+                "refusal": null,
+                "role": "assistant",
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-744",
+          "choices": [
+            {
+              "delta": {
+                "content": "需要",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-744",
+          "choices": [
+            {
+              "delta": {
+                "content": "工具",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-744",
+          "choices": [
+            {
+              "delta": {
+                "content": "，",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-744",
+          "choices": [
+            {
+              "delta": {
+                "content": "因为",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-744",
+          "choices": [
+            {
+              "delta": {
+                "content": "工具",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-744",
+          "choices": [
+            {
+              "delta": {
+                "content": "可以",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-744",
+          "choices": [
+            {
+              "delta": {
+                "content": "提供",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-744",
+          "choices": [
+            {
+              "delta": {
+                "content": "必要的",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-744",
+          "choices": [
+            {
+              "delta": {
+                "content": "信息",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-744",
+          "choices": [
+            {
+              "delta": {
+                "content": "或",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-744",
+          "choices": [
+            {
+              "delta": {
+                "content": "帮助",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-744",
+          "choices": [
+            {
+              "delta": {
+                "content": "，",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-744",
+          "choices": [
+            {
+              "delta": {
+                "content": "以",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-744",
+          "choices": [
+            {
+              "delta": {
+                "content": "解决",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-744",
+          "choices": [
+            {
+              "delta": {
+                "content": "用户",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-744",
+          "choices": [
+            {
+              "delta": {
+                "content": "的问题",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-744",
+          "choices": [
+            {
+              "delta": {
+                "content": "。",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-744",
+          "choices": [
+            {
+              "delta": {
+                "content": null,
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-744",
+          "choices": [],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": {
+            "completion_tokens": 19,
+            "prompt_tokens": 1454,
+            "total_tokens": 1473,
+            "completion_tokens_details": null,
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 1453
+            }
+          },
+          "timings": {
+            "prompt_n": 1454,
+            "prompt_ms": 5,
+            "prompt_per_token_ms": 0.0034387895460797797,
+            "prompt_per_second": 290800,
+            "predicted_n": 19,
+            "predicted_ms": 95,
+            "predicted_per_token_ms": 5,
+            "predicted_per_second": 200
+          }
+        }
+      ]
+    },
+    {
+      "group": "stable",
+      "marker": "9065394017003868",
+      "request_messages": [
+        {
+          "role": "system",
+          "content": "9065394017003868\n你是中文助手。\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\n"
+        },
+        {
+          "role": "user",
+          "content": "请用两句简短中文说明Agent为什么需要工具。"
+        }
+      ],
+      "answer": "Agent需要工具，因为工具可以提供必要的信息或帮助，以解决用户的问题。",
+      "finish_reason": "stop",
+      "first_content_seconds": 0.08724909997545183,
+      "total_seconds": 0.17790579999564216,
+      "prompt_tokens": 1454,
+      "completion_tokens": 19,
+      "cached_tokens": 1453,
+      "completion_tokens_per_total_second": 106.79809202659727,
+      "usage": {
+        "completion_tokens": 19,
+        "prompt_tokens": 1454,
+        "total_tokens": 1473,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 1453
+        }
+      },
+      "raw_chunks": [
+        {
+          "id": "chatcmpl-515",
+          "choices": [
+            {
+              "delta": {
+                "content": "Agent",
+                "function_call": null,
+                "refusal": null,
+                "role": "assistant",
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-515",
+          "choices": [
+            {
+              "delta": {
+                "content": "需要",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-515",
+          "choices": [
+            {
+              "delta": {
+                "content": "工具",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-515",
+          "choices": [
+            {
+              "delta": {
+                "content": "，",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-515",
+          "choices": [
+            {
+              "delta": {
+                "content": "因为",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-515",
+          "choices": [
+            {
+              "delta": {
+                "content": "工具",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-515",
+          "choices": [
+            {
+              "delta": {
+                "content": "可以",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-515",
+          "choices": [
+            {
+              "delta": {
+                "content": "提供",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-515",
+          "choices": [
+            {
+              "delta": {
+                "content": "必要的",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-515",
+          "choices": [
+            {
+              "delta": {
+                "content": "信息",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-515",
+          "choices": [
+            {
+              "delta": {
+                "content": "或",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-515",
+          "choices": [
+            {
+              "delta": {
+                "content": "帮助",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-515",
+          "choices": [
+            {
+              "delta": {
+                "content": "，",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-515",
+          "choices": [
+            {
+              "delta": {
+                "content": "以",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-515",
+          "choices": [
+            {
+              "delta": {
+                "content": "解决",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-515",
+          "choices": [
+            {
+              "delta": {
+                "content": "用户",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-515",
+          "choices": [
+            {
+              "delta": {
+                "content": "的问题",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-515",
+          "choices": [
+            {
+              "delta": {
+                "content": "。",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-515",
+          "choices": [
+            {
+              "delta": {
+                "content": null,
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-515",
+          "choices": [],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": {
+            "completion_tokens": 19,
+            "prompt_tokens": 1454,
+            "total_tokens": 1473,
+            "completion_tokens_details": null,
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 1453
+            }
+          },
+          "timings": {
+            "prompt_n": 1454,
+            "prompt_ms": 6,
+            "prompt_per_token_ms": 0.0041265474552957355,
+            "prompt_per_second": 242333.33333333334,
+            "predicted_n": 19,
+            "predicted_ms": 90,
+            "predicted_per_token_ms": 4.7368421052631575,
+            "predicted_per_second": 211.11111111111111
+          }
+        }
+      ]
+    },
+    {
+      "group": "changed",
+      "marker": "1539248205796236",
+      "request_messages": [
+        {
+          "role": "system",
+          "content": "1539248205796236\n你是中文助手。\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\n"
+        },
+        {
+          "role": "user",
+          "content": "请用两句简短中文说明Agent为什么需要工具。"
+        }
+      ],
+      "answer": "Agent需要工具，因为工具可以提供必要的信息或帮助，以解决用户的问题。",
+      "finish_reason": "stop",
+      "first_content_seconds": 0.2777646000031382,
+      "total_seconds": 0.3763991000014357,
+      "prompt_tokens": 1454,
+      "completion_tokens": 19,
+      "cached_tokens": 3,
+      "completion_tokens_per_total_second": 50.47833536245843,
+      "usage": {
+        "completion_tokens": 19,
+        "prompt_tokens": 1454,
+        "total_tokens": 1473,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 3
+        }
+      },
+      "raw_chunks": [
+        {
+          "id": "chatcmpl-437",
+          "choices": [
+            {
+              "delta": {
+                "content": "Agent",
+                "function_call": null,
+                "refusal": null,
+                "role": "assistant",
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-437",
+          "choices": [
+            {
+              "delta": {
+                "content": "需要",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-437",
+          "choices": [
+            {
+              "delta": {
+                "content": "工具",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-437",
+          "choices": [
+            {
+              "delta": {
+                "content": "，",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-437",
+          "choices": [
+            {
+              "delta": {
+                "content": "因为",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-437",
+          "choices": [
+            {
+              "delta": {
+                "content": "工具",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-437",
+          "choices": [
+            {
+              "delta": {
+                "content": "可以",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-437",
+          "choices": [
+            {
+              "delta": {
+                "content": "提供",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-437",
+          "choices": [
+            {
+              "delta": {
+                "content": "必要的",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-437",
+          "choices": [
+            {
+              "delta": {
+                "content": "信息",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-437",
+          "choices": [
+            {
+              "delta": {
+                "content": "或",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-437",
+          "choices": [
+            {
+              "delta": {
+                "content": "帮助",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-437",
+          "choices": [
+            {
+              "delta": {
+                "content": "，",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-437",
+          "choices": [
+            {
+              "delta": {
+                "content": "以",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-437",
+          "choices": [
+            {
+              "delta": {
+                "content": "解决",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-437",
+          "choices": [
+            {
+              "delta": {
+                "content": "用户",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-437",
+          "choices": [
+            {
+              "delta": {
+                "content": "的问题",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-437",
+          "choices": [
+            {
+              "delta": {
+                "content": "。",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-437",
+          "choices": [
+            {
+              "delta": {
+                "content": null,
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-437",
+          "choices": [],
+          "created": 1791713475,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": {
+            "completion_tokens": 19,
+            "prompt_tokens": 1454,
+            "total_tokens": 1473,
+            "completion_tokens_details": null,
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 3
+            }
+          },
+          "timings": {
+            "prompt_n": 1454,
+            "prompt_ms": 96,
+            "prompt_per_token_ms": 0.06602475928473177,
+            "prompt_per_second": 15145.833333333334,
+            "predicted_n": 19,
+            "predicted_ms": 98,
+            "predicted_per_token_ms": 5.157894736842105,
+            "predicted_per_second": 193.87755102040816
+          }
+        }
+      ]
+    },
+    {
+      "group": "stable",
+      "marker": "9065394017003868",
+      "request_messages": [
+        {
+          "role": "system",
+          "content": "9065394017003868\n你是中文助手。\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\n"
+        },
+        {
+          "role": "user",
+          "content": "请用两句简短中文说明Agent为什么需要工具。"
+        }
+      ],
+      "answer": "Agent需要工具，因为工具可以提供必要的信息或帮助，以解决用户的问题。",
+      "finish_reason": "stop",
+      "first_content_seconds": 0.250559100008104,
+      "total_seconds": 0.35138130001723766,
+      "prompt_tokens": 1454,
+      "completion_tokens": 19,
+      "cached_tokens": 1453,
+      "completion_tokens_per_total_second": 54.0723140334102,
+      "usage": {
+        "completion_tokens": 19,
+        "prompt_tokens": 1454,
+        "total_tokens": 1473,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 1453
+        }
+      },
+      "raw_chunks": [
+        {
+          "id": "chatcmpl-340",
+          "choices": [
+            {
+              "delta": {
+                "content": "Agent",
+                "function_call": null,
+                "refusal": null,
+                "role": "assistant",
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-340",
+          "choices": [
+            {
+              "delta": {
+                "content": "需要",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-340",
+          "choices": [
+            {
+              "delta": {
+                "content": "工具",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-340",
+          "choices": [
+            {
+              "delta": {
+                "content": "，",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-340",
+          "choices": [
+            {
+              "delta": {
+                "content": "因为",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-340",
+          "choices": [
+            {
+              "delta": {
+                "content": "工具",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-340",
+          "choices": [
+            {
+              "delta": {
+                "content": "可以",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-340",
+          "choices": [
+            {
+              "delta": {
+                "content": "提供",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-340",
+          "choices": [
+            {
+              "delta": {
+                "content": "必要的",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-340",
+          "choices": [
+            {
+              "delta": {
+                "content": "信息",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-340",
+          "choices": [
+            {
+              "delta": {
+                "content": "或",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-340",
+          "choices": [
+            {
+              "delta": {
+                "content": "帮助",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-340",
+          "choices": [
+            {
+              "delta": {
+                "content": "，",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-340",
+          "choices": [
+            {
+              "delta": {
+                "content": "以",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-340",
+          "choices": [
+            {
+              "delta": {
+                "content": "解决",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-340",
+          "choices": [
+            {
+              "delta": {
+                "content": "用户",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-340",
+          "choices": [
+            {
+              "delta": {
+                "content": "的问题",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-340",
+          "choices": [
+            {
+              "delta": {
+                "content": "。",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-340",
+          "choices": [
+            {
+              "delta": {
+                "content": null,
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-340",
+          "choices": [],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": {
+            "completion_tokens": 19,
+            "prompt_tokens": 1454,
+            "total_tokens": 1473,
+            "completion_tokens_details": null,
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 1453
+            }
+          },
+          "timings": {
+            "prompt_n": 1454,
+            "prompt_ms": 7,
+            "prompt_per_token_ms": 0.004814305364511692,
+            "prompt_per_second": 207714.2857142857,
+            "predicted_n": 19,
+            "predicted_ms": 102,
+            "predicted_per_token_ms": 5.368421052631579,
+            "predicted_per_second": 186.27450980392157
+          }
+        }
+      ]
+    },
+    {
+      "group": "changed",
+      "marker": "2638225077372184",
+      "request_messages": [
+        {
+          "role": "system",
+          "content": "2638225077372184\n你是中文助手。\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\nReference: an agent receives messages, selects available tools, reads tool results, and uses evidence to answer the user. Preserve earlier decisions and keep the system instructions stable across requests.\n"
+        },
+        {
+          "role": "user",
+          "content": "请用两句简短中文说明Agent为什么需要工具。"
+        }
+      ],
+      "answer": "Agent需要工具，因为工具可以提供必要的信息或帮助，以解决用户的问题。",
+      "finish_reason": "stop",
+      "first_content_seconds": 0.2740617999807,
+      "total_seconds": 0.3693824999500066,
+      "prompt_tokens": 1454,
+      "completion_tokens": 19,
+      "cached_tokens": 3,
+      "completion_tokens_per_total_second": 51.437195867621014,
+      "usage": {
+        "completion_tokens": 19,
+        "prompt_tokens": 1454,
+        "total_tokens": 1473,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 3
+        }
+      },
+      "raw_chunks": [
+        {
+          "id": "chatcmpl-711",
+          "choices": [
+            {
+              "delta": {
+                "content": "Agent",
+                "function_call": null,
+                "refusal": null,
+                "role": "assistant",
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-711",
+          "choices": [
+            {
+              "delta": {
+                "content": "需要",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-711",
+          "choices": [
+            {
+              "delta": {
+                "content": "工具",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-711",
+          "choices": [
+            {
+              "delta": {
+                "content": "，",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-711",
+          "choices": [
+            {
+              "delta": {
+                "content": "因为",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-711",
+          "choices": [
+            {
+              "delta": {
+                "content": "工具",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-711",
+          "choices": [
+            {
+              "delta": {
+                "content": "可以",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-711",
+          "choices": [
+            {
+              "delta": {
+                "content": "提供",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-711",
+          "choices": [
+            {
+              "delta": {
+                "content": "必要的",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-711",
+          "choices": [
+            {
+              "delta": {
+                "content": "信息",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-711",
+          "choices": [
+            {
+              "delta": {
+                "content": "或",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-711",
+          "choices": [
+            {
+              "delta": {
+                "content": "帮助",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-711",
+          "choices": [
+            {
+              "delta": {
+                "content": "，",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-711",
+          "choices": [
+            {
+              "delta": {
+                "content": "以",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-711",
+          "choices": [
+            {
+              "delta": {
+                "content": "解决",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-711",
+          "choices": [
+            {
+              "delta": {
+                "content": "用户",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-711",
+          "choices": [
+            {
+              "delta": {
+                "content": "的问题",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-711",
+          "choices": [
+            {
+              "delta": {
+                "content": "。",
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-711",
+          "choices": [
+            {
+              "delta": {
+                "content": null,
+                "function_call": null,
+                "refusal": null,
+                "role": null,
+                "tool_calls": null
+              },
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null
+            }
+          ],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": null
+        },
+        {
+          "id": "chatcmpl-711",
+          "choices": [],
+          "created": 1791713476,
+          "model": "qwen3:0.6b",
+          "object": "chat.completion.chunk",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "fp_ollama",
+          "usage": {
+            "completion_tokens": 19,
+            "prompt_tokens": 1454,
+            "total_tokens": 1473,
+            "completion_tokens_details": null,
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 3
+            }
+          },
+          "timings": {
+            "prompt_n": 1454,
+            "prompt_ms": 99,
+            "prompt_per_token_ms": 0.06808803301237965,
+            "prompt_per_second": 14686.868686868687,
+            "predicted_n": 19,
+            "predicted_ms": 95,
+            "predicted_per_token_ms": 5,
+            "predicted_per_second": 200
+          }
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "stable": {
+      "samples": 3,
+      "median_first_content_seconds": 0.22867839998798445,
+      "median_completion_tokens_per_total_second": 58.60764281505835,
+      "reported_cached_token_fraction": 0.9993122420907841
+    },
+    "changed": {
+      "samples": 3,
+      "median_first_content_seconds": 0.2770909999962896,
+      "median_completion_tokens_per_total_second": 50.47833536245843,
+      "reported_cached_token_fraction": 0.0020632737276478678
+    }
+  },
+  "observation_completed": true,
+  "failure": null,
+  "metric_notes": [
+    "首段正文延迟是客户端到达首个非空正文块的时间，近似TTFT。",
+    "端到端输出速率=completion_tokens/请求总耗时，包含prefill和传输，不是纯解码吞吐。",
+    "缓存比例仅使用服务实际报告的cached_tokens；字段缺失不按0处理。",
+    "各组3次为本机探索性观察，不能由一次耗时差异或有限样本推断普遍性能结论。",
+    "等长开头编号不保证token数完全相同，以服务返回prompt_tokens为准。",
+    "本观察不是实验2-3中多种错误上下文管理模式的完整复现。"
+  ]
+}

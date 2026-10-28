@@ -1,0 +1,43 @@
+{
+  "stage": "offline_recovery_of_saved_final_response",
+  "recovered_at": "2026-10-14T18:49:07.288324+08:00",
+  "original_record": "E:\\AI_Agents_Book\\第二章\\2.10上下文压缩策略对比\\运行结果\\deepseek_online_20261014_183831_601088\\record.json",
+  "original_record_sha256": "7e7e357d2fd5bc3250c4a5db4aa1baf35701aee3bc5b0dfd27e3f3c953b9e9b8",
+  "original_status": "interrupted",
+  "original_error": {
+    "type": "OSError",
+    "message": "[Errno 22] Invalid argument: 'E:\\\\AI_Agents_Book\\\\第二章\\\\2.10上下文压缩策略对比\\\\运行结果\\\\deepseek_online_20261014_183831_601088\\\\record.json'",
+    "http_status": null
+  },
+  "status": "saved_final_response_recovered",
+  "final_answer": "{\"answer\": \"ExceptionGroup是Python 3.11新增异常类型，用于同时抛出打包多个互不相关异常，可用except*按类型匹配子组。BaseExceptionGroup可包任意异常，ExceptionGroup仅限Exception子类；提供subgroup、split、derive等方法。\", \"source_url\": \"https://docs.python.org/3.11/library/exceptions.html\"}",
+  "checks": {
+    "fields_valid": true,
+    "answer_chars": 146,
+    "within_100_chars": false,
+    "han_character_count": 47,
+    "source_was_read": true,
+    "successful_search": true,
+    "successful_read": true,
+    "factual_correctness": "pending_human_review",
+    "language_correctness": "pending_human_review"
+  },
+  "observed_chain_completed": true,
+  "request_tool_result_correlations_verified": true,
+  "webpage_hashes_verified": true,
+  "original_model_request_attempts": 3,
+  "original_search_requests": 1,
+  "original_web_get_attempts": 1,
+  "original_prompt_tokens": 3425,
+  "original_completion_tokens": 178,
+  "model_requests_during_recovery": 0,
+  "search_requests_during_recovery": 0,
+  "web_requests_during_recovery": 0,
+  "source_selection": [
+    {
+      "url": "https://docs.python.org/3.11/library/exceptions.html",
+      "was_in_search_results": false
+    }
+  ],
+  "scope": "离线确认已有搜索/读取/最终响应证据；不将原中断运行改写成正常退出，也不代表六策略完成"
+}

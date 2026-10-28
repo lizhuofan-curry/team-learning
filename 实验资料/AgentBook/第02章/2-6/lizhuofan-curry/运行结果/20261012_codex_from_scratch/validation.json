@@ -1,0 +1,232 @@
+{
+  "pptx_sha256": "b9482a0b6863499816b4f3127f44ced9ccc4869aa10b24b0b1bb273e3f8f0854",
+  "slide_count": 14,
+  "original_image_checks": [
+    {
+      "label": "Figure 1",
+      "byte_identical_media": [
+        "ppt/media/image-3-1.png"
+      ],
+      "owners": [
+        {
+          "slide": 3,
+          "matching_image_linked": true
+        }
+      ]
+    },
+    {
+      "label": "Figure 2",
+      "byte_identical_media": [
+        "ppt/media/image-4-1.png"
+      ],
+      "owners": [
+        {
+          "slide": 4,
+          "matching_image_linked": true
+        }
+      ]
+    },
+    {
+      "label": "Table 1",
+      "byte_identical_media": [
+        "ppt/media/image-8-1.png"
+      ],
+      "owners": [
+        {
+          "slide": 8,
+          "matching_image_linked": true
+        }
+      ]
+    },
+    {
+      "label": "Table 2",
+      "byte_identical_media": [
+        "ppt/media/image-10-1.png"
+      ],
+      "owners": [
+        {
+          "slide": 10,
+          "matching_image_linked": true
+        }
+      ]
+    },
+    {
+      "label": "Figure 3",
+      "byte_identical_media": [
+        "ppt/media/image-12-1.png"
+      ],
+      "owners": [
+        {
+          "slide": 12,
+          "matching_image_linked": true
+        }
+      ]
+    }
+  ],
+  "slides": [
+    {
+      "number": 1,
+      "text": "Attention Is\nAll You Need\nTransformer原论文学习汇报\nVaswani 等 · NIPS 2017\n李卓凡 · 2026年10月12日\n来源：Vaswani 等，Attention Is All You Need，PDF第1页\n01",
+      "native_tables": 0,
+      "outside_slide_shapes": []
+    },
+    {
+      "number": 2,
+      "text": "序列建模中的顺序计算\n研究问题\n怎样减少循环网络沿序列逐步计算的限制，同时学习远距离依赖？\nRNN按位置更新隐藏状态，单个训练样本内难以并行。\nTransformer用注意力连接不同位置，保留编码器—解码器框架。\n这里的并行主要指训练计算，推理仍逐个生成输出token。\n来源：Vaswani 等，Attention Is All You Need，PDF第2页\n02",
+      "native_tables": 0,
+      "outside_slide_shapes": []
+    },
+    {
+      "number": 3,
+      "text": "编码器与解码器架构\n编码器与解码器各堆叠6层。\n编码器层：自注意力、逐位置前馈网络。\n解码器增加掩码自注意力及对编码器输出的交叉注意力。\n原论文采用残差后层归一化：\nLayerNorm(x + Sublayer(x))\n来源：Vaswani 等，Attention Is All You Need，PDF第3页，Figure 1\n03",
+      "native_tables": 0,
+      "outside_slide_shapes": []
+    },
+    {
+      "number": 4,
+      "text": "缩放点积注意力\nAttention(Q, K, V)\n= softmax(QKᵀ / √dₖ)V\nQ与K点积得到匹配分数。\n缩放后用softmax归一化。\n权重对V加权求和。\n图左为单个注意力计算，图右为多个头的并行计算。\n来源：Vaswani 等，Attention Is All You Need，PDF第4页，Figure 2\n04",
+      "native_tables": 0,
+      "outside_slide_shapes": []
+    },
+    {
+      "number": 5,
+      "text": "多头注意力的维度\n同一输入通过不同线性投影，进入多个注意力头。\nMultiHead = Concat(head₁, …, headₕ)Wᴼ\nBase：d_model = 512，h = 8，dₖ = dᵥ = 64\n每个头在不同的表示子空间计算注意力。\n拼接各头后再投影，输出仍为512维。\n这是原论文Base配置，不是本章Qwen3的16个Query头。\n来源：Vaswani 等，Attention Is All You Need，PDF第4–5页，§3.2.2\n05",
+      "native_tables": 0,
+      "outside_slide_shapes": []
+    },
+    {
+      "number": 6,
+      "text": "三种注意力的输入与可见范围\n解码器掩码挡住未来位置；交叉注意力读取编码器已经得到的输入表示。\n来源：Vaswani 等，Attention Is All You Need，PDF第5页，§3.2.3\n06\n注意力位置\nQ来自哪里\nK / V来自哪里\n可见范围\n编码器自注意力\n编码器当前表示\n同一输入序列\n全部输入位置\n解码器自注意力\n解码器当前表示\n同一输出序列\n已知输出位置\n编码器—解码器\n解码器表示\n编码器输出\n全部输入位置",
+      "native_tables": 1,
+      "outside_slide_shapes": []
+    },
+    {
+      "number": 7,
+      "text": "位置信息与前馈网络\n位置编码\n输入嵌入与同维度的位置编码相加。\nPE(pos, 2i) = sin(pos / 10000^(2i/d_model))\nPE(pos, 2i+1) = cos(pos / 10000^(2i/d_model))\n逐位置前馈网络\nFFN(x) = max(0, xW₁ + b₁)W₂ + b₂\nBase：512维输入，中间层2048维，输出512维。\n来源：Vaswani 等，Attention Is All You Need，PDF第5–6页，§3.3、§3.5\n07",
+      "native_tables": 0,
+      "outside_slide_shapes": []
+    },
+    {
+      "number": 8,
+      "text": "自注意力的计算代价\n全局自注意力：每层O(n²d)。\n顺序操作数和最长路径可为O(1)。\n序列很长时，二次复杂度仍是代价。\nn为序列长度，d为表示维度。论文指出n < d时，自注意力计算上有优势。\n来源：Vaswani 等，Attention Is All You Need，PDF第6–7页，Table 1\n08",
+      "native_tables": 0,
+      "outside_slide_shapes": []
+    },
+    {
+      "number": 9,
+      "text": "数据与训练设置\nWMT 2014英德约450万句对，英法约3600万句对。\n8张NVIDIA P100：Base约12小时，Big约3.5天。\nAdam：β₁=0.9，β₂=0.98，ε=10⁻⁹。\n前4000步学习率预热，之后按步数的逆平方根下降。\nBase使用dropout 0.1，标签平滑0.1。\n以上为论文训练记录，本次未重新训练Transformer。\n来源：Vaswani 等，Attention Is All You Need，PDF第7–8页，§5\n09",
+      "native_tables": 0,
+      "outside_slide_shapes": []
+    },
+    {
+      "number": 10,
+      "text": "机器翻译结果\n28.4\nBig · 英德BLEU\n41.8\nBig · 英法BLEU，按表2\n表2与摘要给出英法41.8，正文§6.1写41.0；本页保留这处原文不一致。\n来源：Vaswani 等，Attention Is All You Need，PDF第8页，Table 2、§6.1\n10",
+      "native_tables": 0,
+      "outside_slide_shapes": []
+    },
+    {
+      "number": 11,
+      "text": "组件变化与开发集表现\n单头24.9，比Base低0.9 BLEU。\n头数增加不保证持续提高。\n可学习位置嵌入与正弦方案接近。\n这些是newstest2013开发集结果，不与上一页测试集分数直接比较。\n来源：Vaswani 等，Attention Is All You Need，PDF第9页，Table 3\n11\n配置，其他项沿用Base\nBLEU(dev)\nBase，8头\n25.8\n1头\n24.9\n4头\n25.5\n16头\n25.8\n32头\n25.4\n可学习位置嵌入\n25.7",
+      "native_tables": 1,
+      "outside_slide_shapes": []
+    },
+    {
+      "number": 12,
+      "text": "注意力中的远距离依赖\n远距离依赖\n只展示making位置。\n不同颜色代表不同头。\n编码器第5层，共6层。\n原文示例：making … more difficult。注意力图提示关联，不能单凭权重判断因果重要性。\n来源：Vaswani 等，Attention Is All You Need，PDF第13页，Figure 3\n12",
+      "native_tables": 0,
+      "outside_slide_shapes": []
+    },
+    {
+      "number": 13,
+      "text": "英语成分句法分析\n4层Transformer\nd_model = 1024\nWSJ：约4万句。\n半监督：约1700万句。\n评测为WSJ Section 23的F1。不同训练条件分开比较，92.7不是所有表列方法的最高分。\n来源：Vaswani 等，Attention Is All You Need，PDF第9–10页，Table 4\n13\nTransformer训练条件\nWSJ 23 F1\n仅WSJ，有监督\n91.3\n半监督\n92.7",
+      "native_tables": 1,
+      "outside_slide_shapes": []
+    },
+    {
+      "number": 14,
+      "text": "贡献与适用边界\n主要贡献\n用多头注意力组织编码器—解码器，减少循环计算。\n在论文机器翻译任务上取得较高BLEU，并报告较低训练成本。\n需要保留的边界\n全局注意力随序列长度呈二次复杂度增长。\n训练并行不代表自回归推理完全并行。\n结果属于论文任务与训练设置，不能直接外推到所有任务。\n来源：Vaswani 等，Attention Is All You Need，PDF第2、6–10页，§7\n14",
+      "native_tables": 0,
+      "outside_slide_shapes": []
+    }
+  ],
+  "notes_count": 14,
+  "zip_crc_ok": true,
+  "pdf_page_count": 14,
+  "pdf_extractable_characters": [
+    139,
+    194,
+    175,
+    180,
+    254,
+    219,
+    262,
+    172,
+    265,
+    148,
+    257,
+    173,
+    226,
+    208
+  ],
+  "slide_images": 14,
+  "official_skill_files_unchanged": true,
+  "official_file_count": 56,
+  "html_checks": [
+    {
+      "imageFailures": [],
+      "overflow": false
+    },
+    {
+      "imageFailures": [],
+      "overflow": false
+    },
+    {
+      "imageFailures": [],
+      "overflow": false
+    },
+    {
+      "imageFailures": [],
+      "overflow": false
+    },
+    {
+      "imageFailures": [],
+      "overflow": false
+    },
+    {
+      "imageFailures": [],
+      "overflow": false
+    },
+    {
+      "imageFailures": [],
+      "overflow": false
+    },
+    {
+      "imageFailures": [],
+      "overflow": false
+    },
+    {
+      "imageFailures": [],
+      "overflow": false
+    },
+    {
+      "imageFailures": [],
+      "overflow": false
+    },
+    {
+      "imageFailures": [],
+      "overflow": false
+    },
+    {
+      "imageFailures": [],
+      "overflow": false
+    },
+    {
+      "imageFailures": [],
+      "overflow": false
+    },
+    {
+      "imageFailures": [],
+      "overflow": false
+    }
+  ]
+}

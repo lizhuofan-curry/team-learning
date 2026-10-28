@@ -1,0 +1,36 @@
+{
+  "checked_on": "2026-10-16",
+  "status": "incomplete_run_verified",
+  "record_sha256": "7c956a3b66c4315407e4e29fd7e4f9261d609d7c36e33b0311cdda316f700eb1",
+  "model": "qwen3:4b",
+  "model_digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+  "calls": 2,
+  "memory": {
+    "http_status": 200,
+    "done_reason": "stop",
+    "input_tokens": 2352,
+    "output_tokens": 292,
+    "notes": 20,
+    "format_valid": true,
+    "contains_target_account": false,
+    "contains_target_routing": false
+  },
+  "answer": {
+    "http_status": 200,
+    "done_reason": "length",
+    "input_tokens": 362,
+    "output_tokens": 1200,
+    "output_limit": 1200,
+    "content_chars": 5022,
+    "thinking_field_present": false,
+    "think_request": false,
+    "accepted_as_final_answer": false
+  },
+  "source_requests_responses_and_isolation_verified": true,
+  "paired_first_request_only_model_differs": true,
+  "final_memory_and_answer_artifacts_created": false,
+  "judge_score_available": false,
+  "review": "The 4B model produced more structured notes than the 0.6B recommended baseline, but all 20 slots were used and the target account and routing number were omitted. The answer body contains extended analysis despite think=false, reaches the configured 1200-token cap, and does not yield an accepted final answer. This is not evidence of context truncation, insufficient VRAM, or a completed zero-score trial. Extra answer tokens cannot restore facts missing from the memory. Next use the existing schema route with the same 4B model and sampling, explicitly removing both the 20-note bound and the appended bounded-memory instructions; treat it as a separate diagnostic, not an isolated note-budget ablation.",
+  "assistant_model_calls": 0,
+  "original_unchanged": true
+}

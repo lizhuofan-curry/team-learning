@@ -1,0 +1,560 @@
+{
+  "checked_at": "2026-10-17T09:39:19.110076+00:00",
+  "stage": "first_12_generation_and_3_judges_audit",
+  "checks": {
+    "source_config_artifacts_and_full_raw_judge_request_verified": true,
+    "official_score_recalculation": true,
+    "batch_summary_recomputed": true,
+    "writer_artifacts_unchanged_since_generation_audit": true,
+    "all_originals_unchanged_during_audit": true
+  },
+  "grades": [
+    {
+      "test_id": "layer1_01_bank_account",
+      "mode": "advanced_json_cards",
+      "judge_summary": {
+        "scores": {
+          "precision": 2,
+          "recall": 2,
+          "reasoning": 1,
+          "proactivity": 2
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      },
+      "judge_sha256": "dfe09c721b4123e6a76b06144ba098cfe4402a9ab5920baffb9f2531e9325d13",
+      "usage": {
+        "completion_tokens": 595,
+        "prompt_tokens": 2923,
+        "total_tokens": 3518,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 2688
+        },
+        "prompt_cache_hit_tokens": 2688,
+        "prompt_cache_miss_tokens": 235
+      },
+      "finish_reason": "stop",
+      "request_attempts": 1,
+      "evidence_check": [
+        {
+          "dimension": "precision",
+          "quote": "ASSISTANT: Our routing number is 123006800, and your new checking account number is 4429853327.",
+          "match": "role_prefix_removed_substring"
+        },
+        {
+          "dimension": "precision",
+          "quote": "USER: The account number is 8847293001 and the routing number is... let me check... 121000248.",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "recall",
+          "quote": "ASSISTANT: Our routing number is 123006800, and your new checking account number is 4429853327.",
+          "match": "role_prefix_removed_substring"
+        },
+        {
+          "dimension": "reasoning",
+          "quote": "USER: I can do an electronic transfer from my current bank, Wells Fargo.",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "reasoning",
+          "quote": "ASSISTANT: Our routing number is 123006800",
+          "match": "role_prefix_removed_substring"
+        },
+        {
+          "dimension": "proactivity",
+          "quote": "ASSISTANT: Our routing number is 123006800, and your new checking account number is 4429853327.",
+          "match": "role_prefix_removed_substring"
+        }
+      ]
+    },
+    {
+      "test_id": "layer1_01_bank_account",
+      "mode": "json_cards",
+      "judge_summary": {
+        "scores": {
+          "precision": 4,
+          "recall": 3,
+          "reasoning": 3,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.8125
+      },
+      "judge_sha256": "736ff10d202e438e129909f04d027a18421894b369ba10c9cf24fc54be6143cb",
+      "usage": {
+        "completion_tokens": 539,
+        "prompt_tokens": 4074,
+        "total_tokens": 4613,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 1920
+        },
+        "prompt_cache_hit_tokens": 1920,
+        "prompt_cache_miss_tokens": 2154
+      },
+      "finish_reason": "stop",
+      "request_attempts": 1,
+      "evidence_check": [
+        {
+          "dimension": "precision",
+          "quote": "Your checking account number is **4429853327**",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "recall",
+          "quote": "Your checking account number is **4429853327**",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "reasoning",
+          "quote": "This number is used for direct deposits, including your paycheck as confirmed in our records.",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "proactivity",
+          "quote": "This account number is highly sensitive and **should only be shared with your employer or bank personnel**",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "proactivity",
+          "quote": "Since your direct deposit for paycheck is already configured to this account (as per your session records), you may not need to re-enter it",
+          "match": "verbatim_substring"
+        }
+      ]
+    },
+    {
+      "test_id": "layer2_01_multiple_vehicles",
+      "mode": "advanced_json_cards",
+      "judge_summary": {
+        "scores": {
+          "precision": 1,
+          "recall": 1,
+          "reasoning": 1,
+          "proactivity": 1
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      },
+      "judge_sha256": "4ada1d196f5483110925d472108ef8b6e721f480d4869e4e6f8d10dfcb266563",
+      "usage": {
+        "completion_tokens": 639,
+        "prompt_tokens": 5399,
+        "total_tokens": 6038,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 5399
+      },
+      "finish_reason": "stop",
+      "request_attempts": 1,
+      "evidence_check": [
+        {
+          "dimension": "precision",
+          "quote": "ASSISTANT: Your appointment is confirmed for Friday, November 24th at 8 AM.",
+          "match": "role_prefix_removed_substring"
+        },
+        {
+          "dimension": "precision",
+          "quote": "ASSISTANT: Your confirmation number is FS-447291.",
+          "match": "role_prefix_removed_substring"
+        },
+        {
+          "dimension": "precision",
+          "quote": "ASSISTANT: That brings your 30K service to $369.99.",
+          "match": "role_prefix_removed_substring"
+        },
+        {
+          "dimension": "recall",
+          "quote": "USER: I also have a Tesla that needs tire rotation.",
+          "match": "role_prefix_removed_substring"
+        },
+        {
+          "dimension": "recall",
+          "quote": "USER: Actually, let me just focus on the Honda for now.",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "recall",
+          "quote": "ASSISTANT: So just the Honda Accord on Friday at 8 AM.",
+          "match": "role_prefix_removed_substring"
+        },
+        {
+          "dimension": "reasoning",
+          "quote": "USER: I need to schedule service for my car.",
+          "match": "role_prefix_removed_substring"
+        },
+        {
+          "dimension": "reasoning",
+          "quote": "ASSISTANT: So just the Honda Accord on Friday at 8 AM.",
+          "match": "role_prefix_removed_substring"
+        },
+        {
+          "dimension": "proactivity",
+          "quote": "USER: I need to schedule service for my car.",
+          "match": "role_prefix_removed_substring"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "planned_cases": 60,
+    "planned_variants": 240,
+    "writer_states": {
+      "incomplete": 9,
+      "saved": 3,
+      "pending": 228
+    },
+    "judge_states": {
+      "pending": 237,
+      "scored": 3
+    },
+    "scored_variants": 3,
+    "passed_variants": 1,
+    "all_attempts_and_outcomes_finished": false,
+    "pipeline_pass_rate_all_variants": null,
+    "pass_rate_scored_only": 0.3333333333333333,
+    "mean_reward_scored_only": 0.2708333333333333,
+    "writer_calls": 22,
+    "judge_calls": 3,
+    "generation_failure_kinds": {
+      "generation_error": 8,
+      "truncated": 1
+    },
+    "input_tokens": 39651,
+    "output_tokens": 26289,
+    "memory_input_tokens": 34525,
+    "memory_output_tokens": 18411,
+    "answer_input_tokens": 5126,
+    "answer_output_tokens": 7878,
+    "request_seconds": 1005.656348599965,
+    "tag_queries": 12,
+    "full_240_judge_scores_available": false,
+    "by_mode": {
+      "notes": {
+        "planned_variants": 60,
+        "writer_states": {
+          "incomplete": 3,
+          "pending": 57
+        },
+        "judge_states": {
+          "pending": 60
+        },
+        "scored_variants": 0,
+        "passed_variants": 0,
+        "all_attempts_and_outcomes_finished": false,
+        "pipeline_pass_rate_all_variants": null,
+        "pass_rate_scored_only": null,
+        "mean_reward_scored_only": null,
+        "writer_calls": 3,
+        "judge_calls": 0,
+        "generation_failure_kinds": {
+          "generation_error": 3
+        },
+        "input_tokens": 5932,
+        "output_tokens": 3417,
+        "memory_input_tokens": 5932,
+        "memory_output_tokens": 3417,
+        "answer_input_tokens": 0,
+        "answer_output_tokens": 0,
+        "request_seconds": 125.85206519997155,
+        "tag_queries": 3
+      },
+      "enhanced_notes": {
+        "planned_variants": 60,
+        "writer_states": {
+          "incomplete": 3,
+          "pending": 57
+        },
+        "judge_states": {
+          "pending": 60
+        },
+        "scored_variants": 0,
+        "passed_variants": 0,
+        "all_attempts_and_outcomes_finished": false,
+        "pipeline_pass_rate_all_variants": null,
+        "pass_rate_scored_only": null,
+        "mean_reward_scored_only": null,
+        "writer_calls": 3,
+        "judge_calls": 0,
+        "generation_failure_kinds": {
+          "generation_error": 3
+        },
+        "input_tokens": 3893,
+        "output_tokens": 2894,
+        "memory_input_tokens": 3893,
+        "memory_output_tokens": 2894,
+        "answer_input_tokens": 0,
+        "answer_output_tokens": 0,
+        "request_seconds": 141.32944009998755,
+        "tag_queries": 3
+      },
+      "json_cards": {
+        "planned_variants": 60,
+        "writer_states": {
+          "saved": 1,
+          "incomplete": 2,
+          "pending": 57
+        },
+        "judge_states": {
+          "scored": 1,
+          "pending": 59
+        },
+        "scored_variants": 1,
+        "passed_variants": 1,
+        "all_attempts_and_outcomes_finished": false,
+        "pipeline_pass_rate_all_variants": null,
+        "pass_rate_scored_only": 1.0,
+        "mean_reward_scored_only": 0.8125,
+        "writer_calls": 8,
+        "judge_calls": 1,
+        "generation_failure_kinds": {
+          "generation_error": 1,
+          "truncated": 1
+        },
+        "input_tokens": 14345,
+        "output_tokens": 10315,
+        "memory_input_tokens": 12898,
+        "memory_output_tokens": 4456,
+        "answer_input_tokens": 1447,
+        "answer_output_tokens": 5859,
+        "request_seconds": 350.94393040002615,
+        "tag_queries": 3
+      },
+      "advanced_json_cards": {
+        "planned_variants": 60,
+        "writer_states": {
+          "saved": 2,
+          "incomplete": 1,
+          "pending": 57
+        },
+        "judge_states": {
+          "scored": 2,
+          "pending": 58
+        },
+        "scored_variants": 2,
+        "passed_variants": 0,
+        "all_attempts_and_outcomes_finished": false,
+        "pipeline_pass_rate_all_variants": null,
+        "pass_rate_scored_only": 0.0,
+        "mean_reward_scored_only": 0.0,
+        "writer_calls": 8,
+        "judge_calls": 2,
+        "generation_failure_kinds": {
+          "generation_error": 1
+        },
+        "input_tokens": 15481,
+        "output_tokens": 9663,
+        "memory_input_tokens": 11802,
+        "memory_output_tokens": 7644,
+        "answer_input_tokens": 3679,
+        "answer_output_tokens": 2019,
+        "request_seconds": 387.53091289997974,
+        "tag_queries": 3
+      }
+    },
+    "by_layer": {
+      "layer1": {
+        "planned_variants": 80,
+        "writer_states": {
+          "incomplete": 2,
+          "saved": 2,
+          "pending": 76
+        },
+        "judge_states": {
+          "pending": 78,
+          "scored": 2
+        },
+        "scored_variants": 2,
+        "passed_variants": 1,
+        "all_attempts_and_outcomes_finished": false,
+        "pipeline_pass_rate_all_variants": null,
+        "pass_rate_scored_only": 0.5,
+        "mean_reward_scored_only": 0.40625,
+        "writer_calls": 6,
+        "judge_calls": 2,
+        "generation_failure_kinds": {
+          "generation_error": 2
+        },
+        "input_tokens": 11803,
+        "output_tokens": 7208,
+        "memory_input_tokens": 8886,
+        "memory_output_tokens": 4927,
+        "answer_input_tokens": 2917,
+        "answer_output_tokens": 2281,
+        "request_seconds": 255.97303409999586,
+        "tag_queries": 4
+      },
+      "layer2": {
+        "planned_variants": 80,
+        "writer_states": {
+          "incomplete": 3,
+          "saved": 1,
+          "pending": 76
+        },
+        "judge_states": {
+          "pending": 79,
+          "scored": 1
+        },
+        "scored_variants": 1,
+        "passed_variants": 0,
+        "all_attempts_and_outcomes_finished": false,
+        "pipeline_pass_rate_all_variants": null,
+        "pass_rate_scored_only": 0.0,
+        "mean_reward_scored_only": 0.0,
+        "writer_calls": 7,
+        "judge_calls": 1,
+        "generation_failure_kinds": {
+          "generation_error": 3
+        },
+        "input_tokens": 13382,
+        "output_tokens": 7451,
+        "memory_input_tokens": 11811,
+        "memory_output_tokens": 5950,
+        "answer_input_tokens": 1571,
+        "answer_output_tokens": 1501,
+        "request_seconds": 307.84754549998615,
+        "tag_queries": 4
+      },
+      "layer3": {
+        "planned_variants": 80,
+        "writer_states": {
+          "incomplete": 4,
+          "pending": 76
+        },
+        "judge_states": {
+          "pending": 80
+        },
+        "scored_variants": 0,
+        "passed_variants": 0,
+        "all_attempts_and_outcomes_finished": false,
+        "pipeline_pass_rate_all_variants": null,
+        "pass_rate_scored_only": null,
+        "mean_reward_scored_only": null,
+        "writer_calls": 9,
+        "judge_calls": 0,
+        "generation_failure_kinds": {
+          "generation_error": 3,
+          "truncated": 1
+        },
+        "input_tokens": 14466,
+        "output_tokens": 11630,
+        "memory_input_tokens": 13828,
+        "memory_output_tokens": 7534,
+        "answer_input_tokens": 638,
+        "answer_output_tokens": 4096,
+        "request_seconds": 441.835768999983,
+        "tag_queries": 4
+      }
+    },
+    "note": "技术失败无裁判分数，不填0；已评分均分与通过率只对应已评分子集。"
+  },
+  "source_scope_notes": [
+    "Bank json_cards passed at 4/3/3/3, reward 0.8125. Judge accepted direct deposit already configured; original source supplies setup numbers, without explicit employer-end completion confirmation. Keep manual reservation and official grade separate.",
+    "Bank advanced cards: routing ownership error independently confirmed. Actual intermediate memory cards exist; citing them is not by itself fabrication.",
+    "Vehicle advanced cards: final memory omitted confirmed Honda appointment. No records in visible memory differs from none in original source; source recall/disambiguation failure and unsupported battery warning remain. Actual insurance cards exist; do not call them fabricated."
+  ],
+  "next_12": [
+    {
+      "test_id": "layer1_02_insurance_claim",
+      "mode": "notes",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_02_insurance_claim",
+      "mode": "enhanced_notes",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_02_insurance_claim",
+      "mode": "json_cards",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_02_insurance_claim",
+      "mode": "advanced_json_cards",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_03_medical_appointment",
+      "mode": "notes",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_03_medical_appointment",
+      "mode": "enhanced_notes",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_03_medical_appointment",
+      "mode": "json_cards",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_03_medical_appointment",
+      "mode": "advanced_json_cards",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_04_airline_booking",
+      "mode": "notes",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_04_airline_booking",
+      "mode": "enhanced_notes",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_04_airline_booking",
+      "mode": "json_cards",
+      "session_count": 1
+    },
+    {
+      "test_id": "layer1_04_airline_booking",
+      "mode": "advanced_json_cards",
+      "session_count": 1
+    }
+  ],
+  "original_file_hashes": {
+    "batch.json": "6a307316956fb241c9c5b95e6a764c1e45ab9b006ba68a7a0cff0f7a59693717",
+    "summary.json": "bc002393b7c668a96a71e5aa2043c3af24285823cea6091dfa8f5ec2eb66240d",
+    "summary.md": "72e56e910561f6cc05ce91b3dec87f25932bed69fd206ba5c4795be95d1cd5ed",
+    "layer1_01_bank_account\\advanced_json_cards\\answer.txt": "dc8f253310519ceeae4fd19ab536b101566fd0b3e1766dfa70962edfaf614012",
+    "layer1_01_bank_account\\advanced_json_cards\\judge.json": "dfe09c721b4123e6a76b06144ba098cfe4402a9ab5920baffb9f2531e9325d13",
+    "layer1_01_bank_account\\advanced_json_cards\\memory.json": "2a1cee365dab5138ce5de169750c124f6385bc4d9fa2e85ecf5db8fa1ed33f9e",
+    "layer1_01_bank_account\\advanced_json_cards\\writer.json": "63dd9378f4a7a487df151bc63599185c7daae213dc758dad0088bdc1a2e7a959",
+    "layer1_01_bank_account\\enhanced_notes\\writer.json": "889716b803d49086932cc78ee6f359b38f54d6b21d85b7d122b26e201cc705e8",
+    "layer1_01_bank_account\\json_cards\\answer.txt": "83a62334fa61bae144899e28ac92d43d1695e931e99a2f0d0a84783b368bba1e",
+    "layer1_01_bank_account\\json_cards\\judge.json": "736ff10d202e438e129909f04d027a18421894b369ba10c9cf24fc54be6143cb",
+    "layer1_01_bank_account\\json_cards\\memory.json": "0c15e735e672988c7ad9f93390f39bb10fd72d334459ace41512c85d880d8a84",
+    "layer1_01_bank_account\\json_cards\\writer.json": "ca8f410d5eec4fc021a6682df668c48d6f05bd354369d91ad3c049cdac958723",
+    "layer1_01_bank_account\\notes\\writer.json": "6faa908794eebe29a4ee7f76320a0df4eca9b8afbb7925fb2d15ee5f17759feb",
+    "layer2_01_multiple_vehicles\\advanced_json_cards\\answer.txt": "fa95806f0eabae3b2e47842c4ddab412c371c6c9cd37bded4be15636673ddcb8",
+    "layer2_01_multiple_vehicles\\advanced_json_cards\\judge.json": "4ada1d196f5483110925d472108ef8b6e721f480d4869e4e6f8d10dfcb266563",
+    "layer2_01_multiple_vehicles\\advanced_json_cards\\memory.json": "1a5081ad9ac9d42a7d550c853d084b00d067749f8d25aea4f27db5837a581b2d",
+    "layer2_01_multiple_vehicles\\advanced_json_cards\\writer.json": "b325853b1791f8780efcce742ebdd6c1e02612080c8e73134bfd1d631010d632",
+    "layer2_01_multiple_vehicles\\enhanced_notes\\writer.json": "8a3a11c484df9ce86a12c15eafb75332cbd557862290cd779d2806d4e98add25",
+    "layer2_01_multiple_vehicles\\json_cards\\writer.json": "e5e922f5cda53b2ebc1430bca7774c2e0cdf269646a6e510a385837512016919",
+    "layer2_01_multiple_vehicles\\notes\\writer.json": "14c37232fc440ecc753a6ecdadb651585dcf5ac7fb0ab2c7473325ed46ff7981",
+    "layer3_01_travel_coordination\\advanced_json_cards\\writer.json": "8bfb689645fd38a037b2e882e50b887bf9e803bba349c648c93692771a230a55",
+    "layer3_01_travel_coordination\\enhanced_notes\\writer.json": "0e0ae61f9a74f2fcd454e6c981cb1e7cbba5eb5c74a76aeba7ac6701268d86d5",
+    "layer3_01_travel_coordination\\json_cards\\writer.json": "5dfc52f49093e3e21539068d25b563683050dccada314e3b1af49b1b2f3e8d01",
+    "layer3_01_travel_coordination\\notes\\writer.json": "80018c71cff0210d49a65226e631dd81b0e76ea4717df85c849ea2720be9db83"
+  },
+  "assistant_inference_requests": 0,
+  "next_writer_preview_only": true,
+  "completion_boundary": "12/240 attempted; 3 scored and 1 passed; 9 technical failures without grade; 228 unattempted; no overall ranking or 240-case mean"
+}

@@ -1,0 +1,62 @@
+{
+  "checked_on": "2026-10-16",
+  "status": "judge_result_verified",
+  "judge_record_sha256": "6112f71168423bef435e09c2e30a24c2af8950cda4b673cf50b357aa41e6022e",
+  "writer_record_sha256": "a17768202c409eeb25dbc079ab54f3470ac01bd5d56b26c1196a35fa360ec55c",
+  "judge_model": "deepseek-flash",
+  "calls": 1,
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 475,
+    "prompt_tokens": 2799,
+    "total_tokens": 3274,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cache_write_tokens": null,
+      "cached_tokens": 1920
+    },
+    "prompt_cache_hit_tokens": 1920,
+    "prompt_cache_miss_tokens": 879
+  },
+  "official_request_and_summary_match": true,
+  "writer_artifacts_and_isolation_verified": true,
+  "full_uncleaned_answer_supplied_to_judge": true,
+  "evidence_quotes": [
+    {
+      "dimension": "precision",
+      "quote": "Your checking account number is **4429853327**.",
+      "exact_match_source_or_answer": true
+    },
+    {
+      "dimension": "recall",
+      "quote": "Your checking account number is **4429853327**.",
+      "exact_match_source_or_answer": true
+    },
+    {
+      "dimension": "reasoning",
+      "quote": "Since you need it for direct deposit at work (TechCorp Industries), you can use this number immediately.",
+      "exact_match_source_or_answer": true
+    },
+    {
+      "dimension": "proactivity",
+      "quote": "*Note: Always verify with your employer before setting up direct deposits to ensure the correct account is used.*",
+      "exact_match_source_or_answer": true
+    }
+  ],
+  "judge_summary": {
+    "scores": {
+      "precision": 4,
+      "recall": 3,
+      "reasoning": 4,
+      "proactivity": 2
+    },
+    "hallucination_veto": false,
+    "passed": true,
+    "reward": 0.8125
+  },
+  "review": "Core checking account is correct. The routing number exists in the 42-note memory but is omitted from the answer; the judge cites this omission for recall=3 and proactivity=2. Passed requires precision, recall and reasoning each >=3 and no hallucination, so proactivity=2 does not prevent passage. Reward=13/16=0.8125 is a normalized score for one case, not dataset accuracy or a model-size causal estimate. Raw answer retains analysis and closing think marker; the judge did not veto it. For a fairer single-case model comparison, next run 0.6B with the identical schema route and recommended sampling, rather than comparing against an old bounded-memory baseline.",
+  "next_06b_memory_request_only_model_differs": true,
+  "assistant_model_calls": 0,
+  "original_unchanged": true
+}

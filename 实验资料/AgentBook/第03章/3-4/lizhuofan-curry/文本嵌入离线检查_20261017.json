@@ -1,0 +1,86 @@
+{
+  "checked_at": "2026-10-17T13:31:50.631347+00:00",
+  "script_sha256": "73c31cdb996b2959c844ee94cd1e091f0e8611493a828d36e01023e483a5d186",
+  "model_manifest_sha256": "21a2e28f0215fb88dd2c170edd4574a1b3fce402edc1620cf9a44ce3bc156f85",
+  "passed": 13,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "新入口源码可编译",
+      "passed": true
+    },
+    {
+      "name": "官方材料、固定02哈希及12文档5查询一致",
+      "passed": true
+    },
+    {
+      "name": "固定版本10份模型文件哈希通过",
+      "passed": true
+    },
+    {
+      "name": "标注召回与precision使用各自分母",
+      "passed": true
+    },
+    {
+      "name": "官方MRR按完整排名计算不误写MRR@5",
+      "passed": true
+    },
+    {
+      "name": "合法384维单位向量可通过形状检查",
+      "passed": true
+    },
+    {
+      "name": "拒绝零向量",
+      "passed": true
+    },
+    {
+      "name": "拒绝维度错位",
+      "passed": true
+    },
+    {
+      "name": "拒绝非float32",
+      "passed": true
+    },
+    {
+      "name": "真实BERT框架类可导入而未构造模型",
+      "passed": true
+    },
+    {
+      "name": "17段官方文本不会在256上限截断",
+      "passed": true
+    },
+    {
+      "name": "safetensors嵌入权重形状为30522乘384",
+      "passed": true
+    },
+    {
+      "name": "未创建正式文本嵌入运行目录",
+      "passed": true
+    }
+  ],
+  "maximum_sample_tokens": 25,
+  "token_lengths": [
+    19,
+    23,
+    22,
+    21,
+    21,
+    19,
+    18,
+    17,
+    25,
+    17,
+    17,
+    19,
+    5,
+    6,
+    5,
+    7,
+    7
+  ],
+  "model_instantiated": false,
+  "embedding_forward_batches": 0,
+  "generation_model_requests": 0,
+  "network_requests_during_offline_check": 0,
+  "scope": "仅语料、模型文件、Tokenizer、框架导入、权重头及指标离线核验；没有加载模型执行前向、没有语义检索成绩"
+}

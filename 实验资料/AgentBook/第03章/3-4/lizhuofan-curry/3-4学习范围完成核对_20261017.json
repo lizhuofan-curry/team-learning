@@ -1,0 +1,53 @@
+{
+  "status": "learning_scope_completed",
+  "completed_at": "2026-10-17T13:42:22.244637+00:00",
+  "route": "official CLI with MiniLM alternative, local CPU",
+  "upstream_commit": "dbc046eb896ac4e39aa19c7774c8bf49583b89a6",
+  "book_source": "https://github.com/bojieli/ai-agent-book/blob/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/book/chapter3.md",
+  "route_source": "https://github.com/bojieli/ai-agent-book/blob/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/README.md",
+  "completed_steps": [
+    "manual cosine and exact baseline",
+    "3000x128 synthetic ANNOY/HNSW comparison and ef tradeoff",
+    "MiniLM 12-document 5-query embedding and index comparison",
+    "saved evidence audit and learning conclusions"
+  ],
+  "runs": [
+    {
+      "directory": "exact_vectors_20261017_194826_596079",
+      "status": "exact_vector_demo_saved",
+      "record_sha256": "30abfc447a0917abcb6d99c7e6374a9252f58d6b3f16aabe10ab640675827155",
+      "audit_sha256": "556aeec38ac838bbc70ceac4e2b5898f2903449d48b6ed78137f15b79e659339"
+    },
+    {
+      "directory": "synthetic_ann_20261017_205150_250997",
+      "status": "synthetic_ann_saved",
+      "record_sha256": "fd24130c940381955c9fc7a59ba0ef128480939c0c7eab9f0388410cce677a3a",
+      "audit_sha256": "71bbf63701a36c0fb95672805910ef042f22daa886e27b6f78c402cd29db2b1c"
+    },
+    {
+      "directory": "text_embedding_20261017_213507_432933",
+      "status": "text_embedding_eval_saved",
+      "record_sha256": "c5beeef30ba92df39051d00574d4d2fc3d803a952762b34e82080a284d888456",
+      "audit_sha256": "850db9b54f6d1cefb32be7f92cf0d0da6d89f5b4a74d9a5f894e3c09ebad6bb7"
+    }
+  ],
+  "text_metrics": {
+    "semantic_recall_at_5": 1.0,
+    "precision_at_5": 0.32,
+    "mrr_full_ranking": 1.0,
+    "annoy_index_recall_at_5": 1.0,
+    "hnsw_index_recall_at_5": 1.0
+  },
+  "local_embedding_forward_batches": 2,
+  "generated_model_requests_for_3_4": 0,
+  "cloud_model_requests_for_3_4": 0,
+  "not_performed": [
+    "BGE-M3 model route",
+    "HTTP service deployment",
+    "million-scale data",
+    "memory profiling",
+    "incremental update stress tests"
+  ],
+  "next_experiment": "3-5 BM25 sparse retrieval; not yet prepared or run",
+  "scope_note": "本地CLI核心学习范围完成；不宣称默认BGE-M3完整服务或所有扩展均完成"
+}

@@ -1,0 +1,49 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "你是一个使用中文回答的助手。"
+    },
+    {
+      "role": "user",
+      "content": "你好，请用一句话介绍你自己。"
+    }
+  ],
+  "response": {
+    "id": "chatcmpl-419",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "我是专注于帮助您解决问题的中文助手，专注提供实用服务和高效解答。",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning": "好的，用户让我用一句话介绍自己。首先，我需要确保自己能准确表达。作为一个使用中文回答的助手，我应该保持简洁明了，同时涵盖必要的信息。用户可能想了解我的功能或定位，所以要突出专业性和实用性。\n\n接下来，我需要检查有没有遗漏的信息。比如是否提到了我的目标用户群体，或者是否有什么特色。但用户没有提供这些细节，所以只能基于常见的功能描述来构造。另外，语气要友好，保持自然，避免使用过于技术化的术语。\n\n然后，我要确保这句话的结构正确，没有语法错误。比如开头用“我是”来引入自我介绍，中间用“一个助手”来强调角色，最后用“您的帮助”来呼应用户的需求。这样既简洁又涵盖了关键点。\n\n最后，再次检查是否符合用户的要求，没有使用任何Markdown格式，并且内容自然流畅。这样应该能满足用户的需求。\n"
+        }
+      }
+    ],
+    "created": 1791711988,
+    "model": "qwen3:0.6b",
+    "object": "chat.completion",
+    "moderation": null,
+    "service_tier": null,
+    "system_fingerprint": "fp_ollama",
+    "usage": {
+      "completion_tokens": 210,
+      "prompt_tokens": 30,
+      "total_tokens": 240,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cache_write_tokens": null,
+        "cached_tokens": 29
+      }
+    }
+  }
+}

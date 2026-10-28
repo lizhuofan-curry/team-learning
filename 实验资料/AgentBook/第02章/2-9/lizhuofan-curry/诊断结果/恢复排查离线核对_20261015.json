@@ -1,0 +1,26 @@
+{
+  "review_date": "2026-10-15",
+  "scope": "Offline executor and synthetic SDK response checks, not model outcomes",
+  "real_model_requests": 0,
+  "real_search_requests": 0,
+  "real_web_requests": 0,
+  "executor_five_goal_paths_passed": true,
+  "original_records_sha256": {
+    "E:\\AI_Agents_Book\\第二章\\2.9状态栏技术对照\\运行结果\\20261014_162422_174127\\record.json": "5d1d6db96d1870dd6e35fb13b784ca162b252dd9da57cdc99632d4355ff6311a",
+    "E:\\AI_Agents_Book\\第二章\\2.9状态栏技术对照\\诊断结果\\20261014_163930_276360\\record.json": "bab8ce72e5aeba9ce6bba303887638f6a8eaf5c4c90d5192200ddba73beb7574",
+    "E:\\AI_Agents_Book\\第二章\\2.9状态栏技术对照\\诊断结果\\json_protocol_20261014_170714_877842\\record.json": "0a466bd15f4e729217c038274f2f0ee3af78c46f765b867d3468ebb0ddefd702"
+  },
+  "original_records_unchanged": true,
+  "mock_checks": [
+    "3 checks pass with 5 scripted responses",
+    "exact original loop prompt reused",
+    "tool result and ID propagation",
+    "text JSON is not executed",
+    "missing slash is not repaired",
+    "truncated calls not executed; raw response saved",
+    "preloaded tool ID reuse rejected",
+    "usage aggregation and secret redaction"
+  ],
+  "new_script_sha256": "24e5b454d4cfc3d250b6b8da767da1481b3f147619d58e4d3eb9be841a935503",
+  "real_deepseek_run": "pending_user_execution"
+}

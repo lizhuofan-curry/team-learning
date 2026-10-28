@@ -1,0 +1,42 @@
+{
+  "source_request": "E:\\AI_Agents_Book\\第二章\\2.1本地模型部署与工具调用\\运行结果\\02_工具调用请求_20261011_175332_924536.json",
+  "tool_call_id": "call_724b1q4a",
+  "tool_name": "get_current_temperature",
+  "arguments": {
+    "location": "Beijing",
+    "unit": "celsius"
+  },
+  "tool_attempted": true,
+  "tool_succeeded": true,
+  "returned_to_model": false,
+  "result": {
+    "location": "Beijing",
+    "country": "China",
+    "temperature": 23.6,
+    "unit": "°C",
+    "data_time": "2026-10-11T17:45",
+    "timezone": "Asia/Shanghai",
+    "source": "Open-Meteo",
+    "geocoding_url": "https://geocoding-api.open-meteo.com/v1/search?name=Beijing&count=1&language=en",
+    "weather_url": "https://api.open-meteo.com/v1/forecast?latitude=39.9075&longitude=116.39723&current=temperature_2m&temperature_unit=celsius&timezone=auto",
+    "raw_weather": {
+      "latitude": 39.89455,
+      "longitude": 116.35983,
+      "generationtime_ms": 0.041961669921875,
+      "utc_offset_seconds": 28800,
+      "timezone": "Asia/Shanghai",
+      "timezone_abbreviation": "GMT+8",
+      "elevation": 47.0,
+      "current_units": {
+        "time": "iso8601",
+        "interval": "seconds",
+        "temperature_2m": "°C"
+      },
+      "current": {
+        "time": "2026-10-11T17:45",
+        "interval": 900,
+        "temperature_2m": 23.6
+      }
+    }
+  }
+}

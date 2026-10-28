@@ -1,0 +1,55 @@
+{
+  "checked_at": "2026-10-17T15:57:31.814936+08:00",
+  "scope": "offline protocol and target-fact audit; no model/network requests; not an independent judge score",
+  "record_path": "E:\\AI_Agents_Book\\第三章\\3.1用户记忆评估\\运行结果\\official_writer_20261017_154944_666921\\record.json",
+  "record_sha256": "7622943c126c6bb3f75b437031cccf5ccc262d2875bf2a423bd652aef90cb195",
+  "source_config_requests_raw_responses_artifacts_and_checkpoints_verified": true,
+  "original_record_unchanged": true,
+  "mode": "enhanced_notes",
+  "memory_format": "schema",
+  "memory_paragraphs": 1,
+  "memory_paragraph_characters": [
+    2013
+  ],
+  "calls": [
+    {
+      "purpose": "memory_session_1",
+      "done_reason": "stop",
+      "prompt_tokens": 2220,
+      "completion_tokens": 541,
+      "elapsed_seconds": 28.745452800008934
+    },
+    {
+      "purpose": "answer",
+      "done_reason": "stop",
+      "prompt_tokens": 632,
+      "completion_tokens": 498,
+      "elapsed_seconds": 16.683199799997965
+    }
+  ],
+  "total_input_tokens": 2852,
+  "total_output_tokens": 1039,
+  "baseline_pair": {
+    "path": "E:\\AI_Agents_Book\\第三章\\3.1用户记忆评估\\运行结果\\official_writer_20261017_152904_922252\\record.json",
+    "sha256": "212de09ba9e67742270544244aa9f199254401d386d9f181671839d2893050ce",
+    "first_request_differences": [
+      "format"
+    ],
+    "model_digest_identical": true,
+    "interpretation": "format adherence improved in this single-case schema-only diagnostic; not a full four-mode ranking"
+  },
+  "target_fact_observations": {
+    "checking_account_recalled": "4429853327",
+    "savings_distinguished": "4429853328",
+    "new_bank_correct_routing_omitted_from_memory": "123006800",
+    "source_bank_routing_correctly_identified_in_memory": "Wells Fargo / 121000248",
+    "answer_misattributes_source_route_to_new_account": "121000248",
+    "fault_stages": [
+      "memory omitted destination-bank routing",
+      "answer transferred source-bank routing to destination account"
+    ]
+  },
+  "answer_preserved_with_analysis_and_closing_think_marker": true,
+  "judge_completed": false,
+  "eligible_next_judge_requests": 1
+}

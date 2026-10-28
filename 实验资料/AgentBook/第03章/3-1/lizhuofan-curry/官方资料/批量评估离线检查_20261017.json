@@ -1,0 +1,40 @@
+{
+  "checked_on": "2026-10-17",
+  "status": "offline_checks_passed",
+  "checks": [
+    "python_syntax",
+    "existing_success_and_failure_provenance_validation",
+    "writer_failure_retained_and_not_scored",
+    "judge_only_complete_answers",
+    "resume_does_not_repeat_success_or_failure",
+    "unresolved_child_not_retried",
+    "scored_mean_and_full_denominator_distinguished",
+    "imported_calls_not_counted_as_new",
+    "model_digest_drift_rejected",
+    "wrong_model_rejected",
+    "earliest_same_configuration_record_reuse",
+    "original_records_unchanged",
+    "per_layer_coverage_and_failure_counts",
+    "truncation_separate_from_judge_score",
+    "writer_and_judge_stage_provenance"
+  ],
+  "mock_subprocess_calls": 4,
+  "live_subprocess_model_calls": 0,
+  "live_network_requests": 0,
+  "original_hashes": {
+    "bank_writer": "a17768202c409eeb25dbc079ab54f3470ac01bd5d56b26c1196a35fa360ec55c",
+    "bank_judge": "6112f71168423bef435e09c2e30a24c2af8950cda4b673cf50b357aa41e6022e",
+    "vehicles_writer": "e6b1add3c0666ef77c729b1f2d9452d28f18cae26ea3707cec15d6817b0abb71"
+  },
+  "tested_script_sha256": "9f662e8e020a01cb4d79e7e6066d3aff3ae0b877cecf3097b699f42b618b6e1f",
+  "preview_plan": {
+    "cases": 60,
+    "reused_writer_cases": 2,
+    "reused_judge_cases": 1,
+    "remaining_writer_cases": 58,
+    "max_new_writer_calls": 195,
+    "max_model_list_queries": 58,
+    "network_requests": 0
+  },
+  "mock_child_calls_with_saved_records": 3
+}

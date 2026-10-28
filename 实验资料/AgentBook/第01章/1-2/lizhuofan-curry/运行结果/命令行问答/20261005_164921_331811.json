@@ -1,0 +1,207 @@
+{
+  "question": "请搜索Python3.11官方文档，用100字以内解释ExceptionGroup，给出1个官方链接。完成一次搜索后，根据已有结果回答；如果证据不足，请明确说明。",
+  "model": "kimi-k3",
+  "base_url": "https://api.moonshot.cn/v1",
+  "status": "answered",
+  "model_turns": 2,
+  "finish_reason": "stop",
+  "answer_complete": true,
+  "answer": "ExceptionGroup（PEP 654）把多个互不相关异常打包成一个异常同时抛出；配合 `except*` 可匹配并处理组内子组，适合并发任务多处失败。  \nhttps://docs.python.org/3/whatsnew/3.11.html",
+  "tools": [
+    {
+      "function": {
+        "name": "web_search",
+        "description": "用于信息检索的网络搜索",
+        "parameters": {
+          "properties": {
+            "classes": {
+              "description": "要关注的搜索领域。如果未指定，则默认为 'all'。",
+              "items": {
+                "enum": [
+                  "all",
+                  "academic",
+                  "social",
+                  "library",
+                  "finance",
+                  "code",
+                  "ecommerce",
+                  "medical"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "query": {
+              "description": "要搜索的内容",
+              "type": "string"
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "function"
+    }
+  ],
+  "conversation_history": [
+    {
+      "role": "system",
+      "content": "你是Kimi搜索助手。请使用web_search查询官方资料，再依据搜索结果回答并提供来源链接。"
+    },
+    {
+      "role": "user",
+      "content": "请搜索Python3.11官方文档，用100字以内解释ExceptionGroup，给出1个官方链接。完成一次搜索后，根据已有结果回答；如果证据不足，请明确说明。"
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "web_search_0_cc5d9996",
+          "type": "function",
+          "function": {
+            "name": "web_search",
+            "arguments": "{\"query\":\"Python 3.11 ExceptionGroup official documentation docs.python.org\",\"classes\":[\"all\"]}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "web_search_0_cc5d9996",
+      "content": "----MOONSHOT ENCRYPTED BEGIN----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----MOONSHOT ENCRYPTED END----"
+    },
+    {
+      "role": "assistant",
+      "content": "ExceptionGroup（PEP 654）把多个互不相关异常打包成一个异常同时抛出；配合 `except*` 可匹配并处理组内子组，适合并发任务多处失败。  \nhttps://docs.python.org/3/whatsnew/3.11.html"
+    }
+  ],
+  "trace": [
+    {
+      "iteration": 1,
+      "type": "action",
+      "tool_call_id": "web_search_0_cc5d9996",
+      "tool": "web_search",
+      "raw_arguments": "{\"query\":\"Python 3.11 ExceptionGroup official documentation docs.python.org\",\"classes\":[\"all\"]}"
+    },
+    {
+      "iteration": 1,
+      "type": "observation",
+      "tool_call_id": "web_search_0_cc5d9996",
+      "content": "----MOONSHOT ENCRYPTED BEGIN----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----MOONSHOT ENCRYPTED END----"
+    },
+    {
+      "iteration": 2,
+      "type": "answer",
+      "content": "ExceptionGroup（PEP 654）把多个互不相关异常打包成一个异常同时抛出；配合 `except*` 可匹配并处理组内子组，适合并发任务多处失败。  \nhttps://docs.python.org/3/whatsnew/3.11.html"
+    }
+  ],
+  "api_turns": [
+    {
+      "kind": "formula_tools",
+      "http_status": 200,
+      "tools": [
+        {
+          "function": {
+            "name": "web_search",
+            "description": "用于信息检索的网络搜索",
+            "parameters": {
+              "properties": {
+                "classes": {
+                  "description": "要关注的搜索领域。如果未指定，则默认为 'all'。",
+                  "items": {
+                    "enum": [
+                      "all",
+                      "academic",
+                      "social",
+                      "library",
+                      "finance",
+                      "code",
+                      "ecommerce",
+                      "medical"
+                    ],
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "query": {
+                  "description": "要搜索的内容",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "query"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    {
+      "kind": "chat_completion",
+      "model": "kimi-k3",
+      "sent_messages": 2,
+      "finish_reason": "tool_calls",
+      "usage": {
+        "completion_tokens": 181,
+        "prompt_tokens": 292,
+        "total_tokens": 473,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 102,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": 256,
+          "cached_tokens": null
+        }
+      }
+    },
+    {
+      "kind": "formula_fiber",
+      "model_turn": 1,
+      "request": {
+        "name": "web_search",
+        "arguments": "{\"query\":\"Python 3.11 ExceptionGroup official documentation docs.python.org\",\"classes\":[\"all\"]}"
+      },
+      "http_status": 200,
+      "status": "succeeded",
+      "fiber_id": "fiber-fd3pb7xaqfwi153oxgfi",
+      "output_field": "encrypted_output",
+      "output_length": 6366
+    },
+    {
+      "kind": "chat_completion",
+      "model": "kimi-k3",
+      "sent_messages": 4,
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 430,
+        "prompt_tokens": 1595,
+        "total_tokens": 2025,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 359,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": 1280,
+          "cached_tokens": 256
+        },
+        "cached_tokens": 256
+      }
+    }
+  ],
+  "run_options": {
+    "max_steps": 5,
+    "quiet": false
+  }
+}

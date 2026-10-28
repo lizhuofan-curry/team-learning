@@ -1,0 +1,1364 @@
+{
+  "checked_at": "2026-10-17T11:07:06.989133+00:00",
+  "scope": "User-authorized 50 generation attempts, terminated after final judge stage; original 240 campaign not completed",
+  "checks": {
+    "source_configuration_all_240_identities": true,
+    "full_requests_raw_responses_artifacts_official_grade_recalculation": true,
+    "summary_recomputed": true,
+    "all_50_scope_outcomes_terminal": true,
+    "all_other_190_generation_states_pending": true,
+    "old_artifacts_unchanged": true
+  },
+  "scope_summary": {
+    "attempted": 50,
+    "writer_saved": 20,
+    "generation_failures": 30,
+    "scored": 18,
+    "passed": 9,
+    "graded_failed": 9,
+    "judge_connection_failures": 2,
+    "unrun_original_variants": 190,
+    "scope_pipeline_success_fraction": 0.18,
+    "scope_generation_completion_fraction": 0.4,
+    "scope_scored_coverage_fraction": 0.36,
+    "graded_pass_rate": 0.5,
+    "mean_reward_graded_only": 0.4791666666666667,
+    "learning_scope_finished": true,
+    "original_full240_finished": false
+  },
+  "generation_failure_details": {
+    "memory_validation": 25,
+    "repeat_token_abort": 4,
+    "truncated": 1
+  },
+  "rows": [
+    {
+      "test_id": "layer1_01_bank_account",
+      "category": "layer1",
+      "mode": "notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "JSON字段重复：account_type"
+      }
+    },
+    {
+      "test_id": "layer1_01_bank_account",
+      "category": "layer1",
+      "mode": "enhanced_notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      }
+    },
+    {
+      "test_id": "layer1_01_bank_account",
+      "category": "layer1",
+      "mode": "json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 4,
+          "recall": 3,
+          "reasoning": 3,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.8125
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "736ff10d202e438e129909f04d027a18421894b369ba10c9cf24fc54be6143cb"
+    },
+    {
+      "test_id": "layer1_01_bank_account",
+      "category": "layer1",
+      "mode": "advanced_json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 2,
+          "recall": 2,
+          "reasoning": 1,
+          "proactivity": 2
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "dfe09c721b4123e6a76b06144ba098cfe4402a9ab5920baffb9f2531e9325d13"
+    },
+    {
+      "test_id": "layer2_01_multiple_vehicles",
+      "category": "layer2",
+      "mode": "notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      }
+    },
+    {
+      "test_id": "layer2_01_multiple_vehicles",
+      "category": "layer2",
+      "mode": "enhanced_notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Ollama HTTP 500"
+      }
+    },
+    {
+      "test_id": "layer2_01_multiple_vehicles",
+      "category": "layer2",
+      "mode": "json_cards",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "官方提取结果必须为仅含\"memory\"的JSON对象"
+      }
+    },
+    {
+      "test_id": "layer2_01_multiple_vehicles",
+      "category": "layer2",
+      "mode": "advanced_json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 1,
+          "recall": 1,
+          "reasoning": 1,
+          "proactivity": 1
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "4ada1d196f5483110925d472108ef8b6e721f480d4869e4e6f8d10dfcb266563"
+    },
+    {
+      "test_id": "layer3_01_travel_coordination",
+      "category": "layer3",
+      "mode": "notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      }
+    },
+    {
+      "test_id": "layer3_01_travel_coordination",
+      "category": "layer3",
+      "mode": "enhanced_notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      }
+    },
+    {
+      "test_id": "layer3_01_travel_coordination",
+      "category": "layer3",
+      "mode": "json_cards",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "模型未正常结束：done_reason=length，输出4096 token，上限4096；保留响应，不补齐JSON"
+      }
+    },
+    {
+      "test_id": "layer3_01_travel_coordination",
+      "category": "layer3",
+      "mode": "advanced_json_cards",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Ollama HTTP 500"
+      }
+    },
+    {
+      "test_id": "layer1_02_insurance_claim",
+      "category": "layer1",
+      "mode": "notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      }
+    },
+    {
+      "test_id": "layer1_02_insurance_claim",
+      "category": "layer1",
+      "mode": "enhanced_notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      }
+    },
+    {
+      "test_id": "layer1_02_insurance_claim",
+      "category": "layer1",
+      "mode": "json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 3,
+          "recall": 2,
+          "reasoning": 2,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": false,
+        "reward": 0.625
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "e61d57b0e92de237cb4476337aa1c831b028b8477e49dd90a7655edd307baa5b"
+    },
+    {
+      "test_id": "layer1_02_insurance_claim",
+      "category": "layer1",
+      "mode": "advanced_json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 2,
+          "recall": 2,
+          "reasoning": 2,
+          "proactivity": 3
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "955c989da7e19dcd7b32b5353ead68fb6a1985b95c34a4c46df79bb7062f26a3"
+    },
+    {
+      "test_id": "layer1_03_medical_appointment",
+      "category": "layer1",
+      "mode": "notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      }
+    },
+    {
+      "test_id": "layer1_03_medical_appointment",
+      "category": "layer1",
+      "mode": "enhanced_notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      }
+    },
+    {
+      "test_id": "layer1_03_medical_appointment",
+      "category": "layer1",
+      "mode": "json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 2
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.8125
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "fb899b433db5a302758afb4f4e623da97355406f731ff83b18cf781a032f8593"
+    },
+    {
+      "test_id": "layer1_03_medical_appointment",
+      "category": "layer1",
+      "mode": "advanced_json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 4,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.9375
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "2b7f377555dd1b82b10c7af3f2342a6701fa73a3cf19b0e446ae8db054a91880"
+    },
+    {
+      "test_id": "layer1_04_airline_booking",
+      "category": "layer1",
+      "mode": "notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      }
+    },
+    {
+      "test_id": "layer1_04_airline_booking",
+      "category": "layer1",
+      "mode": "enhanced_notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "JSON字段重复：event"
+      }
+    },
+    {
+      "test_id": "layer1_04_airline_booking",
+      "category": "layer1",
+      "mode": "json_cards",
+      "writer": "saved",
+      "judge": "incomplete",
+      "score": null,
+      "error": null,
+      "judge_error": {
+        "type": "APIConnectionError",
+        "message": "Connection error."
+      },
+      "judge_sha256": "2943d9b9ae853f5330d7a65b25b52c6c604bd937824b1a26426b1453df35c64c"
+    },
+    {
+      "test_id": "layer1_04_airline_booking",
+      "category": "layer1",
+      "mode": "advanced_json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 4,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.9375
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "c73b83e7219f9b17552aa743d182b6b2e632725b23060ec2a0be7096e4ffa9cd"
+    },
+    {
+      "test_id": "layer1_05_internet_service",
+      "category": "layer1",
+      "mode": "notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      }
+    },
+    {
+      "test_id": "layer1_05_internet_service",
+      "category": "layer1",
+      "mode": "enhanced_notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "JSON字段重复：account_number"
+      }
+    },
+    {
+      "test_id": "layer1_05_internet_service",
+      "category": "layer1",
+      "mode": "json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 3
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "9dcba783c3cb74afad2b40daac99c818007a912a1b07f3d0f11d61f086c5cff6"
+    },
+    {
+      "test_id": "layer1_05_internet_service",
+      "category": "layer1",
+      "mode": "advanced_json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.875
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "89febd72a6276fd89ec0f4eecf8cab84c564880fdaae11eefd4f8317fa12d98f"
+    },
+    {
+      "test_id": "layer1_06_credit_card_app",
+      "category": "layer1",
+      "mode": "notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Ollama HTTP 500"
+      }
+    },
+    {
+      "test_id": "layer1_06_credit_card_app",
+      "category": "layer1",
+      "mode": "enhanced_notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      }
+    },
+    {
+      "test_id": "layer1_06_credit_card_app",
+      "category": "layer1",
+      "mode": "json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 3,
+          "recall": 4,
+          "reasoning": 2,
+          "proactivity": 3
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "05081800a50eb51fca94e70a7399530d3771d449004542ec5c8de49546b8ef87"
+    },
+    {
+      "test_id": "layer1_06_credit_card_app",
+      "category": "layer1",
+      "mode": "advanced_json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 4
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.9375
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "242c949465033b09c9da509adb6f3da705f1b46b5fdcca4993e66e2aaaf5b4c5"
+    },
+    {
+      "test_id": "layer1_07_car_rental",
+      "category": "layer1",
+      "mode": "notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      }
+    },
+    {
+      "test_id": "layer1_07_car_rental",
+      "category": "layer1",
+      "mode": "enhanced_notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      }
+    },
+    {
+      "test_id": "layer1_07_car_rental",
+      "category": "layer1",
+      "mode": "json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 3,
+          "recall": 4,
+          "reasoning": 2,
+          "proactivity": 2
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "ee6078878aba2e966e3261334236300ca669a81ee01db49b1a84afa7c89df0be"
+    },
+    {
+      "test_id": "layer1_07_car_rental",
+      "category": "layer1",
+      "mode": "advanced_json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.875
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "b03e7db8801981a40a36f0190b126f47997224aff2eb505acc8579b792b0c6c3"
+    },
+    {
+      "test_id": "layer1_08_hotel_reservation",
+      "category": "layer1",
+      "mode": "notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      }
+    },
+    {
+      "test_id": "layer1_08_hotel_reservation",
+      "category": "layer1",
+      "mode": "enhanced_notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      }
+    },
+    {
+      "test_id": "layer1_08_hotel_reservation",
+      "category": "layer1",
+      "mode": "json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 4,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.9375
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "1a392930069c97b6b99d19d58f1446d57952384733d2d4888531d7d7467091ee"
+    },
+    {
+      "test_id": "layer1_08_hotel_reservation",
+      "category": "layer1",
+      "mode": "advanced_json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.875
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "dd33c54b1a3008f45ec0ae35b397019f12c1dceca150f52d2b349deb86a46e8e"
+    },
+    {
+      "test_id": "layer1_09_home_security",
+      "category": "layer1",
+      "mode": "notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      }
+    },
+    {
+      "test_id": "layer1_09_home_security",
+      "category": "layer1",
+      "mode": "enhanced_notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      }
+    },
+    {
+      "test_id": "layer1_09_home_security",
+      "category": "layer1",
+      "mode": "json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 3
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "cf0c41b857d7e17611d5ae63ad1218f403cd58e3038733f29371c69a9a8b74da"
+    },
+    {
+      "test_id": "layer1_09_home_security",
+      "category": "layer1",
+      "mode": "advanced_json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 2
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "6f5fb1eba3bbb5106fe2c1f40aa634a95517335df7a72119a5286ef1bd104985"
+    },
+    {
+      "test_id": "layer1_10_pharmacy_transfer",
+      "category": "layer1",
+      "mode": "notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      }
+    },
+    {
+      "test_id": "layer1_10_pharmacy_transfer",
+      "category": "layer1",
+      "mode": "enhanced_notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      }
+    },
+    {
+      "test_id": "layer1_10_pharmacy_transfer",
+      "category": "layer1",
+      "mode": "json_cards",
+      "writer": "saved",
+      "judge": "incomplete",
+      "score": null,
+      "error": null,
+      "judge_error": {
+        "type": "APIConnectionError",
+        "message": "Connection error."
+      },
+      "judge_sha256": "f43a95f9abb2e5f075728c6eb31e7ed37c12013f1fd8f2bfefe1db4173ff2434"
+    },
+    {
+      "test_id": "layer1_10_pharmacy_transfer",
+      "category": "layer1",
+      "mode": "advanced_json_cards",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Ollama HTTP 500"
+      }
+    },
+    {
+      "test_id": "layer1_11_mortgage_application",
+      "category": "layer1",
+      "mode": "notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      }
+    },
+    {
+      "test_id": "layer1_11_mortgage_application",
+      "category": "layer1",
+      "mode": "enhanced_notes",
+      "writer": "incomplete",
+      "judge": "pending",
+      "score": null,
+      "error": {
+        "type": "ValueError",
+        "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+      }
+    }
+  ],
+  "final_round": [
+    {
+      "test_id": "layer1_05_internet_service",
+      "category": "layer1",
+      "mode": "json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 3
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "9dcba783c3cb74afad2b40daac99c818007a912a1b07f3d0f11d61f086c5cff6"
+    },
+    {
+      "test_id": "layer1_05_internet_service",
+      "category": "layer1",
+      "mode": "advanced_json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.875
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "89febd72a6276fd89ec0f4eecf8cab84c564880fdaae11eefd4f8317fa12d98f"
+    },
+    {
+      "test_id": "layer1_06_credit_card_app",
+      "category": "layer1",
+      "mode": "json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 3,
+          "recall": 4,
+          "reasoning": 2,
+          "proactivity": 3
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "05081800a50eb51fca94e70a7399530d3771d449004542ec5c8de49546b8ef87"
+    },
+    {
+      "test_id": "layer1_06_credit_card_app",
+      "category": "layer1",
+      "mode": "advanced_json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 4
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.9375
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "242c949465033b09c9da509adb6f3da705f1b46b5fdcca4993e66e2aaaf5b4c5"
+    },
+    {
+      "test_id": "layer1_07_car_rental",
+      "category": "layer1",
+      "mode": "json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 3,
+          "recall": 4,
+          "reasoning": 2,
+          "proactivity": 2
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "ee6078878aba2e966e3261334236300ca669a81ee01db49b1a84afa7c89df0be"
+    },
+    {
+      "test_id": "layer1_07_car_rental",
+      "category": "layer1",
+      "mode": "advanced_json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.875
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "b03e7db8801981a40a36f0190b126f47997224aff2eb505acc8579b792b0c6c3"
+    },
+    {
+      "test_id": "layer1_08_hotel_reservation",
+      "category": "layer1",
+      "mode": "json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 4,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.9375
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "1a392930069c97b6b99d19d58f1446d57952384733d2d4888531d7d7467091ee"
+    },
+    {
+      "test_id": "layer1_08_hotel_reservation",
+      "category": "layer1",
+      "mode": "advanced_json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.875
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "dd33c54b1a3008f45ec0ae35b397019f12c1dceca150f52d2b349deb86a46e8e"
+    },
+    {
+      "test_id": "layer1_09_home_security",
+      "category": "layer1",
+      "mode": "json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 3
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "cf0c41b857d7e17611d5ae63ad1218f403cd58e3038733f29371c69a9a8b74da"
+    },
+    {
+      "test_id": "layer1_09_home_security",
+      "category": "layer1",
+      "mode": "advanced_json_cards",
+      "writer": "saved",
+      "judge": "scored",
+      "score": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 2
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      },
+      "error": null,
+      "judge_error": null,
+      "judge_sha256": "6f5fb1eba3bbb5106fe2c1f40aa634a95517335df7a72119a5286ef1bd104985"
+    },
+    {
+      "test_id": "layer1_10_pharmacy_transfer",
+      "category": "layer1",
+      "mode": "json_cards",
+      "writer": "saved",
+      "judge": "incomplete",
+      "score": null,
+      "error": null,
+      "judge_error": {
+        "type": "APIConnectionError",
+        "message": "Connection error."
+      },
+      "judge_sha256": "f43a95f9abb2e5f075728c6eb31e7ed37c12013f1fd8f2bfefe1db4173ff2434"
+    }
+  ],
+  "paired_card_scores": [
+    {
+      "test_id": "layer1_01_bank_account",
+      "json_cards": {
+        "scores": {
+          "precision": 4,
+          "recall": 3,
+          "reasoning": 3,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.8125
+      },
+      "advanced_json_cards": {
+        "scores": {
+          "precision": 2,
+          "recall": 2,
+          "reasoning": 1,
+          "proactivity": 2
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      }
+    },
+    {
+      "test_id": "layer1_02_insurance_claim",
+      "json_cards": {
+        "scores": {
+          "precision": 3,
+          "recall": 2,
+          "reasoning": 2,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": false,
+        "reward": 0.625
+      },
+      "advanced_json_cards": {
+        "scores": {
+          "precision": 2,
+          "recall": 2,
+          "reasoning": 2,
+          "proactivity": 3
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      }
+    },
+    {
+      "test_id": "layer1_03_medical_appointment",
+      "json_cards": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 2
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.8125
+      },
+      "advanced_json_cards": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 4,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.9375
+      }
+    },
+    {
+      "test_id": "layer1_05_internet_service",
+      "json_cards": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 3
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      },
+      "advanced_json_cards": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.875
+      }
+    },
+    {
+      "test_id": "layer1_06_credit_card_app",
+      "json_cards": {
+        "scores": {
+          "precision": 3,
+          "recall": 4,
+          "reasoning": 2,
+          "proactivity": 3
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      },
+      "advanced_json_cards": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 4
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.9375
+      }
+    },
+    {
+      "test_id": "layer1_07_car_rental",
+      "json_cards": {
+        "scores": {
+          "precision": 3,
+          "recall": 4,
+          "reasoning": 2,
+          "proactivity": 2
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      },
+      "advanced_json_cards": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.875
+      }
+    },
+    {
+      "test_id": "layer1_08_hotel_reservation",
+      "json_cards": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 4,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.9375
+      },
+      "advanced_json_cards": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.875
+      }
+    },
+    {
+      "test_id": "layer1_09_home_security",
+      "json_cards": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 3
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      },
+      "advanced_json_cards": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 2
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      }
+    }
+  ],
+  "reported_judge_usage": {
+    "judge_prompt_tokens_received": 75318,
+    "judge_completion_tokens_received": 10596
+  },
+  "usage_limit": "Two judge APIConnectionError requests and four local HTTP500 requests have unknown token use; received totals are not full billed totals.",
+  "independent_judge_limits": [
+    "Retain judge scores; unsupported extras can veto otherwise correct core identifiers.",
+    "Some judge reasons incorrectly treat actual intermediate memory as nonexistent.",
+    "Passing credit-card advanced answer still adds unsupported tokenization/software-feature and immediate-use assertions; a pass is not independent confirmation of those facts.",
+    "Rental advanced says no need to mention code at pickup, while source advises mentioning it; keep a manual reservation despite passing grade.",
+    "Evidence fields contain paraphrases and formatting changes, not all exact quotations."
+  ],
+  "original_file_hashes": {
+    "batch.json": "c18f35801e2ca286136c5a7f53eb7f125a2d5f57c85ddf802ba115c3f491ee80",
+    "summary.json": "9b1694585f8e15500ef1aed2e3c1f86822c60c2442730b060f60358d316c22d2",
+    "summary.md": "2dc471931745ce2c8cf8859477abaf08f4adb602a5ab41cc7ba282cd1d1394ad",
+    "末批26组生成核对.json": "4bbf81bb926bfb30bd50105f08802f826b9a0a3278f04bce3c3d5f3300508c8f",
+    "核对记录.json": "28d07b14d16615f82e96324a4a0ef632978e332be25798162ad2fdbdf46a0d2c",
+    "第二批生成核对.json": "885f0e714724f59bc491f4058682099e90d83484fa86a684986ed094abf07b2f",
+    "第二批评分核对.json": "44703274073c95b651882a1c58dfe91056dcd1beefbfa6daac460dafb160b58d",
+    "评分核对记录.json": "ba5c2b2938f77cf2319f78074c7950e92cd46efb5b346e4fd2df132c87daf895",
+    "layer1_01_bank_account\\advanced_json_cards\\answer.txt": "dc8f253310519ceeae4fd19ab536b101566fd0b3e1766dfa70962edfaf614012",
+    "layer1_01_bank_account\\advanced_json_cards\\judge.json": "dfe09c721b4123e6a76b06144ba098cfe4402a9ab5920baffb9f2531e9325d13",
+    "layer1_01_bank_account\\advanced_json_cards\\memory.json": "2a1cee365dab5138ce5de169750c124f6385bc4d9fa2e85ecf5db8fa1ed33f9e",
+    "layer1_01_bank_account\\advanced_json_cards\\writer.json": "63dd9378f4a7a487df151bc63599185c7daae213dc758dad0088bdc1a2e7a959",
+    "layer1_01_bank_account\\enhanced_notes\\writer.json": "889716b803d49086932cc78ee6f359b38f54d6b21d85b7d122b26e201cc705e8",
+    "layer1_01_bank_account\\json_cards\\answer.txt": "83a62334fa61bae144899e28ac92d43d1695e931e99a2f0d0a84783b368bba1e",
+    "layer1_01_bank_account\\json_cards\\judge.json": "736ff10d202e438e129909f04d027a18421894b369ba10c9cf24fc54be6143cb",
+    "layer1_01_bank_account\\json_cards\\memory.json": "0c15e735e672988c7ad9f93390f39bb10fd72d334459ace41512c85d880d8a84",
+    "layer1_01_bank_account\\json_cards\\writer.json": "ca8f410d5eec4fc021a6682df668c48d6f05bd354369d91ad3c049cdac958723",
+    "layer1_01_bank_account\\notes\\writer.json": "6faa908794eebe29a4ee7f76320a0df4eca9b8afbb7925fb2d15ee5f17759feb",
+    "layer1_02_insurance_claim\\advanced_json_cards\\answer.txt": "136100b2a1c5029c70596e66bfd5ff0fc09aa451e91bc61dcfa33c82f38c4691",
+    "layer1_02_insurance_claim\\advanced_json_cards\\judge.json": "955c989da7e19dcd7b32b5353ead68fb6a1985b95c34a4c46df79bb7062f26a3",
+    "layer1_02_insurance_claim\\advanced_json_cards\\memory.json": "bba64472072e1d61e024384ea025437123aaaa3484978ef69b2335b0a8649811",
+    "layer1_02_insurance_claim\\advanced_json_cards\\writer.json": "68632d02c9ad9353aac72c6692a3105349064edf84920a75828946dadf59f070",
+    "layer1_02_insurance_claim\\enhanced_notes\\writer.json": "fb2c2437e6990ed5e9ed35b9c7f0893fd5c477ea56ec9ed79ada2e67f6968ce9",
+    "layer1_02_insurance_claim\\json_cards\\answer.txt": "3038185acc39305979a71aa18ed048ac1c15855b7a6f517f194feead7e4d6d40",
+    "layer1_02_insurance_claim\\json_cards\\judge.json": "e61d57b0e92de237cb4476337aa1c831b028b8477e49dd90a7655edd307baa5b",
+    "layer1_02_insurance_claim\\json_cards\\memory.json": "74ea7ae4b6bd5d2e60b3aaed6f48df10c5ed71827df42e5b37aa41d0febc96a0",
+    "layer1_02_insurance_claim\\json_cards\\writer.json": "af2171e5b9d37267f59005e9399bf226c907616dc27455257baa80f26119cb35",
+    "layer1_02_insurance_claim\\notes\\writer.json": "ba8a97725d7196e68b3a23372fc131ce1f628e413e07a9b4f2298328d4412b88",
+    "layer1_03_medical_appointment\\advanced_json_cards\\answer.txt": "2358340853d56ce3226f221bd39111b73b1bad60bc6e7366d43f8bc3fc1cd798",
+    "layer1_03_medical_appointment\\advanced_json_cards\\judge.json": "2b7f377555dd1b82b10c7af3f2342a6701fa73a3cf19b0e446ae8db054a91880",
+    "layer1_03_medical_appointment\\advanced_json_cards\\memory.json": "e57ec4dfb43f911fddffcc9aa67c84c3213a4e085dd66f83ac831d64c2effc27",
+    "layer1_03_medical_appointment\\advanced_json_cards\\writer.json": "ed83f0afd43828ebd3a0912797299beec6849cb81980ccadf602e90ae9b6ae8a",
+    "layer1_03_medical_appointment\\enhanced_notes\\writer.json": "e0ed6131b6a2dfdeff8f4398690f39e4c0353cbf8cb574f2bc4108a41f1bab3a",
+    "layer1_03_medical_appointment\\json_cards\\answer.txt": "e155265ac651ea923feb9988a927c6086cdf559cf1057ec0a568c09200b87cfd",
+    "layer1_03_medical_appointment\\json_cards\\judge.json": "fb899b433db5a302758afb4f4e623da97355406f731ff83b18cf781a032f8593",
+    "layer1_03_medical_appointment\\json_cards\\memory.json": "674d6a6db6054f5fd8f4389aca31844df7cd25ad60308a1ccb96d2f81206c364",
+    "layer1_03_medical_appointment\\json_cards\\writer.json": "c1385c178a15e56490b043269f604713eb06eb8cc692319ac8603e5f126089ed",
+    "layer1_03_medical_appointment\\notes\\writer.json": "4f2981bb2318539ce79c0d5d4d0d7aee2f641b6916ccbba94dbc9400ff0647e8",
+    "layer1_04_airline_booking\\advanced_json_cards\\answer.txt": "5479cf1ffdd3d75a06392345d0e8ecfc405218cf9840fb80cbd3d86ebcde811e",
+    "layer1_04_airline_booking\\advanced_json_cards\\judge.json": "c73b83e7219f9b17552aa743d182b6b2e632725b23060ec2a0be7096e4ffa9cd",
+    "layer1_04_airline_booking\\advanced_json_cards\\memory.json": "e7085f6f51316ceec5ced7a3ffa5bc31d6919a2fa96a302ee1d5fbbf93a48dcd",
+    "layer1_04_airline_booking\\advanced_json_cards\\writer.json": "3703cb3c10497d55f7465eb0d956c057e278d36c2ab5b0046d969a832c162762",
+    "layer1_04_airline_booking\\enhanced_notes\\writer.json": "1cb613ebb3a75ca556b6500e6ff5b12ebda7ccb5e6529af42f3ef5129eeee754",
+    "layer1_04_airline_booking\\json_cards\\answer.txt": "05cd6948078ce096d3c1129c05ea4a050f01a41e9c0359b334f39af0cc3690f3",
+    "layer1_04_airline_booking\\json_cards\\judge.json": "2943d9b9ae853f5330d7a65b25b52c6c604bd937824b1a26426b1453df35c64c",
+    "layer1_04_airline_booking\\json_cards\\memory.json": "51fa666e424b8eea58385704d15985d723f33d5b4493c59748684d25fe20ab2f",
+    "layer1_04_airline_booking\\json_cards\\writer.json": "8805bec7d00314d1df103da6692f3eb33f0441e7a0dfdf90b80f6d8f65bca128",
+    "layer1_04_airline_booking\\notes\\writer.json": "064656594fb3ffa2e8f510c4241a1af3535d44dccb8c3eabac3fa4072fcf775d",
+    "layer1_05_internet_service\\advanced_json_cards\\answer.txt": "afff75f61d51eab6b14f81d16292d0bb2e5feb6a659c370737d4e7d90a115543",
+    "layer1_05_internet_service\\advanced_json_cards\\judge.json": "89febd72a6276fd89ec0f4eecf8cab84c564880fdaae11eefd4f8317fa12d98f",
+    "layer1_05_internet_service\\advanced_json_cards\\memory.json": "b5fda6fb5ad13bfea1f6ac4255ada1372c9e6f552b13b697c5d0499699845086",
+    "layer1_05_internet_service\\advanced_json_cards\\writer.json": "1c741c0d096d4c78a868108cd073728012ab9774efaa34437bd0955dc0d5249f",
+    "layer1_05_internet_service\\enhanced_notes\\writer.json": "15b55f785a514fcdfd8ed168fbcff02cf8b4e029b47caefd695b9a4fa1b78fef",
+    "layer1_05_internet_service\\json_cards\\answer.txt": "7ab1c4b3e83db50d4481634c53c1820ad0ac69a7d4d0526a4017439643021377",
+    "layer1_05_internet_service\\json_cards\\judge.json": "9dcba783c3cb74afad2b40daac99c818007a912a1b07f3d0f11d61f086c5cff6",
+    "layer1_05_internet_service\\json_cards\\memory.json": "f4315442b7591c47ba773754ee15ccb3c0340d269d9183ef77ed2ef2c799d50b",
+    "layer1_05_internet_service\\json_cards\\writer.json": "ce949bcdae11413c951e89b75ad276c6161a3fbfaad2397041d54f3d0152efb1",
+    "layer1_05_internet_service\\notes\\writer.json": "a94f0c88b49ac43b7270b39142f942dca001e8612fbde002dc3a87b337010e91",
+    "layer1_06_credit_card_app\\advanced_json_cards\\answer.txt": "81a40cc3babb8dfe65d6190fbf4aa2cf32cff7495f4084b872dcf28afc2065ad",
+    "layer1_06_credit_card_app\\advanced_json_cards\\judge.json": "242c949465033b09c9da509adb6f3da705f1b46b5fdcca4993e66e2aaaf5b4c5",
+    "layer1_06_credit_card_app\\advanced_json_cards\\memory.json": "55cc2f1a2abb9fe2f1756ad381099f52cfd10eedf3cd9805c3d9c6570dd6a7d5",
+    "layer1_06_credit_card_app\\advanced_json_cards\\writer.json": "74db342e1e43038f7fa3d9b563c24409109987eec6691ee917d720532dfec44d",
+    "layer1_06_credit_card_app\\enhanced_notes\\writer.json": "5c7bf493999e91bb4b18c943db71bd1a96b03bcb51f59ab44b71e14834f09e66",
+    "layer1_06_credit_card_app\\json_cards\\answer.txt": "d19d31bf2c8e1d771a4c5412fdccd93304e40ffad746523765102213f686e5d1",
+    "layer1_06_credit_card_app\\json_cards\\judge.json": "05081800a50eb51fca94e70a7399530d3771d449004542ec5c8de49546b8ef87",
+    "layer1_06_credit_card_app\\json_cards\\memory.json": "60a5fc6bcf74742460404d021f68e6541ffcc0dcc117fa8f47200e2fe8085bbd",
+    "layer1_06_credit_card_app\\json_cards\\writer.json": "7d4877c466ac9a502da4b38f0c1151c121eb0ad763d119e67f7eb9c0333f310c",
+    "layer1_06_credit_card_app\\notes\\writer.json": "5e5a88c0e497b32a4a92ac563c39f32e4c8340a7bbf820ae0c981848eb84af75",
+    "layer1_07_car_rental\\advanced_json_cards\\answer.txt": "66f5ebfebcb2cab4ab414384df701b5f83008331a84e08ab4fcca347cd8e597c",
+    "layer1_07_car_rental\\advanced_json_cards\\judge.json": "b03e7db8801981a40a36f0190b126f47997224aff2eb505acc8579b792b0c6c3",
+    "layer1_07_car_rental\\advanced_json_cards\\memory.json": "a8446bd0210622d89210c365fdf719ef7527c4b5a5402d69cc4cdce601059453",
+    "layer1_07_car_rental\\advanced_json_cards\\writer.json": "9f158427537d80e87d1e33fceeedec68119b3009c697bb568ac37466b6a1c2f0",
+    "layer1_07_car_rental\\enhanced_notes\\writer.json": "7b8ac90c943d69ef56344f92d7b6ed2f2e390546f3a803030915964a8a01bef4",
+    "layer1_07_car_rental\\json_cards\\answer.txt": "b0418e554a21b4768ef68c27b8fb1eb5ffce5e1adc765939d19e1b7a42b58336",
+    "layer1_07_car_rental\\json_cards\\judge.json": "ee6078878aba2e966e3261334236300ca669a81ee01db49b1a84afa7c89df0be",
+    "layer1_07_car_rental\\json_cards\\memory.json": "f0855c98fc3af28c0110d9678c7b5502db6db3046d805d156cefae8b3502ce9d",
+    "layer1_07_car_rental\\json_cards\\writer.json": "ec182638a922b6ecba361a856cd13f21ac6f7eb865e60b0e9e0ea6a0580032bb",
+    "layer1_07_car_rental\\notes\\writer.json": "9a368e9f97936bb1f6d167dbe8aa72a44325dde814179e978533b2b54cc07ffe",
+    "layer1_08_hotel_reservation\\advanced_json_cards\\answer.txt": "1f45dea316c5c6f6ef41fba84bd3179d18dbdb0e052d8f291917030b76958bde",
+    "layer1_08_hotel_reservation\\advanced_json_cards\\judge.json": "dd33c54b1a3008f45ec0ae35b397019f12c1dceca150f52d2b349deb86a46e8e",
+    "layer1_08_hotel_reservation\\advanced_json_cards\\memory.json": "1d60ed3f72b862172c69a9aebdd37f93de1ae7b645dc7d8e12248d8a0a688b70",
+    "layer1_08_hotel_reservation\\advanced_json_cards\\writer.json": "230793d85da51f8f4c0ad1bd33a1da9ab6b2f1a9f03681311665843c60251799",
+    "layer1_08_hotel_reservation\\enhanced_notes\\writer.json": "5d5c7e79b8020bac4d030c1ecdb54e9c386435e23c54c29d6d34ebd96570be1a",
+    "layer1_08_hotel_reservation\\json_cards\\answer.txt": "524f5c566515ce5efde6d93dd3360f16d1923cfb961a44e0b909d9c5636fd377",
+    "layer1_08_hotel_reservation\\json_cards\\judge.json": "1a392930069c97b6b99d19d58f1446d57952384733d2d4888531d7d7467091ee",
+    "layer1_08_hotel_reservation\\json_cards\\memory.json": "bbba62b897e5a67d5b5a3395688c0781b699ce683b8a2eaf92e27ce67b984a0d",
+    "layer1_08_hotel_reservation\\json_cards\\writer.json": "18d97f2ce94b78766bd2140a955585d11668dd5a2d5351a979774e81068c4af5",
+    "layer1_08_hotel_reservation\\notes\\writer.json": "9688b44b5a3365c0c745c41363be826cb5b89921073677b9c42e76f029a85830",
+    "layer1_09_home_security\\advanced_json_cards\\answer.txt": "fc94dab2da7c1ea6042b9c7b5d49d1eb3aa8e3ac5fb6b79d59737d8c6805f097",
+    "layer1_09_home_security\\advanced_json_cards\\judge.json": "6f5fb1eba3bbb5106fe2c1f40aa634a95517335df7a72119a5286ef1bd104985",
+    "layer1_09_home_security\\advanced_json_cards\\memory.json": "e151581405ca466782eed98e6c6ce98145313aaa4f0ff3d08a4d0e070a5382bb",
+    "layer1_09_home_security\\advanced_json_cards\\writer.json": "db0c6135561fa11f200b0cc1879eb1d8f49eb89d2388cf7774c08f37b796964c",
+    "layer1_09_home_security\\enhanced_notes\\writer.json": "7d2a59d6652873819b0b1e0db38d52967f5eb51618b31baa0c81cc66f9abcbd5",
+    "layer1_09_home_security\\json_cards\\answer.txt": "eb037dd9dfd256c4a260d7c40878f23f57f6dd93b34c53008ee23433e7ab952c",
+    "layer1_09_home_security\\json_cards\\judge.json": "cf0c41b857d7e17611d5ae63ad1218f403cd58e3038733f29371c69a9a8b74da",
+    "layer1_09_home_security\\json_cards\\memory.json": "6ac15f5c7da9fde14e248147bca60fa3eb963ff54d5488062369b445e8321b8b",
+    "layer1_09_home_security\\json_cards\\writer.json": "a5abbe30dce81247dca09c3adc6c462aa2e4a70d800d07f95b031ba00f345e08",
+    "layer1_09_home_security\\notes\\writer.json": "33bbd1bb3a42e16198d04c55be544beacbbd16a2105a6e99595d0ae0ed95591b",
+    "layer1_10_pharmacy_transfer\\advanced_json_cards\\writer.json": "dc5ef1f6b4ba1b1d39d43fe9f3127f36ef0d4a8d1c45b4a60210c81e52b96ea0",
+    "layer1_10_pharmacy_transfer\\enhanced_notes\\writer.json": "30a94b8c24b370f3ef544c2755d382caff0dbf5dca358708080b7b36f48cd0c0",
+    "layer1_10_pharmacy_transfer\\json_cards\\answer.txt": "2c7bdb221203906c5fb9d2b3e179a7c5a71de11bc92ae350b41a68463f1aeef5",
+    "layer1_10_pharmacy_transfer\\json_cards\\judge.json": "f43a95f9abb2e5f075728c6eb31e7ed37c12013f1fd8f2bfefe1db4173ff2434",
+    "layer1_10_pharmacy_transfer\\json_cards\\memory.json": "c10cc574e32d43d5d724cd9edf63036ef85d1c9ab129ef4d2a7312b381dfaba9",
+    "layer1_10_pharmacy_transfer\\json_cards\\writer.json": "311b83c5c81ebb76d6f684f86954d65d1cf5fddac1eb6aa67318765e734edef9",
+    "layer1_10_pharmacy_transfer\\notes\\writer.json": "41943b93b1075784be5ce063d58cd573e9a3e7b0264d9d371708fa1ce8b05f30",
+    "layer1_11_mortgage_application\\enhanced_notes\\writer.json": "2b3a89ea6d15577bf8a8cfb841860bab853800681f2fc982a182dcb476d0fb31",
+    "layer1_11_mortgage_application\\notes\\writer.json": "340a62e1f5e828cdd23a9d0e974320a147e8fe3e2c017f1dda6bc37de6a3a8bb",
+    "layer2_01_multiple_vehicles\\advanced_json_cards\\answer.txt": "fa95806f0eabae3b2e47842c4ddab412c371c6c9cd37bded4be15636673ddcb8",
+    "layer2_01_multiple_vehicles\\advanced_json_cards\\judge.json": "4ada1d196f5483110925d472108ef8b6e721f480d4869e4e6f8d10dfcb266563",
+    "layer2_01_multiple_vehicles\\advanced_json_cards\\memory.json": "1a5081ad9ac9d42a7d550c853d084b00d067749f8d25aea4f27db5837a581b2d",
+    "layer2_01_multiple_vehicles\\advanced_json_cards\\writer.json": "b325853b1791f8780efcce742ebdd6c1e02612080c8e73134bfd1d631010d632",
+    "layer2_01_multiple_vehicles\\enhanced_notes\\writer.json": "8a3a11c484df9ce86a12c15eafb75332cbd557862290cd779d2806d4e98add25",
+    "layer2_01_multiple_vehicles\\json_cards\\writer.json": "e5e922f5cda53b2ebc1430bca7774c2e0cdf269646a6e510a385837512016919",
+    "layer2_01_multiple_vehicles\\notes\\writer.json": "14c37232fc440ecc753a6ecdadb651585dcf5ac7fb0ab2c7473325ed46ff7981",
+    "layer3_01_travel_coordination\\advanced_json_cards\\writer.json": "8bfb689645fd38a037b2e882e50b887bf9e803bba349c648c93692771a230a55",
+    "layer3_01_travel_coordination\\enhanced_notes\\writer.json": "0e0ae61f9a74f2fcd454e6c981cb1e7cbba5eb5c74a76aeba7ac6701268d86d5",
+    "layer3_01_travel_coordination\\json_cards\\writer.json": "5dfc52f49093e3e21539068d25b563683050dccada314e3b1af49b1b2f3e8d01",
+    "layer3_01_travel_coordination\\notes\\writer.json": "80018c71cff0210d49a65226e631dd81b0e76ea4717df85c849ea2720be9db83"
+  },
+  "assistant_inference_requests": 0,
+  "next_step": "No more writer or judge retries; write final 50-scope report and proceed to 3-3 log sanitization"
+}

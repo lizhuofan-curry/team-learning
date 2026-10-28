@@ -1,0 +1,68 @@
+{
+  "scope": "Offline variant checks only, no real model output",
+  "checks": {
+    "only_password_expression_and_sample_id_change": true,
+    "only_user_prompt_text_changed": true,
+    "offline_rule_three_of_four_debug_preserved": true,
+    "changed_base_source_rejected": true,
+    "other_fixture_changes_rejected": true,
+    "preview_no_network_no_results": true,
+    "mock_one_call_provenance_and_complete_artifacts": true,
+    "truncation_retained_without_retry": true,
+    "baseline_source_and_record_unchanged": true
+  },
+  "passed": 9,
+  "real_model_requests": 0,
+  "real_network_requests": 0,
+  "temporary_mock_records_removed": true,
+  "wrapper_sha256": "c35264df221a2c798b254b50485cb64f284cdfa7c27ca441b92991ee405009b1",
+  "frozen_base_sha256": "2ac5dbbfe48098f00d7bd4dd49dec29beaa6ecdc35d43903cd1be1f1237fc8d7",
+  "actual_offline_regex_coverage": {
+    "annotated_sensitive_occurrences": 4,
+    "fully_redacted": 3,
+    "missed_or_partial": 1,
+    "extra_spans_outside_annotations": [],
+    "per_sensitive_value": [
+      {
+        "type": "ssn",
+        "value": "123-45-6789",
+        "start": 98,
+        "end": 109,
+        "fully_redacted": true,
+        "partly_redacted": false
+      },
+      {
+        "type": "credit_card",
+        "value": "4111 1111 1111 1111",
+        "start": 122,
+        "end": 141,
+        "fully_redacted": true,
+        "partly_redacted": false
+      },
+      {
+        "type": "password",
+        "value": "demo_pass_42",
+        "start": 159,
+        "end": 171,
+        "fully_redacted": true,
+        "partly_redacted": false
+      },
+      {
+        "type": "medical_diagnosis",
+        "value": "type 2 diabetes",
+        "start": 195,
+        "end": 210,
+        "fully_redacted": false,
+        "partly_redacted": false
+      }
+    ],
+    "preserved_debug_values": {
+      "request_id=demo-001": true,
+      "stage=payment_retry": true,
+      "status=failed": true,
+      "HTTP 503": true
+    },
+    "limits": "仅本条人工标注的敏感值覆盖及调试字段检查，不是整体PII召回率、类别准确率或真实日志安全保证"
+  },
+  "mock_full_llm_coverage_is_not_live_result": true
+}
