@@ -26,7 +26,7 @@ git config user.email
 
 只有网页或远端地址时，先读取可访问的仓库文件；需要本地执行再让成员选定克隆位置。无 GitHub 写入权限时引导成员接受已有邀请或联系所有者，不能共用别人的账号。
 
-**本步结果：**明确本次目标、实际材料/PR、可用目录和当前阶段。成员身份或材料缺失时标为待补，不编造。
+**本步结果**：明确本次目标、实际材料/PR、可用目录和当前阶段。成员身份或材料缺失时标为待补，不编造。
 
 ### 第二步：选择路线，只读本次需要的技能
 
@@ -46,7 +46,7 @@ git config user.email
 
 先查本任务是否已有分支或开放 PR，有则核对最新提交并继续使用。没有时，在工作区及主线状态核对清楚后从更新后的 main 新建任务分支；分支名使用本人的实际账号与任务，不直接执行示例占位值。不把新资料直接推到 main，不强推或覆盖队友工作。
 
-**本步结果：**明确要修改的路径、作者归属、任务分支，以及现有或待创建的 PR。
+**本步结果**：明确要修改的路径、作者归属、任务分支，以及现有或待创建的 PR。
 
 ### 第四步：整理一份可核对的真实材料
 
@@ -54,7 +54,7 @@ git config user.email
 
 更新所属目录 README，必要时更新根资源索引；课程认领经本人真实确认后更新分工表。移动或重命名时更新引用，附件随正文保存，用相对路径。不把个人收件箱、未确认草稿、凭据、运行环境或大量无关文件带入；共享范围按仓库实际可见性核对。
 
-**本步结果：**材料本体与证据能被找到，入口能说明其用途，未确认部分清楚可见。缺少正文或附件时保留缺口，不补造实验、心得或同伴反馈。
+**本步结果**：材料本体与证据能被找到，入口能说明其用途，未确认部分清楚可见。缺少正文或附件时保留缺口，不补造实验、心得或同伴反馈。
 
 ### 第五步：实际检查，再整理差异
 
@@ -69,7 +69,7 @@ python3 scripts/check_docs.py .
 
 查看 `git diff` 和 `git status`，只暂存本次指定文件，确认没有夹带队友改动、个人配置或无关内容。
 
-**本步结果：**列出新增/修改/移动文件、检查命令与实际结果，以及仍待本人或同伴核对的部分。
+**本步结果**：列出新增/修改/移动文件、检查命令与实际结果，以及仍待本人或同伴核对的部分。
 
 ### 第六步：按授权提交，并把下一步交接清楚
 
@@ -216,6 +216,6 @@ PR 中先看本次来源和验证说明，再在 Files changed 查看改动。�
 
 ## 方法来源
 
-本 Skill 为三人私有团队重新编写，流程参考 [HENU-Final-Review](https://github.com/jry21223/HENU-Final-Review) 及其 [Agent工作说明](https://github.com/jry21223/HENU-Final-Review/blob/main/skills/henu-public-materials/SKILL.md)。参考仓库注明其公开资料整理与 PR 模板来源为 [final-review-template-kit](https://github.com/jry21223/final-review-template-kit)；本仓库没有复制其脚本或整套索引。
+本 Skill 为本三人学习团队重新编写，流程参考 [HENU-Final-Review](https://github.com/jry21223/HENU-Final-Review) 及其 [Agent工作说明](https://github.com/jry21223/HENU-Final-Review/blob/main/skills/henu-public-materials/SKILL.md)。参考仓库注明其公开资料整理与 PR 模板来源为 [final-review-template-kit](https://github.com/jry21223/final-review-template-kit)；本仓库没有复制其脚本或整套索引。
 
 Codex 仓库技能路径和调用方式参照[官方 OpenAI 文档](https://learn.chatgpt.com/docs/build-skills)。
