@@ -28,7 +28,7 @@ class CheckLayoutTests(unittest.TestCase):
     def test_known_layout_and_technical_code_names_pass(self):
         for name in ['README.md', '.github/workflows/check-docs.yml',
                      '.agents/skills/team-learning-materials/SKILL.md',
-                     '实验资料/AgentBook/README.md', '实验资料/AgentBook/第04章/代码/main.py',
+                     '实验记录/AgentBook/README.md', '实验记录/AgentBook/第04章/代码/main.py',
                      '课程资料/数据结构/README.md', '课程资料/数据结构/课件/线性表.pdf',
                      '共同知识/Agent基础/README.md', '共同知识/Agent基础/ReAct.md',
                      '周报/李卓凡/李卓凡2026-10-19_2026-10-25_周报.md']:
@@ -44,34 +44,34 @@ class CheckLayoutTests(unittest.TestCase):
         self.assertTrue(any('根目录' in item for item in self.issues()))
 
     def test_members_can_store_different_records_for_same_experiment(self):
-        self.write('实验资料/AgentBook/README.md')
+        self.write('实验记录/AgentBook/README.md')
         for member in ['lizhuofan-curry', 'hhbb56', 'wbkzhens233']:
-            base=f'实验资料/AgentBook/第01章/1-1/{member}'
+            base=f'实验记录/AgentBook/第01章/1-1/{member}'
             self.write(f'{base}/1-1_{member}_实验记录.md')
             self.write(f'{base}/运行结果/run-1/record.json')
             self.write(f'{base}/我的代码/main.py')
-        self.write('实验资料/AgentBook/第01章/1-1/README.md')
+        self.write('实验记录/AgentBook/第01章/1-1/README.md')
         self.assertEqual([], self.issues())
 
     def test_unnamespaced_experiment_record_or_attachment_is_rejected(self):
-        self.write('实验资料/AgentBook/README.md')
-        self.write('实验资料/AgentBook/第01章/1-1/实验记录.md')
-        self.write('实验资料/AgentBook/第01章/1-1/截图.png')
+        self.write('实验记录/AgentBook/README.md')
+        self.write('实验记录/AgentBook/第01章/1-1/实验记录.md')
+        self.write('实验记录/AgentBook/第01章/1-1/截图.png')
         self.assertEqual(2, len([x for x in self.issues() if '成员账号目录' in x]))
 
     def test_record_filename_matches_member_and_experiment(self):
-        self.write('实验资料/AgentBook/README.md')
-        self.write('实验资料/AgentBook/第01章/1-1/hhbb56/1-1_lizhuofan-curry_实验记录.md')
+        self.write('实验记录/AgentBook/README.md')
+        self.write('实验记录/AgentBook/第01章/1-1/hhbb56/1-1_lizhuofan-curry_实验记录.md')
         self.assertTrue(any('应命名为1-1_hhbb56_实验记录.md' in x for x in self.issues()))
 
     def test_experiment_chapter_mismatch_is_rejected(self):
-        self.write('实验资料/AgentBook/README.md')
-        self.write('实验资料/AgentBook/第02章/1-1/README.md')
+        self.write('实验记录/AgentBook/README.md')
+        self.write('实验记录/AgentBook/第02章/1-1/README.md')
         self.assertTrue(any('章节与实验编号不一致' in x for x in self.issues()))
 
     def test_numbered_experiment_cannot_bypass_rule_with_dotted_directory(self):
-        self.write('实验资料/AgentBook/README.md')
-        self.write('实验资料/AgentBook/第一章/1.1/实验记录.md')
+        self.write('实验记录/AgentBook/README.md')
+        self.write('实验记录/AgentBook/第一章/1.1/实验记录.md')
         self.assertTrue(any('统一使用第NN章' in x for x in self.issues()))
 
     def test_root_loose_files_and_unknown_directory_fail(self):

@@ -18,7 +18,7 @@ ROOT_FILES = {
 }
 TECH_DIRS = {'.github', '.agents', 'scripts', 'tests'}
 GUIDE_DIRS = {'协作指南'}
-TOPIC_DIRS = {'课程资料', '实验资料', '共同知识'}
+TOPIC_DIRS = {'课程资料', '实验记录', '共同知识'}
 LEARNING_DIRS = TOPIC_DIRS | {'周报'}
 FORBIDDEN = re.compile(r'[<>:"\\|?*]|[\x00-\x1f]')
 WINDOWS_RESERVED = re.compile(
@@ -57,7 +57,7 @@ def check_layout(root: Path) -> tuple[list[str], int]:
                 topics.add('/'.join(parts[:2]))
         # Numbered team experiments share one experiment index, while each
         # member owns a separate namespace for records, code and evidence.
-        if parts[0] == '实验资料' and len(parts) >= 5:
+        if parts[0] == '实验记录' and len(parts) >= 5:
             chapter = CHAPTER.fullmatch(parts[2])
             experiment = EXPERIMENT.fullmatch(parts[3])
             numbered = re.match(r'^[0-9]+[.-][0-9]+', parts[3])
@@ -68,7 +68,7 @@ def check_layout(root: Path) -> tuple[list[str], int]:
                     issues.add(f'{path}: 章节与实验编号不一致')
                 if len(parts) == 5:
                     if parts[4] not in {'README.md', '对比分析.md'}:
-                        issues.add(f'{path}: 个人实验资料请放在实验编号下的成员账号目录，避免覆盖同伴')
+                        issues.add(f'{path}: 个人实验记录请放在实验编号下的成员账号目录，避免覆盖同伴')
                 elif not MEMBER.fullmatch(parts[4]) or '--' in parts[4]:
                     issues.add(f'{path}: 成员目录请使用小写GitHub账号，而非姓名、空格或临时名称')
                 elif parts[-1].endswith('实验记录.md') and len(parts) == 6:
