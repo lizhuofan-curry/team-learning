@@ -13,6 +13,10 @@ description: 通过本地或云端Hermes收集微信学习素材，由Codex按�
 
 日常运行：读取用户选定工作流根目录的`config.local.json`。每位成员使用自己选定的个人工作流根目录。可执行脚本在本技能的`scripts/learning_flow.py`，使用Python 3.9及以上，支持Windows/macOS/Linux路径。
 
+已配置`collaboration.local.json`时，按[双向协作](references/collaboration.md)先同步并读取与本任务有关的Hermes未读意见，实际读过才回执；完成本次学习/周报整理后发布有来源的进展，避免把同一素材和协作意见重复计入成果。近实时调度只传文件，不自动唤醒模型或重新生成周报；周报送审成功后再回传精确版本。
+
+本人希望自然学习对话自动入库、无需每次说“记录学习”时，按[自动采集](references/automatic-capture.md)核对并部署当前回合观察器，分别验收规则测试、真实Hermes回调和真人微信。已有自动采集状态时结合它说明覆盖范围，不把所有微信闲聊都纳入周报。
+
 详细命令与审核规则见[日常运行](references/operations.md)。Hermes侧技能源在[采集技能模板](assets/hermes-skill/capture-skill.md)，通过`scripts/install_hermes.py`安装为Hermes中的SKILL.md；模板不作为Codex独立技能发现。脚本及这份技能需要一起安装，不能只复制说明文件。
 
 汇总每天与Codex的学习对话和微信学习计划，或收到语音、视频/文章链接时，阅读[对话与多媒体](references/conversations-and-media.md)。仅从可见消息与实际读取内容抽取，保留来源和日期；计划不算完成，同一事项跨入口不重复统计。

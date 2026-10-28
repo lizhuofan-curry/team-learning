@@ -27,3 +27,9 @@ capture.local.json
 批准记录/
 审核索引/
 运行状态/
+
+# 本人双向协作与自动学习采集的私有运行数据
+collaboration.local*.json
+auto_capture.local*.json
+协作消息/
+自动采集状态/
