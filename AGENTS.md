@@ -10,6 +10,8 @@
 
 新成员没有个人库时，按[个人库与团队接入](.agents/skills/lab-knowledge-loop/references/onboarding.md)引导；Hermes 尚未接入时，按[首次接入](.agents/skills/lab-weekly-flow/references/first-run.md)检查已有环境并逐步配置。各成员维护自己的个人库和工作流目录，团队使用同一远端的各自本地克隆，不另造平行团队仓库。
 
+需要完整操作教程时，按任务查阅[团队使用手册](协作指南/团队知识库完整使用手册.md)或[DeepTutor使用手册](协作指南/DeepTutor完整使用手册.md)，不要一次加载全部说明。
+
 支持项目 Skill 的 Agent 可按各技能的描述选择入口；不支持自动发现时，用户可以明确要求读取上述 SKILL.md。Skill 的存在不代表工具、账号、路径或定时任务已经配置，应以本机实际证据为准。
 
 修改团队文件前读取 [README](README.md)、[协作约定](协作指南/协作约定.md)、[文件组织规范](协作指南/文件组织规范.md)和 [PR 模板](.github/pull_request_template.md)。课程分工与资料入口分别维护在[分工表](分工与课程覆盖.md)与[资源索引](资源索引.md)，不另建冲突状态表。

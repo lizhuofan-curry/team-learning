@@ -6,7 +6,7 @@
 
 | 目录 | 内容 |
 |---|---|
-| [课程资料](课程资料/README.md) | 课件、资料来源、DeepTutor 导入与真实使用；从[计算机网络](课程资料/计算机网络/README.md)开始 |
+| [课程资料](课程资料/README.md) | 各课程的课件、资料来源、DeepTutor导入与真实使用 |
 | [实验资料](实验资料/README.md) | Agent Book 实验代码、运行条件、结果与分析 |
 | [共同知识](共同知识/README.md) | 概念笔记、DeepTutor 源码分析和核对后的讨论结论 |
 | [周报](周报/README.md) | 按成员、周次保存的本人确认原文与附件 |
@@ -19,7 +19,7 @@
 
 | Skill | 用途 |
 |---|---|
-| [lab-knowledge-loop](.agents/skills/lab-knowledge-loop/SKILL.md) | 建立个人 Obsidian 库，整理 DeepTutor 学习证据，吸收团队知识并准备共享 |
+| [lab-knowledge-loop](.agents/skills/lab-knowledge-loop/SKILL.md) | 整理课程、阅读、实验与项目知识，联动个人Obsidian库与团队协作，按需使用DeepTutor |
 | [lab-weekly-flow](.agents/skills/lab-weekly-flow/SKILL.md) | 接入本地或云端 Hermes/微信，整理学习日记与周报，按本人确认的版本归档 |
 | [team-learning-materials](.agents/skills/team-learning-materials/SKILL.md) | 分类、命名、维护索引和链接，检查改动并准备团队 PR |
 
@@ -27,6 +27,8 @@
 请先读本仓库 AGENTS.md，按我的任务选择对应 Skill。
 先检查已有环境和资料，再引导我完成；保留本人原话，说明真实结果与待办。
 ```
+
+[团队完整教程](协作指南/团队知识库完整使用手册.md) · [DeepTutor教程](协作指南/DeepTutor完整使用手册.md)
 
 [完整用法与可复制提示词](协作指南/Skill使用指南.md) · [新成员首次接入](.agents/skills/lab-weekly-flow/references/first-run.md) · [Windows 指南](协作指南/Windows与学习工作流.md)
 
