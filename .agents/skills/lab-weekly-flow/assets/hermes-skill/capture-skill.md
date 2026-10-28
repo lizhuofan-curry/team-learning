@@ -35,6 +35,8 @@ python script --root workflow_root capture --date YYYY-MM-DD --text-file - --cha
 
 用户指定的本机或个人云端可以保存`workflow_root/媒体结果/平台/作品编号/result.json`及对应正文。编号仅使用已核对的字母、数字、短横线和下划线；网页可用规范URL的SHA256作编号。已存在包时核对canonical_url、resource_id、分P、status、content_source、文件相对路径及SHA256；路径必须位于该包目录内。按用户问题实际读取正文区间，再明确仅字幕/ASR、时间范围及未核对画面。`test_only=true`只用于能力测试，不写入学习记录或周报。
 
+`partial_ready`可表示只取得作者文案、平台AI章节要点或有限片段；逐项说明来源与缺失部分，不能将平台AI要点当作字幕，也不能称已读口播全文。
+
 云端受IP或登录限制时，Mac端浏览器/工具可以在本人授权范围内处理后回传文本；Mac不在线则保持待处理。当前学习同步脚本不会自动分发媒体任务，不能宣称已有实时视频队列，也不要向聊天索要Cookie或API Key。原消息和处理结果分开，只有实际读到正文后才另存AI辅助摘要。
 
 ## 查看与确认周报
