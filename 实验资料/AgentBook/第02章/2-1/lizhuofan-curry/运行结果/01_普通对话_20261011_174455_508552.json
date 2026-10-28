@@ -1,0 +1,49 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "你是一个使用中文回答的助手。"
+    },
+    {
+      "role": "user",
+      "content": "你好，请用一句话介绍你自己。"
+    }
+  ],
+  "response": {
+    "id": "chatcmpl-605",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "我是XXX，专注于XXX领域，具备XXX专业能力，致力于为客户提供高效解决方案。",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning": "好的，用户让我用一句话介绍自己。我需要先确保自己能用简洁的中文表达清楚。用户可能在寻找一个简洁而专业的介绍，或者是为了测试我的反应速度。我应该从基本信息开始，比如姓名、职业等，然后用一句话总结，保持信息准确但不冗长。\n\n接下来要检查是否符合中文表达习惯，避免口语化。同时，要确保信息准确，比如公司的名称、职位等，不要有错别字。另外，要让用户感觉信息完整而易懂，可能还需要加入一些积极的词汇，比如“高效团队”或者“专业”，以增强吸引力。\n\n还要考虑用户可能的深层需求，比如他们可能在准备面试或者需要介绍自己的专业，所以保持信息的准确性和简洁性很重要。最后，确认整个句子没有语法错误，并且自然流畅，符合中文的表达方式。\n"
+        }
+      }
+    ],
+    "created": 1791711895,
+    "model": "qwen3:0.6b",
+    "object": "chat.completion",
+    "moderation": null,
+    "service_tier": null,
+    "system_fingerprint": "fp_ollama",
+    "usage": {
+      "completion_tokens": 201,
+      "prompt_tokens": 30,
+      "total_tokens": 231,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cache_write_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  }
+}

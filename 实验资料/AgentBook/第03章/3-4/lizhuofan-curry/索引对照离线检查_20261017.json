@@ -1,0 +1,43 @@
+{
+  "checked_at": "2026-10-17T11:56:42.275086+00:00",
+  "script_sha256": "5d8d7e18f4f1acfee6d43254afee1efb602f3d1a40b382924dde97bd387f880f",
+  "checks": [
+    {
+      "name": "Python源码可编译",
+      "passed": true
+    },
+    {
+      "name": "27份官方源文件和提交哈希一致",
+      "passed": true
+    },
+    {
+      "name": "小型数据生成可复现且已归一化",
+      "passed": true
+    },
+    {
+      "name": "召回指标对部分命中及顺序无关",
+      "passed": true
+    },
+    {
+      "name": "拒绝重复ID掩盖检索失败",
+      "passed": true
+    },
+    {
+      "name": "官方精确排序在六个已知方向上匹配解析答案",
+      "passed": true
+    },
+    {
+      "name": "记录可保留部分完成状态且无残余临时文件",
+      "passed": true
+    },
+    {
+      "name": "缺失原生依赖被明确拦截",
+      "passed": true
+    }
+  ],
+  "passed": 8,
+  "failed": 0,
+  "native_indexes_executed": false,
+  "formal_benchmark_executed": false,
+  "scope": "离线小样本与指标检查；没有运行ANNOY/HNSW，不能作为正式索引成绩"
+}

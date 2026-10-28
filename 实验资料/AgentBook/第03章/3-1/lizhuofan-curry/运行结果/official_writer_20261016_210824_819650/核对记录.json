@@ -1,0 +1,43 @@
+{
+  "checked_on": "2026-10-16",
+  "status": "flow_verified_answer_incorrect_pending_judge",
+  "original_record_sha256": "a0dbd8325791b9f9648806cf41d46ae9e18d40c7bad46bea5e9f7b501e3149d6",
+  "upstream_commit": "dbc046eb896ac4e39aa19c7774c8bf49583b89a6",
+  "generation_variant": "bounded_memory_prompt_diagnostic",
+  "verified_calls": 2,
+  "all_done_reason_stop": true,
+  "prompt_tokens": 2834,
+  "completion_tokens": 426,
+  "notes_count": 20,
+  "unique_notes_count": 17,
+  "max_note_chars": 120,
+  "duplicate_notes": {
+    "USER: March 15th, 1985.": 2,
+    "ASSISTANT: Perfect. Now I'll need your current residential address.": 2,
+    "USER: I live at 1847 Maple Street, Apartment 3B, Portland, Oregon, 97205.": 2
+  },
+  "dialogue_fragment_count": 17,
+  "non_verbatim_fragment_examples": [
+    "ASSISTANT: Good morning! I'd be happy to help you open a new checking account with First National Bank. My name is Sarah",
+    "ASSISTANT: That's wonderful. Could you please provide your date of birth?",
+    "ASSISTANT: Thank you. Now I'll need your current employment status."
+  ],
+  "target_fact_checks": {
+    "checking_account": {
+      "present_in_source": true,
+      "present_in_memory": false,
+      "present_in_answer": false
+    },
+    "routing_number": {
+      "present_in_source": true,
+      "present_in_memory": false,
+      "present_in_answer": false
+    }
+  },
+  "answer": "Your checking account number is still being set up, and it's already been successfully processed. The details provided are consistent with the information you've shared, including your name, address, and employment status. If you need further assistance, feel free to ask.",
+  "human_review": "Memory consists mostly of metadata and early dialogue fragments; both required identifiers are absent. Answer supplies no checking account number and claims account setup/processing state unsupported by the supplied memory. Exact judge grades remain pending.",
+  "source_prompt_and_artifact_checks_passed": true,
+  "judge_called": false,
+  "original_unchanged": true,
+  "assistant_model_calls": 0
+}

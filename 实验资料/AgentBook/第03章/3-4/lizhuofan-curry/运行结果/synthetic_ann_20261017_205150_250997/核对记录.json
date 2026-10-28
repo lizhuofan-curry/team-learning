@@ -1,0 +1,54 @@
+{
+  "checked_at": "2026-10-17T12:53:39.984172+00:00",
+  "status": "synthetic_ann_record_verified",
+  "record_sha256": "fd24130c940381955c9fc7a59ba0ef128480939c0c7eab9f0388410cce677a3a",
+  "sources_arrays_distances_exact_topk_recalls_and_timing_aggregates_verified": true,
+  "per_query_hits_do_not_decrease_ef20_to_200": true,
+  "results": {
+    "exact": {
+      "hits": 1000,
+      "total_slots": 1000,
+      "recall_at_10": 1.0,
+      "average_hits_per_query": 10.0,
+      "perfect_queries": 100,
+      "first_query_hits": 10,
+      "mean_query_ms": 0.2844020003976766,
+      "build_seconds": 0
+    },
+    "annoy": {
+      "hits": 169,
+      "total_slots": 1000,
+      "recall_at_10": 0.169,
+      "average_hits_per_query": 1.69,
+      "perfect_queries": 0,
+      "first_query_hits": 1,
+      "mean_query_ms": 0.06131399961304851,
+      "build_seconds": 0.044979199999943376
+    },
+    "hnsw_ef20": {
+      "hits": 557,
+      "total_slots": 1000,
+      "recall_at_10": 0.557,
+      "average_hits_per_query": 5.57,
+      "perfect_queries": 1,
+      "first_query_hits": 6,
+      "mean_query_ms": 0.06217699978151359,
+      "build_seconds": 0.48407469999801833
+    },
+    "hnsw_ef200": {
+      "hits": 992,
+      "total_slots": 1000,
+      "recall_at_10": 0.992,
+      "average_hits_per_query": 9.92,
+      "perfect_queries": 93,
+      "first_query_hits": 10,
+      "mean_query_ms": 0.2954230009345338,
+      "build_seconds": 0.48407469999801833
+    }
+  },
+  "original_record_unchanged": true,
+  "new_index_builds": 0,
+  "model_requests": 0,
+  "network_requests": 0,
+  "scope": "独立复算保存向量、近邻集合、距离及汇总；不重跑索引，不复测原始耗时，不作语义质量评价"
+}

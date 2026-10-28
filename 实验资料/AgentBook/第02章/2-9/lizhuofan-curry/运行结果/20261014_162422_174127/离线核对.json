@@ -1,0 +1,18 @@
+{
+  "reviewed_date": "2026-10-14",
+  "review_scope": "Offline replay of saved simulated actions; no model request",
+  "task_count": 15,
+  "passed_tasks": 0,
+  "model_requests_including_warmup": 25,
+  "new_simulated_tool_calls": 9,
+  "new_tool_errors": 4,
+  "tasks_without_new_tool_calls": 8,
+  "successful_report_files": 0,
+  "all_initial_and_final_states_match_replay": true,
+  "all_grades_match_replay": true,
+  "official_claims_reproduced": false,
+  "original_artifact_sha256": {
+    "record.json": "5d1d6db96d1870dd6e35fb13b784ca162b252dd9da57cdc99632d4355ff6311a",
+    "对照汇总.md": "f29e2f90bd5d3153b54a9c877eab8a7f50dd5dea81585a8b4f1fea1d0a2a972d"
+  }
+}

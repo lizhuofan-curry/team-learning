@@ -1,0 +1,14 @@
+{
+  "checked_on": "2026-10-15",
+  "status": "offline_checks_passed",
+  "checks": [
+    "original_response_and_prompt_verified_without_mutation",
+    "original_metadata_object_memory_still_rejected",
+    "only_format_field_changes_in_schema_diagnostic",
+    "schema_contains_no_answers_or_nonempty_requirement",
+    "answer_request_unchanged",
+    "schema_variant_record_replay_and_variant_mismatch_rejection",
+    "python_syntax"
+  ],
+  "live_model_calls": 0
+}

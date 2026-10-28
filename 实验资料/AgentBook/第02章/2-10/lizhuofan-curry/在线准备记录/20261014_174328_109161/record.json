@@ -1,0 +1,44 @@
+{
+  "created_at": "2026-10-14T17:43:28.112179+08:00",
+  "provider": "serper",
+  "query": "site:docs.python.org/3.11 ExceptionGroup",
+  "key_present": true,
+  "request_attempts": 1,
+  "model_requests": 0,
+  "status": "results_received",
+  "scope": "搜索接口连通检查；不是自主搜索Agent或六策略成绩",
+  "request": {
+    "endpoint": "https://google.serper.dev/search",
+    "payload": {
+      "q": "site:docs.python.org/3.11 ExceptionGroup",
+      "num": 3
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "searchParameters": {
+      "q": "site:docs.python.org/3.11 ExceptionGroup",
+      "type": "search",
+      "num": 3,
+      "engine": "google"
+    },
+    "organic": [
+      {
+        "title": "Changelog — Python 3.11.17 documentation",
+        "link": "https://docs.python.org/3.11/whatsnew/changelog.html",
+        "snippet": "Do not wrap a single exception raised from a try-except* construct in an ExceptionGroup . Fix bug where an ExceptionGroup subclass can wrap a ...",
+        "date": "Oct 5, 2021",
+        "position": 1
+      }
+    ],
+    "credits": 1
+  },
+  "results": [
+    {
+      "title": "Changelog — Python 3.11.17 documentation",
+      "url": "https://docs.python.org/3.11/whatsnew/changelog.html",
+      "snippet": "Do not wrap a single exception raised from a try-except* construct in an ExceptionGroup . Fix bug where an ExceptionGroup subclass can wrap a ..."
+    }
+  ],
+  "finished_at": "2026-10-14T17:43:30.349177+08:00"
+}

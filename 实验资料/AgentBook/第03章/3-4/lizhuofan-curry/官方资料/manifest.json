@@ -1,0 +1,196 @@
+{
+  "repository": "https://github.com/bojieli/ai-agent-book",
+  "commit": "dbc046eb896ac4e39aa19c7774c8bf49583b89a6",
+  "retrieved_on": "2026-10-17",
+  "files": [
+    {
+      "path": "chapter3/dense-embedding/README.md",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/README.md",
+      "bytes": 16743,
+      "sha256": "e57125a4678cb79b7eac06dea1f433ebf6deaa9f68a0d22936970b34ea5e70f5",
+      "git_blob_sha1": "93a3343c012180426a4dc2b8ab756dc253d5a62c"
+    },
+    {
+      "path": "chapter3/dense-embedding/benchmark.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/benchmark.py",
+      "bytes": 13899,
+      "sha256": "f0f3cc50b08e6d6a5e258fdc552bf87f363c6b310439390975b16cbcf4c0c527",
+      "git_blob_sha1": "0abcfce2d83e0973e6f7a65ac0fcef24fc5a9622"
+    },
+    {
+      "path": "chapter3/dense-embedding/cli.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/cli.py",
+      "bytes": 22866,
+      "sha256": "dd9f739814e1bb30919f0f8437ec78cc620845fdba3b23a597ebb45ead7d9c3a",
+      "git_blob_sha1": "c6e40a1de973a81a814a1df146d0ae8c9ace3c17"
+    },
+    {
+      "path": "chapter3/dense-embedding/config.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/config.py",
+      "bytes": 1646,
+      "sha256": "d55d1695e9d23a55d5cb13a21ca350c5f82cd948861420a5ac4c97f717b0d7f8",
+      "git_blob_sha1": "b68c6cb51dbdaeab83518433f16a5073dc1c36b9"
+    },
+    {
+      "path": "chapter3/dense-embedding/docker_annoy_runner.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/docker_annoy_runner.py",
+      "bytes": 2980,
+      "sha256": "f75ee2f5f81365143a6f8ad68c6706933f8012ca4792a643d8ae79bfc9621c70",
+      "git_blob_sha1": "105a1840d0bccbd5ac3fbbcaf1defeb5777a26b5"
+    },
+    {
+      "path": "chapter3/dense-embedding/document_store.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/document_store.py",
+      "bytes": 5746,
+      "sha256": "3efae14062e86a02c85e29f54334e44544322dcf3c9162c20fde73bd955b1ded",
+      "git_blob_sha1": "165607536870d9450281fdee5b8bb102c6262f5c"
+    },
+    {
+      "path": "chapter3/dense-embedding/embedding_service.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/embedding_service.py",
+      "bytes": 8191,
+      "sha256": "2e7963e62eeb2eef8e979cc52a755dd43f9ef032fafc8a591a89538e7802c6ed",
+      "git_blob_sha1": "38fd2bcabc1a96faeca33823fedb514fab80a15c"
+    },
+    {
+      "path": "chapter3/dense-embedding/indexing.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/indexing.py",
+      "bytes": 14977,
+      "sha256": "80ca520a78f044b367edfe71ff4e4bb22fa80f00d4803831d17b2b8c14ba1f57",
+      "git_blob_sha1": "ecc9e1593acc1a26b1f8096d46b71d160b1c46fe"
+    },
+    {
+      "path": "chapter3/dense-embedding/logger.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/logger.py",
+      "bytes": 6179,
+      "sha256": "955aae85fdd55a07ddfef0f3caf65edac33e481188966f74c6622b7af6b5d411",
+      "git_blob_sha1": "94947979a927ae100160e7fd61f1000c5ee25a2a"
+    },
+    {
+      "path": "chapter3/dense-embedding/main.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/main.py",
+      "bytes": 13327,
+      "sha256": "15eb2e584b09b8b6204f9e8bc5b2828ca6fed5a83f0c2b53a1c658470ac6a358",
+      "git_blob_sha1": "e57f11fa14154b4decf78ff65308e70b8c4ccd27"
+    },
+    {
+      "path": "chapter3/dense-embedding/quick_demo.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/quick_demo.py",
+      "bytes": 3764,
+      "sha256": "ef674c4228add8807ba10665ea28e15675bf9e0a8ef39d07583eec3a13982856",
+      "git_blob_sha1": "cbf7fbcceb1a4e4ba45db91d75b6e6bf187a2996"
+    },
+    {
+      "path": "chapter3/dense-embedding/requirements.txt",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/requirements.txt",
+      "bytes": 361,
+      "sha256": "44bc6eada20222bda149a322c090d725f39a5900ae218f7144eedb41a27de57c",
+      "git_blob_sha1": "87839c6913217d438bef609f0b1df2a1ee93df3e"
+    },
+    {
+      "path": "chapter3/dense-embedding/start_service.sh",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/start_service.sh",
+      "bytes": 976,
+      "sha256": "1eab2a5efb877ea11287971c9f55092f5a930244bdb092938bac9127a5b43ae7",
+      "git_blob_sha1": "3c3a48de71ee8e31f87744284b5a0f1f49aec593"
+    },
+    {
+      "path": "chapter3/dense-embedding/test_client.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/test_client.py",
+      "bytes": 9852,
+      "sha256": "3f72816997dbc243c01d225acd42ac1dd0df0e868ae75eb0d95f8ca336eba08f",
+      "git_blob_sha1": "b08c55417898c718e397852f472a4c1de984dfd6"
+    },
+    {
+      "path": "chapter3/dense-embedding/test_empty_batch_encode.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/test_empty_batch_encode.py",
+      "bytes": 981,
+      "sha256": "bb0b98f00b486813cc26c6a7398c62e896f1fa8a5605786b22d39c83123747ff",
+      "git_blob_sha1": "f3c010dcdd2c4fddb6f8092c3fb9331a92b432e8"
+    },
+    {
+      "path": "chapter3/dense-embedding/validation/latest.json",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/validation/latest.json",
+      "bytes": 2426,
+      "sha256": "95fc2ddc573c23a4a42f8e54f63213dfaffbc7c3422eba070e1f84efd6605652",
+      "git_blob_sha1": "7e5db6024ace96d81b954e73c081a22970e9b2da"
+    },
+    {
+      "path": "chapter3/dense-embedding/validation/runs/20260729T182108Z-3_4-7353a50f/evidence.json",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/validation/runs/20260729T182108Z-3_4-7353a50f/evidence.json",
+      "bytes": 17391,
+      "sha256": "598decd9d5a757f70c27db255e8117e2621aa6799e4bb8a871083c97503d03c8",
+      "git_blob_sha1": "669d818fb55c3e3d07e779218fe6527a8d53b63a"
+    },
+    {
+      "path": "chapter3/dense-embedding/validation/runs/20260729T182108Z-3_4-7353a50f/manifest.json",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/validation/runs/20260729T182108Z-3_4-7353a50f/manifest.json",
+      "bytes": 2161,
+      "sha256": "a8776a9672be0aaf6f6c1c78bf9d5c61da931a7bbd20986ab2b8d35e1fdf4c0e",
+      "git_blob_sha1": "b3760924a25b062b0b54601b467eeff7997d0526"
+    },
+    {
+      "path": "chapter3/dense-embedding/validation/runs/20260729T182108Z-3_4-7353a50f/receipts.json",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/validation/runs/20260729T182108Z-3_4-7353a50f/receipts.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "git_blob_sha1": "fe51488c7066f6687ef680d6bfaa4f7768ef205c"
+    },
+    {
+      "path": "chapter3/dense-embedding/validation/runs/20260729T182754Z-3_4-d21199a0/evidence.json",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/validation/runs/20260729T182754Z-3_4-d21199a0/evidence.json",
+      "bytes": 18676,
+      "sha256": "d04ecc4f2612d3559d402ff7c6d67e2e13cda27eb4f8e63f610e7a10b9052a7e",
+      "git_blob_sha1": "83d0e5427dc011b43c7327e98b34d482e556876c"
+    },
+    {
+      "path": "chapter3/dense-embedding/validation/runs/20260729T182754Z-3_4-d21199a0/manifest.json",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/validation/runs/20260729T182754Z-3_4-d21199a0/manifest.json",
+      "bytes": 2339,
+      "sha256": "8e12511e9c3b20585b4cfd13457a9faf85128449c0a70dd842a9389d841a5554",
+      "git_blob_sha1": "0f7e3387c342e8c6e2bf2d9c50c8ce1d9d52bfa2"
+    },
+    {
+      "path": "chapter3/dense-embedding/validation/runs/20260729T182754Z-3_4-d21199a0/receipts.json",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/validation/runs/20260729T182754Z-3_4-d21199a0/receipts.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "git_blob_sha1": "fe51488c7066f6687ef680d6bfaa4f7768ef205c"
+    },
+    {
+      "path": "chapter3/dense-embedding/validation/runs/20260729T182946Z-3_4-2555ea60/evidence.json",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/validation/runs/20260729T182946Z-3_4-2555ea60/evidence.json",
+      "bytes": 79449,
+      "sha256": "0670be3c6fe6e203dbacc926ac0a4cecc6b4902d49db2bc4205bc0d14d3b171f",
+      "git_blob_sha1": "08c2d1c1316c10fb5fce1869b5b0701148775582"
+    },
+    {
+      "path": "chapter3/dense-embedding/validation/runs/20260729T182946Z-3_4-2555ea60/manifest.json",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/validation/runs/20260729T182946Z-3_4-2555ea60/manifest.json",
+      "bytes": 2337,
+      "sha256": "b992300835bd2cfcd03e820164a8c0972bc2b85e06f587f0602f48cd03d3c06c",
+      "git_blob_sha1": "c77a69dd84168c32bd59ccfd0b5f649985396852"
+    },
+    {
+      "path": "chapter3/dense-embedding/validation/runs/20260729T182946Z-3_4-2555ea60/receipts.json",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/dense-embedding/validation/runs/20260729T182946Z-3_4-2555ea60/receipts.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "git_blob_sha1": "fe51488c7066f6687ef680d6bfaa4f7768ef205c"
+    },
+    {
+      "path": "chapter3/experiment_utils.py",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/experiment_utils.py",
+      "bytes": 7084,
+      "sha256": "736968d4844624b13647de1f907426a7098b5696f7865257c86bab2225cd064b",
+      "git_blob_sha1": "1feced9f9eab1f80a4b86b93b2534442311489e1"
+    },
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/LICENSE",
+      "bytes": 11338,
+      "sha256": "2a9d82c7f37caadf72436764de67e4042942b8dea2ec9456ed5c43daf7eba074",
+      "git_blob_sha1": "bd3e071f150cf46f86c91d3341d36644f16e11cb"
+    }
+  ]
+}

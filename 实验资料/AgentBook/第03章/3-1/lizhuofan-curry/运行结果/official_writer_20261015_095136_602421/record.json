@@ -1,0 +1,113 @@
+{
+  "stage": "official_case_local_memory_and_answer",
+  "status": "incomplete",
+  "created_at": "2026-10-15T09:51:36.604421+08:00",
+  "upstream_commit": "dbc046eb896ac4e39aa19c7774c8bf49583b89a6",
+  "case_source": {
+    "path": "chapter3/user-memory-evaluation/test_cases/layer1/01_bank_account_setup.yaml",
+    "url": "https://raw.githubusercontent.com/bojieli/ai-agent-book/dbc046eb896ac4e39aa19c7774c8bf49583b89a6/chapter3/user-memory-evaluation/test_cases/layer1/01_bank_account_setup.yaml",
+    "bytes": 11396,
+    "sha256": "e9f788fa393a0f07c83f32e90f05d0b2212355ba62e0a5c3288a469b5feb75b6"
+  },
+  "test_id": "layer1_01_bank_account",
+  "category": "layer1",
+  "mode": "notes",
+  "model": "qwen3:0.6b",
+  "calls_expected": 2,
+  "question": "What was my checking account number again? I need it to set up my direct deposit at work.",
+  "memory_states": [],
+  "calls": [
+    {
+      "purpose": "memory_session_1",
+      "request": {
+        "model": "qwen3:0.6b",
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are a long-term memory writer. Select only facts that may help a future assistant, but retain exact values, ownership, event status, dates, provenance, and relationships. Apply updates without losing still-valid facts. Never answer the conversation. Return JSON only as {\"memory\": ...}. Store memory as an array of minimal standalone factual notes. Split a complex statement into atomic facts; keep exact names, identifiers and dates."
+          },
+          {
+            "role": "user",
+            "content": "MEMORY MODE: notes\nSESSION INDEX: 1\n\nCURRENT MEMORY STATE (the only retained information from older sessions):\n[]\n\nNEW SESSION (analyze this session, then replace the memory state):\nconversation_id=bank_setup_001\ntimestamp=2024-11-15 10:30:00\nmetadata={\"business\": \"First National Bank\", \"department\": \"New Accounts\", \"call_duration\": \"47 minutes\"}\nUSER: Hi, I'd like to open a new checking account please.\nASSISTANT: Good morning! I'd be happy to help you open a new checking account with First National Bank. My name is Sarah. Before we begin, may I have your full legal name as it appears on your driver's license?\nUSER: Sure, it's Michael James Robertson.\nASSISTANT: Thank you, Mr. Robertson. And could you please provide your date of birth?\nUSER: March 15th, 1985.\nASSISTANT: Perfect. Now I'll need your current residential address.\nUSER: I live at 1847 Maple Street, Apartment 3B, Portland, Oregon, 97205.\nASSISTANT: Thank you. How long have you been at this address?\nUSER: About two and a half years now.\nASSISTANT: Great. And what's the best phone number to reach you?\nUSER: My cell is 503-555-8924.\nASSISTANT: Excellent. Do you have an email address for account notifications?\nUSER: Yes, it's mrobertson85@email.com\nASSISTANT: Thank you. Now, for our records, what's your current employment status?\nUSER: I'm employed full-time as a software engineer at TechCorp Industries.\nASSISTANT: How long have you been with TechCorp Industries?\nUSER: Coming up on four years this December.\nASSISTANT: That's wonderful. Could you provide your annual income range for our application?\nUSER: I make about $125,000 a year, before taxes.\nASSISTANT: Thank you for that information. Now, I need to verify your identity. Could you provide your Social Security number?\nUSER: Sure, it's 547-82-9163.\nASSISTANT: Thank you. And your driver's license number?\nUSER: It's Oregon license, number D758392.\nASSISTANT: Perfect. Now, which type of checking account were you interested in? We have our Basic Checking with no minimum balance, our Premium Checking with a $2,500 minimum, or our Elite Checking with a $10,000 minimum.\nUSER: What are the benefits of the Premium one?\nASSISTANT: The Premium Checking includes no monthly fees if you maintain the minimum balance, free checks, free wire transfers domestically, and you earn 0.5% APY on your balance.\nUSER: Hmm, actually let me think about it. What about the Elite?\nASSISTANT: The Elite Checking offers everything in Premium plus 1.2% APY, free international wire transfers, a complimentary safe deposit box, and access to our financial advisory services.\nUSER: You know what, let's go with the Premium. I can maintain that $2,500 minimum.\nASSISTANT: Excellent choice. Now, would you like to order checks with your account?\nUSER: Yes, I'll need checks.\nASSISTANT: Would you like the standard design or would you like to choose from our custom designs? Custom designs have a $15 fee.\nUSER: Just the standard is fine.\nASSISTANT: Perfect. We'll send those to your Maple Street address. Now, would you like to set up online banking?\nUSER: Absolutely, yes.\nASSISTANT: Great. You'll need to create a username. What would you like to use?\nUSER: How about MRobertson503?\nASSISTANT: Let me check... Yes, that username is available. You'll create your password when you first log in. Would you also like to enroll in mobile banking?\nUSER: Yes, definitely.\nASSISTANT: Excellent. Now, would you like to add a debit card to this account?\nUSER: Yes, I'll need a debit card.\nASSISTANT: Would you like to set up a custom PIN now or when you receive the card?\nUSER: I'll set it up now. Can I use 4827?\nASSISTANT: Yes, 4827 is set as your PIN. Please remember this number. Now, for overdraft protection, would you like to enroll?\nUSER: What are my options?\nASSISTANT: We can link it to a savings account, a credit card, or you can opt for our standard overdraft coverage which allows transactions to go through for a $35 fee.\nUSER: Actually, let me also open a savings account and link them.\nASSISTANT: Perfect! Our basic savings requires a $100 minimum balance. Is that acceptable?\nUSER: Yes, that works.\nASSISTANT: Great. I'll set that up for you. Now, for your initial deposit to open both accounts, what amount would you like to deposit?\nUSER: I'll start with $5,000 in checking and $500 in savings.\nASSISTANT: Excellent. How would you like to make this initial deposit?\nUSER: I can do an electronic transfer from my current bank, Wells Fargo.\nASSISTANT: Perfect. I'll need your Wells Fargo account number and routing number.\nUSER: The account number is 8847293001 and the routing number is... let me check... 121000248.\nASSISTANT: Thank you. I've initiated that transfer. It should complete within 2-3 business days. Now, would you like to set up any automatic transfers between your checking and savings?\nUSER: Yes, can we do $200 monthly from checking to savings?\nASSISTANT: Certainly. Which day of the month would you prefer?\nUSER: The 15th of each month would be good.\nASSISTANT: Perfect, that's set up. Now, do you have any direct deposits you'd like to set up?\nUSER: Yes, my paycheck from TechCorp.\nASSISTANT: I can provide you with our routing number and your new account number for that. Our routing number is 123006800, and your new checking account number is 4429853327.\nUSER: Let me write that down... 4429853327, right?\nASSISTANT: Correct. And your savings account number is 4429853328.\nUSER: Got it. Oh, I should mention, I travel internationally for work sometimes. Will my debit card work overseas?\nASSISTANT: Yes, your debit card will work internationally. We charge a 3% foreign transaction fee. Would you like to add travel notifications to your profile?\nUSER: Not right now, but good to know.\nASSISTANT: Of course. You can always add them through online banking or by calling us. Now, for security questions for your account, I need to set up three. First, what was the name of your first pet?\nUSER: Buddy. He was a golden retriever.\nASSISTANT: Thank you. Second question: What city were you born in?\nUSER: Denver, Colorado.\nASSISTANT: And third: What was your mother's maiden name?\nUSER: Harrison.\nASSISTANT: Perfect. Now, would you like to receive paper statements or electronic statements?\nUSER: Electronic is fine. Save some trees.\nASSISTANT: Great choice! They'll be sent to mrobertson85@email.com. Is there anything else you'd like to add to your account?\nUSER: Actually, what about a credit card?\nASSISTANT: We have several options. Our CashBack card gives 2% on all purchases, our Travel Rewards card gives 3x points on travel and dining, and our Basic card has no annual fee.\nUSER: What's the annual fee on the CashBack card?\nASSISTANT: The CashBack card has a $95 annual fee, but it's waived for the first year.\nUSER: You know what, I'll think about the credit card and maybe apply later.\nASSISTANT: No problem at all. You can apply anytime through online banking or by calling us. Your debit card will arrive in 7-10 business days at your Maple Street address.\nUSER: Perfect. Oh wait, I forgot to ask - are there any ATM fees?\nASSISTANT: With your Premium Checking, you get unlimited free withdrawals at First National Bank ATMs, and we reimburse up to $15 per month in other bank ATM fees.\nUSER: That's great. And how many First National ATMs are there in Portland?\nASSISTANT: We have 47 ATMs throughout the Portland metro area, plus you can use any AllPoint ATM nationwide for free - that's over 55,000 ATMs.\nUSER: Excellent. I think that covers everything I needed.\nASSISTANT: Wonderful! Just to confirm everything: You've opened a Premium Checking with account number 4429853327 and a Basic Savings with account number 4429853328. Your debit card with PIN 4827 will arrive in 7-10 business days. You've set up a $200 monthly transfer on the 15th, and your online banking username is MRobertson503. Is everything correct?\nUSER: Yes, that all sounds right. Thank you so much for your help, Sarah.\nASSISTANT: You're very welcome, Mr. Robertson! If you have any questions, don't hesitate to call us at 1-800-555-BANK. Welcome to First National Bank!"
+          }
+        ],
+        "stream": false,
+        "think": false,
+        "options": {
+          "temperature": 0,
+          "seed": 37,
+          "num_ctx": 32768,
+          "num_predict": 6000
+        },
+        "format": "json"
+      },
+      "started_at": "2026-10-15T09:51:36.684609+08:00",
+      "ok": true,
+      "http_status": 200,
+      "raw_http_body": "{\"model\":\"qwen3:0.6b\",\"created_at\":\"2026-10-15T01:51:41.9447572Z\",\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"memory\\\": [{\\\"conversation_id\\\": \\\"bank_setup_001\\\", \\\"timestamp\\\": \\\"2024-11-15 10:30:00\\\", \\\"metadata\\\": {\\\"business\\\": \\\"First National Bank\\\", \\\"department\\\": \\\"New Accounts\\\", \\\"call_duration\\\": \\\"47 minutes\\\"}}]}\"},\"done\":true,\"done_reason\":\"stop\",\"total_duration\":5256462700,\"load_duration\":4361422100,\"prompt_eval_count\":2223,\"prompt_eval_cached_count\":0,\"prompt_eval_duration\":429154000,\"eval_count\":68,\"eval_duration\":415480000}",
+      "raw_response": {
+        "model": "qwen3:0.6b",
+        "created_at": "2026-10-15T01:51:41.9447572Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"memory\": [{\"conversation_id\": \"bank_setup_001\", \"timestamp\": \"2024-11-15 10:30:00\", \"metadata\": {\"business\": \"First National Bank\", \"department\": \"New Accounts\", \"call_duration\": \"47 minutes\"}}]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 5256462700,
+        "load_duration": 4361422100,
+        "prompt_eval_count": 2223,
+        "prompt_eval_cached_count": 0,
+        "prompt_eval_duration": 429154000,
+        "eval_count": 68,
+        "eval_duration": 415480000
+      },
+      "content": "{\"memory\": [{\"conversation_id\": \"bank_setup_001\", \"timestamp\": \"2024-11-15 10:30:00\", \"metadata\": {\"business\": \"First National Bank\", \"department\": \"New Accounts\", \"call_duration\": \"47 minutes\"}}]}",
+      "prompt_tokens": 2223,
+      "completion_tokens": 68,
+      "elapsed_seconds": 5.260908799988101
+    }
+  ],
+  "judge_completed": false,
+  "experiment_3_1_completed": false,
+  "script_sha256": "3caecaacbe6f9c54b6f1eb008f58db447c1998fc9f9330e781bbbf4e02acd016",
+  "helper_sha256": "c9b891c5c5cc26b3de3da3d75b97194286b4037ff341515af304d8026b0406b1",
+  "scope": "官方单题与原始提示词，本机Qwen适配；不是官方60题或四格式完整复现",
+  "model_preflight": {
+    "endpoint": "http://127.0.0.1:11434/api/tags",
+    "attempted": true,
+    "http_status": 200,
+    "raw_http_body": "{\"models\":[{\"name\":\"qwen3:0.6b\",\"model\":\"qwen3:0.6b\",\"modified_at\":\"2026-10-11T17:42:30.9086144+08:00\",\"size\":522653767,\"digest\":\"7df6b6e09427a769808717c0a93cadc4ae99ed4eb8bf5ca557c90846becea435\",\"details\":{\"parent_model\":\"\",\"format\":\"gguf\",\"family\":\"qwen3\",\"families\":[\"qwen3\"],\"parameter_size\":\"751.63M\",\"quantization_level\":\"Q4_K_M\",\"context_length\":40960,\"embedding_length\":1024,\"runner\":\"ggml\"},\"capabilities\":[\"completion\",\"tools\",\"thinking\"]}]}"
+  },
+  "model_metadata": {
+    "name": "qwen3:0.6b",
+    "model": "qwen3:0.6b",
+    "modified_at": "2026-10-11T17:42:30.9086144+08:00",
+    "size": 522653767,
+    "digest": "7df6b6e09427a769808717c0a93cadc4ae99ed4eb8bf5ca557c90846becea435",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen3",
+      "families": [
+        "qwen3"
+      ],
+      "parameter_size": "751.63M",
+      "quantization_level": "Q4_K_M",
+      "context_length": 40960,
+      "embedding_length": 1024,
+      "runner": "ggml"
+    },
+    "capabilities": [
+      "completion",
+      "tools",
+      "thinking"
+    ]
+  },
+  "error": {
+    "type": "ValueError",
+    "message": "笔记记忆必须是字符串数组；不代替模型重写格式"
+  },
+  "finished_at": "2026-10-15T09:51:41.949836+08:00",
+  "inference_attempts": 1
+}

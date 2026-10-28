@@ -1,0 +1,13 @@
+{
+  "review_date": "2026-10-15",
+  "original_record_sha256": "764f4344e09e3117837d8edf2716ac4e3228a3f5674c99f379009413282037ef",
+  "three_checks_passed_verified": true,
+  "initial_events_and_final_world_replayed": true,
+  "tool_ids_and_actual_requests_verified": true,
+  "model_requests": 5,
+  "prompt_tokens": 2387,
+  "completion_tokens": 210,
+  "original_record_unchanged": true,
+  "offline_verification_model_search_web_requests": 0,
+  "conclusion": "DeepSeek basic chain works on these three checks. Original Qwen failures remain; not unique attribution to weights vs serving/template; not evidence of status bar effectiveness."
+}

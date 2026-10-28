@@ -1,0 +1,29 @@
+{
+  "checked_on": "2026-10-15",
+  "record_sha256": "efde7e721575f3fa95458f71bdcddb5faefc648ebd6345f52d393cf75aa37619",
+  "status": "original_run_verified_incomplete",
+  "test_id": "layer1_01_bank_account",
+  "requests_verified": 1,
+  "http_status": 200,
+  "done_reason": "stop",
+  "prompt_tokens": 2223,
+  "completion_tokens": 68,
+  "actual_memory": [
+    {
+      "conversation_id": "bank_setup_001",
+      "timestamp": "2024-11-15 10:30:00",
+      "metadata": {
+        "business": "First National Bank",
+        "department": "New Accounts",
+        "call_duration": "47 minutes"
+      }
+    }
+  ],
+  "format_valid_for_notes": false,
+  "answer_generated": false,
+  "judge_called": false,
+  "source_and_official_prompt_verified": true,
+  "finding": "Model returned conversation metadata objects instead of factual strings; no checking account or routing number was retained.",
+  "original_record_unchanged": true,
+  "assistant_model_calls": 0
+}

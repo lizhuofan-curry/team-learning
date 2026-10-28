@@ -1,0 +1,16 @@
+{
+  "record": "record.json",
+  "calls": "calls.json",
+  "measurement_completed": true,
+  "strategy_rows": 6,
+  "actual_calls": 14,
+  "warmup_calls": 1,
+  "compression_calls": 8,
+  "answer_calls": 5,
+  "total_prompt_tokens_including_warmup": 10212,
+  "total_completion_tokens_including_warmup": 1837,
+  "all_recorded_scores_recomputed_match": true,
+  "all_call_usage_totals_match": true,
+  "model_calls_during_audit": 0,
+  "boundary": "No-compression was blocked by the teaching character budget; no server token overflow was observed."
+}

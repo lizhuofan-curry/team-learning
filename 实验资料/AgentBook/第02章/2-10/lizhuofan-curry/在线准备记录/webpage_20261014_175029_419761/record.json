@@ -1,0 +1,34 @@
+{
+  "stage": "official_webpage_snapshot",
+  "status": "webpage_saved",
+  "created_at": "2026-10-14T17:50:29.420763+08:00",
+  "search_requests": 0,
+  "model_requests": 0,
+  "web_request_attempts": 1,
+  "source_url": "https://docs.python.org/3.11/library/exceptions.html#exception-groups",
+  "page_url": "https://docs.python.org/3.11/library/exceptions.html",
+  "source_origin": "assistant_selected_official_documentation",
+  "selection_reason": "02只返回更新日志，助手指定官方定义页作为后续证据；不是搜索返回或模型自主选择。",
+  "scope": "网页快照准备；不是自主研究Agent或六策略成绩",
+  "search_record": "E:\\AI_Agents_Book\\第二章\\2.10上下文压缩策略对比\\在线准备记录\\20261014_174328_109161\\record.json",
+  "search_record_sha256": "0a2dae06ca06675109e26585d5e184de57505a3398602fa85a62d6feb60cfeb7",
+  "search_provider": "serper",
+  "search_query": "site:docs.python.org/3.11 ExceptionGroup",
+  "previous_search_results": [
+    {
+      "title": "Changelog — Python 3.11.17 documentation",
+      "url": "https://docs.python.org/3.11/whatsnew/changelog.html",
+      "snippet": "Do not wrap a single exception raised from a try-except* construct in an ExceptionGroup . Fix bug where an ExceptionGroup subclass can wrap a ..."
+    }
+  ],
+  "http_status": 200,
+  "content_type": "text/html",
+  "raw_html_path": "E:\\AI_Agents_Book\\第二章\\2.10上下文压缩策略对比\\在线准备记录\\webpage_20261014_175029_419761\\python_exceptions.html",
+  "raw_html_sha256": "6ebed3a1dd4f5af2c01c036123c7a37de61ce9689b97c02bfa72e8a23724a318",
+  "downloaded_bytes": 137121,
+  "selected_text_chars": 4443,
+  "text_path": "E:\\AI_Agents_Book\\第二章\\2.10上下文压缩策略对比\\在线准备记录\\webpage_20261014_175029_419761\\ExceptionGroup_官方正文.txt",
+  "evidence_path": "E:\\AI_Agents_Book\\第二章\\2.10上下文压缩策略对比\\在线准备记录\\webpage_20261014_175029_419761\\evidence.json",
+  "text_sha256": "45b7a168e92418a4bfd2ab5b9870d43608cb8d58e33f586d4dc905500dfa9458",
+  "finished_at": "2026-10-14T17:50:30.597046+08:00"
+}

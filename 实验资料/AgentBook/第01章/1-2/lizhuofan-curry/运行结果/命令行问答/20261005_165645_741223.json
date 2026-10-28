@@ -1,0 +1,207 @@
+{
+  "question": "请搜索Python3.11官方文档，用100字以内解释ExceptionGroup，给出1个官方链接。完成一次搜索后，根据已有结果回答；如果证据不足，请明确说明。",
+  "model": "kimi-k3",
+  "base_url": "https://api.moonshot.cn/v1",
+  "status": "answered",
+  "model_turns": 2,
+  "finish_reason": "stop",
+  "answer_complete": true,
+  "answer": "ExceptionGroup 是 Python 3.11 的内置异常容器：把多个相关异常打包成一个组抛出，保留层次，并配合 except* 按异常类型分别捕获处理。  \n官方文档：https://docs.python.org/3.11/library/exceptions.html#ExceptionGroup",
+  "tools": [
+    {
+      "function": {
+        "name": "web_search",
+        "description": "用于信息检索的网络搜索",
+        "parameters": {
+          "properties": {
+            "classes": {
+              "description": "要关注的搜索领域。如果未指定，则默认为 'all'。",
+              "items": {
+                "enum": [
+                  "all",
+                  "academic",
+                  "social",
+                  "library",
+                  "finance",
+                  "code",
+                  "ecommerce",
+                  "medical"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "query": {
+              "description": "要搜索的内容",
+              "type": "string"
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "function"
+    }
+  ],
+  "conversation_history": [
+    {
+      "role": "system",
+      "content": "你是Kimi搜索助手。请使用web_search查询官方资料，再依据搜索结果回答并提供来源链接。"
+    },
+    {
+      "role": "user",
+      "content": "请搜索Python3.11官方文档，用100字以内解释ExceptionGroup，给出1个官方链接。完成一次搜索后，根据已有结果回答；如果证据不足，请明确说明。"
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "web_search_0_14187401_532ae46e",
+          "type": "function",
+          "function": {
+            "name": "web_search",
+            "arguments": "{\"classes\":[\"all\"],\"query\":\"Python 3.11 official docs ExceptionGroup exceptiongroup BaseExceptionGroup\"}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "web_search_0_14187401_532ae46e",
+      "content": "----MOONSHOT ENCRYPTED BEGIN----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----MOONSHOT ENCRYPTED END----"
+    },
+    {
+      "role": "assistant",
+      "content": "ExceptionGroup 是 Python 3.11 的内置异常容器：把多个相关异常打包成一个组抛出，保留层次，并配合 except* 按异常类型分别捕获处理。  \n官方文档：https://docs.python.org/3.11/library/exceptions.html#ExceptionGroup"
+    }
+  ],
+  "trace": [
+    {
+      "iteration": 1,
+      "type": "action",
+      "tool_call_id": "web_search_0_14187401_532ae46e",
+      "tool": "web_search",
+      "raw_arguments": "{\"classes\":[\"all\"],\"query\":\"Python 3.11 official docs ExceptionGroup exceptiongroup BaseExceptionGroup\"}"
+    },
+    {
+      "iteration": 1,
+      "type": "observation",
+      "tool_call_id": "web_search_0_14187401_532ae46e",
+      "content": "----MOONSHOT ENCRYPTED BEGIN----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----MOONSHOT ENCRYPTED END----"
+    },
+    {
+      "iteration": 2,
+      "type": "answer",
+      "content": "ExceptionGroup 是 Python 3.11 的内置异常容器：把多个相关异常打包成一个组抛出，保留层次，并配合 except* 按异常类型分别捕获处理。  \n官方文档：https://docs.python.org/3.11/library/exceptions.html#ExceptionGroup"
+    }
+  ],
+  "api_turns": [
+    {
+      "kind": "formula_tools",
+      "http_status": 200,
+      "tools": [
+        {
+          "function": {
+            "name": "web_search",
+            "description": "用于信息检索的网络搜索",
+            "parameters": {
+              "properties": {
+                "classes": {
+                  "description": "要关注的搜索领域。如果未指定，则默认为 'all'。",
+                  "items": {
+                    "enum": [
+                      "all",
+                      "academic",
+                      "social",
+                      "library",
+                      "finance",
+                      "code",
+                      "ecommerce",
+                      "medical"
+                    ],
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "query": {
+                  "description": "要搜索的内容",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "query"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    {
+      "kind": "chat_completion",
+      "model": "kimi-k3",
+      "sent_messages": 2,
+      "finish_reason": "tool_calls",
+      "usage": {
+        "completion_tokens": 143,
+        "prompt_tokens": 292,
+        "total_tokens": 435,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 62,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": 256,
+          "cached_tokens": null
+        }
+      }
+    },
+    {
+      "kind": "formula_fiber",
+      "model_turn": 1,
+      "request": {
+        "name": "web_search",
+        "arguments": "{\"classes\":[\"all\"],\"query\":\"Python 3.11 official docs ExceptionGroup exceptiongroup BaseExceptionGroup\"}"
+      },
+      "http_status": 200,
+      "status": "succeeded",
+      "fiber_id": "fiber-fd3penoaqfwi153oxpk1",
+      "output_field": "encrypted_output",
+      "output_length": 8366
+    },
+    {
+      "kind": "chat_completion",
+      "model": "kimi-k3",
+      "sent_messages": 4,
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 1138,
+        "prompt_tokens": 1756,
+        "total_tokens": 2894,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 1065,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": 1280,
+          "cached_tokens": 256
+        },
+        "cached_tokens": 256
+      }
+    }
+  ],
+  "run_options": {
+    "max_steps": 5,
+    "quiet": true
+  }
+}

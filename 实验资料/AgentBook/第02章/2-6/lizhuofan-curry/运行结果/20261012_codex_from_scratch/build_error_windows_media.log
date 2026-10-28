@@ -1,0 +1,5 @@
+Error: ERROR: Unable to read media: "/E:/AI_Agents_Book/%E7%AC%AC%E4%BA%8C%E7%AB%A0/2.6%E8%AE%BA%E6%96%87%E7%94%9F%E6%88%90%E6%BC%94%E7%A4%BA%E6%96%87%E7%A8%BF/%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C/20261012_codex_from_scratch/source_visuals/figure1_architecture.png"
+Error: ENOENT: no such file or directory, open 'E:\E:\AI_Agents_Book\%E7%AC%AC%E4%BA%8C%E7%AB%A0\2.6%E8%AE%BA%E6%96%87%E7%94%9F%E6%88%90%E6%BC%94%E7%A4%BA%E6%96%87%E7%A8%BF\%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C\20261012_codex_from_scratch\source_visuals\figure1_architecture.png'
+    at E:\AI_Agents_Book\第二章\2.6论文生成演示文稿\node_modules\pptxgenjs\dist\pptxgen.cjs.js:4888:27
+    at Generator.next (<anonymous>)
+    at fulfilled (E:\AI_Agents_Book\第二章\2.6论文生成演示文稿\node_modules\pptxgenjs\dist\pptxgen.cjs.js:26:58)

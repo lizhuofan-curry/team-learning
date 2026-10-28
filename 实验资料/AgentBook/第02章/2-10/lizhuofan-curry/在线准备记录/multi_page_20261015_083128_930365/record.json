@@ -1,0 +1,73 @@
+{
+  "stage": "three_real_page_corpus",
+  "status": "corpus_ready",
+  "created_at": "2026-10-15T08:31:28.931892+08:00",
+  "web_get_attempts": 2,
+  "model_requests": 0,
+  "search_requests": 0,
+  "web_events": [
+    {
+      "id": "S2",
+      "page_url": "https://docs.python.org/3.11/tutorial/errors.html",
+      "section_id": "raising-and-handling-multiple-unrelated-exceptions",
+      "status": "received",
+      "http_status": 200,
+      "bytes": 78932,
+      "text_chars": 2613
+    },
+    {
+      "id": "S3",
+      "page_url": "https://docs.python.org/3.11/reference/compound_stmts.html",
+      "section_id": "except-star",
+      "status": "received",
+      "http_status": 200,
+      "bytes": 180889,
+      "text_chars": 2102
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "url": "https://docs.python.org/3.11/library/exceptions.html",
+      "origin": "reused_model_selected_and_read_page",
+      "retrieved_at": "2026-10-14T18:38:38.276252+08:00",
+      "extraction": "exception-groups_section",
+      "raw_html_path": "E:\\AI_Agents_Book\\第二章\\2.10上下文压缩策略对比\\在线准备记录\\multi_page_20261015_083128_930365\\S1.html",
+      "text_path": "E:\\AI_Agents_Book\\第二章\\2.10上下文压缩策略对比\\在线准备记录\\multi_page_20261015_083128_930365\\S1.txt",
+      "raw_html_sha256": "6ebed3a1dd4f5af2c01c036123c7a37de61ce9689b97c02bfa72e8a23724a318",
+      "text_sha256": "45b7a168e92418a4bfd2ab5b9870d43608cb8d58e33f586d4dc905500dfa9458",
+      "text": "Exception groups¶\n\nThe following are used when it is necessary to raise multiple unrelated\nexceptions. They are part of the exception hierarchy so they can be\nhandled with except like all other exceptions. In addition,\nthey are recognised by except*, which matches\ntheir subgroups based on the types of the contained exceptions.\n\nexception ExceptionGroup(msg, excs)¶\n\nexception BaseExceptionGroup(msg, excs)¶\n\nBoth of these exception types wrap the exceptions in the sequence excs.\nThe msg parameter must be a string. The difference between the two\nclasses is that BaseExceptionGroup extends BaseException and\nit can wrap any exception, while ExceptionGroup extends Exception\nand it can only wrap subclasses of Exception. This design is so that\nexcept Exception catches an ExceptionGroup but not\nBaseExceptionGroup.\n\nThe BaseExceptionGroup constructor returns an ExceptionGroup\nrather than a BaseExceptionGroup if all contained exceptions are\nException instances, so it can be used to make the selection\nautomatic. The ExceptionGroup constructor, on the other hand,\nraises a TypeError if any contained exception is not an\nException subclass.\n\nmessage¶\n\nThe msg argument to the constructor. This is a read-only attribute.\n\nexceptions¶\n\nA tuple of the exceptions in the excs sequence given to the\nconstructor. This is a read-only attribute.\n\nsubgroup(condition)¶\n\nReturns an exception group that contains only the exceptions from the\ncurrent group that match condition, or None if the result is empty.\n\nThe condition can be either a function that accepts an exception and returns\ntrue for those that should be in the subgroup, or it can be an exception type\nor a tuple of exception types, which is used to check for a match using the\nsame check that is used in an except clause.\n\nThe nesting structure of the current exception is preserved in the result,\nas are the values of its message,\n__traceback__, __cause__,\n__context__ and\n__notes__ fields.\nEmpty nested groups are omitted from the result.\n\nThe condition is checked for all exceptions in the nested exception group,\nincluding the top-level and any nested exception groups. If the condition is\ntrue for such an exception group, it is included in the result in full.\n\nsplit(condition)¶\n\nLike subgroup(), but returns the pair (match, rest) where match\nis subgroup(condition) and rest is the remaining non-matching\npart.\n\nderive(excs)¶\n\nReturns an exception group with the same message, but which\nwraps the exceptions in excs.\n\nThis method is used by subgroup() and split(). A\nsubclass needs to override it in order to make subgroup()\nand split() return instances of the subclass rather\nthan ExceptionGroup.\n\nsubgroup() and split() copy the\n__traceback__,\n__cause__, __context__ and\n__notes__ fields from\nthe original exception group to the one returned by derive(), so\nthese fields do not need to be updated by derive().\n\n>>> class MyGroup(ExceptionGroup):\n... def derive(self, excs):\n... return MyGroup(self.message, excs)\n...\n>>> e = MyGroup(\"eg\", [ValueError(1), TypeError(2)])\n>>> e.add_note(\"a note\")\n>>> e.__context__ = Exception(\"context\")\n>>> e.__cause__ = Exception(\"cause\")\n>>> try:\n... raise e\n... except Exception as e:\n... exc = e\n...\n>>> match, rest = exc.split(ValueError)\n>>> exc, exc.__context__, exc.__cause__, exc.__notes__\n(MyGroup('eg', [ValueError(1), TypeError(2)]), Exception('context'), Exception('cause'), ['a note'])\n>>> match, match.__context__, match.__cause__, match.__notes__\n(MyGroup('eg', [ValueError(1)]), Exception('context'), Exception('cause'), ['a note'])\n>>> rest, rest.__context__, rest.__cause__, rest.__notes__\n(MyGroup('eg', [TypeError(2)]), Exception('context'), Exception('cause'), ['a note'])\n>>> exc.__traceback__ is match.__traceback__ is rest.__traceback__\nTrue\n\nNote that BaseExceptionGroup defines __new__(), so\nsubclasses that need a different constructor signature need to\noverride that rather than __init__(). For example, the following\ndefines an exception group subclass which accepts an exit_code and\nand constructs the group’s message from it.\n\nclass Errors(ExceptionGroup):\ndef __new__(cls, errors, exit_code):\nself = super().__new__(Errors, f\"exit code: {exit_code}\", errors)\nself.exit_code = exit_code\nreturn self\n\ndef derive(self, excs):\nreturn Errors(excs, self.exit_code)\n\nLike ExceptionGroup, any subclass of BaseExceptionGroup which\nis also a subclass of Exception can only wrap instances of\nException.\n\nNew in version 3.11.",
+      "section_id": "exception-groups",
+      "reused_from": "E:\\AI_Agents_Book\\第二章\\2.10上下文压缩策略对比\\运行结果\\deepseek_online_20261014_183831_601088\\record.json",
+      "original_record_sha256": "7e7e357d2fd5bc3250c4a5db4aa1baf35701aee3bc5b0dfd27e3f3c953b9e9b8"
+    },
+    {
+      "id": "S2",
+      "url": "https://docs.python.org/3.11/tutorial/errors.html#raising-and-handling-multiple-unrelated-exceptions",
+      "page_url": "https://docs.python.org/3.11/tutorial/errors.html",
+      "section_id": "raising-and-handling-multiple-unrelated-exceptions",
+      "origin": "assistant_selected_supplementary_official_section",
+      "retrieved_at": "2026-10-15T08:31:29.781939+08:00",
+      "text": "8.9. Raising and Handling Multiple Unrelated Exceptions¶\n\nThere are situations where it is necessary to report several exceptions that\nhave occurred. This is often the case in concurrency frameworks, when several\ntasks may have failed in parallel, but there are also other use cases where\nit is desirable to continue execution and collect multiple errors rather than\nraise the first exception.\n\nThe builtin ExceptionGroup wraps a list of exception instances so\nthat they can be raised together. It is an exception itself, so it can be\ncaught like any other exception.\n\n>>> def f():\n... excs = [OSError('error 1'), SystemError('error 2')]\n... raise ExceptionGroup('there were problems', excs)\n...\n>>> f()\n+ Exception Group Traceback (most recent call last):\n| File \"<stdin>\", line 1, in <module>\n| File \"<stdin>\", line 3, in f\n| ExceptionGroup: there were problems\n+-+---------------- 1 ----------------\n| OSError: error 1\n+---------------- 2 ----------------\n| SystemError: error 2\n+------------------------------------\n>>> try:\n... f()\n... except Exception as e:\n... print(f'caught {type(e)}: e')\n...\ncaught <class 'ExceptionGroup'>: e\n>>>\n\nBy using except* instead of except, we can selectively\nhandle only the exceptions in the group that match a certain\ntype. In the following example, which shows a nested exception\ngroup, each except* clause extracts from the group exceptions\nof a certain type while letting all other exceptions propagate to\nother clauses and eventually to be reraised.\n\n>>> def f():\n... raise ExceptionGroup(\n... \"group1\",\n... [\n... OSError(1),\n... SystemError(2),\n... ExceptionGroup(\n... \"group2\",\n... [\n... OSError(3),\n... RecursionError(4)\n... ]\n... )\n... ]\n... )\n...\n>>> try:\n... f()\n... except* OSError as e:\n... print(\"There were OSErrors\")\n... except* SystemError as e:\n... print(\"There were SystemErrors\")\n...\nThere were OSErrors\nThere were SystemErrors\n+ Exception Group Traceback (most recent call last):\n| File \"<stdin>\", line 2, in <module>\n| File \"<stdin>\", line 2, in f\n| ExceptionGroup: group1\n+-+---------------- 1 ----------------\n| ExceptionGroup: group2\n+-+---------------- 1 ----------------\n| RecursionError: 4\n+------------------------------------\n>>>\n\nNote that the exceptions nested in an exception group must be instances,\nnot types. This is because in practice the exceptions would typically\nbe ones that have already been raised and caught by the program, along\nthe following pattern:\n\n>>> excs = []\n... for test in tests:\n... try:\n... test.run()\n... except Exception as e:\n... excs.append(e)\n...\n>>> if excs:\n... raise ExceptionGroup(\"Test Failures\", excs)\n...",
+      "raw_html_path": "E:\\AI_Agents_Book\\第二章\\2.10上下文压缩策略对比\\在线准备记录\\multi_page_20261015_083128_930365\\S2.html",
+      "text_path": "E:\\AI_Agents_Book\\第二章\\2.10上下文压缩策略对比\\在线准备记录\\multi_page_20261015_083128_930365\\S2.txt",
+      "raw_html_sha256": "00e1604707c6868fc35e68acefe41c39068c7818de1f0a412f46bf09c21f3188",
+      "text_sha256": "1c298c227c86f434a36008cc899887b5fd0bbf6891166764fe397d5f557cffd5"
+    },
+    {
+      "id": "S3",
+      "url": "https://docs.python.org/3.11/reference/compound_stmts.html#except-star",
+      "page_url": "https://docs.python.org/3.11/reference/compound_stmts.html",
+      "section_id": "except-star",
+      "origin": "assistant_selected_supplementary_official_section",
+      "retrieved_at": "2026-10-15T08:31:30.309107+08:00",
+      "text": "8.4.2. except* clause¶\n\nThe except* clause(s) are used for handling\nExceptionGroups. The exception type for matching is interpreted as in\nthe case of except, but in the case of exception groups we can have\npartial matches when the type matches some of the exceptions in the group.\nThis means that multiple except* clauses can execute,\neach handling part of the exception group.\nEach clause executes at most once and handles an exception group\nof all matching exceptions. Each exception in the group is handled by at most\none except* clause, the first that matches it.\n\n>>> try:\n... raise ExceptionGroup(\"eg\",\n... [ValueError(1), TypeError(2), OSError(3), OSError(4)])\n... except* TypeError as e:\n... print(f'caught {type(e)} with nested {e.exceptions}')\n... except* OSError as e:\n... print(f'caught {type(e)} with nested {e.exceptions}')\n...\ncaught <class 'ExceptionGroup'> with nested (TypeError(2),)\ncaught <class 'ExceptionGroup'> with nested (OSError(3), OSError(4))\n+ Exception Group Traceback (most recent call last):\n| File \"<stdin>\", line 2, in <module>\n| ExceptionGroup: eg\n+-+---------------- 1 ----------------\n| ValueError: 1\n+------------------------------------\n\nAny remaining exceptions that were not handled by any except*\nclause are re-raised at the end, combined into an exception group along with\nall exceptions that were raised from within except* clauses.\n\nFrom version 3.11.4, when the entire ExceptionGroup is handled and\nonly one exception is raised from an except* clause, this\nexception is no longer wrapped to form a new ExceptionGroup.\n\nIf the raised exception is not an exception group and its type matches\none of the except* clauses, it is caught and wrapped by an\nexception group with an empty message string.\n\n>>> try:\n... raise BlockingIOError\n... except* BlockingIOError as e:\n... print(repr(e))\n...\nExceptionGroup('', (BlockingIOError()))\n\nAn except* clause must have a matching type,\nand this type cannot be a subclass of BaseExceptionGroup.\nIt is not possible to mix except and except*\nin the same try.\nbreak, continue and return\ncannot appear in an except* clause.",
+      "raw_html_path": "E:\\AI_Agents_Book\\第二章\\2.10上下文压缩策略对比\\在线准备记录\\multi_page_20261015_083128_930365\\S3.html",
+      "text_path": "E:\\AI_Agents_Book\\第二章\\2.10上下文压缩策略对比\\在线准备记录\\multi_page_20261015_083128_930365\\S3.txt",
+      "raw_html_sha256": "b852c7db76bf1db2fd22d5510ebde6491facfeb2ce9aad0e0bd8ce2f726311d7",
+      "text_sha256": "cac7d1b4da778ae18a3165eb605b05a03e623f716c1e88ae6a7f1b42128b073c"
+    }
+  ],
+  "scope": "S1复用模型实读页；S2/S3助手选定完整章节；固定材料准备，不是三页自主搜索成绩",
+  "total_text_chars": 9158
+}

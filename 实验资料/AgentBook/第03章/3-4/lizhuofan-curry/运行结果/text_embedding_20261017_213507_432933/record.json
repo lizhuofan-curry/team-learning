@@ -1,0 +1,854 @@
+{
+  "stage": "chapter3_real_text_embedding",
+  "status": "text_embedding_eval_saved",
+  "created_at": "2026-10-17T13:35:07.433929+00:00",
+  "script_sha256": "73c31cdb996b2959c844ee94cd1e091f0e8611493a828d36e01023e483a5d186",
+  "helper_script_sha256": "5d8d7e18f4f1acfee6d43254afee1efb602f3d1a40b382924dde97bd387f880f",
+  "upstream_commit": "dbc046eb896ac4e39aa19c7774c8bf49583b89a6",
+  "official_manifest_sha256": "f23735550ef1c67ad81f1c0d0e541446998dc74f277016c8ddea48a6717eb408",
+  "model": {
+    "id": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "manifest_sha256": "21a2e28f0215fb88dd2c170edd4574a1b3fce402edc1620cf9a44ce3bc156f85",
+    "path": "E:\\AI_Agents_Book\\.uv-cache\\huggingface\\local_models\\all-MiniLM-L6-v2_1110a243fdf4",
+    "file_count": 10
+  },
+  "protocol": {
+    "top_k": 5,
+    "dimension": 384,
+    "pooling": "mean",
+    "normalize": true,
+    "device": "cpu",
+    "dtype": "float32",
+    "max_length": 256,
+    "batch_size": 16,
+    "cpu_threads": 4,
+    "annoy_trees": 10,
+    "annoy_search_k": "default=50",
+    "hnsw_M": 16,
+    "hnsw_ef_construction": 100,
+    "hnsw_ef_search": 20,
+    "hnsw_threads": 1,
+    "index_random_seeds": "native defaults, not overridden",
+    "mrr_scope": "official full 12-document ranking; not MRR@5"
+  },
+  "corpus": [
+    {
+      "doc_id": "doc_1",
+      "title": "Python Language",
+      "text": "Python is a high-level programming language known for readability and a simple syntax."
+    },
+    {
+      "doc_id": "doc_2",
+      "title": "JavaScript Runtime",
+      "text": "JavaScript runs in the browser and on servers via Node.js for full-stack web development."
+    },
+    {
+      "doc_id": "doc_3",
+      "title": "Model Distillation",
+      "text": "Model distillation compresses a large teacher model into a smaller student model while preserving accuracy."
+    },
+    {
+      "doc_id": "doc_4",
+      "title": "Knowledge Distillation",
+      "text": "Knowledge distillation transfers knowledge from a big neural network to a compact model for efficient inference."
+    },
+    {
+      "doc_id": "doc_5",
+      "title": "BM25 Ranking",
+      "text": "BM25 is a probabilistic ranking function using term frequency and inverse document frequency."
+    },
+    {
+      "doc_id": "doc_6",
+      "title": "HTTP Errors",
+      "text": "The HTTP 404 error code means the requested resource was not found on the web server."
+    },
+    {
+      "doc_id": "doc_7",
+      "title": "A Playful Kitten",
+      "text": "A cute kitten chased a ball of yarn across the living room floor all afternoon."
+    },
+    {
+      "doc_id": "doc_8",
+      "title": "Silent Hunter",
+      "text": "The feline predator stalked its prey silently through the tall grass at dusk."
+    },
+    {
+      "doc_id": "doc_9",
+      "title": "Hardware Fault",
+      "text": "Error code XK9-2B4-7Q1 indicates a hardware fault in the storage controller board."
+    },
+    {
+      "doc_id": "doc_10",
+      "title": "Transformers",
+      "text": "Transformer models use self-attention to process input sequences in parallel efficiently."
+    },
+    {
+      "doc_id": "doc_11",
+      "title": "Deep Learning",
+      "text": "Deep learning stacks many layers of neurons to extract hierarchical features from raw data."
+    },
+    {
+      "doc_id": "doc_12",
+      "title": "Gradient Descent",
+      "text": "Gradient descent minimizes a loss function by iteratively updating the model parameters."
+    }
+  ],
+  "labels": {
+    "a cat playing": [
+      "doc_7",
+      "doc_8"
+    ],
+    "model distillation": [
+      "doc_3",
+      "doc_4"
+    ],
+    "training neural networks": [
+      "doc_11",
+      "doc_12"
+    ],
+    "self attention in sequence models": [
+      "doc_10"
+    ],
+    "web server resource not found": [
+      "doc_6"
+    ]
+  },
+  "embedding_forward_batches_attempted": 2,
+  "embedding_forward_batches_completed": 2,
+  "generated_text_requests": 0,
+  "cloud_model_requests": 0,
+  "network_requests": 0,
+  "scope": "官方小型英文样例的真实嵌入检索；MiniLM替代路线，不是BGE-M3结果或通用排名",
+  "packages": {
+    "torch": "2.14.1+cpu",
+    "transformers": "4.57.6",
+    "numpy": "2.4.6",
+    "safetensors": "0.8.0",
+    "annoy": "1.17.3",
+    "hnswlib": "0.8.0"
+  },
+  "model_load_seconds": 17.82651500000793,
+  "token_lengths_with_special_tokens": [
+    19,
+    23,
+    22,
+    21,
+    21,
+    19,
+    18,
+    17,
+    25,
+    17,
+    17,
+    19,
+    5,
+    6,
+    5,
+    7,
+    7
+  ],
+  "input_truncated": false,
+  "arrays": {
+    "documents": {
+      "file": "documents.npy",
+      "shape": [
+        12,
+        384
+      ],
+      "sha256": "2325ffd7e54bd376e17312de2aed0fa16a02565ab6fa754075bfcf9e318c634a",
+      "seconds": 0.2513791000092169
+    },
+    "queries": {
+      "file": "queries.npy",
+      "shape": [
+        5,
+        384
+      ],
+      "sha256": "8121a946db9789cb495193445390a6dd0baff11895baf5ee6bf7bf50553c09cb",
+      "seconds": 0.023230899998452514
+    }
+  },
+  "exact": {
+    "queries": [
+      {
+        "query": "a cat playing",
+        "relevant_doc_ids": [
+          "doc_7",
+          "doc_8"
+        ],
+        "metrics": {
+          "recall": 1.0,
+          "precision": 0.4,
+          "rr": 1.0,
+          "hits": [
+            "doc_7",
+            "doc_8"
+          ],
+          "retrieved": [
+            "doc_7",
+            "doc_8",
+            "doc_1",
+            "doc_5",
+            "doc_2"
+          ]
+        },
+        "full_ranking": [
+          {
+            "rank": 1,
+            "doc_id": "doc_7",
+            "title": "A Playful Kitten",
+            "cosine_similarity": 0.5245553255081177
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_8",
+            "title": "Silent Hunter",
+            "cosine_similarity": 0.3960069417953491
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_1",
+            "title": "Python Language",
+            "cosine_similarity": 0.10146980732679367
+          },
+          {
+            "rank": 4,
+            "doc_id": "doc_5",
+            "title": "BM25 Ranking",
+            "cosine_similarity": 0.0741269513964653
+          },
+          {
+            "rank": 5,
+            "doc_id": "doc_2",
+            "title": "JavaScript Runtime",
+            "cosine_similarity": 0.06309950351715088
+          },
+          {
+            "rank": 6,
+            "doc_id": "doc_10",
+            "title": "Transformers",
+            "cosine_similarity": 0.03164348006248474
+          },
+          {
+            "rank": 7,
+            "doc_id": "doc_12",
+            "title": "Gradient Descent",
+            "cosine_similarity": -0.00011610519140958786
+          },
+          {
+            "rank": 8,
+            "doc_id": "doc_11",
+            "title": "Deep Learning",
+            "cosine_similarity": -0.01077711209654808
+          },
+          {
+            "rank": 9,
+            "doc_id": "doc_9",
+            "title": "Hardware Fault",
+            "cosine_similarity": -0.012234818190336227
+          },
+          {
+            "rank": 10,
+            "doc_id": "doc_3",
+            "title": "Model Distillation",
+            "cosine_similarity": -0.04812309890985489
+          },
+          {
+            "rank": 11,
+            "doc_id": "doc_6",
+            "title": "HTTP Errors",
+            "cosine_similarity": -0.06020822748541832
+          },
+          {
+            "rank": 12,
+            "doc_id": "doc_4",
+            "title": "Knowledge Distillation",
+            "cosine_similarity": -0.07162075489759445
+          }
+        ]
+      },
+      {
+        "query": "model distillation",
+        "relevant_doc_ids": [
+          "doc_3",
+          "doc_4"
+        ],
+        "metrics": {
+          "recall": 1.0,
+          "precision": 0.4,
+          "rr": 1.0,
+          "hits": [
+            "doc_3",
+            "doc_4"
+          ],
+          "retrieved": [
+            "doc_3",
+            "doc_4",
+            "doc_12",
+            "doc_10",
+            "doc_11"
+          ]
+        },
+        "full_ranking": [
+          {
+            "rank": 1,
+            "doc_id": "doc_3",
+            "title": "Model Distillation",
+            "cosine_similarity": 0.7351679801940918
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_4",
+            "title": "Knowledge Distillation",
+            "cosine_similarity": 0.5739810466766357
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_12",
+            "title": "Gradient Descent",
+            "cosine_similarity": 0.2571525573730469
+          },
+          {
+            "rank": 4,
+            "doc_id": "doc_10",
+            "title": "Transformers",
+            "cosine_similarity": 0.19407308101654053
+          },
+          {
+            "rank": 5,
+            "doc_id": "doc_11",
+            "title": "Deep Learning",
+            "cosine_similarity": 0.1179194301366806
+          },
+          {
+            "rank": 6,
+            "doc_id": "doc_5",
+            "title": "BM25 Ranking",
+            "cosine_similarity": 0.031401894986629486
+          },
+          {
+            "rank": 7,
+            "doc_id": "doc_6",
+            "title": "HTTP Errors",
+            "cosine_similarity": -0.004206210374832153
+          },
+          {
+            "rank": 8,
+            "doc_id": "doc_9",
+            "title": "Hardware Fault",
+            "cosine_similarity": -0.006347798742353916
+          },
+          {
+            "rank": 9,
+            "doc_id": "doc_2",
+            "title": "JavaScript Runtime",
+            "cosine_similarity": -0.03091968223452568
+          },
+          {
+            "rank": 10,
+            "doc_id": "doc_1",
+            "title": "Python Language",
+            "cosine_similarity": -0.048406634479761124
+          },
+          {
+            "rank": 11,
+            "doc_id": "doc_7",
+            "title": "A Playful Kitten",
+            "cosine_similarity": -0.10827397555112839
+          },
+          {
+            "rank": 12,
+            "doc_id": "doc_8",
+            "title": "Silent Hunter",
+            "cosine_similarity": -0.11066897213459015
+          }
+        ]
+      },
+      {
+        "query": "training neural networks",
+        "relevant_doc_ids": [
+          "doc_11",
+          "doc_12"
+        ],
+        "metrics": {
+          "recall": 1.0,
+          "precision": 0.4,
+          "rr": 1.0,
+          "hits": [
+            "doc_11",
+            "doc_12"
+          ],
+          "retrieved": [
+            "doc_11",
+            "doc_4",
+            "doc_12",
+            "doc_10",
+            "doc_3"
+          ]
+        },
+        "full_ranking": [
+          {
+            "rank": 1,
+            "doc_id": "doc_11",
+            "title": "Deep Learning",
+            "cosine_similarity": 0.4369935989379883
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_4",
+            "title": "Knowledge Distillation",
+            "cosine_similarity": 0.4249446988105774
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_12",
+            "title": "Gradient Descent",
+            "cosine_similarity": 0.3408741056919098
+          },
+          {
+            "rank": 4,
+            "doc_id": "doc_10",
+            "title": "Transformers",
+            "cosine_similarity": 0.319823294878006
+          },
+          {
+            "rank": 5,
+            "doc_id": "doc_3",
+            "title": "Model Distillation",
+            "cosine_similarity": 0.18326857686042786
+          },
+          {
+            "rank": 6,
+            "doc_id": "doc_9",
+            "title": "Hardware Fault",
+            "cosine_similarity": 0.1298811137676239
+          },
+          {
+            "rank": 7,
+            "doc_id": "doc_5",
+            "title": "BM25 Ranking",
+            "cosine_similarity": 0.10784059762954712
+          },
+          {
+            "rank": 8,
+            "doc_id": "doc_2",
+            "title": "JavaScript Runtime",
+            "cosine_similarity": 0.06572317332029343
+          },
+          {
+            "rank": 9,
+            "doc_id": "doc_1",
+            "title": "Python Language",
+            "cosine_similarity": 0.016814442351460457
+          },
+          {
+            "rank": 10,
+            "doc_id": "doc_8",
+            "title": "Silent Hunter",
+            "cosine_similarity": -0.018404215574264526
+          },
+          {
+            "rank": 11,
+            "doc_id": "doc_7",
+            "title": "A Playful Kitten",
+            "cosine_similarity": -0.018742963671684265
+          },
+          {
+            "rank": 12,
+            "doc_id": "doc_6",
+            "title": "HTTP Errors",
+            "cosine_similarity": -0.0401717871427536
+          }
+        ]
+      },
+      {
+        "query": "self attention in sequence models",
+        "relevant_doc_ids": [
+          "doc_10"
+        ],
+        "metrics": {
+          "recall": 1.0,
+          "precision": 0.2,
+          "rr": 1.0,
+          "hits": [
+            "doc_10"
+          ],
+          "retrieved": [
+            "doc_10",
+            "doc_4",
+            "doc_5",
+            "doc_11",
+            "doc_12"
+          ]
+        },
+        "full_ranking": [
+          {
+            "rank": 1,
+            "doc_id": "doc_10",
+            "title": "Transformers",
+            "cosine_similarity": 0.6308598518371582
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_4",
+            "title": "Knowledge Distillation",
+            "cosine_similarity": 0.28969767689704895
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_5",
+            "title": "BM25 Ranking",
+            "cosine_similarity": 0.22359302639961243
+          },
+          {
+            "rank": 4,
+            "doc_id": "doc_11",
+            "title": "Deep Learning",
+            "cosine_similarity": 0.2072390913963318
+          },
+          {
+            "rank": 5,
+            "doc_id": "doc_12",
+            "title": "Gradient Descent",
+            "cosine_similarity": 0.20531770586967468
+          },
+          {
+            "rank": 6,
+            "doc_id": "doc_3",
+            "title": "Model Distillation",
+            "cosine_similarity": 0.166238933801651
+          },
+          {
+            "rank": 7,
+            "doc_id": "doc_1",
+            "title": "Python Language",
+            "cosine_similarity": 0.0766589492559433
+          },
+          {
+            "rank": 8,
+            "doc_id": "doc_9",
+            "title": "Hardware Fault",
+            "cosine_similarity": 0.023485593497753143
+          },
+          {
+            "rank": 9,
+            "doc_id": "doc_8",
+            "title": "Silent Hunter",
+            "cosine_similarity": 0.004701141268014908
+          },
+          {
+            "rank": 10,
+            "doc_id": "doc_7",
+            "title": "A Playful Kitten",
+            "cosine_similarity": -0.005439986474812031
+          },
+          {
+            "rank": 11,
+            "doc_id": "doc_2",
+            "title": "JavaScript Runtime",
+            "cosine_similarity": -0.06067118048667908
+          },
+          {
+            "rank": 12,
+            "doc_id": "doc_6",
+            "title": "HTTP Errors",
+            "cosine_similarity": -0.11431068927049637
+          }
+        ]
+      },
+      {
+        "query": "web server resource not found",
+        "relevant_doc_ids": [
+          "doc_6"
+        ],
+        "metrics": {
+          "recall": 1.0,
+          "precision": 0.2,
+          "rr": 1.0,
+          "hits": [
+            "doc_6"
+          ],
+          "retrieved": [
+            "doc_6",
+            "doc_2",
+            "doc_9",
+            "doc_7",
+            "doc_8"
+          ]
+        },
+        "full_ranking": [
+          {
+            "rank": 1,
+            "doc_id": "doc_6",
+            "title": "HTTP Errors",
+            "cosine_similarity": 0.6740857362747192
+          },
+          {
+            "rank": 2,
+            "doc_id": "doc_2",
+            "title": "JavaScript Runtime",
+            "cosine_similarity": 0.2710524797439575
+          },
+          {
+            "rank": 3,
+            "doc_id": "doc_9",
+            "title": "Hardware Fault",
+            "cosine_similarity": 0.11630493402481079
+          },
+          {
+            "rank": 4,
+            "doc_id": "doc_7",
+            "title": "A Playful Kitten",
+            "cosine_similarity": 0.047007858753204346
+          },
+          {
+            "rank": 5,
+            "doc_id": "doc_8",
+            "title": "Silent Hunter",
+            "cosine_similarity": 0.018697446212172508
+          },
+          {
+            "rank": 6,
+            "doc_id": "doc_1",
+            "title": "Python Language",
+            "cosine_similarity": 0.013680100440979004
+          },
+          {
+            "rank": 7,
+            "doc_id": "doc_4",
+            "title": "Knowledge Distillation",
+            "cosine_similarity": 0.0007930714637041092
+          },
+          {
+            "rank": 8,
+            "doc_id": "doc_3",
+            "title": "Model Distillation",
+            "cosine_similarity": -0.0197736956179142
+          },
+          {
+            "rank": 9,
+            "doc_id": "doc_11",
+            "title": "Deep Learning",
+            "cosine_similarity": -0.02319362387061119
+          },
+          {
+            "rank": 10,
+            "doc_id": "doc_12",
+            "title": "Gradient Descent",
+            "cosine_similarity": -0.07289674878120422
+          },
+          {
+            "rank": 11,
+            "doc_id": "doc_5",
+            "title": "BM25 Ranking",
+            "cosine_similarity": -0.09845899045467377
+          },
+          {
+            "rank": 12,
+            "doc_id": "doc_10",
+            "title": "Transformers",
+            "cosine_similarity": -0.10148227214813232
+          }
+        ]
+      }
+    ],
+    "macro": {
+      "semantic_recall_at_5": 1.0,
+      "precision_at_5": 0.32,
+      "mrr_full_ranking": 1.0
+    }
+  },
+  "indexes": {
+    "annoy": {
+      "mean_index_recall_at_5": 1.0,
+      "queries": [
+        {
+          "query_index": 0,
+          "doc_ids": [
+            "doc_7",
+            "doc_8",
+            "doc_1",
+            "doc_5",
+            "doc_2"
+          ],
+          "distances": [
+            0.9751359224319458,
+            1.0990842580795288,
+            1.3405448198318481,
+            1.3607888221740723,
+            1.3688684701919556
+          ],
+          "index_recall_at_5": 1.0
+        },
+        {
+          "query_index": 1,
+          "doc_ids": [
+            "doc_3",
+            "doc_4",
+            "doc_12",
+            "doc_10",
+            "doc_11"
+          ],
+          "distances": [
+            0.7277805209159851,
+            0.9230589270591736,
+            1.2188910245895386,
+            1.2695879936218262,
+            1.3282172679901123
+          ],
+          "index_recall_at_5": 1.0
+        },
+        {
+          "query_index": 2,
+          "doc_ids": [
+            "doc_11",
+            "doc_4",
+            "doc_12",
+            "doc_10",
+            "doc_3"
+          ],
+          "distances": [
+            1.0611375570297241,
+            1.0724319219589233,
+            1.1481516361236572,
+            1.16634202003479,
+            1.278070092201233
+          ],
+          "index_recall_at_5": 1.0
+        },
+        {
+          "query_index": 3,
+          "doc_ids": [
+            "doc_10",
+            "doc_4",
+            "doc_5",
+            "doc_11",
+            "doc_12"
+          ],
+          "distances": [
+            0.8592325448989868,
+            1.1918911933898926,
+            1.246119499206543,
+            1.2591750621795654,
+            1.2607001066207886
+          ],
+          "index_recall_at_5": 1.0
+        },
+        {
+          "query_index": 4,
+          "doc_ids": [
+            "doc_6",
+            "doc_2",
+            "doc_9",
+            "doc_7",
+            "doc_8"
+          ],
+          "distances": [
+            0.8073589205741882,
+            1.2074332237243652,
+            1.3294322490692139,
+            1.3805738687515259,
+            1.4009300470352173
+          ],
+          "index_recall_at_5": 1.0
+        }
+      ]
+    },
+    "hnsw": {
+      "mean_index_recall_at_5": 1.0,
+      "queries": [
+        {
+          "query_index": 0,
+          "doc_ids": [
+            "doc_7",
+            "doc_8",
+            "doc_1",
+            "doc_5",
+            "doc_2"
+          ],
+          "distances": [
+            0.4754446744918823,
+            0.6039930582046509,
+            0.8985301852226257,
+            0.9258730411529541,
+            0.9369004964828491
+          ],
+          "index_recall_at_5": 1.0
+        },
+        {
+          "query_index": 1,
+          "doc_ids": [
+            "doc_3",
+            "doc_4",
+            "doc_12",
+            "doc_10",
+            "doc_11"
+          ],
+          "distances": [
+            0.264832079410553,
+            0.42601895332336426,
+            0.7428475022315979,
+            0.8059269189834595,
+            0.8820805549621582
+          ],
+          "index_recall_at_5": 1.0
+        },
+        {
+          "query_index": 2,
+          "doc_ids": [
+            "doc_11",
+            "doc_4",
+            "doc_12",
+            "doc_10",
+            "doc_3"
+          ],
+          "distances": [
+            0.5630064606666565,
+            0.5750553607940674,
+            0.6591259837150574,
+            0.6801767349243164,
+            0.8167314529418945
+          ],
+          "index_recall_at_5": 1.0
+        },
+        {
+          "query_index": 3,
+          "doc_ids": [
+            "doc_10",
+            "doc_4",
+            "doc_5",
+            "doc_11",
+            "doc_12"
+          ],
+          "distances": [
+            0.3691402077674866,
+            0.7103023529052734,
+            0.77640700340271,
+            0.7927608489990234,
+            0.7946823239326477
+          ],
+          "index_recall_at_5": 1.0
+        },
+        {
+          "query_index": 4,
+          "doc_ids": [
+            "doc_6",
+            "doc_2",
+            "doc_9",
+            "doc_7",
+            "doc_8"
+          ],
+          "distances": [
+            0.3259141445159912,
+            0.7289475202560425,
+            0.8836950659751892,
+            0.9529921412467957,
+            0.9813025593757629
+          ],
+          "index_recall_at_5": 1.0
+        }
+      ]
+    }
+  }
+}

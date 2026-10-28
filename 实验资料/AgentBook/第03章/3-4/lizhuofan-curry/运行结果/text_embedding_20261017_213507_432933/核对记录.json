@@ -1,0 +1,120 @@
+{
+  "status": "real_text_embedding_record_verified",
+  "checked_at": "2026-10-17T13:38:18.714067+00:00",
+  "record_sha256": "c5beeef30ba92df39051d00574d4d2fc3d803a952762b34e82080a284d888456",
+  "official_and_model_sources_verified": true,
+  "saved_arrays_rankings_scores_metrics_and_index_distances_recomputed": true,
+  "macro": {
+    "semantic_recall_at_5": 1.0,
+    "precision_at_5": 0.32,
+    "mrr_full_ranking": 1.0
+  },
+  "per_query": [
+    {
+      "query": "a cat playing",
+      "labeled_relevant_count": 2,
+      "hits_at_5": [
+        "doc_7",
+        "doc_8"
+      ],
+      "recall_at_5": 1.0,
+      "precision_at_5": 0.4,
+      "rr_full_ranking": 1.0,
+      "top_5": [
+        "doc_7",
+        "doc_8",
+        "doc_1",
+        "doc_5",
+        "doc_2"
+      ]
+    },
+    {
+      "query": "model distillation",
+      "labeled_relevant_count": 2,
+      "hits_at_5": [
+        "doc_3",
+        "doc_4"
+      ],
+      "recall_at_5": 1.0,
+      "precision_at_5": 0.4,
+      "rr_full_ranking": 1.0,
+      "top_5": [
+        "doc_3",
+        "doc_4",
+        "doc_12",
+        "doc_10",
+        "doc_11"
+      ]
+    },
+    {
+      "query": "training neural networks",
+      "labeled_relevant_count": 2,
+      "hits_at_5": [
+        "doc_11",
+        "doc_12"
+      ],
+      "recall_at_5": 1.0,
+      "precision_at_5": 0.4,
+      "rr_full_ranking": 1.0,
+      "top_5": [
+        "doc_11",
+        "doc_4",
+        "doc_12",
+        "doc_10",
+        "doc_3"
+      ]
+    },
+    {
+      "query": "self attention in sequence models",
+      "labeled_relevant_count": 1,
+      "hits_at_5": [
+        "doc_10"
+      ],
+      "recall_at_5": 1.0,
+      "precision_at_5": 0.2,
+      "rr_full_ranking": 1.0,
+      "top_5": [
+        "doc_10",
+        "doc_4",
+        "doc_5",
+        "doc_11",
+        "doc_12"
+      ]
+    },
+    {
+      "query": "web server resource not found",
+      "labeled_relevant_count": 1,
+      "hits_at_5": [
+        "doc_6"
+      ],
+      "recall_at_5": 1.0,
+      "precision_at_5": 0.2,
+      "rr_full_ranking": 1.0,
+      "top_5": [
+        "doc_6",
+        "doc_2",
+        "doc_9",
+        "doc_7",
+        "doc_8"
+      ]
+    }
+  ],
+  "labeled_hits_at_5": 8,
+  "total_return_slots": 25,
+  "indexes": {
+    "annoy": {
+      "index_recall_at_5": 1.0,
+      "all_five_queries_same_order_as_exact": true
+    },
+    "hnsw": {
+      "index_recall_at_5": 1.0,
+      "all_five_queries_same_order_as_exact": true
+    }
+  },
+  "recorded_embedding_forward_batches": 2,
+  "new_embedding_forward_batches": 0,
+  "new_index_builds": 0,
+  "new_generated_text_requests": 0,
+  "original_record_and_arrays_unchanged": true,
+  "scope": "按保存向量与官方标注独立复算；不重编码、不重建索引、不复测耗时；标注属于小型主题级教学样例"
+}

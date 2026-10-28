@@ -1,0 +1,118 @@
+{
+  "checked_at": "2026-10-17T15:45:10.737420+08:00",
+  "scope": "offline completed-pilot audit; zero model/network requests",
+  "batch_sha256": "7ef5cce60a73fb6beb20d4b03abe33d786a413a79910942d3ee498df1067f4d5",
+  "writer_records_unchanged_from_generation_audit": true,
+  "source_config_raw_requests_responses_artifacts_and_summary_verified": true,
+  "summary": {
+    "scope": "银行单题四格式预实验；不是60题×四格式完整评估，不与3-1的schema成绩合并",
+    "planned_cases": 1,
+    "planned_mode_variants": 4,
+    "writer_states": {
+      "incomplete": 3,
+      "saved": 1
+    },
+    "judge_states": {
+      "pending": 3,
+      "scored": 1
+    },
+    "scored_variants": 1,
+    "passed_variants": 0,
+    "pilot_all_outcomes_finished": true,
+    "full_60_case_four_mode_evaluation_completed": false,
+    "all_four_variants_scored": false,
+    "writer_calls": 6,
+    "judge_calls": 1,
+    "failure_kinds": {
+      "generation_error": 2,
+      "truncated": 1
+    }
+  },
+  "judge_path": "E:\\AI_Agents_Book\\第三章\\3.1用户记忆评估\\运行结果\\official_judge_20261017_153920_251926\\record.json",
+  "judge_sha256": "02e265068a132ac438a07899730a15f33b2a1ea19cce814f573f2ff47ac3a4f1",
+  "judge_summary": {
+    "scores": {
+      "precision": 2,
+      "recall": 3,
+      "reasoning": 2,
+      "proactivity": 2
+    },
+    "hallucination_veto": true,
+    "passed": false,
+    "reward": 0.0
+  },
+  "usage": {
+    "completion_tokens": 682,
+    "prompt_tokens": 2923,
+    "total_tokens": 3605,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cache_write_tokens": null,
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 2923
+  },
+  "verified_evidence_quotes": [
+    {
+      "dimension": "precision",
+      "quote": "Our routing number is 123006800, and your new checking account number is 4429853327",
+      "matched_in": [
+        "source_dialogue"
+      ]
+    },
+    {
+      "dimension": "precision",
+      "quote": "The account number is 8847293001 and the routing number is... let me check... 121000248",
+      "matched_in": [
+        "source_dialogue"
+      ]
+    },
+    {
+      "dimension": "recall",
+      "quote": "Our routing number is 123006800, and your new checking account number is 4429853327",
+      "matched_in": [
+        "source_dialogue"
+      ]
+    },
+    {
+      "dimension": "recall",
+      "quote": "And your savings account number is 4429853328",
+      "matched_in": [
+        "source_dialogue"
+      ]
+    },
+    {
+      "dimension": "reasoning",
+      "quote": "The account number is 8847293001 and the routing number is... let me check... 121000248",
+      "matched_in": [
+        "source_dialogue"
+      ]
+    },
+    {
+      "dimension": "reasoning",
+      "quote": "Our routing number is 123006800",
+      "matched_in": [
+        "source_dialogue"
+      ]
+    },
+    {
+      "dimension": "proactivity",
+      "quote": "Both your `checking_account` card and `direct_deposit` card in the memory show this account number",
+      "matched_in": [
+        "raw_answer"
+      ]
+    }
+  ],
+  "secondary_judge_claim_scope_note": "Both checking_account and direct_deposit cards really contain the same account number in intermediate memory. Calling this structural reference invented has a source-scope ambiguity. The wrong routing guidance is independently confirmed; original score retained.",
+  "notes_schema_diagnostic_reference": {
+    "path": "E:\\AI_Agents_Book\\第三章\\3.1用户记忆评估\\运行结果\\official_writer_20261016_231521_488574\\record.json",
+    "sha256": "a17768202c409eeb25dbc079ab54f3470ac01bd5d56b26c1196a35fa360ec55c",
+    "first_request_differences": [
+      "format"
+    ],
+    "scope": "single-case diagnostic; not imported into the original-JSON four-mode pilot"
+  },
+  "next_step": "enhanced_notes schema-only format diagnostic; same model, prompts, sampling and 6000/1200 limits"
+}

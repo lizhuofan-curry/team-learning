@@ -1,0 +1,15 @@
+{
+  "checked_on": "2026-10-16",
+  "original_record_sha256": "e167498148af8c621610de1824878980241d9db83fdeccd2ee9d3e8d6afd6e2c",
+  "status": "verified_incomplete",
+  "model_requests": 1,
+  "http_status": 200,
+  "done_reason": "length",
+  "prompt_tokens": 2223,
+  "completion_tokens": 6000,
+  "content_chars": 23921,
+  "repeated_phrase_count": 331,
+  "answer_generated": false,
+  "judge_called": false,
+  "original_unchanged": true
+}

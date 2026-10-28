@@ -1,0 +1,203 @@
+{
+  "question": "今天开封天气怎么样",
+  "model": "kimi-k3",
+  "base_url": "https://api.moonshot.cn/v1",
+  "status": "answered",
+  "model_turns": 2,
+  "finish_reason": "stop",
+  "answer_complete": true,
+  "answer": "今天（10月5日）开封：**晴转多云，13～23℃，风力小于3级**。数据 07:30 更新，来源为中央气象台/中国天气网。  \n明天参考：晴，12～26℃。\n\n来源链接：中国天气网开封天气预报 https://www.weather.com.cn/weather/101180801.shtml",
+  "tools": [
+    {
+      "function": {
+        "name": "web_search",
+        "description": "用于信息检索的网络搜索",
+        "parameters": {
+          "properties": {
+            "classes": {
+              "description": "要关注的搜索领域。如果未指定，则默认为 'all'。",
+              "items": {
+                "enum": [
+                  "all",
+                  "academic",
+                  "social",
+                  "library",
+                  "finance",
+                  "code",
+                  "ecommerce",
+                  "medical"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "query": {
+              "description": "要搜索的内容",
+              "type": "string"
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "function"
+    }
+  ],
+  "conversation_history": [
+    {
+      "role": "system",
+      "content": "你是Kimi搜索助手。请使用web_search查询官方资料，再依据搜索结果回答并提供来源链接。"
+    },
+    {
+      "role": "user",
+      "content": "今天开封天气怎么样"
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "web_search_0_93bdc340",
+          "type": "function",
+          "function": {
+            "name": "web_search",
+            "arguments": "{\"query\":\"开封 今天 天气 实时 预报 官方\",\"classes\":[\"all\"]}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "web_search_0_93bdc340",
+      "content": "----MOONSHOT ENCRYPTED BEGIN----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----MOONSHOT ENCRYPTED END----"
+    },
+    {
+      "role": "assistant",
+      "content": "今天（10月5日）开封：**晴转多云，13～23℃，风力小于3级**。数据 07:30 更新，来源为中央气象台/中国天气网。  \n明天参考：晴，12～26℃。\n\n来源链接：中国天气网开封天气预报 https://www.weather.com.cn/weather/101180801.shtml"
+    }
+  ],
+  "trace": [
+    {
+      "iteration": 1,
+      "type": "action",
+      "tool_call_id": "web_search_0_93bdc340",
+      "tool": "web_search",
+      "raw_arguments": "{\"query\":\"开封 今天 天气 实时 预报 官方\",\"classes\":[\"all\"]}"
+    },
+    {
+      "iteration": 1,
+      "type": "observation",
+      "tool_call_id": "web_search_0_93bdc340",
+      "content": "----MOONSHOT ENCRYPTED BEGIN----Rv7iXt2inpeXbq29Fn96YG8A4gvjUDNitCiWdWuuxkEwnT/3uJiKuXDBHR1hHuWqQZTydq5GYdFe4av3S0ra3f5qtr32mwH9PGS+x8K515NVhUIhnhvQRExaNwOdfOKkzo34Pw3sxkHMjs01GU1ryqwredhtQj0x2q67na4sbwplsPcJw3o1NqwmSOokl3BYogc6zv6KfNY0HuCUXiFOOogVvBYpwXR7BALfIqgGYGLoa2mt6l+cTBkTLsXABxfUOtzsIlCkayY86tN0nEfh5ST8hdXYVzxbYHyiVeh1gEMQXmNNcFHMkv2hYrDdWQ3N7p4lAezOpJ5ZUVCEmGKH5U7d3K6KA2nzX7DFPfZx+TGn0+gZu/RZuyC4ZVrFagUN/5lDo8Dkor6FlUkq5Zq2VKMQj95f+g2tjg3nQgiLeoWVgPxBNa8wWpQEJpWf4oeH/JvPwaqAyarClO54q8CrcNkn9JibqXm09BpnvVVKrf6YQQAtzvFLCnxsz0hY0nY8C3tNDmS5oLKiITT6axPFRmAk4FUrxxn9XSu+PjE90y2UqPbmeep+Rf9lRkR0dZwV6ygKhZogkbpkuIWk53NukHceYUDyYtAhNcTRYteTTdoqzFZ4Jwu3NpsYh7g8L+VorFAru5+SFVYrTkVt0yaivYo+ZqNOHiP8J1TdRwAhyrkPEFOBMgB/BlDABPTm/V+sI0jT6+ZdAf8dIwNa4lqcx9ZfA7pJEfr2nlkMvu3GO30jbP4DR0oQSlujpLSe665Hqz+UDU766GhhfnJcRqgI+KPb6E2NlmjB8DVPb10tHm7sVV2VIpMOeIcx8oResqyqU9AcWy+1GazAwrw9jiEvwHeQw2FeqKc/5yRvl6htblWo5cOCL0i8oiNaMJ/FKCTFj30S4t6B+nILrSDdYcH+sJ8n5YjUwIjaeb9STkLRRb/VshVcuisRXDNOv2Rjxjte4IXWgKXQTgZ83f0tkVwQCnNBEcIO++HgvB3POSEwcubVJbczAk3s0YFsy5iomTGe6bZCuPa+TP8Fi7muJ8lFNAeKSrpcv5g0NkfmhtvAu+XxKr2JnjL1nkcG/Ynu68becyCJeI0KWgRT8PDDp85psHnzV2ztQV+IwdLdFZUKNewWZCOQ0Xn7i73qq9OJKKl9FThBoyJZf3ChKzTN/u9XjrtelsNub33AABvQzxs62Z+dSXdnjafmOBQV+YxLUxojPLM58lNZng5DgyhohacYWw+Z9DDn47AjZ3E7iiAmhoWF/5M/BqfhXBg/AgOmHgicrw88tP4Z2ilgV6ai0sCW7Baov+yGdZXuDcWzGM7ZMNwxefOBYytnlJBkbF9JoJqnC6nT1PaJsHQZgrIB51LpOA9D1NcMLLS+ew5Ht6UR+0/6BNmmyC9k2J/3hGdqLiXFQit0wAfuxyKit8IRgIlPW4+0Zse35pK8/jo0TiMS8npRDU0H9T734XEVDZWoHpAlP7jit4noJiiMTpKPmCtiM2yY0qcU/swwnVu2VavuHmUWI2D2juUGldmUzFwZy4o0hSGupBSO2OTyjRDMaKyKxZmMkpdgX2AY7qMhrGKrxibSjvmxX9hMhTic0DdCYdatzNY7b3A1H2EweTDdEpWMBizqpnZcgWzbFsnkOBCv3GNklLO2Cs1QPJCiTJk62dm6FPjbHRdOz+yTzk0NKinbUMlNXJSrcRRv8lWcgwXL/DBZVzm9jNL/U+SmBtHs4HHVQ9wFEv7p6q4a+i797IicsYmgOyDfjbMG3edEwaOKPbqqI7vvu3fgkAf+4DiGSGDi0FIcGLm6w57ahwgHMobO2BLqMyE8UtVeHZfuTLg/R3KeIrTupxeU2GEEloSwfM37/YhLLn3+gdPKJKQ4H3wqTY2b64yqIp87vDtptEOqA+7GYzsLgM1vchG+j2q1Ze4ZkHWyjhPdQijciaGbDyFArHqhxLcijjfUReJ9ISMsPfp3AwnvGjYo2Ixm7rw+RhleV/s8VW8et8ZRnm7p3pY5DE5N7vkxOibFjOvzKLRb0aRIljLVUiiwfaHVN0BpGHxYBfhRc3OCbW6A9YexajO8ahKyJmQ4+lx99OSnEihR9g8oHJe2JOW7qRDLFg9wBSrTO5aZYeijKYQVpAs++tCeap/SnMsqrBGsawd+h9NDw81SarJlL+Obu21GBhQEQ3AGgFrVTAFJP5CNEDrypcFj1NZR2I52acvrWxNlK9eQJuuCb3oPGtHb+/eUTA5eLDdjFu+p8kkcFr/uRIw8nv2s9V3+ihJ9i2hcGe/MblHvhzFTuQiHi5KGqtkJwhvXJk8UfoDcUX46q/D+uN04upWvRnsaTGIAjvEUHagglWhvnyYwVu+2otekNsaJqrvgUnnXM+PlIjSw3Sqroi0qrfWeO6JXOleOLcKYac1g8fh48Ozg+euWi3daemmGtKrG43Ia4p1/Njck4fAiZW+oawSFho4ql7eJGz6LVfBaTInZ6ccm+AoeEwB9xJmzJuVFXL5WSBirjuXumLaREraF3msWBWj41s46w95AIL8rkxVaDsv8G/elifGB/w0j+P8BwSD/Tkg3R018ser+Gx27CxhiXhshhZ6XEEXke2rfcLs20EJRd/hLO7+HwAzeUVUmN2UMJSVXTuAqVNahYuk0rMIWLeX2ElrelU3qwcty4F/0h5ZVuBPrNn8Cz4apFVbSHOL2sJlccSW3pcNfT2WRr2SaLumx8dYix61i90CradNAovZOvLBTV/l8caIV+F08ZUzWvQgE3l+yA1YQduJkbepVMjM6YgrIYnZTq36XY0BpgdjLbpGpF9BIFOJSIRBQ8tb9RWcLfuXSjdzgiDA/dAKnqnfqCAsahS31LcomMj86zWTQz9ocXsVTCeBa65q5XwGADvnpAo97/6qoBCKkyBbTcKRbpiZHF5MK3URCVAR5P+O/MWFphFovtZPB/mBtf4/3GUCH/LeicXnBay2EyDm5aDauoky5IpmBoFnrywtBIj2Kp3zWAx2JUWnWPc/+bcjXrdV/zk66Ry0+du3erTuI71QHL/wovbEYI2yXFmuNzZQiVGbaGVoDZQLrwogrCU5E2tWf7XXLpZVMa+HVXqPm1liCvUC+SczBTJ0y/ebnWJQNOytjgIgRFS9y2feZCvmqIw73HTDFVrzBelVtKnhQEGnjDdsQiyQ3xr0DBfo0akjMqOUNdR6tbUgfuM8Ua2YfBk2fhaEq+VL9EGRkkDlxZ3F9OAjy8e/l1hT+qU65dtC6eTNkBQUcBB8TO4gPXSxwZhvkRTbfsRx3ce9Rlu2n1KH5eD5XUSuQore8ZQSXS9jkKlroM7X1MZUPCBsMNj77mDZ05mu25PTyIe0QPIXCjGGjR9NjHPx6fkCgkizUGD3ullcOdmRbMcnqqFC83NoS0AQlVH1RkkkgIhZartMc310/0yUn/+quxr9UatsdZqRoWH9gQ1c/x+x/g1t1cGGpFuuFeJwWwk5QUZO2b0wTihVxoNUemV3CtZB2rzOvE9ILXwadi8yO3xT7czorbjg/aEQ4gJ3R5X0TtkBZ8D6iqa5IqKUxXj4XvblZHs0ebMRHMDLf2oRLw+iU42v1MIeEnSvdqKZk2ymYa3rPqZ0hnaaWMTFV357RliRp64+/+iGf+nTACCcJcHgz5jcnQ0Zo4bzCEOKh3nY+pDHapAicM2TG9VEK9XLYjcIn1L0iIN/pvipSpFB09M+BCWqfB56hvdvgK/bzCGuSnuDCpvXBFjbZaTmxEfdSXiNXYoIsmLxCQSJ4fyb47o177AVxdSoB6L5aJGgrCbMD8iAonfIq3ea6sUwhhLrEsenIIEwtg/wwi14VzQtNfiBE/Yudd41dWDpAG8IZP7iFxQDOsJSnT9MFDfbMGj3J6Uh1ZluJ9BxjGTutN8nVYuw9BM31q+g2UclHIECWgJYQ0lY0R5juA0vp17EwjzGaMkCgUc1ZNURkCWPgyWzyb66R7H09XL7e8M49/c62HEnJBmOb0CgAFg3kHmFwEwD6PpBRLRZZ8jdq60voBSZmT8EbaUNAAIkhPl38wS606+r0hJyZDSM=----MOONSHOT ENCRYPTED END----"
+    },
+    {
+      "iteration": 2,
+      "type": "answer",
+      "content": "今天（10月5日）开封：**晴转多云，13～23℃，风力小于3级**。数据 07:30 更新，来源为中央气象台/中国天气网。  \n明天参考：晴，12～26℃。\n\n来源链接：中国天气网开封天气预报 https://www.weather.com.cn/weather/101180801.shtml"
+    }
+  ],
+  "api_turns": [
+    {
+      "kind": "formula_tools",
+      "http_status": 200,
+      "tools": [
+        {
+          "function": {
+            "name": "web_search",
+            "description": "用于信息检索的网络搜索",
+            "parameters": {
+              "properties": {
+                "classes": {
+                  "description": "要关注的搜索领域。如果未指定，则默认为 'all'。",
+                  "items": {
+                    "enum": [
+                      "all",
+                      "academic",
+                      "social",
+                      "library",
+                      "finance",
+                      "code",
+                      "ecommerce",
+                      "medical"
+                    ],
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "query": {
+                  "description": "要搜索的内容",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "query"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    {
+      "kind": "chat_completion",
+      "model": "kimi-k3",
+      "sent_messages": 2,
+      "finish_reason": "tool_calls",
+      "usage": {
+        "completion_tokens": 133,
+        "prompt_tokens": 255,
+        "total_tokens": 388,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 55,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": 255,
+          "cached_tokens": null
+        }
+      }
+    },
+    {
+      "kind": "formula_fiber",
+      "model_turn": 1,
+      "request": {
+        "name": "web_search",
+        "arguments": "{\"query\":\"开封 今天 天气 实时 预报 官方\",\"classes\":[\"all\"]}"
+      },
+      "http_status": 200,
+      "status": "succeeded",
+      "fiber_id": "fiber-fd3of67aqfwi153ow8pi",
+      "output_field": "encrypted_output",
+      "output_length": 4114
+    },
+    {
+      "kind": "chat_completion",
+      "model": "kimi-k3",
+      "sent_messages": 4,
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 202,
+        "prompt_tokens": 1591,
+        "total_tokens": 1793,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 115,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": 1280,
+          "cached_tokens": 256
+        },
+        "cached_tokens": 256
+      }
+    }
+  ]
+}

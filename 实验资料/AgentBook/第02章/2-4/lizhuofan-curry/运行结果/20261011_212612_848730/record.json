@@ -1,0 +1,5517 @@
+{
+  "model": "qwen3:0.6b",
+  "group_definitions": {
+    "baseline": {
+      "tone": "professional",
+      "shuffle": false,
+      "remove_descriptions": false
+    },
+    "tone_casual": {
+      "tone": "casual",
+      "shuffle": false,
+      "remove_descriptions": false
+    },
+    "tone_emphatic": {
+      "tone": "emphatic",
+      "shuffle": false,
+      "remove_descriptions": false
+    },
+    "wiki_shuffle": {
+      "tone": "professional",
+      "shuffle": true,
+      "remove_descriptions": false
+    },
+    "no_tool_desc": {
+      "tone": "professional",
+      "shuffle": false,
+      "remove_descriptions": true
+    },
+    "combined": {
+      "tone": "casual",
+      "shuffle": true,
+      "remove_descriptions": true
+    }
+  },
+  "cases": [
+    {
+      "id": "T1",
+      "title": "期限边界：30天可退",
+      "order": {
+        "order_id": "A100",
+        "status": "paid",
+        "days_since_delivery": 30,
+        "opened": false,
+        "refund_confirmed": true
+      },
+      "expected_tool": "op_a"
+    },
+    {
+      "id": "T2",
+      "title": "超过期限：31天拒绝",
+      "order": {
+        "order_id": "A101",
+        "status": "paid",
+        "days_since_delivery": 31,
+        "opened": false,
+        "refund_confirmed": true
+      },
+      "expected_tool": "op_b"
+    },
+    {
+      "id": "T3",
+      "title": "已拆封：转人工",
+      "order": {
+        "order_id": "A102",
+        "status": "paid",
+        "days_since_delivery": 8,
+        "opened": true,
+        "refund_confirmed": true
+      },
+      "expected_tool": "op_c"
+    },
+    {
+      "id": "T4",
+      "title": "用户未确认：先确认",
+      "order": {
+        "order_id": "A103",
+        "status": "paid",
+        "days_since_delivery": 2,
+        "opened": false,
+        "refund_confirmed": false
+      },
+      "expected_tool": "op_d"
+    },
+    {
+      "id": "T5",
+      "title": "已经退款：不得重复",
+      "order": {
+        "order_id": "A104",
+        "status": "refunded",
+        "days_since_delivery": 10,
+        "opened": false,
+        "refund_confirmed": true
+      },
+      "expected_tool": "op_e"
+    }
+  ],
+  "rows": [
+    {
+      "group": "wiki_shuffle",
+      "case_id": "T5",
+      "case_title": "已经退款：不得重复",
+      "expected_tool": "op_e",
+      "expected_order_id": "A104",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是专业的订单客服，请准确依据业务规则选择处理方式。\n订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n订单未退款、签收不超过30天且已经拆封时，转人工处理。\n订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n订单status为refunded时，只告知已退款，不得重复退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A104\", \"status\": \"refunded\", \"days_since_delivery\": 10, \"opened\": false, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "为满足退款规则且用户已确认的订单发起退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "对超过退款期限的订单拒绝退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "将需要人工处理的订单转交人工客服。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "向尚未确认退款的用户请求确认，暂不退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "告知用户此订单已退款，避免重复退款。"
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-760",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_uq9okval",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A104\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725181,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 616,
+          "total_tokens": 640,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 1
+          }
+        }
+      },
+      "total_seconds": 0.31138389999978244,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A104\"}",
+        "parsed_arguments": {
+          "order_id": "A104"
+        },
+        "argument_parse_error": null,
+        "tool_correct": true,
+        "arguments_correct": true,
+        "decision_correct": true,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "tone_emphatic",
+      "case_id": "T5",
+      "case_title": "已经退款：不得重复",
+      "expected_tool": "op_e",
+      "expected_order_id": "A104",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是订单客服！务必准确处理订单！务必依据业务规则！\n【已退款】订单status为refunded时，只告知已退款，不得重复退款。\n【超过期限】订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n【已拆封】订单未退款、签收不超过30天且已经拆封时，转人工处理。\n【尚未确认】订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n【可以退款】订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A104\", \"status\": \"refunded\", \"days_since_delivery\": 10, \"opened\": false, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "为满足退款规则且用户已确认的订单发起退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "对超过退款期限的订单拒绝退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "将需要人工处理的订单转交人工客服。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "向尚未确认退款的用户请求确认，暂不退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "告知用户此订单已退款，避免重复退款。"
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-875",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_70iriiwf",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A104\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725181,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 639,
+          "total_tokens": 663,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 4
+          }
+        }
+      },
+      "total_seconds": 0.3556437000515871,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A104\"}",
+        "parsed_arguments": {
+          "order_id": "A104"
+        },
+        "argument_parse_error": null,
+        "tool_correct": true,
+        "arguments_correct": true,
+        "decision_correct": true,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "tone_emphatic",
+      "case_id": "T1",
+      "case_title": "期限边界：30天可退",
+      "expected_tool": "op_a",
+      "expected_order_id": "A100",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是订单客服！务必准确处理订单！务必依据业务规则！\n【已退款】订单status为refunded时，只告知已退款，不得重复退款。\n【超过期限】订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n【已拆封】订单未退款、签收不超过30天且已经拆封时，转人工处理。\n【尚未确认】订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n【可以退款】订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A100\", \"status\": \"paid\", \"days_since_delivery\": 30, \"opened\": false, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "为满足退款规则且用户已确认的订单发起退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "对超过退款期限的订单拒绝退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "将需要人工处理的订单转交人工客服。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "向尚未确认退款的用户请求确认，暂不退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "告知用户此订单已退款，避免重复退款。"
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-522",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_jnxawgtj",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A100\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725182,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 638,
+          "total_tokens": 662,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 596
+          }
+        }
+      },
+      "total_seconds": 0.20630449999589473,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A100\"}",
+        "parsed_arguments": {
+          "order_id": "A100"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "combined",
+      "case_id": "T2",
+      "case_title": "超过期限：31天拒绝",
+      "expected_tool": "op_b",
+      "expected_order_id": "A101",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是订单客服小助手，咱们轻松点，照着业务规则把订单处理好吧～\n订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n订单未退款、签收不超过30天且已经拆封时，转人工处理。\n订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n订单status为refunded时，只告知已退款，不得重复退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A101\", \"status\": \"paid\", \"days_since_delivery\": 31, \"opened\": false, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-537",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_e7shd2zc",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A101\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725182,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 474,
+          "total_tokens": 498,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 6
+          }
+        }
+      },
+      "total_seconds": 0.31894950004061684,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A101\"}",
+        "parsed_arguments": {
+          "order_id": "A101"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "no_tool_desc",
+      "case_id": "T3",
+      "case_title": "已拆封：转人工",
+      "expected_tool": "op_c",
+      "expected_order_id": "A102",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是专业的订单客服，请准确依据业务规则选择处理方式。\n【已退款】订单status为refunded时，只告知已退款，不得重复退款。\n【超过期限】订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n【已拆封】订单未退款、签收不超过30天且已经拆封时，转人工处理。\n【尚未确认】订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n【可以退款】订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A102\", \"status\": \"paid\", \"days_since_delivery\": 8, \"opened\": true, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-666",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_879pg2gd",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A102\"}",
+                    "name": "op_a"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725182,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 487,
+          "total_tokens": 511,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 4
+          }
+        }
+      },
+      "total_seconds": 0.3217200999497436,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_a",
+        "argument_string": "{\"order_id\":\"A102\"}",
+        "parsed_arguments": {
+          "order_id": "A102"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "tone_casual",
+      "case_id": "T2",
+      "case_title": "超过期限：31天拒绝",
+      "expected_tool": "op_b",
+      "expected_order_id": "A101",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是订单客服小助手，咱们轻松点，照着业务规则把订单处理好吧～\n【已退款】订单status为refunded时，只告知已退款，不得重复退款。\n【超过期限】订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n【已拆封】订单未退款、签收不超过30天且已经拆封时，转人工处理。\n【尚未确认】订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n【可以退款】订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A101\", \"status\": \"paid\", \"days_since_delivery\": 31, \"opened\": false, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "为满足退款规则且用户已确认的订单发起退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "对超过退款期限的订单拒绝退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "将需要人工处理的订单转交人工客服。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "向尚未确认退款的用户请求确认，暂不退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "告知用户此订单已退款，避免重复退款。"
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-283",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_vgfle2yl",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A101\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725183,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 643,
+          "total_tokens": 667,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 4
+          }
+        }
+      },
+      "total_seconds": 0.33520680002402514,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A101\"}",
+        "parsed_arguments": {
+          "order_id": "A101"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "tone_casual",
+      "case_id": "T1",
+      "case_title": "期限边界：30天可退",
+      "expected_tool": "op_a",
+      "expected_order_id": "A100",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是订单客服小助手，咱们轻松点，照着业务规则把订单处理好吧～\n【已退款】订单status为refunded时，只告知已退款，不得重复退款。\n【超过期限】订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n【已拆封】订单未退款、签收不超过30天且已经拆封时，转人工处理。\n【尚未确认】订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n【可以退款】订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A100\", \"status\": \"paid\", \"days_since_delivery\": 30, \"opened\": false, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "为满足退款规则且用户已确认的订单发起退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "对超过退款期限的订单拒绝退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "将需要人工处理的订单转交人工客服。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "向尚未确认退款的用户请求确认，暂不退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "告知用户此订单已退款，避免重复退款。"
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-151",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_f0gqtwya",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A100\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725183,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 643,
+          "total_tokens": 667,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 601
+          }
+        }
+      },
+      "total_seconds": 0.20725410000886768,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A100\"}",
+        "parsed_arguments": {
+          "order_id": "A100"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "tone_emphatic",
+      "case_id": "T3",
+      "case_title": "已拆封：转人工",
+      "expected_tool": "op_c",
+      "expected_order_id": "A102",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是订单客服！务必准确处理订单！务必依据业务规则！\n【已退款】订单status为refunded时，只告知已退款，不得重复退款。\n【超过期限】订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n【已拆封】订单未退款、签收不超过30天且已经拆封时，转人工处理。\n【尚未确认】订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n【可以退款】订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A102\", \"status\": \"paid\", \"days_since_delivery\": 8, \"opened\": true, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "为满足退款规则且用户已确认的订单发起退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "对超过退款期限的订单拒绝退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "将需要人工处理的订单转交人工客服。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "向尚未确认退款的用户请求确认，暂不退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "告知用户此订单已退款，避免重复退款。"
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-660",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_z4blfu6q",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A102\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725183,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 637,
+          "total_tokens": 661,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 596
+          }
+        }
+      },
+      "total_seconds": 0.3412900999537669,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A102\"}",
+        "parsed_arguments": {
+          "order_id": "A102"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "tone_emphatic",
+      "case_id": "T2",
+      "case_title": "超过期限：31天拒绝",
+      "expected_tool": "op_b",
+      "expected_order_id": "A101",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是订单客服！务必准确处理订单！务必依据业务规则！\n【已退款】订单status为refunded时，只告知已退款，不得重复退款。\n【超过期限】订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n【已拆封】订单未退款、签收不超过30天且已经拆封时，转人工处理。\n【尚未确认】订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n【可以退款】订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A101\", \"status\": \"paid\", \"days_since_delivery\": 31, \"opened\": false, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "为满足退款规则且用户已确认的订单发起退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "对超过退款期限的订单拒绝退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "将需要人工处理的订单转交人工客服。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "向尚未确认退款的用户请求确认，暂不退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "告知用户此订单已退款，避免重复退款。"
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-820",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_13mhseku",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A101\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725183,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 638,
+          "total_tokens": 662,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 596
+          }
+        }
+      },
+      "total_seconds": 0.1993476000498049,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A101\"}",
+        "parsed_arguments": {
+          "order_id": "A101"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "wiki_shuffle",
+      "case_id": "T1",
+      "case_title": "期限边界：30天可退",
+      "expected_tool": "op_a",
+      "expected_order_id": "A100",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是专业的订单客服，请准确依据业务规则选择处理方式。\n订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n订单未退款、签收不超过30天且已经拆封时，转人工处理。\n订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n订单status为refunded时，只告知已退款，不得重复退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A100\", \"status\": \"paid\", \"days_since_delivery\": 30, \"opened\": false, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "为满足退款规则且用户已确认的订单发起退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "对超过退款期限的订单拒绝退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "将需要人工处理的订单转交人工客服。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "向尚未确认退款的用户请求确认，暂不退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "告知用户此订单已退款，避免重复退款。"
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-696",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_0hna4zzq",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A100\"}",
+                    "name": "op_d"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725184,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 615,
+          "total_tokens": 639,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 573
+          }
+        }
+      },
+      "total_seconds": 0.2600125999888405,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_d",
+        "argument_string": "{\"order_id\":\"A100\"}",
+        "parsed_arguments": {
+          "order_id": "A100"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "tone_casual",
+      "case_id": "T5",
+      "case_title": "已经退款：不得重复",
+      "expected_tool": "op_e",
+      "expected_order_id": "A104",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是订单客服小助手，咱们轻松点，照着业务规则把订单处理好吧～\n【已退款】订单status为refunded时，只告知已退款，不得重复退款。\n【超过期限】订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n【已拆封】订单未退款、签收不超过30天且已经拆封时，转人工处理。\n【尚未确认】订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n【可以退款】订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A104\", \"status\": \"refunded\", \"days_since_delivery\": 10, \"opened\": false, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "为满足退款规则且用户已确认的订单发起退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "对超过退款期限的订单拒绝退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "将需要人工处理的订单转交人工客服。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "向尚未确认退款的用户请求确认，暂不退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "告知用户此订单已退款，避免重复退款。"
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-387",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_6xutjx95",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A104\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725184,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 644,
+          "total_tokens": 668,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 601
+          }
+        }
+      },
+      "total_seconds": 0.2949540999834426,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A104\"}",
+        "parsed_arguments": {
+          "order_id": "A104"
+        },
+        "argument_parse_error": null,
+        "tool_correct": true,
+        "arguments_correct": true,
+        "decision_correct": true,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "combined",
+      "case_id": "T1",
+      "case_title": "期限边界：30天可退",
+      "expected_tool": "op_a",
+      "expected_order_id": "A100",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是订单客服小助手，咱们轻松点，照着业务规则把订单处理好吧～\n订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n订单未退款、签收不超过30天且已经拆封时，转人工处理。\n订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n订单status为refunded时，只告知已退款，不得重复退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A100\", \"status\": \"paid\", \"days_since_delivery\": 30, \"opened\": false, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-809",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_gipshi43",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A100\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725184,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 474,
+          "total_tokens": 498,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 432
+          }
+        }
+      },
+      "total_seconds": 0.2818890000344254,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A100\"}",
+        "parsed_arguments": {
+          "order_id": "A100"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "combined",
+      "case_id": "T5",
+      "case_title": "已经退款：不得重复",
+      "expected_tool": "op_e",
+      "expected_order_id": "A104",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是订单客服小助手，咱们轻松点，照着业务规则把订单处理好吧～\n订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n订单未退款、签收不超过30天且已经拆封时，转人工处理。\n订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n订单status为refunded时，只告知已退款，不得重复退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A104\", \"status\": \"refunded\", \"days_since_delivery\": 10, \"opened\": false, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-403",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_lge1nblj",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A104\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725184,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 475,
+          "total_tokens": 499,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 432
+          }
+        }
+      },
+      "total_seconds": 0.1963110000360757,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A104\"}",
+        "parsed_arguments": {
+          "order_id": "A104"
+        },
+        "argument_parse_error": null,
+        "tool_correct": true,
+        "arguments_correct": true,
+        "decision_correct": true,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "no_tool_desc",
+      "case_id": "T2",
+      "case_title": "超过期限：31天拒绝",
+      "expected_tool": "op_b",
+      "expected_order_id": "A101",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是专业的订单客服，请准确依据业务规则选择处理方式。\n【已退款】订单status为refunded时，只告知已退款，不得重复退款。\n【超过期限】订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n【已拆封】订单未退款、签收不超过30天且已经拆封时，转人工处理。\n【尚未确认】订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n【可以退款】订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A101\", \"status\": \"paid\", \"days_since_delivery\": 31, \"opened\": false, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-988",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_i8oj1vmf",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A101\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725185,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 488,
+          "total_tokens": 512,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 446
+          }
+        }
+      },
+      "total_seconds": 0.2871840999578126,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A101\"}",
+        "parsed_arguments": {
+          "order_id": "A101"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "wiki_shuffle",
+      "case_id": "T2",
+      "case_title": "超过期限：31天拒绝",
+      "expected_tool": "op_b",
+      "expected_order_id": "A101",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是专业的订单客服，请准确依据业务规则选择处理方式。\n订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n订单未退款、签收不超过30天且已经拆封时，转人工处理。\n订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n订单status为refunded时，只告知已退款，不得重复退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A101\", \"status\": \"paid\", \"days_since_delivery\": 31, \"opened\": false, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "为满足退款规则且用户已确认的订单发起退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "对超过退款期限的订单拒绝退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "将需要人工处理的订单转交人工客服。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "向尚未确认退款的用户请求确认，暂不退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "告知用户此订单已退款，避免重复退款。"
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-615",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_6aad9cfd",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A101\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725185,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 615,
+          "total_tokens": 639,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 573
+          }
+        }
+      },
+      "total_seconds": 0.2718594000325538,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A101\"}",
+        "parsed_arguments": {
+          "order_id": "A101"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "combined",
+      "case_id": "T3",
+      "case_title": "已拆封：转人工",
+      "expected_tool": "op_c",
+      "expected_order_id": "A102",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是订单客服小助手，咱们轻松点，照着业务规则把订单处理好吧～\n订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n订单未退款、签收不超过30天且已经拆封时，转人工处理。\n订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n订单status为refunded时，只告知已退款，不得重复退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A102\", \"status\": \"paid\", \"days_since_delivery\": 8, \"opened\": true, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-398",
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": null
+            }
+          }
+        ],
+        "created": 1791725185,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 473,
+          "total_tokens": 497,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 432
+          }
+        }
+      },
+      "total_seconds": 0.2698915000073612,
+      "evaluation": {
+        "single_call": false,
+        "tool_name": null,
+        "argument_string": null,
+        "parsed_arguments": null,
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": false,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "baseline",
+      "case_id": "T2",
+      "case_title": "超过期限：31天拒绝",
+      "expected_tool": "op_b",
+      "expected_order_id": "A101",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是专业的订单客服，请准确依据业务规则选择处理方式。\n【已退款】订单status为refunded时，只告知已退款，不得重复退款。\n【超过期限】订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n【已拆封】订单未退款、签收不超过30天且已经拆封时，转人工处理。\n【尚未确认】订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n【可以退款】订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A101\", \"status\": \"paid\", \"days_since_delivery\": 31, \"opened\": false, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "为满足退款规则且用户已确认的订单发起退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "对超过退款期限的订单拒绝退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "将需要人工处理的订单转交人工客服。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "向尚未确认退款的用户请求确认，暂不退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "告知用户此订单已退款，避免重复退款。"
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-463",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_56zv3sef",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A101\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725185,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 636,
+          "total_tokens": 660,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 224
+          }
+        }
+      },
+      "total_seconds": 0.2942302000010386,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A101\"}",
+        "parsed_arguments": {
+          "order_id": "A101"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "tone_emphatic",
+      "case_id": "T4",
+      "case_title": "用户未确认：先确认",
+      "expected_tool": "op_d",
+      "expected_order_id": "A103",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是订单客服！务必准确处理订单！务必依据业务规则！\n【已退款】订单status为refunded时，只告知已退款，不得重复退款。\n【超过期限】订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n【已拆封】订单未退款、签收不超过30天且已经拆封时，转人工处理。\n【尚未确认】订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n【可以退款】订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A103\", \"status\": \"paid\", \"days_since_delivery\": 2, \"opened\": false, \"refund_confirmed\": false}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "为满足退款规则且用户已确认的订单发起退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "对超过退款期限的订单拒绝退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "将需要人工处理的订单转交人工客服。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "向尚未确认退款的用户请求确认，暂不退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "告知用户此订单已退款，避免重复退款。"
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-875",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_zdmqhj78",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A103\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725186,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 637,
+          "total_tokens": 661,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 596
+          }
+        }
+      },
+      "total_seconds": 0.3004701999598183,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A103\"}",
+        "parsed_arguments": {
+          "order_id": "A103"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "wiki_shuffle",
+      "case_id": "T4",
+      "case_title": "用户未确认：先确认",
+      "expected_tool": "op_d",
+      "expected_order_id": "A103",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是专业的订单客服，请准确依据业务规则选择处理方式。\n订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n订单未退款、签收不超过30天且已经拆封时，转人工处理。\n订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n订单status为refunded时，只告知已退款，不得重复退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A103\", \"status\": \"paid\", \"days_since_delivery\": 2, \"opened\": false, \"refund_confirmed\": false}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "为满足退款规则且用户已确认的订单发起退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "对超过退款期限的订单拒绝退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "将需要人工处理的订单转交人工客服。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "向尚未确认退款的用户请求确认，暂不退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "告知用户此订单已退款，避免重复退款。"
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-238",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_enphxrz1",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A103\"}",
+                    "name": "op_d"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725186,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 614,
+          "total_tokens": 638,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 573
+          }
+        }
+      },
+      "total_seconds": 0.2718573000165634,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_d",
+        "argument_string": "{\"order_id\":\"A103\"}",
+        "parsed_arguments": {
+          "order_id": "A103"
+        },
+        "argument_parse_error": null,
+        "tool_correct": true,
+        "arguments_correct": true,
+        "decision_correct": true,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "baseline",
+      "case_id": "T3",
+      "case_title": "已拆封：转人工",
+      "expected_tool": "op_c",
+      "expected_order_id": "A102",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是专业的订单客服，请准确依据业务规则选择处理方式。\n【已退款】订单status为refunded时，只告知已退款，不得重复退款。\n【超过期限】订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n【已拆封】订单未退款、签收不超过30天且已经拆封时，转人工处理。\n【尚未确认】订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n【可以退款】订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A102\", \"status\": \"paid\", \"days_since_delivery\": 8, \"opened\": true, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "为满足退款规则且用户已确认的订单发起退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "对超过退款期限的订单拒绝退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "将需要人工处理的订单转交人工客服。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "向尚未确认退款的用户请求确认，暂不退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "告知用户此订单已退款，避免重复退款。"
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-805",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_uj2e2x3o",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A102\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725186,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 635,
+          "total_tokens": 659,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 594
+          }
+        }
+      },
+      "total_seconds": 0.2870041999849491,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A102\"}",
+        "parsed_arguments": {
+          "order_id": "A102"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "wiki_shuffle",
+      "case_id": "T3",
+      "case_title": "已拆封：转人工",
+      "expected_tool": "op_c",
+      "expected_order_id": "A102",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是专业的订单客服，请准确依据业务规则选择处理方式。\n订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n订单未退款、签收不超过30天且已经拆封时，转人工处理。\n订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n订单status为refunded时，只告知已退款，不得重复退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A102\", \"status\": \"paid\", \"days_since_delivery\": 8, \"opened\": true, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "为满足退款规则且用户已确认的订单发起退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "对超过退款期限的订单拒绝退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "将需要人工处理的订单转交人工客服。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "向尚未确认退款的用户请求确认，暂不退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "告知用户此订单已退款，避免重复退款。"
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-120",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_kayoiv8q",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A102\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725187,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 614,
+          "total_tokens": 638,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 573
+          }
+        }
+      },
+      "total_seconds": 0.2768343999632634,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A102\"}",
+        "parsed_arguments": {
+          "order_id": "A102"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "combined",
+      "case_id": "T4",
+      "case_title": "用户未确认：先确认",
+      "expected_tool": "op_d",
+      "expected_order_id": "A103",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是订单客服小助手，咱们轻松点，照着业务规则把订单处理好吧～\n订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n订单未退款、签收不超过30天且已经拆封时，转人工处理。\n订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n订单status为refunded时，只告知已退款，不得重复退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A103\", \"status\": \"paid\", \"days_since_delivery\": 2, \"opened\": false, \"refund_confirmed\": false}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-892",
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": null
+            }
+          }
+        ],
+        "created": 1791725187,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 473,
+          "total_tokens": 497,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 432
+          }
+        }
+      },
+      "total_seconds": 0.2743174000061117,
+      "evaluation": {
+        "single_call": false,
+        "tool_name": null,
+        "argument_string": null,
+        "parsed_arguments": null,
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": false,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "baseline",
+      "case_id": "T5",
+      "case_title": "已经退款：不得重复",
+      "expected_tool": "op_e",
+      "expected_order_id": "A104",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是专业的订单客服，请准确依据业务规则选择处理方式。\n【已退款】订单status为refunded时，只告知已退款，不得重复退款。\n【超过期限】订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n【已拆封】订单未退款、签收不超过30天且已经拆封时，转人工处理。\n【尚未确认】订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n【可以退款】订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A104\", \"status\": \"refunded\", \"days_since_delivery\": 10, \"opened\": false, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "为满足退款规则且用户已确认的订单发起退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "对超过退款期限的订单拒绝退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "将需要人工处理的订单转交人工客服。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "向尚未确认退款的用户请求确认，暂不退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "告知用户此订单已退款，避免重复退款。"
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-412",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_2dxn61k9",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A104\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725187,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 637,
+          "total_tokens": 661,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 594
+          }
+        }
+      },
+      "total_seconds": 0.2761955000460148,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A104\"}",
+        "parsed_arguments": {
+          "order_id": "A104"
+        },
+        "argument_parse_error": null,
+        "tool_correct": true,
+        "arguments_correct": true,
+        "decision_correct": true,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "no_tool_desc",
+      "case_id": "T5",
+      "case_title": "已经退款：不得重复",
+      "expected_tool": "op_e",
+      "expected_order_id": "A104",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是专业的订单客服，请准确依据业务规则选择处理方式。\n【已退款】订单status为refunded时，只告知已退款，不得重复退款。\n【超过期限】订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n【已拆封】订单未退款、签收不超过30天且已经拆封时，转人工处理。\n【尚未确认】订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n【可以退款】订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A104\", \"status\": \"refunded\", \"days_since_delivery\": 10, \"opened\": false, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-547",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_o3uhpusn",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A104\"}",
+                    "name": "op_a"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725187,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 489,
+          "total_tokens": 513,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 224
+          }
+        }
+      },
+      "total_seconds": 0.2533805000130087,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_a",
+        "argument_string": "{\"order_id\":\"A104\"}",
+        "parsed_arguments": {
+          "order_id": "A104"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "tone_casual",
+      "case_id": "T3",
+      "case_title": "已拆封：转人工",
+      "expected_tool": "op_c",
+      "expected_order_id": "A102",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是订单客服小助手，咱们轻松点，照着业务规则把订单处理好吧～\n【已退款】订单status为refunded时，只告知已退款，不得重复退款。\n【超过期限】订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n【已拆封】订单未退款、签收不超过30天且已经拆封时，转人工处理。\n【尚未确认】订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n【可以退款】订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A102\", \"status\": \"paid\", \"days_since_delivery\": 8, \"opened\": true, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "为满足退款规则且用户已确认的订单发起退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "对超过退款期限的订单拒绝退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "将需要人工处理的订单转交人工客服。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "向尚未确认退款的用户请求确认，暂不退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "告知用户此订单已退款，避免重复退款。"
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-3",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_i52vda5z",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A102\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725188,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 642,
+          "total_tokens": 666,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 601
+          }
+        }
+      },
+      "total_seconds": 0.2827009999891743,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A102\"}",
+        "parsed_arguments": {
+          "order_id": "A102"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "tone_casual",
+      "case_id": "T4",
+      "case_title": "用户未确认：先确认",
+      "expected_tool": "op_d",
+      "expected_order_id": "A103",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是订单客服小助手，咱们轻松点，照着业务规则把订单处理好吧～\n【已退款】订单status为refunded时，只告知已退款，不得重复退款。\n【超过期限】订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n【已拆封】订单未退款、签收不超过30天且已经拆封时，转人工处理。\n【尚未确认】订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n【可以退款】订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A103\", \"status\": \"paid\", \"days_since_delivery\": 2, \"opened\": false, \"refund_confirmed\": false}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "为满足退款规则且用户已确认的订单发起退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "对超过退款期限的订单拒绝退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "将需要人工处理的订单转交人工客服。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "向尚未确认退款的用户请求确认，暂不退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "告知用户此订单已退款，避免重复退款。"
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-133",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_qlo8qvnh",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A103\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725188,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 642,
+          "total_tokens": 666,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 601
+          }
+        }
+      },
+      "total_seconds": 0.20694250002270564,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A103\"}",
+        "parsed_arguments": {
+          "order_id": "A103"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "no_tool_desc",
+      "case_id": "T4",
+      "case_title": "用户未确认：先确认",
+      "expected_tool": "op_d",
+      "expected_order_id": "A103",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是专业的订单客服，请准确依据业务规则选择处理方式。\n【已退款】订单status为refunded时，只告知已退款，不得重复退款。\n【超过期限】订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n【已拆封】订单未退款、签收不超过30天且已经拆封时，转人工处理。\n【尚未确认】订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n【可以退款】订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A103\", \"status\": \"paid\", \"days_since_delivery\": 2, \"opened\": false, \"refund_confirmed\": false}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-537",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_o8jg7lbu",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A103\"}",
+                    "name": "op_a"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725188,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 487,
+          "total_tokens": 511,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 446
+          }
+        }
+      },
+      "total_seconds": 0.26521330000832677,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_a",
+        "argument_string": "{\"order_id\":\"A103\"}",
+        "parsed_arguments": {
+          "order_id": "A103"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "baseline",
+      "case_id": "T1",
+      "case_title": "期限边界：30天可退",
+      "expected_tool": "op_a",
+      "expected_order_id": "A100",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是专业的订单客服，请准确依据业务规则选择处理方式。\n【已退款】订单status为refunded时，只告知已退款，不得重复退款。\n【超过期限】订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n【已拆封】订单未退款、签收不超过30天且已经拆封时，转人工处理。\n【尚未确认】订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n【可以退款】订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A100\", \"status\": \"paid\", \"days_since_delivery\": 30, \"opened\": false, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "为满足退款规则且用户已确认的订单发起退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "对超过退款期限的订单拒绝退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "将需要人工处理的订单转交人工客服。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "向尚未确认退款的用户请求确认，暂不退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "告知用户此订单已退款，避免重复退款。"
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-590",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_0am2duvy",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A100\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725189,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 636,
+          "total_tokens": 660,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 594
+          }
+        }
+      },
+      "total_seconds": 0.2684659999795258,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A100\"}",
+        "parsed_arguments": {
+          "order_id": "A100"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "baseline",
+      "case_id": "T4",
+      "case_title": "用户未确认：先确认",
+      "expected_tool": "op_d",
+      "expected_order_id": "A103",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是专业的订单客服，请准确依据业务规则选择处理方式。\n【已退款】订单status为refunded时，只告知已退款，不得重复退款。\n【超过期限】订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n【已拆封】订单未退款、签收不超过30天且已经拆封时，转人工处理。\n【尚未确认】订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n【可以退款】订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A103\", \"status\": \"paid\", \"days_since_delivery\": 2, \"opened\": false, \"refund_confirmed\": false}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "为满足退款规则且用户已确认的订单发起退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "对超过退款期限的订单拒绝退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "将需要人工处理的订单转交人工客服。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "向尚未确认退款的用户请求确认，暂不退款。"
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string",
+                    "description": "需要处理的订单编号，必须原样取自输入order_id。"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              },
+              "description": "告知用户此订单已退款，避免重复退款。"
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-149",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_19jukc2a",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A103\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725189,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 635,
+          "total_tokens": 659,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 594
+          }
+        }
+      },
+      "total_seconds": 0.21477279998362064,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A103\"}",
+        "parsed_arguments": {
+          "order_id": "A103"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    },
+    {
+      "group": "no_tool_desc",
+      "case_id": "T1",
+      "case_title": "期限边界：30天可退",
+      "expected_tool": "op_a",
+      "expected_order_id": "A100",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "你是专业的订单客服，请准确依据业务规则选择处理方式。\n【已退款】订单status为refunded时，只告知已退款，不得重复退款。\n【超过期限】订单未退款且签收超过30天时，拒绝退款；拆封和确认状态不影响这个结论。\n【已拆封】订单未退款、签收不超过30天且已经拆封时，转人工处理。\n【尚未确认】订单未退款、签收不超过30天、未拆封且用户未确认退款时，先向用户请求确认。\n【可以退款】订单未退款、签收不超过30天、未拆封且用户已确认退款时，发起退款。\n请仅提出一个符合规则的工具调用，order_id必须与输入一致。不要只输出解释，不得猜测缺失信息。"
+          },
+          {
+            "role": "user",
+            "content": "请处理这笔订单：\n{\"order_id\": \"A100\", \"status\": \"paid\", \"days_since_delivery\": 30, \"opened\": false, \"refund_confirmed\": true}"
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "op_a",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_b",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_c",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_d",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "op_e",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        ]
+      },
+      "response": {
+        "id": "chatcmpl-791",
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "call_fzciihyz",
+                  "function": {
+                    "arguments": "{\"order_id\":\"A100\"}",
+                    "name": "op_e"
+                  },
+                  "type": "function",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1791725189,
+        "model": "qwen3:0.6b",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 488,
+          "total_tokens": 512,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cache_write_tokens": null,
+            "cached_tokens": 446
+          }
+        }
+      },
+      "total_seconds": 0.3135444999788888,
+      "evaluation": {
+        "single_call": true,
+        "tool_name": "op_e",
+        "argument_string": "{\"order_id\":\"A100\"}",
+        "parsed_arguments": {
+          "order_id": "A100"
+        },
+        "argument_parse_error": null,
+        "tool_correct": false,
+        "arguments_correct": true,
+        "decision_correct": false,
+        "tool_executed": false
+      },
+      "request_completed": true
+    }
+  ],
+  "warmup": {
+    "id": "chatcmpl-13",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "好的，我已准备好。如有任何问题或需要帮助，请随时告诉我！",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": 1791725181,
+    "model": "qwen3:0.6b",
+    "object": "chat.completion",
+    "moderation": null,
+    "service_tier": null,
+    "system_fingerprint": "fp_ollama",
+    "usage": {
+      "completion_tokens": 17,
+      "prompt_tokens": 22,
+      "total_tokens": 39,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cache_write_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "failure": null,
+  "observation_completed": true,
+  "scope": "本机真实模型的单步工具决策；不执行工具，不是τ-bench完整客服环境。",
+  "parameters": {
+    "reasoning_effort": "none",
+    "temperature": 0,
+    "max_tokens": 256
+  },
+  "summary": {
+    "baseline": {
+      "samples": 5,
+      "tool_correct": 1,
+      "arguments_correct": 5,
+      "decision_correct": 1
+    },
+    "tone_casual": {
+      "samples": 5,
+      "tool_correct": 1,
+      "arguments_correct": 5,
+      "decision_correct": 1
+    },
+    "tone_emphatic": {
+      "samples": 5,
+      "tool_correct": 1,
+      "arguments_correct": 5,
+      "decision_correct": 1
+    },
+    "wiki_shuffle": {
+      "samples": 5,
+      "tool_correct": 2,
+      "arguments_correct": 5,
+      "decision_correct": 2
+    },
+    "no_tool_desc": {
+      "samples": 5,
+      "tool_correct": 0,
+      "arguments_correct": 5,
+      "decision_correct": 0
+    },
+    "combined": {
+      "samples": 5,
+      "tool_correct": 1,
+      "arguments_correct": 3,
+      "decision_correct": 1
+    }
+  }
+}

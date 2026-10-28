@@ -1,0 +1,838 @@
+{
+  "checked_at": "2026-10-17T10:04:32.080972+00:00",
+  "scope": "Second batch six independent judge attempts; five scores and one connection failure",
+  "checks": {
+    "official_sources_configuration_all_240_identities": true,
+    "full_raw_answer_judge_input_and_artifacts": true,
+    "official_score_recalculation": true,
+    "summary_recomputed": true,
+    "prior_writer_and_judge_artifacts_unchanged": true
+  },
+  "rows": [
+    {
+      "test_id": "layer1_02_insurance_claim",
+      "mode": "json_cards",
+      "status": "scored",
+      "judge_summary": {
+        "scores": {
+          "precision": 3,
+          "recall": 2,
+          "reasoning": 2,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": false,
+        "reward": 0.625
+      },
+      "error": null,
+      "judge_sha256": "e61d57b0e92de237cb4476337aa1c831b028b8477e49dd90a7655edd307baa5b",
+      "request_attempts": 1,
+      "usage": {
+        "completion_tokens": 761,
+        "prompt_tokens": 5985,
+        "total_tokens": 6746,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 5985
+      },
+      "finish_reason": "stop",
+      "evidence_check": [
+        {
+          "dimension": "precision",
+          "quote": "Your claim number is CLM-2024-894327",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "precision",
+          "quote": "it is standard practice in insurance claims for the adjuster to contact claimants within 24–48 hours",
+          "match": "markdown_removed_substring"
+        },
+        {
+          "dimension": "recall",
+          "quote": "Our adjuster, Patricia Wong, will inspect your vehicle at Jerry's Auto Body within 24-48 hours",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "recall",
+          "quote": "Actually, I have a new number. It's 916-555-8899",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "recall",
+          "quote": "Patricia will call you at 916-555-8899",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "reasoning",
+          "quote": "The memory does not specify an expected call time for the adjuster",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "reasoning",
+          "quote": "She'll call you at the number we have on file - is 916-555-2234 still correct?",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "reasoning",
+          "quote": "Patricia will call you at 916-555-8899",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "proactivity",
+          "quote": "If you have not received a call by tomorrow (2024-11-19), please contact the claims department immediately at 916-555-8899",
+          "match": "markdown_removed_substring"
+        }
+      ]
+    },
+    {
+      "test_id": "layer1_02_insurance_claim",
+      "mode": "advanced_json_cards",
+      "status": "scored",
+      "judge_summary": {
+        "scores": {
+          "precision": 2,
+          "recall": 2,
+          "reasoning": 2,
+          "proactivity": 3
+        },
+        "hallucination_veto": true,
+        "passed": false,
+        "reward": 0.0
+      },
+      "error": null,
+      "judge_sha256": "955c989da7e19dcd7b32b5353ead68fb6a1985b95c34a4c46df79bb7062f26a3",
+      "request_attempts": 1,
+      "usage": {
+        "completion_tokens": 803,
+        "prompt_tokens": 5094,
+        "total_tokens": 5897,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 2304
+        },
+        "prompt_cache_hit_tokens": 2304,
+        "prompt_cache_miss_tokens": 2790
+      },
+      "finish_reason": "stop",
+      "evidence_check": [
+        {
+          "dimension": "precision",
+          "quote": "Your claim number: CLM-2024-894327",
+          "match": "paraphrase_or_not_exact_quote"
+        },
+        {
+          "dimension": "precision",
+          "quote": "The memory does not specify an exact call time",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "precision",
+          "quote": "you can call Patricia Wong directly at 916-555-8899",
+          "match": "markdown_removed_substring"
+        },
+        {
+          "dimension": "recall",
+          "quote": "You'll receive a call from Patricia Wong within 48 hours",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "recall",
+          "quote": "Patricia will call you at 916-555-8899",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "recall",
+          "quote": "The memory does not specify an exact call time",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "reasoning",
+          "quote": "This means the adjuster will likely contact you within the next 24–48 hours",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "reasoning",
+          "quote": "The memory does not specify an exact call time",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "proactivity",
+          "quote": "Delay risk: If the adjuster’s inspection is delayed beyond 48 hours",
+          "match": "markdown_removed_substring"
+        },
+        {
+          "dimension": "proactivity",
+          "quote": "Call Patricia Wong at 916-555-8899 immediately to confirm the inspection schedule",
+          "match": "markdown_removed_substring"
+        }
+      ]
+    },
+    {
+      "test_id": "layer1_03_medical_appointment",
+      "mode": "json_cards",
+      "status": "scored",
+      "judge_summary": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 3,
+          "proactivity": 2
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.8125
+      },
+      "error": null,
+      "judge_sha256": "fb899b433db5a302758afb4f4e623da97355406f731ff83b18cf781a032f8593",
+      "request_attempts": 1,
+      "usage": {
+        "completion_tokens": 639,
+        "prompt_tokens": 3163,
+        "total_tokens": 3802,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 3163
+      },
+      "finish_reason": "stop",
+      "evidence_check": [
+        {
+          "dimension": "precision",
+          "quote": "Dr. Chen can see you next Thursday, November 21st at 2:30 PM",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "precision",
+          "quote": "I'll schedule you with Dr. Chen for Thursday, November 21st at 2:30 PM",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "precision",
+          "quote": "Your confirmation number for this appointment is MV-789234",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "precision",
+          "quote": "Please bring your insurance card, photo ID, a list of your current medications with dosages, and any medical records you have from Dr. Mitchell",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "recall",
+          "quote": "Dr. Robert Chen or Dr. Lisa Wang available",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "recall",
+          "quote": "Thursday the 21st works better for me",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "recall",
+          "quote": "MV-789234",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "reasoning",
+          "quote": "time: \"14:30\"",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "reasoning",
+          "quote": "arrive 15 minutes early",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "reasoning",
+          "quote": "fast for 12 hours",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "proactivity",
+          "quote": "please arrive 15 minutes early to complete any remaining paperwork",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "proactivity",
+          "quote": "It's best to fast for 12 hours just in case",
+          "match": "verbatim_substring"
+        }
+      ]
+    },
+    {
+      "test_id": "layer1_03_medical_appointment",
+      "mode": "advanced_json_cards",
+      "status": "scored",
+      "judge_summary": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 4,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.9375
+      },
+      "error": null,
+      "judge_sha256": "2b7f377555dd1b82b10c7af3f2342a6701fa73a3cf19b0e446ae8db054a91880",
+      "request_attempts": 1,
+      "usage": {
+        "completion_tokens": 506,
+        "prompt_tokens": 4367,
+        "total_tokens": 4873,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 2176
+        },
+        "prompt_cache_hit_tokens": 2176,
+        "prompt_cache_miss_tokens": 2191
+      },
+      "finish_reason": "stop",
+      "evidence_check": [
+        {
+          "dimension": "precision",
+          "quote": "ASSISTANT: I'll schedule you with Dr. Chen for Thursday, November 21st at 2:30 PM.",
+          "match": "role_prefix_removed_substring"
+        },
+        {
+          "dimension": "precision",
+          "quote": "Your confirmation number for this appointment is MV-789234.",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "recall",
+          "quote": "Your confirmation number for this appointment is MV-789234.",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "recall",
+          "quote": "We're in the Medical Arts Building, 750 Broadway, Suite 200, Denver.",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "reasoning",
+          "quote": "Dr. Chen can see you next Thursday, November 21st at 2:30 PM",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "proactivity",
+          "quote": "please arrive 15 minutes early to complete any remaining paperwork",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "proactivity",
+          "quote": "It's best to fast for 12 hours just in case he wants a fasting glucose and lipid panel.",
+          "match": "verbatim_substring"
+        }
+      ]
+    },
+    {
+      "test_id": "layer1_04_airline_booking",
+      "mode": "json_cards",
+      "status": "incomplete",
+      "judge_summary": null,
+      "error": {
+        "type": "APIConnectionError",
+        "message": "Connection error."
+      },
+      "judge_sha256": "2943d9b9ae853f5330d7a65b25b52c6c604bd937824b1a26426b1453df35c64c",
+      "request_attempts": 1,
+      "usage": null,
+      "finish_reason": null,
+      "evidence_check": []
+    },
+    {
+      "test_id": "layer1_04_airline_booking",
+      "mode": "advanced_json_cards",
+      "status": "scored",
+      "judge_summary": {
+        "scores": {
+          "precision": 4,
+          "recall": 4,
+          "reasoning": 4,
+          "proactivity": 3
+        },
+        "hallucination_veto": false,
+        "passed": true,
+        "reward": 0.9375
+      },
+      "error": null,
+      "judge_sha256": "c73b83e7219f9b17552aa743d182b6b2e632725b23060ec2a0be7096e4ffa9cd",
+      "request_attempts": 1,
+      "usage": {
+        "completion_tokens": 514,
+        "prompt_tokens": 3392,
+        "total_tokens": 3906,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 2048
+        },
+        "prompt_cache_hit_tokens": 2048,
+        "prompt_cache_miss_tokens": 1344
+      },
+      "finish_reason": "stop",
+      "evidence_check": [
+        {
+          "dimension": "precision",
+          "quote": "Your flight confirmation number is **PAC-778K4M**.",
+          "match": "verbatim_substring"
+        },
+        {
+          "dimension": "precision",
+          "quote": "Outbound flight (PA 890): Seat **12C**",
+          "match": "markdown_removed_substring"
+        },
+        {
+          "dimension": "precision",
+          "quote": "Return flight (PA 891): Seat **14C**",
+          "match": "markdown_removed_substring"
+        },
+        {
+          "dimension": "recall",
+          "quote": "Confirmation number PAC-778K4M stated by assistant and confirmed by user",
+          "match": "paraphrase_or_not_exact_quote"
+        },
+        {
+          "dimension": "recall",
+          "quote": "Seat 12C selected for outbound PA 890",
+          "match": "paraphrase_or_not_exact_quote"
+        },
+        {
+          "dimension": "recall",
+          "quote": "Seat 14C selected for return PA 891",
+          "match": "paraphrase_or_not_exact_quote"
+        },
+        {
+          "dimension": "reasoning",
+          "quote": "Outbound flight (PA 890): Seat 12C",
+          "match": "markdown_removed_substring"
+        },
+        {
+          "dimension": "reasoning",
+          "quote": "Return flight (PA 891): Seat 14C",
+          "match": "markdown_removed_substring"
+        },
+        {
+          "dimension": "proactivity",
+          "quote": "Note: Your booking is active and confirmed with Pacific Airways. Always verify flight details 24–48 hours before departure for terminal changes.",
+          "match": "verbatim_substring"
+        }
+      ]
+    }
+  ],
+  "usage_totals": {
+    "prompt_tokens_received": 22001,
+    "completion_tokens_received": 3223,
+    "request_attempts": 6,
+    "responses_with_usage": 5,
+    "failed_request_usage_and_billing": "unknown; no raw response retained, not treated as zero"
+  },
+  "summary": {
+    "planned_cases": 60,
+    "planned_variants": 240,
+    "writer_states": {
+      "incomplete": 15,
+      "saved": 9,
+      "pending": 216
+    },
+    "judge_states": {
+      "pending": 231,
+      "scored": 8,
+      "incomplete": 1
+    },
+    "scored_variants": 8,
+    "passed_variants": 4,
+    "all_attempts_and_outcomes_finished": false,
+    "pipeline_pass_rate_all_variants": null,
+    "pass_rate_scored_only": 0.5,
+    "mean_reward_scored_only": 0.515625,
+    "writer_calls": 40,
+    "judge_calls": 9,
+    "generation_failure_kinds": {
+      "generation_error": 14,
+      "truncated": 1
+    },
+    "input_tokens": 75713,
+    "output_tokens": 49888,
+    "memory_input_tokens": 64375,
+    "memory_output_tokens": 31795,
+    "answer_input_tokens": 11338,
+    "answer_output_tokens": 18093,
+    "request_seconds": 1795.4402287999837,
+    "tag_queries": 24,
+    "full_240_judge_scores_available": false,
+    "by_mode": {
+      "notes": {
+        "planned_variants": 60,
+        "writer_states": {
+          "incomplete": 6,
+          "pending": 54
+        },
+        "judge_states": {
+          "pending": 60
+        },
+        "scored_variants": 0,
+        "passed_variants": 0,
+        "all_attempts_and_outcomes_finished": false,
+        "pipeline_pass_rate_all_variants": null,
+        "pass_rate_scored_only": null,
+        "mean_reward_scored_only": null,
+        "writer_calls": 6,
+        "judge_calls": 0,
+        "generation_failure_kinds": {
+          "generation_error": 6
+        },
+        "input_tokens": 13381,
+        "output_tokens": 7258,
+        "memory_input_tokens": 13381,
+        "memory_output_tokens": 7258,
+        "answer_input_tokens": 0,
+        "answer_output_tokens": 0,
+        "request_seconds": 267.599338799977,
+        "tag_queries": 6
+      },
+      "enhanced_notes": {
+        "planned_variants": 60,
+        "writer_states": {
+          "incomplete": 6,
+          "pending": 54
+        },
+        "judge_states": {
+          "pending": 60
+        },
+        "scored_variants": 0,
+        "passed_variants": 0,
+        "all_attempts_and_outcomes_finished": false,
+        "pipeline_pass_rate_all_variants": null,
+        "pass_rate_scored_only": null,
+        "mean_reward_scored_only": null,
+        "writer_calls": 6,
+        "judge_calls": 0,
+        "generation_failure_kinds": {
+          "generation_error": 6
+        },
+        "input_tokens": 11351,
+        "output_tokens": 6045,
+        "memory_input_tokens": 11351,
+        "memory_output_tokens": 6045,
+        "answer_input_tokens": 0,
+        "answer_output_tokens": 0,
+        "request_seconds": 251.47431159998814,
+        "tag_queries": 6
+      },
+      "json_cards": {
+        "planned_variants": 60,
+        "writer_states": {
+          "saved": 4,
+          "incomplete": 2,
+          "pending": 54
+        },
+        "judge_states": {
+          "scored": 3,
+          "pending": 56,
+          "incomplete": 1
+        },
+        "scored_variants": 3,
+        "passed_variants": 2,
+        "all_attempts_and_outcomes_finished": false,
+        "pipeline_pass_rate_all_variants": null,
+        "pass_rate_scored_only": 0.6666666666666666,
+        "mean_reward_scored_only": 0.75,
+        "writer_calls": 14,
+        "judge_calls": 4,
+        "generation_failure_kinds": {
+          "generation_error": 1,
+          "truncated": 1
+        },
+        "input_tokens": 24332,
+        "output_tokens": 18214,
+        "memory_input_tokens": 20335,
+        "memory_output_tokens": 7183,
+        "answer_input_tokens": 3997,
+        "answer_output_tokens": 11031,
+        "request_seconds": 607.7252058000449,
+        "tag_queries": 6
+      },
+      "advanced_json_cards": {
+        "planned_variants": 60,
+        "writer_states": {
+          "saved": 5,
+          "incomplete": 1,
+          "pending": 54
+        },
+        "judge_states": {
+          "scored": 5,
+          "pending": 55
+        },
+        "scored_variants": 5,
+        "passed_variants": 2,
+        "all_attempts_and_outcomes_finished": false,
+        "pipeline_pass_rate_all_variants": null,
+        "pass_rate_scored_only": 0.4,
+        "mean_reward_scored_only": 0.375,
+        "writer_calls": 14,
+        "judge_calls": 5,
+        "generation_failure_kinds": {
+          "generation_error": 1
+        },
+        "input_tokens": 26649,
+        "output_tokens": 18371,
+        "memory_input_tokens": 19308,
+        "memory_output_tokens": 11309,
+        "answer_input_tokens": 7341,
+        "answer_output_tokens": 7062,
+        "request_seconds": 668.6413725999737,
+        "tag_queries": 6
+      }
+    },
+    "by_layer": {
+      "layer1": {
+        "planned_variants": 80,
+        "writer_states": {
+          "incomplete": 8,
+          "saved": 8,
+          "pending": 64
+        },
+        "judge_states": {
+          "pending": 72,
+          "scored": 7,
+          "incomplete": 1
+        },
+        "scored_variants": 7,
+        "passed_variants": 4,
+        "all_attempts_and_outcomes_finished": false,
+        "pipeline_pass_rate_all_variants": null,
+        "pass_rate_scored_only": 0.5714285714285714,
+        "mean_reward_scored_only": 0.5892857142857143,
+        "writer_calls": 24,
+        "judge_calls": 8,
+        "generation_failure_kinds": {
+          "generation_error": 8
+        },
+        "input_tokens": 47865,
+        "output_tokens": 30807,
+        "memory_input_tokens": 38736,
+        "memory_output_tokens": 18311,
+        "answer_input_tokens": 9129,
+        "answer_output_tokens": 12496,
+        "request_seconds": 1045.7569143000146,
+        "tag_queries": 16
+      },
+      "layer2": {
+        "planned_variants": 80,
+        "writer_states": {
+          "incomplete": 3,
+          "saved": 1,
+          "pending": 76
+        },
+        "judge_states": {
+          "pending": 79,
+          "scored": 1
+        },
+        "scored_variants": 1,
+        "passed_variants": 0,
+        "all_attempts_and_outcomes_finished": false,
+        "pipeline_pass_rate_all_variants": null,
+        "pass_rate_scored_only": 0.0,
+        "mean_reward_scored_only": 0.0,
+        "writer_calls": 7,
+        "judge_calls": 1,
+        "generation_failure_kinds": {
+          "generation_error": 3
+        },
+        "input_tokens": 13382,
+        "output_tokens": 7451,
+        "memory_input_tokens": 11811,
+        "memory_output_tokens": 5950,
+        "answer_input_tokens": 1571,
+        "answer_output_tokens": 1501,
+        "request_seconds": 307.84754549998615,
+        "tag_queries": 4
+      },
+      "layer3": {
+        "planned_variants": 80,
+        "writer_states": {
+          "incomplete": 4,
+          "pending": 76
+        },
+        "judge_states": {
+          "pending": 80
+        },
+        "scored_variants": 0,
+        "passed_variants": 0,
+        "all_attempts_and_outcomes_finished": false,
+        "pipeline_pass_rate_all_variants": null,
+        "pass_rate_scored_only": null,
+        "mean_reward_scored_only": null,
+        "writer_calls": 9,
+        "judge_calls": 0,
+        "generation_failure_kinds": {
+          "generation_error": 3,
+          "truncated": 1
+        },
+        "input_tokens": 14466,
+        "output_tokens": 11630,
+        "memory_input_tokens": 13828,
+        "memory_output_tokens": 7534,
+        "answer_input_tokens": 638,
+        "answer_output_tokens": 4096,
+        "request_seconds": 441.835768999983,
+        "tag_queries": 4
+      }
+    },
+    "note": "技术失败无裁判分数，不填0；已评分均分与通过率只对应已评分子集。"
+  },
+  "manual_review_notes": [
+    "Insurance ordinary: recall/reasoning 2 means fail despite nonzero reward 0.625. Number 916-555-8899 appears in answer but with incorrect ownership; judge statement that the number was omitted should be read as failure to recall callback relationship, not missing digits.",
+    "Insurance advanced: source states both inspection within 24-48 hours and callback within 48 hours; describing inspection timing alone is not an invented fact. No exact call time and no callback window differ. Preserve veto and scores; phone ownership error and unsupported rental-coverage expiration are independently visible.",
+    "Medical ordinary: actual intermediate JSON memory exists; reference to it is a process artifact, not proof of invented appointment facts.",
+    "Some evidence fields are paraphrases or formatting-normalized excerpts rather than exact quotes; do not claim all evidence is verbatim.",
+    "Airline ordinary has complete writer answer but APIConnectionError in judge with no raw response or score; no retry, no invented zero or inferred pass/fail."
+  ],
+  "next_step": {
+    "stage": "writer",
+    "limit": 12,
+    "preview_passed_zero_network": true,
+    "groups": [
+      {
+        "test_id": "layer1_05_internet_service",
+        "mode": "notes",
+        "session_count": 1
+      },
+      {
+        "test_id": "layer1_05_internet_service",
+        "mode": "enhanced_notes",
+        "session_count": 1
+      },
+      {
+        "test_id": "layer1_05_internet_service",
+        "mode": "json_cards",
+        "session_count": 1
+      },
+      {
+        "test_id": "layer1_05_internet_service",
+        "mode": "advanced_json_cards",
+        "session_count": 1
+      },
+      {
+        "test_id": "layer1_06_credit_card_app",
+        "mode": "notes",
+        "session_count": 1
+      },
+      {
+        "test_id": "layer1_06_credit_card_app",
+        "mode": "enhanced_notes",
+        "session_count": 1
+      },
+      {
+        "test_id": "layer1_06_credit_card_app",
+        "mode": "json_cards",
+        "session_count": 1
+      },
+      {
+        "test_id": "layer1_06_credit_card_app",
+        "mode": "advanced_json_cards",
+        "session_count": 1
+      },
+      {
+        "test_id": "layer1_07_car_rental",
+        "mode": "notes",
+        "session_count": 1
+      },
+      {
+        "test_id": "layer1_07_car_rental",
+        "mode": "enhanced_notes",
+        "session_count": 1
+      },
+      {
+        "test_id": "layer1_07_car_rental",
+        "mode": "json_cards",
+        "session_count": 1
+      },
+      {
+        "test_id": "layer1_07_car_rental",
+        "mode": "advanced_json_cards",
+        "session_count": 1
+      }
+    ],
+    "max_inference_calls": 24,
+    "max_tag_queries": 12,
+    "cloud_judge_calls": 0
+  },
+  "original_file_hashes": {
+    "batch.json": "30c6f205044fa4d22a6fcc4500c02d7c8253549437b905eb9043112de2aab353",
+    "summary.json": "a2b1e57d8d0c80a889dc8df0853c55b953b9a2bd4748ea32f987be7fd7580928",
+    "summary.md": "101435bd1eafe6781d32fb8bdf30faf305e97d173356433a427e1847e91f62b0",
+    "核对记录.json": "28d07b14d16615f82e96324a4a0ef632978e332be25798162ad2fdbdf46a0d2c",
+    "第二批生成核对.json": "885f0e714724f59bc491f4058682099e90d83484fa86a684986ed094abf07b2f",
+    "评分核对记录.json": "ba5c2b2938f77cf2319f78074c7950e92cd46efb5b346e4fd2df132c87daf895",
+    "layer1_01_bank_account\\advanced_json_cards\\answer.txt": "dc8f253310519ceeae4fd19ab536b101566fd0b3e1766dfa70962edfaf614012",
+    "layer1_01_bank_account\\advanced_json_cards\\judge.json": "dfe09c721b4123e6a76b06144ba098cfe4402a9ab5920baffb9f2531e9325d13",
+    "layer1_01_bank_account\\advanced_json_cards\\memory.json": "2a1cee365dab5138ce5de169750c124f6385bc4d9fa2e85ecf5db8fa1ed33f9e",
+    "layer1_01_bank_account\\advanced_json_cards\\writer.json": "63dd9378f4a7a487df151bc63599185c7daae213dc758dad0088bdc1a2e7a959",
+    "layer1_01_bank_account\\enhanced_notes\\writer.json": "889716b803d49086932cc78ee6f359b38f54d6b21d85b7d122b26e201cc705e8",
+    "layer1_01_bank_account\\json_cards\\answer.txt": "83a62334fa61bae144899e28ac92d43d1695e931e99a2f0d0a84783b368bba1e",
+    "layer1_01_bank_account\\json_cards\\judge.json": "736ff10d202e438e129909f04d027a18421894b369ba10c9cf24fc54be6143cb",
+    "layer1_01_bank_account\\json_cards\\memory.json": "0c15e735e672988c7ad9f93390f39bb10fd72d334459ace41512c85d880d8a84",
+    "layer1_01_bank_account\\json_cards\\writer.json": "ca8f410d5eec4fc021a6682df668c48d6f05bd354369d91ad3c049cdac958723",
+    "layer1_01_bank_account\\notes\\writer.json": "6faa908794eebe29a4ee7f76320a0df4eca9b8afbb7925fb2d15ee5f17759feb",
+    "layer1_02_insurance_claim\\advanced_json_cards\\answer.txt": "136100b2a1c5029c70596e66bfd5ff0fc09aa451e91bc61dcfa33c82f38c4691",
+    "layer1_02_insurance_claim\\advanced_json_cards\\judge.json": "955c989da7e19dcd7b32b5353ead68fb6a1985b95c34a4c46df79bb7062f26a3",
+    "layer1_02_insurance_claim\\advanced_json_cards\\memory.json": "bba64472072e1d61e024384ea025437123aaaa3484978ef69b2335b0a8649811",
+    "layer1_02_insurance_claim\\advanced_json_cards\\writer.json": "68632d02c9ad9353aac72c6692a3105349064edf84920a75828946dadf59f070",
+    "layer1_02_insurance_claim\\enhanced_notes\\writer.json": "fb2c2437e6990ed5e9ed35b9c7f0893fd5c477ea56ec9ed79ada2e67f6968ce9",
+    "layer1_02_insurance_claim\\json_cards\\answer.txt": "3038185acc39305979a71aa18ed048ac1c15855b7a6f517f194feead7e4d6d40",
+    "layer1_02_insurance_claim\\json_cards\\judge.json": "e61d57b0e92de237cb4476337aa1c831b028b8477e49dd90a7655edd307baa5b",
+    "layer1_02_insurance_claim\\json_cards\\memory.json": "74ea7ae4b6bd5d2e60b3aaed6f48df10c5ed71827df42e5b37aa41d0febc96a0",
+    "layer1_02_insurance_claim\\json_cards\\writer.json": "af2171e5b9d37267f59005e9399bf226c907616dc27455257baa80f26119cb35",
+    "layer1_02_insurance_claim\\notes\\writer.json": "ba8a97725d7196e68b3a23372fc131ce1f628e413e07a9b4f2298328d4412b88",
+    "layer1_03_medical_appointment\\advanced_json_cards\\answer.txt": "2358340853d56ce3226f221bd39111b73b1bad60bc6e7366d43f8bc3fc1cd798",
+    "layer1_03_medical_appointment\\advanced_json_cards\\judge.json": "2b7f377555dd1b82b10c7af3f2342a6701fa73a3cf19b0e446ae8db054a91880",
+    "layer1_03_medical_appointment\\advanced_json_cards\\memory.json": "e57ec4dfb43f911fddffcc9aa67c84c3213a4e085dd66f83ac831d64c2effc27",
+    "layer1_03_medical_appointment\\advanced_json_cards\\writer.json": "ed83f0afd43828ebd3a0912797299beec6849cb81980ccadf602e90ae9b6ae8a",
+    "layer1_03_medical_appointment\\enhanced_notes\\writer.json": "e0ed6131b6a2dfdeff8f4398690f39e4c0353cbf8cb574f2bc4108a41f1bab3a",
+    "layer1_03_medical_appointment\\json_cards\\answer.txt": "e155265ac651ea923feb9988a927c6086cdf559cf1057ec0a568c09200b87cfd",
+    "layer1_03_medical_appointment\\json_cards\\judge.json": "fb899b433db5a302758afb4f4e623da97355406f731ff83b18cf781a032f8593",
+    "layer1_03_medical_appointment\\json_cards\\memory.json": "674d6a6db6054f5fd8f4389aca31844df7cd25ad60308a1ccb96d2f81206c364",
+    "layer1_03_medical_appointment\\json_cards\\writer.json": "c1385c178a15e56490b043269f604713eb06eb8cc692319ac8603e5f126089ed",
+    "layer1_03_medical_appointment\\notes\\writer.json": "4f2981bb2318539ce79c0d5d4d0d7aee2f641b6916ccbba94dbc9400ff0647e8",
+    "layer1_04_airline_booking\\advanced_json_cards\\answer.txt": "5479cf1ffdd3d75a06392345d0e8ecfc405218cf9840fb80cbd3d86ebcde811e",
+    "layer1_04_airline_booking\\advanced_json_cards\\judge.json": "c73b83e7219f9b17552aa743d182b6b2e632725b23060ec2a0be7096e4ffa9cd",
+    "layer1_04_airline_booking\\advanced_json_cards\\memory.json": "e7085f6f51316ceec5ced7a3ffa5bc31d6919a2fa96a302ee1d5fbbf93a48dcd",
+    "layer1_04_airline_booking\\advanced_json_cards\\writer.json": "3703cb3c10497d55f7465eb0d956c057e278d36c2ab5b0046d969a832c162762",
+    "layer1_04_airline_booking\\enhanced_notes\\writer.json": "1cb613ebb3a75ca556b6500e6ff5b12ebda7ccb5e6529af42f3ef5129eeee754",
+    "layer1_04_airline_booking\\json_cards\\answer.txt": "05cd6948078ce096d3c1129c05ea4a050f01a41e9c0359b334f39af0cc3690f3",
+    "layer1_04_airline_booking\\json_cards\\judge.json": "2943d9b9ae853f5330d7a65b25b52c6c604bd937824b1a26426b1453df35c64c",
+    "layer1_04_airline_booking\\json_cards\\memory.json": "51fa666e424b8eea58385704d15985d723f33d5b4493c59748684d25fe20ab2f",
+    "layer1_04_airline_booking\\json_cards\\writer.json": "8805bec7d00314d1df103da6692f3eb33f0441e7a0dfdf90b80f6d8f65bca128",
+    "layer1_04_airline_booking\\notes\\writer.json": "064656594fb3ffa2e8f510c4241a1af3535d44dccb8c3eabac3fa4072fcf775d",
+    "layer2_01_multiple_vehicles\\advanced_json_cards\\answer.txt": "fa95806f0eabae3b2e47842c4ddab412c371c6c9cd37bded4be15636673ddcb8",
+    "layer2_01_multiple_vehicles\\advanced_json_cards\\judge.json": "4ada1d196f5483110925d472108ef8b6e721f480d4869e4e6f8d10dfcb266563",
+    "layer2_01_multiple_vehicles\\advanced_json_cards\\memory.json": "1a5081ad9ac9d42a7d550c853d084b00d067749f8d25aea4f27db5837a581b2d",
+    "layer2_01_multiple_vehicles\\advanced_json_cards\\writer.json": "b325853b1791f8780efcce742ebdd6c1e02612080c8e73134bfd1d631010d632",
+    "layer2_01_multiple_vehicles\\enhanced_notes\\writer.json": "8a3a11c484df9ce86a12c15eafb75332cbd557862290cd779d2806d4e98add25",
+    "layer2_01_multiple_vehicles\\json_cards\\writer.json": "e5e922f5cda53b2ebc1430bca7774c2e0cdf269646a6e510a385837512016919",
+    "layer2_01_multiple_vehicles\\notes\\writer.json": "14c37232fc440ecc753a6ecdadb651585dcf5ac7fb0ab2c7473325ed46ff7981",
+    "layer3_01_travel_coordination\\advanced_json_cards\\writer.json": "8bfb689645fd38a037b2e882e50b887bf9e803bba349c648c93692771a230a55",
+    "layer3_01_travel_coordination\\enhanced_notes\\writer.json": "0e0ae61f9a74f2fcd454e6c981cb1e7cbba5eb5c74a76aeba7ac6701268d86d5",
+    "layer3_01_travel_coordination\\json_cards\\writer.json": "5dfc52f49093e3e21539068d25b563683050dccada314e3b1af49b1b2f3e8d01",
+    "layer3_01_travel_coordination\\notes\\writer.json": "80018c71cff0210d49a65226e631dd81b0e76ea4717df85c849ea2720be9db83"
+  },
+  "assistant_inference_requests": 0,
+  "completion_boundary": "24/240 generation attempts; 15 generation failures, 8 scores (4 pass), 1 judge connection failure; 216 unattempted; no overall full-campaign score"
+}

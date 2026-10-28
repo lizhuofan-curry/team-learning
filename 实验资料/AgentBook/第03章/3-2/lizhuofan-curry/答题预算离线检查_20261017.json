@@ -1,0 +1,21 @@
+{
+  "checked_at": "2026-10-17T16:07:43.992703+08:00",
+  "scope": "OFFLINE MOCK CHECKS ONLY; no real model or judge output",
+  "model_requests": 0,
+  "network_requests": 0,
+  "script_sha256": "1d1b39175b86d6b5bad232d7f8d6d7fdd4906aadb41998c7cc94e51f19a26e3b",
+  "source_writer_sha256": "5fc57ade38e8da0640ebd1daef2a284e48133bc81222842b7bc0b7a60c25b4cb",
+  "source_writer_unchanged": true,
+  "passed_checks": [
+    "source raw memory checkpoint and baseline failure verified",
+    "new request differs only at options.num_predict (1200 to 4096)",
+    "preview has zero network calls and zero new runtime files",
+    "mock run performs one tags query and one answer call; no memory extraction",
+    "memory, source hash, output limit and code drift rejected",
+    "raw response and answer artifact integrity enforced",
+    "4096-token truncation retained without retry, answer repair or judge request",
+    "model digest mismatch prevents inference",
+    "judge preview validates complete answer without API use",
+    "mock independent judge: one request, official prompt, full uncleaned answer, score recalculation and no saved key"
+  ]
+}

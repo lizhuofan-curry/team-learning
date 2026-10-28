@@ -1,0 +1,43 @@
+{
+  "status": "hybrid_fusion_record_verified",
+  "checked_at": "2026-10-17T22:55:24.442480+08:00",
+  "record_sha256": "e055bfb30c60177207289dd38c8335b98ff99df86484be68d125c4841f7ac07d",
+  "script_manifest_fixture_and_two_source_audits_verified": true,
+  "source_top5_union_and_candidate_coverage_verified": true,
+  "rrf_and_minmax_weighted_scores_contributions_ties_and_rank_changes_independently_recomputed": true,
+  "shared_metrics_independently_recomputed": {
+    "dense": {
+      "recall_at_5": 1.0,
+      "precision_at_5_fixed_slots": 0.32,
+      "mrr_at_5": 1.0
+    },
+    "sparse": {
+      "recall_at_5": 0.6,
+      "precision_at_5_fixed_slots": 0.16,
+      "mrr_at_5": 0.6
+    },
+    "rrf": {
+      "recall_at_5": 1.0,
+      "precision_at_5_fixed_slots": 0.32,
+      "mrr_at_5": 0.9
+    },
+    "weighted": {
+      "recall_at_5": 1.0,
+      "precision_at_5_fixed_slots": 0.32,
+      "mrr_at_5": 0.9
+    }
+  },
+  "candidate_union_counts": [
+    5,
+    5,
+    5,
+    7,
+    5
+  ],
+  "candidate_recall_macro": 1.0,
+  "key_observation": "training neural networks: doc_4 moves 2->1; first labelled relevant doc_11 moves 1->2; RR@5 1->0.5",
+  "model_requests": 0,
+  "embedding_forward_batches": 0,
+  "network_requests": 0,
+  "scope": "Saved-record verification and independent arithmetic only. No encoding, engine search, official fusion rerun or reranking. Original record preserved."
+}

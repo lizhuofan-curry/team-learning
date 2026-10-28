@@ -1,0 +1,2018 @@
+{
+  "experiment_id": "1-1",
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "task": "根据公司的季度收入：\n- 第一季度：2,500,000美元（USD）\n- 第二季度：2,100,000欧元（EUR）\n- 第三季度：1,800,000英镑（GBP）\n- 第四季度：380,000,000日元（JPY）\n\n请使用可用的货币换算工具，把所有非美元收入换算为美元，再使用计算工具算出全年总收入和季度平均收入。两个结果均保留两位小数。不得自行估计汇率，必须使用工具返回的观测结果。",
+  "expected_numbers": [
+    "9602895.73",
+    "2400723.93"
+  ],
+  "requested_modes": [
+    "no_history",
+    "no_tool_calls",
+    "no_tool_results"
+  ],
+  "exact_official_five_arms": false,
+  "limitation": "DeepSeek思考模式的工具调用要求保留reasoning_content，因此这里没有把官方no_reasoning历史消融伪装成有效实验组。",
+  "arms": [
+    {
+      "mode": "no_history",
+      "provider": "deepseek",
+      "model": "deepseek-flash",
+      "status": "max_turns_reached",
+      "completed": false,
+      "task_success": false,
+      "turn_count": 5,
+      "tool_action_count": 15,
+      "repeated_tool_actions": 12,
+      "final_answer": "",
+      "executed_tools": [
+        {
+          "turn": 1,
+          "id": "call_00_zb49BaWKwDY2ropwFFzF3315",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 2100000,
+            "from_currency": "EUR",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 2100000.0,
+            "from_currency": "EUR",
+            "to_currency": "USD",
+            "converted_amount": 2282608.7,
+            "exchange_rate": 1.087
+          },
+          "content_sent_to_model": "{\"original_amount\": 2100000.0, \"from_currency\": \"EUR\", \"to_currency\": \"USD\", \"converted_amount\": 2282608.7, \"exchange_rate\": 1.087}"
+        },
+        {
+          "turn": 1,
+          "id": "call_01_G1pIyy6moz0ME2yCkg5i7649",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 1800000,
+            "from_currency": "GBP",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 1800000.0,
+            "from_currency": "GBP",
+            "to_currency": "USD",
+            "converted_amount": 2278481.01,
+            "exchange_rate": 1.2658
+          },
+          "content_sent_to_model": "{\"original_amount\": 1800000.0, \"from_currency\": \"GBP\", \"to_currency\": \"USD\", \"converted_amount\": 2278481.01, \"exchange_rate\": 1.2658}"
+        },
+        {
+          "turn": 1,
+          "id": "call_02_w0XWdcCADM7JMJhDKfSX1454",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 380000000,
+            "from_currency": "JPY",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 380000000.0,
+            "from_currency": "JPY",
+            "to_currency": "USD",
+            "converted_amount": 2541806.02,
+            "exchange_rate": 0.0067
+          },
+          "content_sent_to_model": "{\"original_amount\": 380000000.0, \"from_currency\": \"JPY\", \"to_currency\": \"USD\", \"converted_amount\": 2541806.02, \"exchange_rate\": 0.0067}"
+        },
+        {
+          "turn": 2,
+          "id": "call_00_XXCej5V09fyqoZ39PKOR7857",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 2100000,
+            "from_currency": "EUR",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 2100000.0,
+            "from_currency": "EUR",
+            "to_currency": "USD",
+            "converted_amount": 2282608.7,
+            "exchange_rate": 1.087
+          },
+          "content_sent_to_model": "{\"original_amount\": 2100000.0, \"from_currency\": \"EUR\", \"to_currency\": \"USD\", \"converted_amount\": 2282608.7, \"exchange_rate\": 1.087}"
+        },
+        {
+          "turn": 2,
+          "id": "call_01_1PyW6bLkPuTpI2eIYqbK7237",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 1800000,
+            "from_currency": "GBP",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 1800000.0,
+            "from_currency": "GBP",
+            "to_currency": "USD",
+            "converted_amount": 2278481.01,
+            "exchange_rate": 1.2658
+          },
+          "content_sent_to_model": "{\"original_amount\": 1800000.0, \"from_currency\": \"GBP\", \"to_currency\": \"USD\", \"converted_amount\": 2278481.01, \"exchange_rate\": 1.2658}"
+        },
+        {
+          "turn": 2,
+          "id": "call_02_1jsrCfP6bx6MlDZ4YIce6735",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 380000000,
+            "from_currency": "JPY",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 380000000.0,
+            "from_currency": "JPY",
+            "to_currency": "USD",
+            "converted_amount": 2541806.02,
+            "exchange_rate": 0.0067
+          },
+          "content_sent_to_model": "{\"original_amount\": 380000000.0, \"from_currency\": \"JPY\", \"to_currency\": \"USD\", \"converted_amount\": 2541806.02, \"exchange_rate\": 0.0067}"
+        },
+        {
+          "turn": 3,
+          "id": "call_00_4vStyA9jDZxlSOUlnvfA1046",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 2100000,
+            "from_currency": "EUR",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 2100000.0,
+            "from_currency": "EUR",
+            "to_currency": "USD",
+            "converted_amount": 2282608.7,
+            "exchange_rate": 1.087
+          },
+          "content_sent_to_model": "{\"original_amount\": 2100000.0, \"from_currency\": \"EUR\", \"to_currency\": \"USD\", \"converted_amount\": 2282608.7, \"exchange_rate\": 1.087}"
+        },
+        {
+          "turn": 3,
+          "id": "call_01_RtWJrOQpOEkUtsOkWAmP8885",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 1800000,
+            "from_currency": "GBP",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 1800000.0,
+            "from_currency": "GBP",
+            "to_currency": "USD",
+            "converted_amount": 2278481.01,
+            "exchange_rate": 1.2658
+          },
+          "content_sent_to_model": "{\"original_amount\": 1800000.0, \"from_currency\": \"GBP\", \"to_currency\": \"USD\", \"converted_amount\": 2278481.01, \"exchange_rate\": 1.2658}"
+        },
+        {
+          "turn": 3,
+          "id": "call_02_MXQecjNr79kD4U692l4O1945",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 380000000,
+            "from_currency": "JPY",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 380000000.0,
+            "from_currency": "JPY",
+            "to_currency": "USD",
+            "converted_amount": 2541806.02,
+            "exchange_rate": 0.0067
+          },
+          "content_sent_to_model": "{\"original_amount\": 380000000.0, \"from_currency\": \"JPY\", \"to_currency\": \"USD\", \"converted_amount\": 2541806.02, \"exchange_rate\": 0.0067}"
+        },
+        {
+          "turn": 4,
+          "id": "call_00_VpKdzVxc58Hgpgb65nuW1637",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 2100000,
+            "from_currency": "EUR",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 2100000.0,
+            "from_currency": "EUR",
+            "to_currency": "USD",
+            "converted_amount": 2282608.7,
+            "exchange_rate": 1.087
+          },
+          "content_sent_to_model": "{\"original_amount\": 2100000.0, \"from_currency\": \"EUR\", \"to_currency\": \"USD\", \"converted_amount\": 2282608.7, \"exchange_rate\": 1.087}"
+        },
+        {
+          "turn": 4,
+          "id": "call_01_49vNDvJ7NgHVmbD27LoU4523",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 1800000,
+            "from_currency": "GBP",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 1800000.0,
+            "from_currency": "GBP",
+            "to_currency": "USD",
+            "converted_amount": 2278481.01,
+            "exchange_rate": 1.2658
+          },
+          "content_sent_to_model": "{\"original_amount\": 1800000.0, \"from_currency\": \"GBP\", \"to_currency\": \"USD\", \"converted_amount\": 2278481.01, \"exchange_rate\": 1.2658}"
+        },
+        {
+          "turn": 4,
+          "id": "call_02_hRRVbUnJYc6sIvpGLNN78214",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 380000000,
+            "from_currency": "JPY",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 380000000.0,
+            "from_currency": "JPY",
+            "to_currency": "USD",
+            "converted_amount": 2541806.02,
+            "exchange_rate": 0.0067
+          },
+          "content_sent_to_model": "{\"original_amount\": 380000000.0, \"from_currency\": \"JPY\", \"to_currency\": \"USD\", \"converted_amount\": 2541806.02, \"exchange_rate\": 0.0067}"
+        },
+        {
+          "turn": 5,
+          "id": "call_00_2altB65nRvFfRCDhh4mP2553",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 2100000,
+            "from_currency": "EUR",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 2100000.0,
+            "from_currency": "EUR",
+            "to_currency": "USD",
+            "converted_amount": 2282608.7,
+            "exchange_rate": 1.087
+          },
+          "content_sent_to_model": "{\"original_amount\": 2100000.0, \"from_currency\": \"EUR\", \"to_currency\": \"USD\", \"converted_amount\": 2282608.7, \"exchange_rate\": 1.087}"
+        },
+        {
+          "turn": 5,
+          "id": "call_01_VGqpyjebvFWkdS1yJMyg4451",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 1800000,
+            "from_currency": "GBP",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 1800000.0,
+            "from_currency": "GBP",
+            "to_currency": "USD",
+            "converted_amount": 2278481.01,
+            "exchange_rate": 1.2658
+          },
+          "content_sent_to_model": "{\"original_amount\": 1800000.0, \"from_currency\": \"GBP\", \"to_currency\": \"USD\", \"converted_amount\": 2278481.01, \"exchange_rate\": 1.2658}"
+        },
+        {
+          "turn": 5,
+          "id": "call_02_Z0pMj7Pd3egc85zopRtD8818",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 380000000,
+            "from_currency": "JPY",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 380000000.0,
+            "from_currency": "JPY",
+            "to_currency": "USD",
+            "converted_amount": 2541806.02,
+            "exchange_rate": 0.0067
+          },
+          "content_sent_to_model": "{\"original_amount\": 380000000.0, \"from_currency\": \"JPY\", \"to_currency\": \"USD\", \"converted_amount\": 2541806.02, \"exchange_rate\": 0.0067}"
+        }
+      ],
+      "api_turns": [
+        {
+          "turn": 1,
+          "request": {
+            "model": "deepseek-flash",
+            "messages": [
+              {
+                "role": "system",
+                "content": "你是财务计算Agent。请使用提供的工具，让每个数值结果都有工具观测依据，并用简洁中文回答。"
+              },
+              {
+                "role": "user",
+                "content": "根据公司的季度收入：\n- 第一季度：2,500,000美元（USD）\n- 第二季度：2,100,000欧元（EUR）\n- 第三季度：1,800,000英镑（GBP）\n- 第四季度：380,000,000日元（JPY）\n\n请使用可用的货币换算工具，把所有非美元收入换算为美元，再使用计算工具算出全年总收入和季度平均收入。两个结果均保留两位小数。不得自行估计汇率，必须使用工具返回的观测结果。"
+              }
+            ],
+            "max_tokens": 4096,
+            "reasoning_effort": "high",
+            "thinking": {
+              "type": "enabled"
+            },
+            "tools": [
+              {
+                "type": "function",
+                "function": {
+                  "name": "convert_currency",
+                  "description": "使用工具内置的固定汇率，把金额从一种货币换算为另一种货币。",
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number",
+                        "description": "待换算金额。"
+                      },
+                      "from_currency": {
+                        "type": "string",
+                        "description": "源货币代码。"
+                      },
+                      "to_currency": {
+                        "type": "string",
+                        "description": "目标货币代码。"
+                      }
+                    },
+                    "required": [
+                      "amount",
+                      "from_currency",
+                      "to_currency"
+                    ]
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "calculate",
+                  "description": "计算由数字、括号及加减乘除组成的算式。",
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "expression": {
+                        "type": "string",
+                        "description": "要计算的算式。"
+                      }
+                    },
+                    "required": [
+                      "expression"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "response": {
+            "id": "b29229f1-c395-4bd8-a471-9bd1d7314340",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": "我将先把三笔非美元收入换算为美元，再汇总计算。",
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "call_00_zb49BaWKwDY2ropwFFzF3315",
+                      "function": {
+                        "arguments": "{\"amount\": 2100000, \"from_currency\": \"EUR\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 0
+                    },
+                    {
+                      "id": "call_01_G1pIyy6moz0ME2yCkg5i7649",
+                      "function": {
+                        "arguments": "{\"amount\": 1800000, \"from_currency\": \"GBP\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 1
+                    },
+                    {
+                      "id": "call_02_w0XWdcCADM7JMJhDKfSX1454",
+                      "function": {
+                        "arguments": "{\"amount\": 380000000, \"from_currency\": \"JPY\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 2
+                    }
+                  ],
+                  "reasoning_content": "I need to convert EUR, GBP, JPY to USD using the tool, then sum all with Q1.\n\nLet me call the tools in parallel."
+                }
+              }
+            ],
+            "created": 1791253135,
+            "model": "deepseek-flash",
+            "object": "chat.completion",
+            "moderation": null,
+            "service_tier": null,
+            "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+            "usage": {
+              "completion_tokens": 257,
+              "prompt_tokens": 552,
+              "total_tokens": 809,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 30,
+                "rejected_prediction_tokens": null
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 384
+              },
+              "prompt_cache_hit_tokens": 384,
+              "prompt_cache_miss_tokens": 168
+            }
+          }
+        },
+        {
+          "turn": 2,
+          "request": {
+            "model": "deepseek-flash",
+            "messages": [
+              {
+                "role": "system",
+                "content": "你是财务计算Agent。请使用提供的工具，让每个数值结果都有工具观测依据，并用简洁中文回答。"
+              },
+              {
+                "role": "user",
+                "content": "根据公司的季度收入：\n- 第一季度：2,500,000美元（USD）\n- 第二季度：2,100,000欧元（EUR）\n- 第三季度：1,800,000英镑（GBP）\n- 第四季度：380,000,000日元（JPY）\n\n请使用可用的货币换算工具，把所有非美元收入换算为美元，再使用计算工具算出全年总收入和季度平均收入。两个结果均保留两位小数。不得自行估计汇率，必须使用工具返回的观测结果。"
+              }
+            ],
+            "max_tokens": 4096,
+            "reasoning_effort": "high",
+            "thinking": {
+              "type": "enabled"
+            },
+            "tools": [
+              {
+                "type": "function",
+                "function": {
+                  "name": "convert_currency",
+                  "description": "使用工具内置的固定汇率，把金额从一种货币换算为另一种货币。",
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number",
+                        "description": "待换算金额。"
+                      },
+                      "from_currency": {
+                        "type": "string",
+                        "description": "源货币代码。"
+                      },
+                      "to_currency": {
+                        "type": "string",
+                        "description": "目标货币代码。"
+                      }
+                    },
+                    "required": [
+                      "amount",
+                      "from_currency",
+                      "to_currency"
+                    ]
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "calculate",
+                  "description": "计算由数字、括号及加减乘除组成的算式。",
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "expression": {
+                        "type": "string",
+                        "description": "要计算的算式。"
+                      }
+                    },
+                    "required": [
+                      "expression"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "response": {
+            "id": "8265b180-a5f5-43ae-b122-80cc46557406",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": "我将分别把欧元、英镑、日元收入换算为美元。",
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "call_00_XXCej5V09fyqoZ39PKOR7857",
+                      "function": {
+                        "arguments": "{\"amount\": 2100000, \"from_currency\": \"EUR\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 0
+                    },
+                    {
+                      "id": "call_01_1PyW6bLkPuTpI2eIYqbK7237",
+                      "function": {
+                        "arguments": "{\"amount\": 1800000, \"from_currency\": \"GBP\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 1
+                    },
+                    {
+                      "id": "call_02_1jsrCfP6bx6MlDZ4YIce6735",
+                      "function": {
+                        "arguments": "{\"amount\": 380000000, \"from_currency\": \"JPY\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 2
+                    }
+                  ],
+                  "reasoning_content": "We need convert EUR, GBP, JPY to USD. Then sum with Q1 USD 2,500,000. Then average /4. Use tools. We can call multiple conversions in parallel."
+                }
+              }
+            ],
+            "created": 1791253136,
+            "model": "deepseek-flash",
+            "object": "chat.completion",
+            "moderation": null,
+            "service_tier": null,
+            "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+            "usage": {
+              "completion_tokens": 265,
+              "prompt_tokens": 552,
+              "total_tokens": 817,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 40,
+                "rejected_prediction_tokens": null
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 384
+              },
+              "prompt_cache_hit_tokens": 384,
+              "prompt_cache_miss_tokens": 168
+            }
+          }
+        },
+        {
+          "turn": 3,
+          "request": {
+            "model": "deepseek-flash",
+            "messages": [
+              {
+                "role": "system",
+                "content": "你是财务计算Agent。请使用提供的工具，让每个数值结果都有工具观测依据，并用简洁中文回答。"
+              },
+              {
+                "role": "user",
+                "content": "根据公司的季度收入：\n- 第一季度：2,500,000美元（USD）\n- 第二季度：2,100,000欧元（EUR）\n- 第三季度：1,800,000英镑（GBP）\n- 第四季度：380,000,000日元（JPY）\n\n请使用可用的货币换算工具，把所有非美元收入换算为美元，再使用计算工具算出全年总收入和季度平均收入。两个结果均保留两位小数。不得自行估计汇率，必须使用工具返回的观测结果。"
+              }
+            ],
+            "max_tokens": 4096,
+            "reasoning_effort": "high",
+            "thinking": {
+              "type": "enabled"
+            },
+            "tools": [
+              {
+                "type": "function",
+                "function": {
+                  "name": "convert_currency",
+                  "description": "使用工具内置的固定汇率，把金额从一种货币换算为另一种货币。",
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number",
+                        "description": "待换算金额。"
+                      },
+                      "from_currency": {
+                        "type": "string",
+                        "description": "源货币代码。"
+                      },
+                      "to_currency": {
+                        "type": "string",
+                        "description": "目标货币代码。"
+                      }
+                    },
+                    "required": [
+                      "amount",
+                      "from_currency",
+                      "to_currency"
+                    ]
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "calculate",
+                  "description": "计算由数字、括号及加减乘除组成的算式。",
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "expression": {
+                        "type": "string",
+                        "description": "要计算的算式。"
+                      }
+                    },
+                    "required": [
+                      "expression"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "response": {
+            "id": "78b72917-8efd-494d-a2b6-8f62a5a3eb4a",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": "我将先调用货币换算工具，把三笔非美元收入换算为美元。",
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "call_00_4vStyA9jDZxlSOUlnvfA1046",
+                      "function": {
+                        "arguments": "{\"amount\": 2100000, \"from_currency\": \"EUR\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 0
+                    },
+                    {
+                      "id": "call_01_RtWJrOQpOEkUtsOkWAmP8885",
+                      "function": {
+                        "arguments": "{\"amount\": 1800000, \"from_currency\": \"GBP\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 1
+                    },
+                    {
+                      "id": "call_02_MXQecjNr79kD4U692l4O1945",
+                      "function": {
+                        "arguments": "{\"amount\": 380000000, \"from_currency\": \"JPY\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 2
+                    }
+                  ],
+                  "reasoning_content": "We need to convert EUR, GBP, JPY to USD using the tool. Let's call the three conversions in parallel."
+                }
+              }
+            ],
+            "created": 1791253137,
+            "model": "deepseek-flash",
+            "object": "chat.completion",
+            "moderation": null,
+            "service_tier": null,
+            "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+            "usage": {
+              "completion_tokens": 253,
+              "prompt_tokens": 552,
+              "total_tokens": 805,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 24,
+                "rejected_prediction_tokens": null
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 384
+              },
+              "prompt_cache_hit_tokens": 384,
+              "prompt_cache_miss_tokens": 168
+            }
+          }
+        },
+        {
+          "turn": 4,
+          "request": {
+            "model": "deepseek-flash",
+            "messages": [
+              {
+                "role": "system",
+                "content": "你是财务计算Agent。请使用提供的工具，让每个数值结果都有工具观测依据，并用简洁中文回答。"
+              },
+              {
+                "role": "user",
+                "content": "根据公司的季度收入：\n- 第一季度：2,500,000美元（USD）\n- 第二季度：2,100,000欧元（EUR）\n- 第三季度：1,800,000英镑（GBP）\n- 第四季度：380,000,000日元（JPY）\n\n请使用可用的货币换算工具，把所有非美元收入换算为美元，再使用计算工具算出全年总收入和季度平均收入。两个结果均保留两位小数。不得自行估计汇率，必须使用工具返回的观测结果。"
+              }
+            ],
+            "max_tokens": 4096,
+            "reasoning_effort": "high",
+            "thinking": {
+              "type": "enabled"
+            },
+            "tools": [
+              {
+                "type": "function",
+                "function": {
+                  "name": "convert_currency",
+                  "description": "使用工具内置的固定汇率，把金额从一种货币换算为另一种货币。",
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number",
+                        "description": "待换算金额。"
+                      },
+                      "from_currency": {
+                        "type": "string",
+                        "description": "源货币代码。"
+                      },
+                      "to_currency": {
+                        "type": "string",
+                        "description": "目标货币代码。"
+                      }
+                    },
+                    "required": [
+                      "amount",
+                      "from_currency",
+                      "to_currency"
+                    ]
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "calculate",
+                  "description": "计算由数字、括号及加减乘除组成的算式。",
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "expression": {
+                        "type": "string",
+                        "description": "要计算的算式。"
+                      }
+                    },
+                    "required": [
+                      "expression"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "response": {
+            "id": "fa48816a-5ba3-44d3-b914-5e2b7aa4d08e",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": "我将先把三笔非美元收入换算为美元。",
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "call_00_VpKdzVxc58Hgpgb65nuW1637",
+                      "function": {
+                        "arguments": "{\"amount\": 2100000, \"from_currency\": \"EUR\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 0
+                    },
+                    {
+                      "id": "call_01_49vNDvJ7NgHVmbD27LoU4523",
+                      "function": {
+                        "arguments": "{\"amount\": 1800000, \"from_currency\": \"GBP\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 1
+                    },
+                    {
+                      "id": "call_02_hRRVbUnJYc6sIvpGLNN78214",
+                      "function": {
+                        "arguments": "{\"amount\": 380000000, \"from_currency\": \"JPY\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 2
+                    }
+                  ],
+                  "reasoning_content": "Let me convert each non-USD currency to USD.\n\nQ1: 2,500,000 USD (no conversion)\nQ2: 2,100,000 EUR -> USD\nQ3: 1,800,000 GBP -> USD\nQ4: 380,000,000 JPY -> USD\n\nLet me call the tool for each."
+                }
+              }
+            ],
+            "created": 1791253139,
+            "model": "deepseek-flash",
+            "object": "chat.completion",
+            "moderation": null,
+            "service_tier": null,
+            "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+            "usage": {
+              "completion_tokens": 295,
+              "prompt_tokens": 552,
+              "total_tokens": 847,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 72,
+                "rejected_prediction_tokens": null
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 384
+              },
+              "prompt_cache_hit_tokens": 384,
+              "prompt_cache_miss_tokens": 168
+            }
+          }
+        },
+        {
+          "turn": 5,
+          "request": {
+            "model": "deepseek-flash",
+            "messages": [
+              {
+                "role": "system",
+                "content": "你是财务计算Agent。请使用提供的工具，让每个数值结果都有工具观测依据，并用简洁中文回答。"
+              },
+              {
+                "role": "user",
+                "content": "根据公司的季度收入：\n- 第一季度：2,500,000美元（USD）\n- 第二季度：2,100,000欧元（EUR）\n- 第三季度：1,800,000英镑（GBP）\n- 第四季度：380,000,000日元（JPY）\n\n请使用可用的货币换算工具，把所有非美元收入换算为美元，再使用计算工具算出全年总收入和季度平均收入。两个结果均保留两位小数。不得自行估计汇率，必须使用工具返回的观测结果。"
+              }
+            ],
+            "max_tokens": 4096,
+            "reasoning_effort": "high",
+            "thinking": {
+              "type": "enabled"
+            },
+            "tools": [
+              {
+                "type": "function",
+                "function": {
+                  "name": "convert_currency",
+                  "description": "使用工具内置的固定汇率，把金额从一种货币换算为另一种货币。",
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number",
+                        "description": "待换算金额。"
+                      },
+                      "from_currency": {
+                        "type": "string",
+                        "description": "源货币代码。"
+                      },
+                      "to_currency": {
+                        "type": "string",
+                        "description": "目标货币代码。"
+                      }
+                    },
+                    "required": [
+                      "amount",
+                      "from_currency",
+                      "to_currency"
+                    ]
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "calculate",
+                  "description": "计算由数字、括号及加减乘除组成的算式。",
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "expression": {
+                        "type": "string",
+                        "description": "要计算的算式。"
+                      }
+                    },
+                    "required": [
+                      "expression"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "response": {
+            "id": "ebed89e2-3c95-4fa3-8f0e-6374361bea86",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": "我将先用换算工具把三笔非美元收入换算为美元。",
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "call_00_2altB65nRvFfRCDhh4mP2553",
+                      "function": {
+                        "arguments": "{\"amount\": 2100000, \"from_currency\": \"EUR\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 0
+                    },
+                    {
+                      "id": "call_01_VGqpyjebvFWkdS1yJMyg4451",
+                      "function": {
+                        "arguments": "{\"amount\": 1800000, \"from_currency\": \"GBP\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 1
+                    },
+                    {
+                      "id": "call_02_Z0pMj7Pd3egc85zopRtD8818",
+                      "function": {
+                        "arguments": "{\"amount\": 380000000, \"from_currency\": \"JPY\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 2
+                    }
+                  ],
+                  "reasoning_content": "Let me convert each currency to USD.\n\nQ2: 2,100,000 EUR to USD\nQ3: 1,800,000 GBP to USD\nQ4: 380,000,000 JPY to USD\n\nLet me call all three."
+                }
+              }
+            ],
+            "created": 1791253140,
+            "model": "deepseek-flash",
+            "object": "chat.completion",
+            "moderation": null,
+            "service_tier": null,
+            "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+            "usage": {
+              "completion_tokens": 279,
+              "prompt_tokens": 552,
+              "total_tokens": 831,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 53,
+                "rejected_prediction_tokens": null
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 384
+              },
+              "prompt_cache_hit_tokens": 384,
+              "prompt_cache_miss_tokens": 168
+            }
+          }
+        }
+      ]
+    },
+    {
+      "mode": "no_tool_calls",
+      "provider": "deepseek",
+      "model": "deepseek-flash",
+      "status": "answered",
+      "completed": true,
+      "task_success": false,
+      "turn_count": 1,
+      "tool_action_count": 0,
+      "repeated_tool_actions": 0,
+      "final_answer": "当前会话未提供可用的货币换算工具，也没有返回任何汇率观测值。按约束我不能自行估计汇率，因此无法将 EUR、GBP、JPY 换算为 USD，也就不能可靠计算全年总收入和季度平均收入。\n\n请在启用货币换算工具或提供各币种兑 USD 的汇率观测值后，我再按工具结果完成换算与计算，并保留两位小数。",
+      "executed_tools": [],
+      "api_turns": [
+        {
+          "turn": 1,
+          "request": {
+            "model": "deepseek-flash",
+            "messages": [
+              {
+                "role": "system",
+                "content": "你是财务计算Agent。请使用提供的工具，让每个数值结果都有工具观测依据，并用简洁中文回答。"
+              },
+              {
+                "role": "user",
+                "content": "根据公司的季度收入：\n- 第一季度：2,500,000美元（USD）\n- 第二季度：2,100,000欧元（EUR）\n- 第三季度：1,800,000英镑（GBP）\n- 第四季度：380,000,000日元（JPY）\n\n请使用可用的货币换算工具，把所有非美元收入换算为美元，再使用计算工具算出全年总收入和季度平均收入。两个结果均保留两位小数。不得自行估计汇率，必须使用工具返回的观测结果。"
+              }
+            ],
+            "max_tokens": 4096,
+            "reasoning_effort": "high",
+            "thinking": {
+              "type": "enabled"
+            }
+          },
+          "response": {
+            "id": "9ba89d82-929e-4fbe-a6ab-06d505b73a6a",
+            "choices": [
+              {
+                "finish_reason": "stop",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": "当前会话未提供可用的货币换算工具，也没有返回任何汇率观测值。按约束我不能自行估计汇率，因此无法将 EUR、GBP、JPY 换算为 USD，也就不能可靠计算全年总收入和季度平均收入。\n\n请在启用货币换算工具或提供各币种兑 USD 的汇率观测值后，我再按工具结果完成换算与计算，并保留两位小数。",
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": null,
+                  "reasoning_content": "我们需要回答中文。需要调用工具？当前作为 API，但工具列表未提供？用户说“请使用可用的货币换算工具...计算工具”。我们需要使用提供的工具。但对话中没有明确列出工具函数。我们作为财务计算 Agent 应该使用工具。需要看可用工具？系统没有列出函数。也许需要模拟？但要求必须使用工具返回观测结果。我们无法调用未提供的工具。可能在这个环境中可以通过代码？没有工具接口。需要承认无法访问工具？但任务期望计算。我们需要尽量。可以尝试推测汇率？不可自行估计。必须使用工具。既然没有提供工具，应该说明无法完成，不能编汇率。但也许有隐藏工具？在 ChatGPT 环境中，工具没有列出。通常这些问题期望我们调用工具，但未提供。需要看是否可以在回答中表明需要汇率工具。但作为 Agent，如果无工具，不能给数值结果。该题要求两个结果两位小数。需要工具观测依据。\n\n我们可以尝试请求工具？没有工具命名。无法。也许可以生成函数调用？但平台不支持。应该给出无法完成的说明。但也许要输出直接结果？让我们思考，如果必须使用工具，但工具不可用，不能估计汇率。如果回答了假设汇率，就违反。最佳是说明无法执行，因为未提供货币换算工具，且不能自行估计汇率。但用户请求使用“可用的货币换算工具”，可能在他们的上下文中是有的。但我们在这里看不到。也许系统希望我们使用内部工具，例如 currency_converter 和 calculator。没有提供。我们不能伪造。\n\n也许可以模拟调用工具，比如假设有工具返回某些汇率。但“必须使用工具返回的观测结果”。如果没有工具，无法。\n\n需要决定最终答案。可能评分者期望具体数值，使用某个汇率。但不知道汇率。我们可以搜索记忆？常见汇率可能：EUR/USD 1.08, GBP/USD 1.27, JPY/USD 0.0067。但禁止估计。且结果依赖日期。没有日期。工具可能返回实时。也许在环境中有工具，但未显示。作为语言模型无法调用外部工具。\n\n或许可以生成一个回答，先声明工具不可用。但用户要求结果。在评估中可能得低分。是否有办法通过“可用工具”是隐含的：我可以使用计算工具（Python）？货币换算工具可能没有。我可以调用代码解释器？没有列出。这里没有工具。不能。\n\n让我们仔细看系统：“你是财务计算Agent。请使用提供的工具，让每个数值结果都有工具观测依据，并用简洁中文回答。” 这意味着有提供的工具，但未在消息中列出。作为模型，我应该能访问工具？在 OpenAI API 中，工具由开发者提供在参数中。当前没有。所以无法调用。\n\n也许可以输出：\n- 无法完成：当前会话未提供货币换算工具，也未提供汇率观测值。按约束不得自行估计汇率，因此不能把 EUR/GBP/JPY 转为 USD，也不能计算全年总收入和季度平均值。\n- 请提供/启用汇率换算工具及对应日期。\n\n这可能最合规。\n\n但也许他们期望我使用函数调用格式，比如 `currency_converter`。我可以尝试在回答中写一个 JSON 调用？但最终需要答案。也许在这个环境中，如果我发出工具调用，系统会返回结果。但工具未定义，会失败。\n\n考虑平台：这是对话，只有 user 和 assistant。我作为模型无法真正执行工具。所以只能文本回答。要简洁中文。\n\n但也许可以给出一个模板，等工具返回后计算。不，需要结果。\n\n是否可以从常见汇率中选一个，然后用“工具返回”的假观测？这违反。不能造假。\n\n我决定回答：无法完成，因为缺少工具/汇率观测。这样虽然不满足数值，但符合“不得自行估计汇率”。需要提及如果提供汇率，我可以立刻计算。\n\n但用户明确要求“请使用可用的货币换算工具”。也许实际上有工具，但我看不到。或许我应该假定工具返回某些汇率？但“观测结果”必须来自工具。没有观测结果。不能。\n\n最终输出应简洁中文。可以包括：\n“当前会话未提供货币换算工具或汇率观测值，我不能自行估计汇率。因此无法可靠换算 EUR/GBP/JPY，也无法计算全年总收入和季度平均。请在启用换算工具/提供汇率后重试。”\n\n这满足合规。\n\n不过，作为财务计算 Agent，也许需要展示计算步骤？但无数据。\n\n我们是否可以在回答中只说明障碍，不计算。可以。\n\n但也许需要更友好：列出需要换算的项目。\n\n最终回答。"
+                }
+              }
+            ],
+            "created": 1791253141,
+            "model": "deepseek-flash",
+            "object": "chat.completion",
+            "moderation": null,
+            "service_tier": null,
+            "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+            "usage": {
+              "completion_tokens": 1041,
+              "prompt_tokens": 164,
+              "total_tokens": 1205,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 957,
+                "rejected_prediction_tokens": null
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 0
+              },
+              "prompt_cache_hit_tokens": 0,
+              "prompt_cache_miss_tokens": 164
+            }
+          }
+        }
+      ]
+    },
+    {
+      "mode": "no_tool_results",
+      "provider": "deepseek",
+      "model": "deepseek-flash",
+      "status": "answered",
+      "completed": true,
+      "task_success": false,
+      "turn_count": 4,
+      "tool_action_count": 7,
+      "repeated_tool_actions": 4,
+      "final_answer": "我无法完成这项计算，原因如下：\n\n**工具调用情况**\n我对三笔非美元收入分别调用了货币换算工具（EUR→USD、GBP→USD、JPY→USD，并做了重试），但工具**始终返回空结果**，没有任何汇率或换算金额的观测值。\n\n**结论**\n- 由于换算工具未返回任何可用观测结果，我无法获得欧元、英镑、日元对美元的汇率。\n- 按照要求，我不得自行估计或引用外部汇率，因此不能把这三笔收入换算成美元。\n- 缺少这一环节，全年总收入和季度平均收入也就没有可靠依据，我不能给出这两个数字。\n\n**建议**\n请确认货币换算工具是否已正确配置/可用（例如汇率数据源是否已加载）。工具恢复正常后，我可以立即重新执行：\n1. 将 2,100,000 EUR、1,800,000 GBP、380,000,000 JPY 分别换算为 USD；\n2. 加上第一季度 2,500,000 USD；\n3. 用计算工具求全年总收入，并除以 4 得到季度平均收入，两者均保留两位小数。\n\n在拿到工具的真实换算结果之前，我不会给出任何估算数值。",
+      "executed_tools": [
+        {
+          "turn": 1,
+          "id": "call_00_E48T8xTu35DhIvIWuTUF1764",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 2100000,
+            "from_currency": "EUR",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 2100000.0,
+            "from_currency": "EUR",
+            "to_currency": "USD",
+            "converted_amount": 2282608.7,
+            "exchange_rate": 1.087
+          },
+          "content_sent_to_model": ""
+        },
+        {
+          "turn": 1,
+          "id": "call_01_vRfhdbqzaGCsxZZ3GovF9549",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 1800000,
+            "from_currency": "GBP",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 1800000.0,
+            "from_currency": "GBP",
+            "to_currency": "USD",
+            "converted_amount": 2278481.01,
+            "exchange_rate": 1.2658
+          },
+          "content_sent_to_model": ""
+        },
+        {
+          "turn": 1,
+          "id": "call_02_id4V0ZpwxJmFpF02I0M27307",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 380000000,
+            "from_currency": "JPY",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 380000000.0,
+            "from_currency": "JPY",
+            "to_currency": "USD",
+            "converted_amount": 2541806.02,
+            "exchange_rate": 0.0067
+          },
+          "content_sent_to_model": ""
+        },
+        {
+          "turn": 2,
+          "id": "call_00_TfOOMuIYQx57ORUe2rth6229",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 2100000,
+            "from_currency": "EUR",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 2100000.0,
+            "from_currency": "EUR",
+            "to_currency": "USD",
+            "converted_amount": 2282608.7,
+            "exchange_rate": 1.087
+          },
+          "content_sent_to_model": ""
+        },
+        {
+          "turn": 2,
+          "id": "call_01_Am64Ij1805g2moFCGKG64416",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 1800000,
+            "from_currency": "GBP",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 1800000.0,
+            "from_currency": "GBP",
+            "to_currency": "USD",
+            "converted_amount": 2278481.01,
+            "exchange_rate": 1.2658
+          },
+          "content_sent_to_model": ""
+        },
+        {
+          "turn": 2,
+          "id": "call_02_NpcSyXa005e3jSPwamUy8353",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 380000000,
+            "from_currency": "JPY",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 380000000.0,
+            "from_currency": "JPY",
+            "to_currency": "USD",
+            "converted_amount": 2541806.02,
+            "exchange_rate": 0.0067
+          },
+          "content_sent_to_model": ""
+        },
+        {
+          "turn": 3,
+          "id": "call_00_9x4XOzxiessqtuhKmNtN5063",
+          "name": "convert_currency",
+          "arguments": {
+            "amount": 2100000,
+            "from_currency": "EUR",
+            "to_currency": "USD"
+          },
+          "actual_result": {
+            "original_amount": 2100000.0,
+            "from_currency": "EUR",
+            "to_currency": "USD",
+            "converted_amount": 2282608.7,
+            "exchange_rate": 1.087
+          },
+          "content_sent_to_model": ""
+        }
+      ],
+      "api_turns": [
+        {
+          "turn": 1,
+          "request": {
+            "model": "deepseek-flash",
+            "messages": [
+              {
+                "role": "system",
+                "content": "你是财务计算Agent。请使用提供的工具，让每个数值结果都有工具观测依据，并用简洁中文回答。"
+              },
+              {
+                "role": "user",
+                "content": "根据公司的季度收入：\n- 第一季度：2,500,000美元（USD）\n- 第二季度：2,100,000欧元（EUR）\n- 第三季度：1,800,000英镑（GBP）\n- 第四季度：380,000,000日元（JPY）\n\n请使用可用的货币换算工具，把所有非美元收入换算为美元，再使用计算工具算出全年总收入和季度平均收入。两个结果均保留两位小数。不得自行估计汇率，必须使用工具返回的观测结果。"
+              }
+            ],
+            "max_tokens": 4096,
+            "reasoning_effort": "high",
+            "thinking": {
+              "type": "enabled"
+            },
+            "tools": [
+              {
+                "type": "function",
+                "function": {
+                  "name": "convert_currency",
+                  "description": "使用工具内置的固定汇率，把金额从一种货币换算为另一种货币。",
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number",
+                        "description": "待换算金额。"
+                      },
+                      "from_currency": {
+                        "type": "string",
+                        "description": "源货币代码。"
+                      },
+                      "to_currency": {
+                        "type": "string",
+                        "description": "目标货币代码。"
+                      }
+                    },
+                    "required": [
+                      "amount",
+                      "from_currency",
+                      "to_currency"
+                    ]
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "calculate",
+                  "description": "计算由数字、括号及加减乘除组成的算式。",
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "expression": {
+                        "type": "string",
+                        "description": "要计算的算式。"
+                      }
+                    },
+                    "required": [
+                      "expression"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "response": {
+            "id": "311d2b88-bd11-418b-b5fc-e46e41b15211",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": "我将把三笔非美元收入分别换算成美元。",
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "call_00_E48T8xTu35DhIvIWuTUF1764",
+                      "function": {
+                        "arguments": "{\"amount\": 2100000, \"from_currency\": \"EUR\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 0
+                    },
+                    {
+                      "id": "call_01_vRfhdbqzaGCsxZZ3GovF9549",
+                      "function": {
+                        "arguments": "{\"amount\": 1800000, \"from_currency\": \"GBP\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 1
+                    },
+                    {
+                      "id": "call_02_id4V0ZpwxJmFpF02I0M27307",
+                      "function": {
+                        "arguments": "{\"amount\": 380000000, \"from_currency\": \"JPY\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 2
+                    }
+                  ],
+                  "reasoning_content": "Let me convert each currency to USD. I'll do all three conversions."
+                }
+              }
+            ],
+            "created": 1791253148,
+            "model": "deepseek-flash",
+            "object": "chat.completion",
+            "moderation": null,
+            "service_tier": null,
+            "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+            "usage": {
+              "completion_tokens": 239,
+              "prompt_tokens": 552,
+              "total_tokens": 791,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 15,
+                "rejected_prediction_tokens": null
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 384
+              },
+              "prompt_cache_hit_tokens": 384,
+              "prompt_cache_miss_tokens": 168
+            }
+          }
+        },
+        {
+          "turn": 2,
+          "request": {
+            "model": "deepseek-flash",
+            "messages": [
+              {
+                "role": "system",
+                "content": "你是财务计算Agent。请使用提供的工具，让每个数值结果都有工具观测依据，并用简洁中文回答。"
+              },
+              {
+                "role": "user",
+                "content": "根据公司的季度收入：\n- 第一季度：2,500,000美元（USD）\n- 第二季度：2,100,000欧元（EUR）\n- 第三季度：1,800,000英镑（GBP）\n- 第四季度：380,000,000日元（JPY）\n\n请使用可用的货币换算工具，把所有非美元收入换算为美元，再使用计算工具算出全年总收入和季度平均收入。两个结果均保留两位小数。不得自行估计汇率，必须使用工具返回的观测结果。"
+              },
+              {
+                "role": "assistant",
+                "content": "我将把三笔非美元收入分别换算成美元。",
+                "reasoning_content": "Let me convert each currency to USD. I'll do all three conversions.",
+                "tool_calls": [
+                  {
+                    "id": "call_00_E48T8xTu35DhIvIWuTUF1764",
+                    "type": "function",
+                    "function": {
+                      "name": "convert_currency",
+                      "arguments": "{\"amount\": 2100000, \"from_currency\": \"EUR\", \"to_currency\": \"USD\"}"
+                    }
+                  },
+                  {
+                    "id": "call_01_vRfhdbqzaGCsxZZ3GovF9549",
+                    "type": "function",
+                    "function": {
+                      "name": "convert_currency",
+                      "arguments": "{\"amount\": 1800000, \"from_currency\": \"GBP\", \"to_currency\": \"USD\"}"
+                    }
+                  },
+                  {
+                    "id": "call_02_id4V0ZpwxJmFpF02I0M27307",
+                    "type": "function",
+                    "function": {
+                      "name": "convert_currency",
+                      "arguments": "{\"amount\": 380000000, \"from_currency\": \"JPY\", \"to_currency\": \"USD\"}"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "tool",
+                "tool_call_id": "call_00_E48T8xTu35DhIvIWuTUF1764",
+                "content": ""
+              },
+              {
+                "role": "tool",
+                "tool_call_id": "call_01_vRfhdbqzaGCsxZZ3GovF9549",
+                "content": ""
+              },
+              {
+                "role": "tool",
+                "tool_call_id": "call_02_id4V0ZpwxJmFpF02I0M27307",
+                "content": ""
+              }
+            ],
+            "max_tokens": 4096,
+            "reasoning_effort": "high",
+            "thinking": {
+              "type": "enabled"
+            },
+            "tools": [
+              {
+                "type": "function",
+                "function": {
+                  "name": "convert_currency",
+                  "description": "使用工具内置的固定汇率，把金额从一种货币换算为另一种货币。",
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number",
+                        "description": "待换算金额。"
+                      },
+                      "from_currency": {
+                        "type": "string",
+                        "description": "源货币代码。"
+                      },
+                      "to_currency": {
+                        "type": "string",
+                        "description": "目标货币代码。"
+                      }
+                    },
+                    "required": [
+                      "amount",
+                      "from_currency",
+                      "to_currency"
+                    ]
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "calculate",
+                  "description": "计算由数字、括号及加减乘除组成的算式。",
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "expression": {
+                        "type": "string",
+                        "description": "要计算的算式。"
+                      }
+                    },
+                    "required": [
+                      "expression"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "response": {
+            "id": "5ec84066-f714-474e-be6e-deba6c553d63",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": "换算工具没有返回结果，我重试一次。",
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "call_00_TfOOMuIYQx57ORUe2rth6229",
+                      "function": {
+                        "arguments": "{\"amount\": 2100000, \"from_currency\": \"EUR\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 0
+                    },
+                    {
+                      "id": "call_01_Am64Ij1805g2moFCGKG64416",
+                      "function": {
+                        "arguments": "{\"amount\": 1800000, \"from_currency\": \"GBP\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 1
+                    },
+                    {
+                      "id": "call_02_NpcSyXa005e3jSPwamUy8353",
+                      "function": {
+                        "arguments": "{\"amount\": 380000000, \"from_currency\": \"JPY\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 2
+                    }
+                  ],
+                  "reasoning_content": "The tool returned no output. Let me try again? The tool returned empty. Hmm. Maybe I need to call again. Let me retry."
+                }
+              }
+            ],
+            "created": 1791253149,
+            "model": "deepseek-flash",
+            "object": "chat.completion",
+            "moderation": null,
+            "service_tier": null,
+            "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+            "usage": {
+              "completion_tokens": 254,
+              "prompt_tokens": 816,
+              "total_tokens": 1070,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 31,
+                "rejected_prediction_tokens": null
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 640
+              },
+              "prompt_cache_hit_tokens": 640,
+              "prompt_cache_miss_tokens": 176
+            }
+          }
+        },
+        {
+          "turn": 3,
+          "request": {
+            "model": "deepseek-flash",
+            "messages": [
+              {
+                "role": "system",
+                "content": "你是财务计算Agent。请使用提供的工具，让每个数值结果都有工具观测依据，并用简洁中文回答。"
+              },
+              {
+                "role": "user",
+                "content": "根据公司的季度收入：\n- 第一季度：2,500,000美元（USD）\n- 第二季度：2,100,000欧元（EUR）\n- 第三季度：1,800,000英镑（GBP）\n- 第四季度：380,000,000日元（JPY）\n\n请使用可用的货币换算工具，把所有非美元收入换算为美元，再使用计算工具算出全年总收入和季度平均收入。两个结果均保留两位小数。不得自行估计汇率，必须使用工具返回的观测结果。"
+              },
+              {
+                "role": "assistant",
+                "content": "我将把三笔非美元收入分别换算成美元。",
+                "reasoning_content": "Let me convert each currency to USD. I'll do all three conversions.",
+                "tool_calls": [
+                  {
+                    "id": "call_00_E48T8xTu35DhIvIWuTUF1764",
+                    "type": "function",
+                    "function": {
+                      "name": "convert_currency",
+                      "arguments": "{\"amount\": 2100000, \"from_currency\": \"EUR\", \"to_currency\": \"USD\"}"
+                    }
+                  },
+                  {
+                    "id": "call_01_vRfhdbqzaGCsxZZ3GovF9549",
+                    "type": "function",
+                    "function": {
+                      "name": "convert_currency",
+                      "arguments": "{\"amount\": 1800000, \"from_currency\": \"GBP\", \"to_currency\": \"USD\"}"
+                    }
+                  },
+                  {
+                    "id": "call_02_id4V0ZpwxJmFpF02I0M27307",
+                    "type": "function",
+                    "function": {
+                      "name": "convert_currency",
+                      "arguments": "{\"amount\": 380000000, \"from_currency\": \"JPY\", \"to_currency\": \"USD\"}"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "tool",
+                "tool_call_id": "call_00_E48T8xTu35DhIvIWuTUF1764",
+                "content": ""
+              },
+              {
+                "role": "tool",
+                "tool_call_id": "call_01_vRfhdbqzaGCsxZZ3GovF9549",
+                "content": ""
+              },
+              {
+                "role": "tool",
+                "tool_call_id": "call_02_id4V0ZpwxJmFpF02I0M27307",
+                "content": ""
+              },
+              {
+                "role": "assistant",
+                "content": "换算工具没有返回结果，我重试一次。",
+                "reasoning_content": "The tool returned no output. Let me try again? The tool returned empty. Hmm. Maybe I need to call again. Let me retry.",
+                "tool_calls": [
+                  {
+                    "id": "call_00_TfOOMuIYQx57ORUe2rth6229",
+                    "type": "function",
+                    "function": {
+                      "name": "convert_currency",
+                      "arguments": "{\"amount\": 2100000, \"from_currency\": \"EUR\", \"to_currency\": \"USD\"}"
+                    }
+                  },
+                  {
+                    "id": "call_01_Am64Ij1805g2moFCGKG64416",
+                    "type": "function",
+                    "function": {
+                      "name": "convert_currency",
+                      "arguments": "{\"amount\": 1800000, \"from_currency\": \"GBP\", \"to_currency\": \"USD\"}"
+                    }
+                  },
+                  {
+                    "id": "call_02_NpcSyXa005e3jSPwamUy8353",
+                    "type": "function",
+                    "function": {
+                      "name": "convert_currency",
+                      "arguments": "{\"amount\": 380000000, \"from_currency\": \"JPY\", \"to_currency\": \"USD\"}"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "tool",
+                "tool_call_id": "call_00_TfOOMuIYQx57ORUe2rth6229",
+                "content": ""
+              },
+              {
+                "role": "tool",
+                "tool_call_id": "call_01_Am64Ij1805g2moFCGKG64416",
+                "content": ""
+              },
+              {
+                "role": "tool",
+                "tool_call_id": "call_02_NpcSyXa005e3jSPwamUy8353",
+                "content": ""
+              }
+            ],
+            "max_tokens": 4096,
+            "reasoning_effort": "high",
+            "thinking": {
+              "type": "enabled"
+            },
+            "tools": [
+              {
+                "type": "function",
+                "function": {
+                  "name": "convert_currency",
+                  "description": "使用工具内置的固定汇率，把金额从一种货币换算为另一种货币。",
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number",
+                        "description": "待换算金额。"
+                      },
+                      "from_currency": {
+                        "type": "string",
+                        "description": "源货币代码。"
+                      },
+                      "to_currency": {
+                        "type": "string",
+                        "description": "目标货币代码。"
+                      }
+                    },
+                    "required": [
+                      "amount",
+                      "from_currency",
+                      "to_currency"
+                    ]
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "calculate",
+                  "description": "计算由数字、括号及加减乘除组成的算式。",
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "expression": {
+                        "type": "string",
+                        "description": "要计算的算式。"
+                      }
+                    },
+                    "required": [
+                      "expression"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "response": {
+            "id": "21cf52d3-60cf-452b-8099-ad6437ecad03",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": "",
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "call_00_9x4XOzxiessqtuhKmNtN5063",
+                      "function": {
+                        "arguments": "{\"amount\": 2100000, \"from_currency\": \"EUR\", \"to_currency\": \"USD\"}",
+                        "name": "convert_currency"
+                      },
+                      "type": "function",
+                      "index": 0
+                    }
+                  ],
+                  "reasoning_content": "The conversion tool returns no output. I cannot obtain exchange rates from the tool, and I'm instructed not to estimate rates myself. So I cannot complete the calculation. I should report honestly.\n\nLet me try one more time maybe with a single call."
+                }
+              }
+            ],
+            "created": 1791253150,
+            "model": "deepseek-flash",
+            "object": "chat.completion",
+            "moderation": null,
+            "service_tier": null,
+            "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+            "usage": {
+              "completion_tokens": 127,
+              "prompt_tokens": 1095,
+              "total_tokens": 1222,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 50,
+                "rejected_prediction_tokens": null
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 896
+              },
+              "prompt_cache_hit_tokens": 896,
+              "prompt_cache_miss_tokens": 199
+            }
+          }
+        },
+        {
+          "turn": 4,
+          "request": {
+            "model": "deepseek-flash",
+            "messages": [
+              {
+                "role": "system",
+                "content": "你是财务计算Agent。请使用提供的工具，让每个数值结果都有工具观测依据，并用简洁中文回答。"
+              },
+              {
+                "role": "user",
+                "content": "根据公司的季度收入：\n- 第一季度：2,500,000美元（USD）\n- 第二季度：2,100,000欧元（EUR）\n- 第三季度：1,800,000英镑（GBP）\n- 第四季度：380,000,000日元（JPY）\n\n请使用可用的货币换算工具，把所有非美元收入换算为美元，再使用计算工具算出全年总收入和季度平均收入。两个结果均保留两位小数。不得自行估计汇率，必须使用工具返回的观测结果。"
+              },
+              {
+                "role": "assistant",
+                "content": "我将把三笔非美元收入分别换算成美元。",
+                "reasoning_content": "Let me convert each currency to USD. I'll do all three conversions.",
+                "tool_calls": [
+                  {
+                    "id": "call_00_E48T8xTu35DhIvIWuTUF1764",
+                    "type": "function",
+                    "function": {
+                      "name": "convert_currency",
+                      "arguments": "{\"amount\": 2100000, \"from_currency\": \"EUR\", \"to_currency\": \"USD\"}"
+                    }
+                  },
+                  {
+                    "id": "call_01_vRfhdbqzaGCsxZZ3GovF9549",
+                    "type": "function",
+                    "function": {
+                      "name": "convert_currency",
+                      "arguments": "{\"amount\": 1800000, \"from_currency\": \"GBP\", \"to_currency\": \"USD\"}"
+                    }
+                  },
+                  {
+                    "id": "call_02_id4V0ZpwxJmFpF02I0M27307",
+                    "type": "function",
+                    "function": {
+                      "name": "convert_currency",
+                      "arguments": "{\"amount\": 380000000, \"from_currency\": \"JPY\", \"to_currency\": \"USD\"}"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "tool",
+                "tool_call_id": "call_00_E48T8xTu35DhIvIWuTUF1764",
+                "content": ""
+              },
+              {
+                "role": "tool",
+                "tool_call_id": "call_01_vRfhdbqzaGCsxZZ3GovF9549",
+                "content": ""
+              },
+              {
+                "role": "tool",
+                "tool_call_id": "call_02_id4V0ZpwxJmFpF02I0M27307",
+                "content": ""
+              },
+              {
+                "role": "assistant",
+                "content": "换算工具没有返回结果，我重试一次。",
+                "reasoning_content": "The tool returned no output. Let me try again? The tool returned empty. Hmm. Maybe I need to call again. Let me retry.",
+                "tool_calls": [
+                  {
+                    "id": "call_00_TfOOMuIYQx57ORUe2rth6229",
+                    "type": "function",
+                    "function": {
+                      "name": "convert_currency",
+                      "arguments": "{\"amount\": 2100000, \"from_currency\": \"EUR\", \"to_currency\": \"USD\"}"
+                    }
+                  },
+                  {
+                    "id": "call_01_Am64Ij1805g2moFCGKG64416",
+                    "type": "function",
+                    "function": {
+                      "name": "convert_currency",
+                      "arguments": "{\"amount\": 1800000, \"from_currency\": \"GBP\", \"to_currency\": \"USD\"}"
+                    }
+                  },
+                  {
+                    "id": "call_02_NpcSyXa005e3jSPwamUy8353",
+                    "type": "function",
+                    "function": {
+                      "name": "convert_currency",
+                      "arguments": "{\"amount\": 380000000, \"from_currency\": \"JPY\", \"to_currency\": \"USD\"}"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "tool",
+                "tool_call_id": "call_00_TfOOMuIYQx57ORUe2rth6229",
+                "content": ""
+              },
+              {
+                "role": "tool",
+                "tool_call_id": "call_01_Am64Ij1805g2moFCGKG64416",
+                "content": ""
+              },
+              {
+                "role": "tool",
+                "tool_call_id": "call_02_NpcSyXa005e3jSPwamUy8353",
+                "content": ""
+              },
+              {
+                "role": "assistant",
+                "content": "",
+                "reasoning_content": "The conversion tool returns no output. I cannot obtain exchange rates from the tool, and I'm instructed not to estimate rates myself. So I cannot complete the calculation. I should report honestly.\n\nLet me try one more time maybe with a single call.",
+                "tool_calls": [
+                  {
+                    "id": "call_00_9x4XOzxiessqtuhKmNtN5063",
+                    "type": "function",
+                    "function": {
+                      "name": "convert_currency",
+                      "arguments": "{\"amount\": 2100000, \"from_currency\": \"EUR\", \"to_currency\": \"USD\"}"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "tool",
+                "tool_call_id": "call_00_9x4XOzxiessqtuhKmNtN5063",
+                "content": ""
+              }
+            ],
+            "max_tokens": 4096,
+            "reasoning_effort": "high",
+            "thinking": {
+              "type": "enabled"
+            },
+            "tools": [
+              {
+                "type": "function",
+                "function": {
+                  "name": "convert_currency",
+                  "description": "使用工具内置的固定汇率，把金额从一种货币换算为另一种货币。",
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number",
+                        "description": "待换算金额。"
+                      },
+                      "from_currency": {
+                        "type": "string",
+                        "description": "源货币代码。"
+                      },
+                      "to_currency": {
+                        "type": "string",
+                        "description": "目标货币代码。"
+                      }
+                    },
+                    "required": [
+                      "amount",
+                      "from_currency",
+                      "to_currency"
+                    ]
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "calculate",
+                  "description": "计算由数字、括号及加减乘除组成的算式。",
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "expression": {
+                        "type": "string",
+                        "description": "要计算的算式。"
+                      }
+                    },
+                    "required": [
+                      "expression"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "response": {
+            "id": "c8a755a5-6507-43b7-83c6-94dfce12ea06",
+            "choices": [
+              {
+                "finish_reason": "stop",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": "我无法完成这项计算，原因如下：\n\n**工具调用情况**\n我对三笔非美元收入分别调用了货币换算工具（EUR→USD、GBP→USD、JPY→USD，并做了重试），但工具**始终返回空结果**，没有任何汇率或换算金额的观测值。\n\n**结论**\n- 由于换算工具未返回任何可用观测结果，我无法获得欧元、英镑、日元对美元的汇率。\n- 按照要求，我不得自行估计或引用外部汇率，因此不能把这三笔收入换算成美元。\n- 缺少这一环节，全年总收入和季度平均收入也就没有可靠依据，我不能给出这两个数字。\n\n**建议**\n请确认货币换算工具是否已正确配置/可用（例如汇率数据源是否已加载）。工具恢复正常后，我可以立即重新执行：\n1. 将 2,100,000 EUR、1,800,000 GBP、380,000,000 JPY 分别换算为 USD；\n2. 加上第一季度 2,500,000 USD；\n3. 用计算工具求全年总收入，并除以 4 得到季度平均收入，两者均保留两位小数。\n\n在拿到工具的真实换算结果之前，我不会给出任何估算数值。",
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": null,
+                  "reasoning_content": "The tool consistently returns nothing. I must report that I cannot complete the task because the currency conversion tool returns no observable output, and I'm not allowed to estimate exchange rates.\n\nI should not fabricate numbers. Report honestly."
+                }
+              }
+            ],
+            "created": 1791253151,
+            "model": "deepseek-flash",
+            "object": "chat.completion",
+            "moderation": null,
+            "service_tier": null,
+            "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+            "usage": {
+              "completion_tokens": 299,
+              "prompt_tokens": 1233,
+              "total_tokens": 1532,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 45,
+                "rejected_prediction_tokens": null
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 1024
+              },
+              "prompt_cache_hit_tokens": 1024,
+              "prompt_cache_miss_tokens": 209
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

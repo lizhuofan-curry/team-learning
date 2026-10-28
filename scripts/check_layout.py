@@ -30,6 +30,9 @@ TEMPORARY = re.compile(
     r'|final[_ -]+final|(?:[_ -]?副本(?:\s*\d*)?|[（(]副本[）)])$',
     re.IGNORECASE,
 )
+CHAPTER = re.compile(r'^第([0-9]{2})章$')
+EXPERIMENT = re.compile(r'^([1-9][0-9]*)-([1-9][0-9]*)$')
+MEMBER = re.compile(r'^[a-z0-9](?:[a-z0-9-]{0,37}[a-z0-9])?$')
 
 
 def check_layout(root: Path) -> tuple[list[str], int]:
@@ -52,6 +55,26 @@ def check_layout(root: Path) -> tuple[list[str], int]:
                 issues.add(f'{path}: 学习目录第一层只放README，资料请归入课程、项目或主题目录')
             elif len(parts) > 2:
                 topics.add('/'.join(parts[:2]))
+        # Numbered team experiments share one experiment index, while each
+        # member owns a separate namespace for records, code and evidence.
+        if parts[0] == '实验资料' and len(parts) >= 5:
+            chapter = CHAPTER.fullmatch(parts[2])
+            experiment = EXPERIMENT.fullmatch(parts[3])
+            numbered = re.match(r'^[0-9]+[.-][0-9]+', parts[3])
+            if numbered and (not chapter or not experiment):
+                issues.add(f'{path}: 编号实验统一使用第NN章/章号-实验号，例如第01章/1-1')
+            if chapter and experiment:
+                if int(chapter[1]) != int(experiment[1]):
+                    issues.add(f'{path}: 章节与实验编号不一致')
+                if len(parts) == 5:
+                    if parts[4] not in {'README.md', '对比分析.md'}:
+                        issues.add(f'{path}: 个人实验资料请放在实验编号下的成员账号目录，避免覆盖同伴')
+                elif not MEMBER.fullmatch(parts[4]) or '--' in parts[4]:
+                    issues.add(f'{path}: 成员目录请使用小写GitHub账号，而非姓名、空格或临时名称')
+                elif parts[-1].endswith('实验记录.md') and len(parts) == 6:
+                    expected = f'{parts[3]}_{parts[4]}_实验记录.md'
+                    if parts[5] != expected:
+                        issues.add(f'{path}: 实验记录文件应命名为{expected}')
         # Include directories, not just leaves, in cross-platform collision checks.
         for length in range(1, len(parts) + 1):
             name = '/'.join(parts[:length])

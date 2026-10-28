@@ -1,0 +1,38 @@
+{
+  "checked_at": "2026-10-17T11:41:14.916463+00:00",
+  "record_sha256": "132685703bf1b420b190de43a9a7362d2793d72d1757664d749eca5159bfae38",
+  "checks": {
+    "official_sources_code_fixture_hashes": true,
+    "wrapper_baseline_pairing_metadata": true,
+    "only_password_expression_changed": true,
+    "same_model_digest_schema_options_budget": true,
+    "raw_request_response_stop_and_exact_value_replacement": true,
+    "span_evaluation_and_artifacts_recomputed": true,
+    "debug_fields_preserved": true,
+    "original_files_unchanged": true
+  },
+  "results": {
+    "regex_fully_redacted": 3,
+    "llm_fully_redacted": 4,
+    "gold_occurrences": 4,
+    "input_tokens": 342,
+    "output_tokens": 128,
+    "request_seconds": 7.625655399999232,
+    "engine_load_seconds": 5.9073849,
+    "model_list_queries": 1,
+    "local_inference_calls": 1,
+    "cloud_calls": 0
+  },
+  "original_file_hashes": {
+    "llm_sanitized.txt": "07c47f425f33734925ac33ff38df66aa5493ae2700874442f49e961d9eef9d0c",
+    "record.json": "132685703bf1b420b190de43a9a7362d2793d72d1757664d749eca5159bfae38",
+    "regex_sanitized.txt": "750c79122b51aa1b3bba3866b661d3a15a46271ddc0e547ede373d29e4ecfcc0"
+  },
+  "assistant_inference_requests": 0,
+  "limits": [
+    "Two closely related synthetic inputs; not a general PII benchmark",
+    "Span coverage checked, not category taxonomy accuracy or full over-redaction character score",
+    "Elapsed times include model loading; no stable speed conclusion"
+  ],
+  "next_step": "Close two-sample learning scope; no bulk PII run; continue 3-4 dense retrieval"
+}

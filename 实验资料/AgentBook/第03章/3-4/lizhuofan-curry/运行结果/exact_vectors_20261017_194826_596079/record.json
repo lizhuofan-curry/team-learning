@@ -1,0 +1,173 @@
+{
+  "stage": "chapter3_dense_distance_foundation",
+  "status": "exact_vector_demo_saved",
+  "created_at": "2026-10-17T11:48:26.600081+00:00",
+  "upstream_commit": "dbc046eb896ac4e39aa19c7774c8bf49583b89a6",
+  "official_manifest_sha256": "f23735550ef1c67ad81f1c0d0e541446998dc74f277016c8ddea48a6717eb408",
+  "script_sha256": "d7a93d7992943a670cecdf2e7b6425dedc17cda86e35bd5e52a47070c16b9fca",
+  "fixture_sha256": "2963d6c7a7c849fa965916e79909d382583d5128b922379bb1563f624e757e58",
+  "sample": {
+    "sample_id": "manual_2d_vectors_01",
+    "source": "人工指定坐标，仅用于解释余弦相似度；不是模型生成的文本嵌入",
+    "query": [
+      1.0,
+      0.0
+    ],
+    "top_k": 3,
+    "vectors": [
+      {
+        "id": "A",
+        "vector": [
+          1.0,
+          0.0
+        ]
+      },
+      {
+        "id": "B",
+        "vector": [
+          0.9,
+          0.1
+        ]
+      },
+      {
+        "id": "C",
+        "vector": [
+          0.7,
+          0.7
+        ]
+      },
+      {
+        "id": "D",
+        "vector": [
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "id": "E",
+        "vector": [
+          -0.7,
+          0.7
+        ]
+      },
+      {
+        "id": "F",
+        "vector": [
+          -1.0,
+          0.0
+        ]
+      }
+    ]
+  },
+  "numpy_version": "2.4.6",
+  "calculation": {
+    "query_original": [
+      1.0,
+      0.0
+    ],
+    "query_normalized": [
+      1.0,
+      0.0
+    ],
+    "rows": [
+      {
+        "rank": 1,
+        "id": "A",
+        "original_vector": [
+          1.0,
+          0.0
+        ],
+        "normalized_vector": [
+          1.0,
+          0.0
+        ],
+        "cosine_similarity": 1.0,
+        "cosine_distance": 0.0
+      },
+      {
+        "rank": 2,
+        "id": "B",
+        "original_vector": [
+          0.9,
+          0.1
+        ],
+        "normalized_vector": [
+          0.9938837346736189,
+          0.11043152607484655
+        ],
+        "cosine_similarity": 0.9938837346736189,
+        "cosine_distance": 0.006116265326381098
+      },
+      {
+        "rank": 3,
+        "id": "C",
+        "original_vector": [
+          0.7,
+          0.7
+        ],
+        "normalized_vector": [
+          0.7071067811865476,
+          0.7071067811865476
+        ],
+        "cosine_similarity": 0.7071067811865476,
+        "cosine_distance": 0.2928932188134524
+      },
+      {
+        "rank": 4,
+        "id": "D",
+        "original_vector": [
+          0.0,
+          1.0
+        ],
+        "normalized_vector": [
+          0.0,
+          1.0
+        ],
+        "cosine_similarity": 0.0,
+        "cosine_distance": 1.0
+      },
+      {
+        "rank": 5,
+        "id": "E",
+        "original_vector": [
+          -0.7,
+          0.7
+        ],
+        "normalized_vector": [
+          -0.7071067811865476,
+          0.7071067811865476
+        ],
+        "cosine_similarity": -0.7071067811865476,
+        "cosine_distance": 1.7071067811865475
+      },
+      {
+        "rank": 6,
+        "id": "F",
+        "original_vector": [
+          -1.0,
+          0.0
+        ],
+        "normalized_vector": [
+          -1.0,
+          0.0
+        ],
+        "cosine_similarity": -1.0,
+        "cosine_distance": 2.0
+      }
+    ],
+    "top_k": 3,
+    "top_ids": [
+      "A",
+      "B",
+      "C"
+    ],
+    "cosine_definition_crosscheck": true
+  },
+  "vector_plot": {
+    "path": "E:\\AI_Agents_Book\\第三章\\3.4稠密向量检索\\运行结果\\exact_vectors_20261017_194826_596079\\向量方向.svg",
+    "sha256": "63baa7300397eff8ae8a25559a3a697077ca8f4ab6038923d4409f258220e34a"
+  },
+  "model_requests": 0,
+  "network_requests": 0,
+  "scope": "仅人工向量余弦距离及精确检索基础，不是文本语义验证、ANN对比或整个3-4完成"
+}

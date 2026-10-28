@@ -1,0 +1,13 @@
+{
+  "status": "offline_checks_passed",
+  "checks": [
+    "python_syntax",
+    "legacy_original_request_compatibility",
+    "only_sampling_options_change_for_same_inputs",
+    "both_memory_and_answer_use_recommended_profile",
+    "new_record_replay_and_profile_mismatch_rejection",
+    "baseline_record_unchanged"
+  ],
+  "live_model_calls": 0,
+  "baseline_record_sha256": "a0dbd8325791b9f9648806cf41d46ae9e18d40c7bad46bea5e9f7b501e3149d6"
+}

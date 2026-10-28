@@ -1,0 +1,27 @@
+{
+  "checked_at": "2026-10-17T16:57:27.880978+08:00",
+  "scope": "OFFLINE MOCK CHECKS ONLY; no empirical model or judge results",
+  "model_requests": 0,
+  "network_requests": 0,
+  "script_sha256": "4fa73b1f0658306db456bc7190b05e1e54ab668a3ad53948f5a930bde1b6f757",
+  "shared_source_fingerprints": {
+    "E:\\AI_Agents_Book\\第三章\\3.1用户记忆评估\\我的代码\\官方评估工具.py": "d0fa24d477e3e489edb498c8c748d1b8e268ed374b79fe7115ad2e4547f15975",
+    "E:\\AI_Agents_Book\\第三章\\3.1用户记忆评估\\我的代码\\03_官方用例独立裁判评分.py": "2f76d8540ebd58fb85a64f5fc1dc0d5c73c092ceb9b5dce6914680a1c094ec82"
+  },
+  "passed_checks": [
+    "60 pinned cases expanded into 240 case-mode pairs; first 12 cover all three layers and four modes",
+    "CLI preview makes no network calls or runtime directory",
+    "mock multi-session generation verifies independent initial memory and exact previous-memory/current-session requests",
+    "format failures and 4096-token truncations preserved without scores; 228 remaining pairs not attempted",
+    "saved, failed and unresolved writer pairs never retried",
+    "only complete answers receive one mock independent score; failed writers and scored answers not resubmitted",
+    "official judge prompt, full answer, endpoint, linked hashes and score recalculation verified",
+    "API key absent from saved mock judge records",
+    "artifact, budget/config, excluded failed pair and metric tampering rejected",
+    "interruption recovery restores finished evidence; missing or unfinished record remains unresolved",
+    "model digest mismatch produces no inference request",
+    "same-batch concurrent invocation blocked",
+    "state re-read under lock prevents replay of stale pending pairs"
+  ],
+  "first_12_max_local_requests": 36
+}

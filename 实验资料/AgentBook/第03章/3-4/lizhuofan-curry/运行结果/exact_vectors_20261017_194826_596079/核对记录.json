@@ -1,0 +1,30 @@
+{
+  "checked_at": "2026-10-17T11:50:44.646076+00:00",
+  "record_sha256": "30abfc447a0917abcb6d99c7e6374a9252f58d6b3f16aabe10ab640675827155",
+  "checks": {
+    "official_source_manifest_code_and_fixture": true,
+    "normalized_vectors_cosine_values_and_order_recomputed": true,
+    "direct_cosine_definition_crosscheck": true,
+    "top3_A_B_C": true,
+    "svg_content_and_hash": true,
+    "original_files_unchanged": true
+  },
+  "results": {
+    "top3": [
+      "A",
+      "B",
+      "C"
+    ],
+    "A_cosine": 1.0,
+    "B_cosine": 0.9938837346736189,
+    "C_cosine": 0.7071067811865476,
+    "model_requests": 0,
+    "network_requests": 0
+  },
+  "original_file_hashes": {
+    "record.json": "30abfc447a0917abcb6d99c7e6374a9252f58d6b3f16aabe10ab640675827155",
+    "向量方向.svg": "63baa7300397eff8ae8a25559a3a697077ca8f4ab6038923d4409f258220e34a"
+  },
+  "scope": "User foundation step completed; no text encoding or ANN performance measured",
+  "assistant_model_requests": 0
+}

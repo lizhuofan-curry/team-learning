@@ -1,0 +1,27 @@
+{
+  "scope": "offline synthetic mocks only; no real experiment requests",
+  "date": "2026-10-15",
+  "real_model_requests": 0,
+  "real_web_requests": 0,
+  "real_search_requests": 0,
+  "checks": [
+    "syntax/imports",
+    "root env path resolution",
+    "existing S1 and recovery hashes",
+    "section extraction using fixture HTML",
+    "six-arm mock orchestration: 14 attempts, 8 summaries, 6 answers",
+    "service usage aggregation",
+    "full baseline preserved",
+    "two window triggers",
+    "strict JSON and fake quote rejection",
+    "raw response saved before truncation rejection; no retry",
+    "human review output",
+    "original run bytes unchanged",
+    "exception message redaction inspected after final edit"
+  ],
+  "source_hashes": {
+    "09_准备三份真实网页.py": "46118f24775c55a13806371bccf6d98c28f5a592bef127b4e70d40d7bb1f4d3c",
+    "10_DeepSeek真实网页六策略对照.py": "dae642362e03bb8749792d6b8f4b167be8dc9c04cefe3cdc8f6b69935778c349"
+  },
+  "real_new_corpus_or_model_compatibility": "pending_user_run"
+}

@@ -1,0 +1,130 @@
+{
+  "paper_sha256": "bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+  "visuals": [
+    {
+      "file": "source_visuals/figure1_architecture.png",
+      "pdf_page": 3,
+      "label": "Figure 1",
+      "caption": "Transformer编码器与解码器架构",
+      "slide_numbers": [
+        3
+      ],
+      "crop_pixels": [
+        527,
+        176,
+        1173,
+        1111
+      ],
+      "rendered_page_size": [
+        1700,
+        2200
+      ],
+      "render_dpi": 200,
+      "image_size": [
+        646,
+        935
+      ],
+      "sha256": "dfffa6a3abcae1d1fb52d5600f9a8e850323d0c120f8c86592bbd6ceadb00d78"
+    },
+    {
+      "file": "source_visuals/figure2_attention.png",
+      "pdf_page": 4,
+      "label": "Figure 2",
+      "caption": "缩放点积注意力与多头注意力",
+      "slide_numbers": [
+        4
+      ],
+      "crop_pixels": [
+        382,
+        165,
+        1326,
+        693
+      ],
+      "rendered_page_size": [
+        1700,
+        2200
+      ],
+      "render_dpi": 200,
+      "image_size": [
+        944,
+        528
+      ],
+      "sha256": "da25ea1a6b770e8d7e2bc2a1681afedc8004b795818c89b23f1cd0f8553d92c4"
+    },
+    {
+      "file": "source_visuals/table1_complexity.png",
+      "pdf_page": 6,
+      "label": "Table 1",
+      "caption": "每层复杂度、顺序操作数和最大路径长度",
+      "slide_numbers": [
+        8
+      ],
+      "crop_pixels": [
+        306,
+        297,
+        1394,
+        535
+      ],
+      "rendered_page_size": [
+        1700,
+        2200
+      ],
+      "render_dpi": 200,
+      "image_size": [
+        1088,
+        238
+      ],
+      "sha256": "6640f315b211baf5cac231b5c427ce2f11a36adcb3cd7bf419028e502fd00f50"
+    },
+    {
+      "file": "source_visuals/table2_translation.png",
+      "pdf_page": 8,
+      "label": "Table 2",
+      "caption": "机器翻译BLEU及估算训练计算量",
+      "slide_numbers": [
+        10
+      ],
+      "crop_pixels": [
+        348,
+        260,
+        1352,
+        684
+      ],
+      "rendered_page_size": [
+        1700,
+        2200
+      ],
+      "render_dpi": 200,
+      "image_size": [
+        1004,
+        424
+      ],
+      "sha256": "f5e58eeaebf853d58c6b05d93cc44d297364977d051395b24393ea0494574210"
+    },
+    {
+      "file": "source_visuals/figure3_dependency.png",
+      "pdf_page": 13,
+      "label": "Figure 3",
+      "caption": "making与远距离依赖的多头注意力",
+      "slide_numbers": [
+        12
+      ],
+      "crop_pixels": [
+        314,
+        253,
+        1411,
+        847
+      ],
+      "rendered_page_size": [
+        1700,
+        2200
+      ],
+      "render_dpi": 200,
+      "image_size": [
+        1097,
+        594
+      ],
+      "sha256": "1b4f38a71f7cc54cb5bb0d261bf5d8becc8dd53ad356748cb84fa9e3dd40c07a"
+    }
+  ]
+}

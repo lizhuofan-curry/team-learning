@@ -1,0 +1,107 @@
+{
+  "status": "reviewed_structure_record_verified",
+  "verified_at": "2026-10-18T22:56:47.647780+08:00",
+  "record_sha256": "c4e1f249fc6894d6b263ef873e2cbf894cefc397d51f2b18eaaabad20b78da98",
+  "reviewed_artifact_sha256": "0f68450f72f41e5fd5f0035f6fc4b33acf19191b30e3f2dec7e8831340a8a246",
+  "audit_script_sha256": "fd15acbd4368316354c4175c4aa1efe64f559c1b977e3680f058018d11b7e153",
+  "checks": [
+    "saved run and editorial origin",
+    "entrypoint and preparation material hashes unchanged",
+    "immutable baseline record.json",
+    "immutable baseline 结构草稿.json",
+    "immutable baseline 核对记录.json",
+    "prior audit corresponds to original model run",
+    "official source LICENSE",
+    "official source chapter3/structured-index/IMPLEMENTATION_GUIDE.md",
+    "official source chapter3/structured-index/README.md",
+    "official source chapter3/structured-index/api_service.py",
+    "official source chapter3/structured-index/campaign.py",
+    "official source chapter3/structured-index/config.py",
+    "official source chapter3/structured-index/data/intel-sdm-volume-1.pdf",
+    "official source chapter3/structured-index/data/intel-sdm-volume-1.txt",
+    "official source chapter3/structured-index/document_processor.py",
+    "official source chapter3/structured-index/download_sample.py",
+    "official source chapter3/structured-index/env.example",
+    "official source chapter3/structured-index/graphrag_indexer.py",
+    "official source chapter3/structured-index/hybrid_retriever.py",
+    "official source chapter3/structured-index/main.py",
+    "official source chapter3/structured-index/raptor_indexer.py",
+    "official source chapter3/structured-index/requirements.txt",
+    "official source chapter3/structured-index/structured_vs_flat_demo.py",
+    "official source chapter3/structured-index/test_graphrag_search_top_k.py",
+    "official source chapter3/structured-index/test_hybrid_retriever.py",
+    "official source chapter3/structured-index/test_indexing.py",
+    "official source chapter3/structured-index/test_raptor_chunk_step.py",
+    "official source chapter3/structured-index/validation/checkpoints/intel-9d862bd7592d/ark.json",
+    "official source chapter3/structured-index/validation/checkpoints/intel-9d862bd7592d/moonshot.json",
+    "official source chapter3/structured-index/validation/latest.json",
+    "official source chapter3/structured-index/validation/runs/20260729T200642Z-3_7-4d2d5f9c/evidence.json",
+    "official source chapter3/structured-index/validation/runs/20260729T200642Z-3_7-4d2d5f9c/manifest.json",
+    "official source chapter3/structured-index/validation/runs/20260729T200642Z-3_7-4d2d5f9c/receipts.json",
+    "source text and frozen excerpt identity",
+    "excerpt coordinates sse_overview",
+    "excerpt coordinates sse_transfer",
+    "original graph copy has no editorial additions",
+    "two node edits and one addition exactly match authored plan",
+    "all fourteen reviewed edges match rationale and raw source intervals",
+    "four revised summary statements and split origins preserved",
+    "uncertified inherited descriptions and user state remain explicit",
+    "both topology summaries recomputed",
+    "three fixed questions complete",
+    "question and routing transfer_to_xmm",
+    "bounded directed paths and evidence transfer_to_xmm",
+    "question and routing cpuid_detection",
+    "bounded directed paths and evidence cpuid_detection",
+    "question and routing summary_scope",
+    "summary display keeps original and revised claims side by side",
+    "reviewed artifact hash and full content",
+    "no calls or automatic acceptance",
+    "run and all baseline files unchanged after audit"
+  ],
+  "check_count": 52,
+  "topology": {
+    "original_model": {
+      "nodes": 13,
+      "edges": 2,
+      "isolated_nodes": 9
+    },
+    "assistant_reviewed": {
+      "nodes": 14,
+      "edges": 14,
+      "isolated_nodes": 0
+    }
+  },
+  "path_counts": [
+    {
+      "case_id": "transfer_to_xmm",
+      "original_paths": 0,
+      "reviewed_paths": 1,
+      "reviewed_hops": [
+        2
+      ]
+    },
+    {
+      "case_id": "cpuid_detection",
+      "original_paths": 0,
+      "reviewed_paths": 1,
+      "reviewed_hops": [
+        1
+      ]
+    }
+  ],
+  "summary_claims": 4,
+  "scope_review": {
+    "review_author": "Codex assistant",
+    "user_review_status": "not_yet_confirmed",
+    "model_improvement_claim": false,
+    "automatic_query_routing": false,
+    "accuracy_benchmark": false,
+    "full_raptor_or_graphrag_completed": false,
+    "inherited_entity_descriptions_fully_reviewed": false,
+    "conclusion": "Authored revision, evidence spans and fixed-path queries agree. Improved reachability follows explicit editorial additions; not a new model result."
+  },
+  "new_model_requests_for_audit": 0,
+  "new_embedding_forward_batches": 0,
+  "network_requests_for_audit": 0,
+  "formal_entrypoint_rerun": false
+}

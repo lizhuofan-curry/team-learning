@@ -1,0 +1,61 @@
+{
+  "checked_at": "2026-10-17T16:05:07.566924+08:00",
+  "scope": "offline judge audit; zero model/network requests",
+  "record_sha256": "1147c5f83489122d6f3466bbdb6e3b33f480fa651e30c841feb70c25ae38b30e",
+  "writer_record_sha256": "7622943c126c6bb3f75b437031cccf5ccc262d2875bf2a423bd652aef90cb195",
+  "source_request_artifacts_score_recalculation_verified": true,
+  "judge_summary": {
+    "scores": {
+      "precision": 2,
+      "recall": 3,
+      "reasoning": 2,
+      "proactivity": 2
+    },
+    "hallucination_veto": true,
+    "passed": false,
+    "reward": 0.0
+  },
+  "usage": {
+    "completion_tokens": 637,
+    "prompt_tokens": 2881,
+    "total_tokens": 3518,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cache_write_tokens": null,
+      "cached_tokens": 1920
+    },
+    "prompt_cache_hit_tokens": 1920,
+    "prompt_cache_miss_tokens": 961
+  },
+  "evidence_quotes": [
+    {
+      "dimension": "precision",
+      "quote": "ASSISTANT: Our routing number is 123006800, and your new checking account number is 4429853327.",
+      "match_type": "source_body_excerpt_with_role_prefix"
+    },
+    {
+      "dimension": "precision",
+      "quote": "USER: The account number is 8847293001 and the routing number is... let me check... 121000248.",
+      "match_type": "source_body_excerpt_with_role_prefix"
+    },
+    {
+      "dimension": "recall",
+      "quote": "ASSISTANT: Our routing number is 123006800, and your new checking account number is 4429853327.",
+      "match_type": "source_body_excerpt_with_role_prefix"
+    },
+    {
+      "dimension": "reasoning",
+      "quote": "The routing number for this account is 121000248 (from the initial deposit details)",
+      "match_type": "answer_markdown_normalized"
+    },
+    {
+      "dimension": "proactivity",
+      "quote": "The routing number for this account is 121000248 (from the initial deposit details), but direct deposit typically uses the account number + routing number.",
+      "match_type": "answer_markdown_normalized"
+    }
+  ],
+  "finding": "checking account correct; destination-bank routing omitted in memory; source-bank routing recommended for destination in answer",
+  "raw_record_unchanged": true,
+  "not_merged_into_original_json_four_mode_pilot": true
+}

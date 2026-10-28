@@ -1,0 +1,177 @@
+{
+  "review_date": "2026-10-15",
+  "stage": "offline_replay_of_real_deepseek_status_run",
+  "original_record_sha256": "68af36bd43959a95900616fdaee2dcb856ab3c275bf2998c33a67eeed0d05075",
+  "original_record_unchanged": true,
+  "code_and_passed_basic_record_hashes_verified": true,
+  "all_15_initial_and_final_states_replayed": true,
+  "all_model_tool_ids_arguments_and_results_correlated": true,
+  "all_15_request_status_hints_verified": true,
+  "all_15_scores_recomputed": true,
+  "service_token_sums_verified": true,
+  "real_model_requests": 55,
+  "prompt_tokens": 83794,
+  "completion_tokens": 3073,
+  "new_simulated_tool_calls": 52,
+  "new_tool_successes": 51,
+  "new_tool_errors": 1,
+  "reports_present": 15,
+  "reports_exactly_correct": 14,
+  "arm_stats": [
+    {
+      "arm": "disabled",
+      "tasks": 5,
+      "passed": 5,
+      "model_requests": 18,
+      "new_tool_calls": 17,
+      "tool_errors": 0,
+      "prompt_tokens": 22962,
+      "completion_tokens": 936
+    },
+    {
+      "arm": "single_feature",
+      "tasks": 5,
+      "passed": 5,
+      "model_requests": 18,
+      "new_tool_calls": 17,
+      "tool_errors": 0,
+      "prompt_tokens": 25907,
+      "completion_tokens": 958
+    },
+    {
+      "arm": "all_features",
+      "tasks": 5,
+      "passed": 4,
+      "model_requests": 19,
+      "new_tool_calls": 18,
+      "tool_errors": 1,
+      "prompt_tokens": 34925,
+      "completion_tokens": 1179
+    }
+  ],
+  "tasks": [
+    {
+      "case": "errors",
+      "arm": "disabled",
+      "passed": true,
+      "rounds": 6,
+      "new_tools": 9,
+      "report_matches_required_content": true
+    },
+    {
+      "case": "errors",
+      "arm": "single_feature",
+      "passed": true,
+      "rounds": 6,
+      "new_tools": 9,
+      "report_matches_required_content": true
+    },
+    {
+      "case": "errors",
+      "arm": "all_features",
+      "passed": true,
+      "rounds": 6,
+      "new_tools": 9,
+      "report_matches_required_content": true
+    },
+    {
+      "case": "counter",
+      "arm": "all_features",
+      "passed": false,
+      "rounds": 4,
+      "new_tools": 3,
+      "report_matches_required_content": false
+    },
+    {
+      "case": "counter",
+      "arm": "single_feature",
+      "passed": true,
+      "rounds": 3,
+      "new_tools": 2,
+      "report_matches_required_content": true
+    },
+    {
+      "case": "counter",
+      "arm": "disabled",
+      "passed": true,
+      "rounds": 3,
+      "new_tools": 2,
+      "report_matches_required_content": true
+    },
+    {
+      "case": "todo",
+      "arm": "disabled",
+      "passed": true,
+      "rounds": 2,
+      "new_tools": 1,
+      "report_matches_required_content": true
+    },
+    {
+      "case": "todo",
+      "arm": "single_feature",
+      "passed": true,
+      "rounds": 2,
+      "new_tools": 1,
+      "report_matches_required_content": true
+    },
+    {
+      "case": "todo",
+      "arm": "all_features",
+      "passed": true,
+      "rounds": 2,
+      "new_tools": 1,
+      "report_matches_required_content": true
+    },
+    {
+      "case": "state",
+      "arm": "all_features",
+      "passed": true,
+      "rounds": 4,
+      "new_tools": 3,
+      "report_matches_required_content": true
+    },
+    {
+      "case": "state",
+      "arm": "single_feature",
+      "passed": true,
+      "rounds": 4,
+      "new_tools": 3,
+      "report_matches_required_content": true
+    },
+    {
+      "case": "state",
+      "arm": "disabled",
+      "passed": true,
+      "rounds": 4,
+      "new_tools": 3,
+      "report_matches_required_content": true
+    },
+    {
+      "case": "timestamps",
+      "arm": "disabled",
+      "passed": true,
+      "rounds": 3,
+      "new_tools": 2,
+      "report_matches_required_content": true
+    },
+    {
+      "case": "timestamps",
+      "arm": "single_feature",
+      "passed": true,
+      "rounds": 3,
+      "new_tools": 2,
+      "report_matches_required_content": true
+    },
+    {
+      "case": "timestamps",
+      "arm": "all_features",
+      "passed": true,
+      "rounds": 3,
+      "new_tools": 2,
+      "report_matches_required_content": true
+    }
+  ],
+  "offline_review_new_model_search_web_requests": 0,
+  "failure_review": "counter/all_features read correct backup and submitted a narrative containing source text, not exact source text. submit_report wrote successfully; content goal false, subsequent update_todo correctly rejected without proof. Scoring unchanged.",
+  "scope": "Fifteen paired task/config measurements, one per pair. Baseline 5/5, single 5/5, all 4/5. No observed success improvement or shorter rounds from reminders; not a universal harm claim or unique attribution of earlier Qwen failures."
+}

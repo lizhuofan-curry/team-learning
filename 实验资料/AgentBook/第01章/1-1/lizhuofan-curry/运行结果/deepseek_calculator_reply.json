@@ -1,0 +1,52 @@
+{
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "question": "请使用calculate工具计算(125 + 375) * 8，获得工具结果后再回答。",
+  "source_call": {
+    "id": "call_00_azQxpqV3QZO78Y1XkwZe2063",
+    "type": "function",
+    "function": {
+      "name": "calculate",
+      "arguments": "{\"expression\": \"(125 + 375) * 8\"}"
+    }
+  },
+  "tool_result": {
+    "expression": "(125 + 375) * 8",
+    "result": 4000,
+    "type": "int"
+  },
+  "sent_messages": [
+    {
+      "role": "system",
+      "content": "你是计算助手。需要计算时调用calculate，依据实际工具结果回答。"
+    },
+    {
+      "role": "user",
+      "content": "请使用calculate工具计算(125 + 375) * 8，获得工具结果后再回答。"
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "reasoning_content": "The user wants me to use the calculate tool to compute (125 + 375) * 8.\n\nLet me call the tool.",
+      "tool_calls": [
+        {
+          "id": "call_00_azQxpqV3QZO78Y1XkwZe2063",
+          "type": "function",
+          "function": {
+            "name": "calculate",
+            "arguments": "{\"expression\": \"(125 + 375) * 8\"}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "call_00_azQxpqV3QZO78Y1XkwZe2063",
+      "content": "{\"expression\": \"(125 + 375) * 8\", \"result\": 4000, \"type\": \"int\"}"
+    }
+  ],
+  "finish_reason": "stop",
+  "answer": "计算结果为 **4000**。\n\n具体过程：先算括号内 125 + 375 = 500，再乘以 8，即 500 × 8 = 4000。",
+  "new_tool_calls": [],
+  "answer_complete": true
+}

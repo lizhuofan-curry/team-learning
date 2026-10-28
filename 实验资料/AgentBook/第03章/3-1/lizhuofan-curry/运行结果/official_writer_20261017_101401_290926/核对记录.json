@@ -1,0 +1,44 @@
+{
+  "checked_on": "2026-10-17",
+  "status": "incomplete_run_verified",
+  "record_sha256": "e6b1add3c0666ef77c729b1f2d9452d28f18cae26ea3707cec15d6817b0abb71",
+  "test_id": "layer2_01_multiple_vehicles",
+  "model": "qwen3:4b",
+  "calls": 3,
+  "memory_notes": [
+    41,
+    40
+  ],
+  "call_summary": [
+    {
+      "purpose": "memory_session_1",
+      "http_status": 200,
+      "done_reason": "stop",
+      "input_tokens": 2045,
+      "output_tokens": 650
+    },
+    {
+      "purpose": "memory_session_2",
+      "http_status": 200,
+      "done_reason": "stop",
+      "input_tokens": 2416,
+      "output_tokens": 586
+    },
+    {
+      "purpose": "answer",
+      "http_status": 200,
+      "done_reason": "length",
+      "input_tokens": 635,
+      "output_tokens": 1200
+    }
+  ],
+  "source_requests_responses_and_isolation_verified": true,
+  "old_policy_number_retained": false,
+  "old_policy_number_in_previous_memory": true,
+  "tesla_service_status_review": "Final memory mentions additional_service=tire rotation for Tesla and tesla_service_cost, but does not explicitly preserve that no Tesla appointment was booked. The authoritative expected behavior distinguishes a confirmed Honda booking from a Tesla discussion without a booking.",
+  "answer_accepted": false,
+  "judge_score_available": false,
+  "review": "Both memory calls end normally and the previous memory is supplied to session 2. This validates the update pipeline, not semantic retention: prior policy information is absent from final notes, and discussion of Tesla maintenance is not clearly labeled as unbooked. The answer repeatedly analyzes the ambiguity until the 1200-token cap. Preserve the failed attempt without grading its unfinished answer or filling a zero. Full evaluation should count generation failures separately rather than requiring every individual case to pass.",
+  "assistant_model_calls": 0,
+  "original_unchanged": true
+}

@@ -1,0 +1,231 @@
+{
+  "status": "native_index_health_passed",
+  "checked_at": "2026-10-17T12:49:30.759558+00:00",
+  "scope": "安装后的6条二维向量、1次查询原生健康检查；不是3000×128正式评估或文本嵌入结果",
+  "verification_script_sha256": "30816aa1ca9530ec0034ccf0898a61035dbeab872aa93acd0bbd9aed981c3bd1",
+  "protocol": {
+    "base_count": 6,
+    "query_count": 1,
+    "dimension": 2,
+    "seed": 42,
+    "top_k": 3,
+    "dtype": "float32",
+    "annoy_trees": 10,
+    "hnsw_M": 16,
+    "hnsw_ef_construction": 100,
+    "hnsw_ef_search": [
+      20,
+      200
+    ],
+    "hnsw_threads": 1,
+    "annoy_build_threads": "upstream default (-1)",
+    "index_random_seeds": "library defaults, not overridden",
+    "timing": "one sequential pass, per-query wall time including official Python wrapper",
+    "exact_timing": "per-query normalized dot product and full argsort via official dense_rank"
+  },
+  "upstream_commit": "dbc046eb896ac4e39aa19c7774c8bf49583b89a6",
+  "official_manifest_sha256": "f23735550ef1c67ad81f1c0d0e541446998dc74f277016c8ddea48a6717eb408",
+  "frozen_experiment_scripts_unchanged": true,
+  "existing_packages_unchanged": true,
+  "packages": {
+    "annoy": "1.17.3",
+    "hnswlib": "0.8.0",
+    "colorlog": "6.8.0"
+  },
+  "new_packages": {
+    "annoy": "1.17.3",
+    "colorlog": "6.8.0",
+    "hnswlib": "0.8.0"
+  },
+  "build_tools": {
+    "instanceId": "0723865d",
+    "installationPath": "D:\\应用程序\\vs",
+    "installationVersion": "18.11.12306.390",
+    "isComplete": true,
+    "isLaunchable": true,
+    "isRebootRequired": false
+  },
+  "compiler_files": [
+    "D:\\应用程序\\vs\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64\\cl.exe"
+  ],
+  "base": [
+    [
+      1.0,
+      0.0
+    ],
+    [
+      0.9938837289810181,
+      0.11043152958154678
+    ],
+    [
+      0.7071067690849304,
+      0.7071067690849304
+    ],
+    [
+      0.0,
+      1.0
+    ],
+    [
+      -0.7071067690849304,
+      0.7071067690849304
+    ],
+    [
+      -1.0,
+      0.0
+    ]
+  ],
+  "queries": [
+    [
+      1.0,
+      0.0
+    ]
+  ],
+  "model_requests": 0,
+  "network_requests_during_health_check": 0,
+  "formal_benchmark_executed": false,
+  "exact_top_ids": [
+    [
+      "v0",
+      "v1",
+      "v2"
+    ]
+  ],
+  "reference_seconds": 0.00029290000384207815,
+  "results": {
+    "exact": {
+      "recall_at_k": 1.0,
+      "mean_query_ms": 0.06160000339150429,
+      "p95_query_ms": 0.06160000339150429,
+      "queries": [
+        {
+          "query": 0,
+          "ids": [
+            "v0",
+            "v1",
+            "v2"
+          ],
+          "distances": [
+            0.0,
+            0.006116271018981934,
+            0.2928932309150696
+          ],
+          "recall_at_k": 1.0,
+          "query_ms": 0.06160000339150429
+        }
+      ],
+      "build_seconds": 0,
+      "distance_definition": "1 - cosine",
+      "health": null
+    },
+    "annoy": {
+      "recall_at_k": 1.0,
+      "mean_query_ms": 0.015699988580308855,
+      "p95_query_ms": 0.015699988580308855,
+      "queries": [
+        {
+          "query": 0,
+          "ids": [
+            "v0",
+            "v1",
+            "v2"
+          ],
+          "distances": [
+            0.0,
+            0.11060082167387009,
+            0.7653668522834778
+          ],
+          "recall_at_k": 1.0,
+          "query_ms": 0.015699988580308855
+        }
+      ],
+      "build_seconds": 0.007525900000473484,
+      "health": {
+        "self_queries": 5,
+        "all_found": true,
+        "checks": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "distance_definition": "sqrt(2 - 2*cosine)",
+      "search_k": "library default: trees * top_k"
+    },
+    "hnsw_ef20": {
+      "recall_at_k": 1.0,
+      "mean_query_ms": 0.018999999156221747,
+      "p95_query_ms": 0.018999999156221747,
+      "queries": [
+        {
+          "query": 0,
+          "ids": [
+            "v0",
+            "v1",
+            "v2"
+          ],
+          "distances": [
+            0.0,
+            0.006116271018981934,
+            0.2928931713104248
+          ],
+          "recall_at_k": 1.0,
+          "query_ms": 0.018999999156221747
+        }
+      ],
+      "build_seconds": 0.004452299996046349,
+      "build_shared": true,
+      "health": {
+        "self_queries": 5,
+        "all_found": true,
+        "checks": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "ef_search": 20,
+      "distance_definition": "1 - cosine"
+    },
+    "hnsw_ef200": {
+      "recall_at_k": 1.0,
+      "mean_query_ms": 0.01790000533219427,
+      "p95_query_ms": 0.01790000533219427,
+      "queries": [
+        {
+          "query": 0,
+          "ids": [
+            "v0",
+            "v1",
+            "v2"
+          ],
+          "distances": [
+            0.0,
+            0.006116271018981934,
+            0.2928931713104248
+          ],
+          "recall_at_k": 1.0,
+          "query_ms": 0.01790000533219427
+        }
+      ],
+      "build_seconds": 0.004452299996046349,
+      "build_shared": true,
+      "health": {
+        "self_queries": 5,
+        "all_found": true,
+        "checks": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "ef_search": 200,
+      "distance_definition": "1 - cosine"
+    }
+  }
+}

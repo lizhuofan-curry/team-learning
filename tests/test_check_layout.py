@@ -43,6 +43,37 @@ class CheckLayoutTests(unittest.TestCase):
         self.write('文件组织规范.md')
         self.assertTrue(any('根目录' in item for item in self.issues()))
 
+    def test_members_can_store_different_records_for_same_experiment(self):
+        self.write('实验资料/AgentBook/README.md')
+        for member in ['lizhuofan-curry', 'hhbb56', 'wbkzhens233']:
+            base=f'实验资料/AgentBook/第01章/1-1/{member}'
+            self.write(f'{base}/1-1_{member}_实验记录.md')
+            self.write(f'{base}/运行结果/run-1/record.json')
+            self.write(f'{base}/我的代码/main.py')
+        self.write('实验资料/AgentBook/第01章/1-1/README.md')
+        self.assertEqual([], self.issues())
+
+    def test_unnamespaced_experiment_record_or_attachment_is_rejected(self):
+        self.write('实验资料/AgentBook/README.md')
+        self.write('实验资料/AgentBook/第01章/1-1/实验记录.md')
+        self.write('实验资料/AgentBook/第01章/1-1/截图.png')
+        self.assertEqual(2, len([x for x in self.issues() if '成员账号目录' in x]))
+
+    def test_record_filename_matches_member_and_experiment(self):
+        self.write('实验资料/AgentBook/README.md')
+        self.write('实验资料/AgentBook/第01章/1-1/hhbb56/1-1_lizhuofan-curry_实验记录.md')
+        self.assertTrue(any('应命名为1-1_hhbb56_实验记录.md' in x for x in self.issues()))
+
+    def test_experiment_chapter_mismatch_is_rejected(self):
+        self.write('实验资料/AgentBook/README.md')
+        self.write('实验资料/AgentBook/第02章/1-1/README.md')
+        self.assertTrue(any('章节与实验编号不一致' in x for x in self.issues()))
+
+    def test_numbered_experiment_cannot_bypass_rule_with_dotted_directory(self):
+        self.write('实验资料/AgentBook/README.md')
+        self.write('实验资料/AgentBook/第一章/1.1/实验记录.md')
+        self.assertTrue(any('统一使用第NN章' in x for x in self.issues()))
+
     def test_root_loose_files_and_unknown_directory_fail(self):
         self.write('线性表.pdf')
         self.write('随便放/笔记.md')

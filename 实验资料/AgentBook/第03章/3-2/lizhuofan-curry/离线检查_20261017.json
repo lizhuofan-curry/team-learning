@@ -1,0 +1,31 @@
+{
+  "checked_at": "2026-10-17T15:26:44.385727+08:00",
+  "scope": "OFFLINE MOCK CHECKS ONLY; no empirical experiment results",
+  "model_requests": 0,
+  "network_requests": 0,
+  "mock_subprocess_calls": 6,
+  "frozen_shared_sources_unchanged": true,
+  "source_hashes": {
+    "E:\\AI_Agents_Book\\第三章\\3.1用户记忆评估\\我的代码\\02_官方用例生成记忆与回答.py": "e8ec1d63480e4de8114466f4a932aea10c96d9739f5a9cc123affe5fb744a2da",
+    "E:\\AI_Agents_Book\\第三章\\3.1用户记忆评估\\我的代码\\03_官方用例独立裁判评分.py": "2f76d8540ebd58fb85a64f5fc1dc0d5c73c092ceb9b5dce6914680a1c094ec82",
+    "E:\\AI_Agents_Book\\第三章\\3.1用户记忆评估\\我的代码\\官方评估工具.py": "d0fa24d477e3e489edb498c8c748d1b8e268ed374b79fe7115ad2e4547f15975",
+    "E:\\AI_Agents_Book\\第三章\\3.1用户记忆评估\\我的代码\\07_官方60题批量评估.py": "9f662e8e020a01cb4d79e7e6066d3aff3ae0b877cecf3097b699f42b618b6e1f"
+  },
+  "comparison_script_sha256": "970f815168ba391c86de78c9e3162cd6560e773be3273a2811bf25b9211b6fbb",
+  "passed_checks": [
+    "all four original-JSON shapes and exact isolated request reconstruction",
+    "cross-group source drift rejected",
+    "3-1 schema result rejected as a four-format JSON comparison",
+    "artifact tampering rejected",
+    "four mocked writer children; finished and failed rows never retried",
+    "only two complete answers reach mocked judge; no repeat judge calls",
+    "truncation and unresolved outcomes retained without default scores",
+    "pilot cannot claim full 60-case four-mode completion",
+    "model digest drift rejected",
+    "interruption recovery reads existing log; ambiguous result not rerun",
+    "preview creates no runtime directory and launches no children",
+    "existing batch lock blocks duplicate invocation",
+    "state reloaded after acquiring lock; concurrently completed variants not duplicated"
+  ],
+  "followup_mock_check": "control-flow race simulation only; no empirical records retained"
+}

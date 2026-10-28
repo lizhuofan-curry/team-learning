@@ -1,0 +1,26 @@
+{
+  "scope": "Offline arithmetic and temporary artifacts, not user semantic or ANN run",
+  "checks": {
+    "expected_top3": true,
+    "same_perpendicular_opposite_values": true,
+    "B_analytic_cosine": true,
+    "positive_scaling_invariance": true,
+    "zero_rejected": true,
+    "nan_rejected": true,
+    "invalid_topk_rejected": true,
+    "svg_contains_six_vector_points": true,
+    "preview_no_outputs": true,
+    "temporary_artifacts_and_scope_correct": true
+  },
+  "passed": 10,
+  "real_model_requests": 0,
+  "network_requests": 0,
+  "temporary_records_removed": true,
+  "script_sha256": "d7a93d7992943a670cecdf2e7b6425dedc17cda86e35bd5e52a47070c16b9fca",
+  "source_files_checked": 27,
+  "expected_top3": [
+    "A",
+    "B",
+    "C"
+  ]
+}

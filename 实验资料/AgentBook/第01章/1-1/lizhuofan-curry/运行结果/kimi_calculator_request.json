@@ -1,0 +1,48 @@
+{
+  "model": "kimi-k3",
+  "question": "请使用calculate工具计算(125 + 375) * 8，获得工具结果后再回答。",
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate",
+        "description": "计算由数字、括号及加减乘除组成的算式。",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "expression": {
+              "type": "string",
+              "description": "要计算的算式，例如(125 + 375) * 8。"
+            }
+          },
+          "required": [
+            "expression"
+          ]
+        }
+      }
+    }
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "你是计算助手。需要计算时调用calculate，依据实际工具结果回答。"
+    },
+    {
+      "role": "user",
+      "content": "请使用calculate工具计算(125 + 375) * 8，获得工具结果后再回答。"
+    }
+  ],
+  "finish_reason": "tool_calls",
+  "tool_calls": [
+    {
+      "id": "calculate_0_6ec3138e",
+      "type": "function",
+      "function": {
+        "name": "calculate",
+        "arguments": "{\"expression\":\"(125 + 375) * 8\"}"
+      }
+    }
+  ],
+  "assistant_content": "",
+  "calculator_executed": false
+}

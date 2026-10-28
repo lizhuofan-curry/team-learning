@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-10-17T11:56:42.279086+00:00",
+  "python": "3.11.16 (main, Aug 14 2026, 15:34:35) [MSC v.1944 64 bit (AMD64)]",
+  "packages": {
+    "annoy": null,
+    "hnswlib": null,
+    "colorlog": null
+  },
+  "dependency_group": "chapter3-index",
+  "lock_resolved": true,
+  "lock_sha256": "7e2a3aeaccd0fa0002747e2ad43c09319258661a051d6a8766bd57ebd7f6a79d",
+  "sync_status": "failed_before_install",
+  "uv_sync_dry_run": "only add annoy 1.17.3, hnswlib 0.8.0, colorlog 6.8.0; no existing package changes",
+  "vswhere_products_result": [],
+  "build_error": {
+    "package": "annoy==1.17.3",
+    "message": "Microsoft Visual C++ 14.0 or greater is required."
+  },
+  "formal_benchmark_executed": false,
+  "model_downloads": 0,
+  "model_requests": 0,
+  "note": "公开软件源解析成功，编译依赖失败；软件安装网络访问不等于实验推理请求。安装C++工具后再同步并检查原生库。"
+}

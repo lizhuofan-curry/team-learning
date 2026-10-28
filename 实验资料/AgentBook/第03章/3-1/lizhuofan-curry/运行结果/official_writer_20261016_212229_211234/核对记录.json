@@ -1,0 +1,37 @@
+{
+  "checked_on": "2026-10-16",
+  "status": "flow_verified_memory_recall_failed_judge_pending",
+  "record_sha256": "5b9bc614f09ddfd4f8d8efee8fe2d4cce85e18b8947c2f3adb4f2a29d462a880",
+  "baseline_record_sha256": "a0dbd8325791b9f9648806cf41d46ae9e18d40c7bad46bea5e9f7b501e3149d6",
+  "sampling_profile": "qwen-recommended",
+  "verified_calls": 2,
+  "usage": {
+    "prompt_tokens": 2527,
+    "completion_tokens": 112
+  },
+  "notes_count": 3,
+  "all_notes_are_session_metadata": true,
+  "target_fact_checks": {
+    "checking_account": {
+      "source": true,
+      "memory": false,
+      "answer": false
+    },
+    "routing_number": {
+      "source": true,
+      "memory": false,
+      "answer": false
+    }
+  },
+  "controlled_comparison": {
+    "same_model_digest_case_memory_format_prompt_budget": true,
+    "memory_request_differs_only_in_sampling_options": true,
+    "answer_rules_and_question_identical": true,
+    "answer_memory_input_differs_due_to_writer_output": true
+  },
+  "answer": "The provided information does not include a checking account number. If you need assistance with setting up a direct deposit, please provide the necessary details, such as the account holder's name, account number, and other relevant information.",
+  "human_review": "Account is not recalled; final answer acknowledges missing information in supplied memory and asks user for details. No account number or processing status is fabricated in this answer. This does not mean the historical conversation lacked the account. One trial per configuration cannot establish a stable gain. Independent scores are pending.",
+  "judge_called": false,
+  "original_unchanged": true,
+  "assistant_model_calls": 0
+}

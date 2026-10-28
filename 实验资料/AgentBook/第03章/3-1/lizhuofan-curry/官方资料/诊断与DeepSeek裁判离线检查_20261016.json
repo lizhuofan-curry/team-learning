@@ -1,0 +1,12 @@
+{
+  "status": "offline_checks_passed",
+  "checks": [
+    "python_syntax",
+    "DeepSeek_config_precedence_endpoint_and_redaction",
+    "official_judge_prompt_unchanged",
+    "truncation_detected_and_usage_saved",
+    "bounded_diagnostic_replay_and_input_isolation",
+    "schema_failure_raw_record_unchanged"
+  ],
+  "live_model_calls": 0
+}

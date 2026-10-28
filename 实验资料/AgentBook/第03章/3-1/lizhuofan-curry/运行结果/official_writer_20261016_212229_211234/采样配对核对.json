@@ -1,0 +1,25 @@
+{
+  "baseline": "E:\\AI_Agents_Book\\第三章\\3.1用户记忆评估\\运行结果\\official_writer_20261016_210824_819650\\record.json",
+  "new": "E:\\AI_Agents_Book\\第三章\\3.1用户记忆评估\\运行结果\\official_writer_20261016_212229_211234\\record.json",
+  "rows": [
+    {
+      "configuration": "legacy",
+      "notes": 20,
+      "checking_account_in_memory": false,
+      "answer_behavior": "未给账号，编造设置/处理状态",
+      "prompt_tokens": 2834,
+      "completion_tokens": 426,
+      "judge_status": "四维1/4，幻觉否决，reward=0"
+    },
+    {
+      "configuration": "qwen-recommended",
+      "notes": 3,
+      "checking_account_in_memory": false,
+      "answer_behavior": "未给账号，说明所给信息不含账号并请求补充",
+      "prompt_tokens": 2527,
+      "completion_tokens": 112,
+      "judge_status": "待独立评分"
+    }
+  ],
+  "scope": "同题每组一次，比较整组采样设置；不是单因素温度消融或模型规模实验"
+}

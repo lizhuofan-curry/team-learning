@@ -1,0 +1,30 @@
+{
+  "status": "installed_verified",
+  "started_at": "2026-10-17T20:25:05.7962688+08:00",
+  "instance_id": "0723865d",
+  "install_path": "D:\\应用程序\\vs",
+  "components": [
+    "Microsoft.VisualStudio.Workload.VCTools",
+    "Microsoft.VisualStudio.Component.VC.Tools.x86.x64",
+    "Microsoft.VisualStudio.Component.Windows11SDK.26100"
+  ],
+  "automatic_restart": false,
+  "exit_code": 0,
+  "finished_at": "2026-10-17T20:25:11.9941849+08:00",
+  "launcher_status": "installer_exited",
+  "verified_at": "2026-10-17T12:48:45.376091+00:00",
+  "verification": {
+    "instanceId": "0723865d",
+    "installationPath": "D:\\应用程序\\vs",
+    "installationVersion": "18.11.12306.390",
+    "isComplete": true,
+    "isLaunchable": true,
+    "isRebootRequired": false,
+    "compiler_files": [
+      "D:\\应用程序\\vs\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64\\cl.exe"
+    ],
+    "sdk_components_finished": 65,
+    "sdk_components_planned": 65,
+    "sdk_header_exists": true
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "你是中文助手。查询实时气温时必须使用提供的工具，不要编造气温。"
+    },
+    {
+      "role": "user",
+      "content": "请查询北京现在的气温，用摄氏度表示。"
+    }
+  ],
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "get_current_temperature",
+        "description": "查询指定城市当前的气温。",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "城市英文名称，例如Beijing或Tokyo。"
+            },
+            "unit": {
+              "type": "string",
+              "enum": [
+                "celsius",
+                "fahrenheit"
+              ],
+              "description": "celsius表示摄氏度，fahrenheit表示华氏度。"
+            }
+          },
+          "required": [
+            "location",
+            "unit"
+          ]
+        }
+      }
+    }
+  ],
+  "tool_choice": "auto",
+  "temperature": 0,
+  "max_tokens": 1024,
+  "tool_executed": false,
+  "response": {
+    "id": "chatcmpl-746",
+    "choices": [
+      {
+        "finish_reason": "tool_calls",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "call_4gqagxz5",
+              "function": {
+                "arguments": "{\"unit\":\"celsius\",\"location\":\"Beijing\"}",
+                "name": "get_current_temperature"
+              },
+              "type": "function",
+              "index": 0
+            }
+          ],
+          "reasoning": "好的，用户让我查询北京现在的气温，并且要用摄氏度表示。首先，我需要确认用户的需求是什么。用户明确指定了城市和温度单位，所以应该直接调用天气查询的工具。\n\n接下来，我需要检查提供的工具函数是否正确。工具中有一个函数，名称是get_current_temperature，参数包括location和unit，单位是celsius或fahrenheit。用户要求的是北京，所以location应该是“Beijing”，单位是celsius。确认无误后，我需要构造一个符合要求的工具调用，确保参数正确，然后返回结果。\n"
+        }
+      }
+    ],
+    "created": 1791712397,
+    "model": "qwen3:0.6b",
+    "object": "chat.completion",
+    "moderation": null,
+    "service_tier": null,
+    "system_fingerprint": "fp_ollama",
+    "usage": {
+      "completion_tokens": 154,
+      "prompt_tokens": 209,
+      "total_tokens": 363,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cache_write_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  }
+}
