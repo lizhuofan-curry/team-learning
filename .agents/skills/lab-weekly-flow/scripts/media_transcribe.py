@@ -97,7 +97,7 @@ def run(root,platform,resource_id,source_url,canonical_url,media,ffmpeg,adapter,
         print(json.dumps({'phase':'segment_ready','completed':len(results),'total':len(measured)},ensure_ascii=False),flush=True)
     output=['# '+('播客/音频' if resource_kind=='audio' else '视频')+'完整音频转写（SenseVoice）','',f'原链接：{source_url}',f'规范链接：{canonical_url}',f'实际音频覆盖：0—{ranges[-1][1]:.3f}秒；页面时长约{expected:.3f}秒。','来源为本人授权的现有SenseVoice自动识别，逐段原始输出保留；不是平台AI章节，也不是人工校对字幕。时间仅为音频分段边界，不是逐句对齐。未核对完整画面，不代表本人已学习或掌握。','']
     for i,item in enumerate(results):
-        output.extend([f'## 音频段{i+1}：{item["start_seconds"]:.3f}—{item["end_seconds"]:.3f}秒','',(work/f'part-{i:03d}.txt').read_text().rstrip(),''])
+        output.extend([f'## 音频段{i+1}：{item["start_seconds"]:.3f}—{item["end_seconds"]:.3f}秒','',(work/f'part-{i:03d}.txt').read_text(encoding='utf-8').rstrip(),''])
     text='\n'.join(output).encode()
     manifest={'schema_version':1,'platform':platform,'resource_id':resource_id,'resource_kind':resource_kind,'source_url':source_url,'canonical_url':canonical_url,'status':'transcript_ready','content_source':['siliconflow_sensevoice_full_audio'],'checked_at':mq.now(),'text_file':{'path':'transcript.md','sha256':flow.digest(text)},'duration_seconds':expected,'audio_coverage_seconds':[0,ranges[-1][1]],'segments':results,'full_transcript_obtained':True,'audio_transcribed':True,'frames_reviewed':False,'visual_verified':False,'test_only':False,'count_as_owner_learning':False,'word_timestamps_available':False,'limitations':['ASR原始识别未经全文人工校对','分段边界不等于逐句字幕时间戳','没有核对完整视频画面']}
     raw=flow.canonical(manifest)+b'\n'
@@ -108,6 +108,8 @@ def run(root,platform,resource_id,source_url,canonical_url,media,ffmpeg,adapter,
 
 
 def main():
+    for stream in (sys.stdout,sys.stderr):
+        if hasattr(stream,'reconfigure'):stream.reconfigure(encoding='utf-8')
     p=argparse.ArgumentParser(description=__doc__)
     for a in ('root','platform','resource-id','source-url','canonical-url','media-file','ffmpeg','transcriber'):p.add_argument('--'+a,required=True)
     p.add_argument('--python',default=sys.executable);p.add_argument('--expected-seconds',type=float,required=True);p.add_argument('--segment-seconds',type=int,default=240)

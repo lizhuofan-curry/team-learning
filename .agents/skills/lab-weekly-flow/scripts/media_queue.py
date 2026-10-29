@@ -381,6 +381,8 @@ def retry(root,identifier):
 
 
 def main():
+    for stream in (sys.stdout,sys.stderr):
+        if hasattr(stream,'reconfigure'):stream.reconfigure(encoding='utf-8')
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--root',required=True)
     sub=p.add_subparsers(dest='command',required=True)
     for name in ('discover','pending','status'):sub.add_parser(name)

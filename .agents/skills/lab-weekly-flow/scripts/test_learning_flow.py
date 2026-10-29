@@ -43,10 +43,10 @@ class FlowTests(unittest.TestCase):
         yesterday = (dt.datetime.now(dt.timezone(dt.timedelta(hours=8))).date() - dt.timedelta(days=1)).isoformat()
         cmd = [sys.executable, str(Path(__file__).with_name("learning_flow.py")), "--root", str(self.root),
                "capture", "--date", yesterday, "--text-file", "-", "--channel", "wechat"]
-        failed = subprocess.run(cmd, input="isolated test", text=True, capture_output=True)
+        failed = subprocess.run(cmd, input="isolated test", text=True, encoding="utf-8", capture_output=True)
         self.assertNotEqual(failed.returncode, 0)
         self.assertFalse((self.root / "收件箱").exists())
-        historical = subprocess.run(cmd + ["--historical"], input="isolated historical test", text=True, capture_output=True)
+        historical = subprocess.run(cmd + ["--historical"], input="isolated historical test", text=True, encoding="utf-8", capture_output=True)
         self.assertEqual(historical.returncode, 0, historical.stderr)
 
     def test_date_correction_preserves_original_and_syncs_effective_collection_date(self):

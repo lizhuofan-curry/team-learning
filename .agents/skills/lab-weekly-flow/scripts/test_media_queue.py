@@ -91,7 +91,7 @@ class QueueTests(unittest.TestCase):
         j=q.request(self.root,'https://example.org/other','x');c=q.claim(self.root,j['id'])
         with self.assertRaises(ValueError):q.finish(self.root,j['id'],c['lease_token'],base)
     def test_note_cannot_be_complete_with_missing_or_unread_images(self):
-        base=self.make_packet();m=json.loads((base/'result.json').read_text());m.update(resource_kind='note_image_post',images_expected_from_page=3,images_obtained=0,images_visually_read=0,images=[])
+        base=self.make_packet();m=json.loads((base/'result.json').read_text(encoding='utf-8'));m.update(resource_kind='note_image_post',images_expected_from_page=3,images_obtained=0,images_visually_read=0,images=[])
         (base/'result.json').write_text(json.dumps(m))
         with self.assertRaises(ValueError):q.packet(self.root,base)
         m['status']='partial_ready';(base/'result.json').write_text(json.dumps(m));q.packet(self.root,base)
