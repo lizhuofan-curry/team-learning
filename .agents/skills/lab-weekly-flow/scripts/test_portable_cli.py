@@ -37,7 +37,7 @@ class PortableTests(unittest.TestCase):
         config=json.loads((home/'skills/productivity/lab-learning-capture/capture.local.json').read_text(encoding='utf-8'))
         self.assertEqual(Path(config['workflow_root']),workflow.resolve())
         text='学习原话：1 B = 8 bit；尚待复习 ✅\r\n'.encode()
-        self.run_cli('learning_flow.py','--root',workflow,'capture','--date','2026-10-27','--text-file','-','--channel','wechat',input=text)
+        self.run_cli('learning_flow.py','--root',workflow,'capture','--text-file','-','--channel','wechat',input=text)
         events=list((workflow/'收件箱').glob('*/*.json'))
         event=json.loads(events[0].read_text(encoding='utf-8'))
         self.assertEqual(event['text'],text.decode())

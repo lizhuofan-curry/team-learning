@@ -29,6 +29,43 @@ class FlowTests(unittest.TestCase):
             flow.capture(self.root, '2026-10-27', '修改后内容', 'wechat', 'user-original', '1')
         self.assertEqual(flow.read_json(first)['text'], '本人原话')
 
+    def test_wechat_capture_date_uses_beijing_clock_not_session_date(self):
+        import datetime as dt
+        instant = dt.datetime(2026, 10, 29, 16, 1, tzinfo=dt.timezone.utc)
+        self.assertEqual(flow.capture_date(None, "wechat", "user-original", instant=instant), "2026-10-30")
+        with self.assertRaises(ValueError):
+            flow.capture_date("2026-10-29", "wechat", "user-original", instant=instant)
+        self.assertEqual(flow.capture_date("2026-10-28", "wechat", "user-original", True, instant), "2026-10-28")
+        self.assertEqual(flow.capture_date("2026-10-28", "system-test", "test", instant=instant), "2026-10-28")
+
+    def test_cli_wechat_stale_date_refused_without_writing(self):
+        import datetime as dt
+        yesterday = (dt.datetime.now(dt.timezone(dt.timedelta(hours=8))).date() - dt.timedelta(days=1)).isoformat()
+        cmd = [sys.executable, str(Path(__file__).with_name("learning_flow.py")), "--root", str(self.root),
+               "capture", "--date", yesterday, "--text-file", "-", "--channel", "wechat"]
+        failed = subprocess.run(cmd, input="isolated test", text=True, encoding="utf-8", capture_output=True)
+        self.assertNotEqual(failed.returncode, 0)
+        self.assertFalse((self.root / "收件箱").exists())
+        historical = subprocess.run(cmd + ["--historical"], input="isolated historical test", text=True, encoding="utf-8", capture_output=True)
+        self.assertEqual(historical.returncode, 0, historical.stderr)
+
+    def test_date_correction_preserves_original_and_syncs_effective_collection_date(self):
+        path = flow.capture(self.root, "2026-10-28", "original wording", "wechat", "user-original", "wrong-date")
+        raw = path.read_bytes(); event = flow.read_json(path)
+        item = dict(version=1, event_id=event["id"], text_sha256=event["text_sha256"], original_date=event["date"],
+                    collection_date="2026-10-29", basis="observed new arrival on Oct 29; occurrence unknown")
+        flow.store(self.root / "日期更正" / (event["id"] + ".json"), flow.canonical(item) + b"\n")
+        packet = flow.read_json(flow.prepare(self.root, "2026-10-29", "2026-10-29"))
+        self.assertEqual(packet["events"][0]["date"], "2026-10-28")
+        self.assertEqual(packet["events"][0]["effective_collection_date"], "2026-10-29")
+        self.assertEqual(path.read_bytes(), raw)
+        target = self.root / "other"
+        flow.import_bundle(target, flow.export(self.root))
+        self.assertEqual(flow.export(target)["date_corrections"], [item])
+        item["text_sha256"] = "a" * 64
+        with self.assertRaises(ValueError):
+            flow.validate_date_correction(item, {event["id"]:event})
+
     def test_modified_event_rejected(self):
         p = flow.capture(self.root, '2026-10-27', '原文', 'local', 'user-original')
         e = flow.read_json(p)
@@ -223,7 +260,7 @@ class FlowTests(unittest.TestCase):
         env = dict(os.environ, PYTHONIOENCODING='ascii')
         text = '计划：学习网络，明天再做实验 ✅\n'
         script = str(Path(__file__).with_name('learning_flow.py'))
-        r = subprocess.run([sys.executable, script, '--root',str(root),'capture','--date','2026-10-27','--text-file','-','--channel','wechat'], input=text.encode(), capture_output=True, env=env)
+        r = subprocess.run([sys.executable, script, '--root',str(root),'capture','--text-file','-','--channel','wechat'], input=text.encode(), capture_output=True, env=env)
         self.assertEqual(r.returncode, 0, r.stderr.decode('utf-8',errors='replace'))
         self.assertEqual(flow.export(root)['events'][0]['text'],text)
 
