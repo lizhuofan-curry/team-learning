@@ -15,6 +15,7 @@
 
 | 当前任务 | 读取入口 |
 |---|---|
+| 完整接入个人学习系统，包含个人库/GitHub/Obsidian、Hermes 和学习工作流 | [完整接入路线](协作指南/Agent资料整理指南.md#完整接入个人学习系统)，按顺序使用下方两套学习 Skill 的接入说明 |
 | 分类、命名、移动课程/实验/共享资料，维护索引或准备团队 PR | [team-learning-materials](.agents/skills/team-learning-materials/SKILL.md) |
 | 建立个人库、核对学习证据、整理 DeepTutor 使用并吸收团队知识 | [lab-knowledge-loop](.agents/skills/lab-knowledge-loop/SKILL.md) |
 | Hermes/微信学习采集、日记、周报草稿、本人版本确认与归档 | [lab-weekly-flow](.agents/skills/lab-weekly-flow/SKILL.md) |
