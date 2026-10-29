@@ -28,7 +28,7 @@
 
 ### 完整接入个人学习系统
 
-成员使用首页“完整接入”提示词或明确提出同一目标时，进入本路线，不再要求先提供团队贡献材料。先读取[lab-knowledge-loop](../.agents/skills/lab-knowledge-loop/SKILL.md)及其[新成员接入](../.agents/skills/lab-knowledge-loop/references/onboarding.md)，再读取[lab-weekly-flow](../.agents/skills/lab-weekly-flow/SKILL.md)及其[首次接入](../.agents/skills/lab-weekly-flow/references/first-run.md)。按已有授权完成检查与配置，只在需要缺失信息或本人登录时停在相应步骤。
+成员使用[首页统一入口](../README.md#交给-agent-开始)并选择“完整接入”，或明确提出同一目标时，进入本路线，不再要求先提供团队贡献材料。先读取[lab-knowledge-loop](../.agents/skills/lab-knowledge-loop/SKILL.md)及其[新成员接入](../.agents/skills/lab-knowledge-loop/references/onboarding.md)，再读取[lab-weekly-flow](../.agents/skills/lab-weekly-flow/SKILL.md)及其[首次接入](../.agents/skills/lab-weekly-flow/references/first-run.md)。按已有授权完成检查与配置，只在需要缺失信息或本人登录时停在相应步骤。
 
 1. 检查工具能力、本人系统及已有路径，区分个人库、团队克隆、学习工作流和 Hermes 实际运行机器；无本地能力时给成员可执行的一步并核对反馈。
 2. 复用或建立本人选定的个人库；检查 Git 远端与本人身份，需要时按授权在本人账号创建私有远端。推送前核对拟上传内容和授权。在 Obsidian 打开同一个本地个人库，验证实际文件可见；Git 同步须核对远端提交，不能只凭目录或 remote 存在称完成。
