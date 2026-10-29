@@ -269,6 +269,13 @@ def tick(root, config):
             except (subprocess.SubprocessError, OSError, ValueError, KeyError, TypeError) as error:
                 # Do not leak remote stderr, message text, credentials or host details.
                 failures[step] = type(error).__name__
+        media_config = root / "media.local.json"
+        if config.get("role") == "codex" and media_config.exists():
+            try:
+                import media_queue
+                state["media_queue"] = media_queue.discover(root)
+            except (ImportError, OSError, ValueError, KeyError, TypeError) as error:
+                failures["media_queue"] = type(error).__name__
         state["status"] = "retry_pending" if failures else "ok"
         state["errors"] = failures
         if not failures:

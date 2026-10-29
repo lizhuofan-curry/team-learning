@@ -32,6 +32,8 @@ def main():
         script: (package / 'scripts/learning_flow.py').read_bytes(),
         root / 'collaboration_flow.py': (package / 'scripts/collaboration_flow.py').read_bytes(),
         root / 'auto_capture.py': (package / 'scripts/auto_capture.py').read_bytes(),
+        root / 'media_queue.py': (package / 'scripts/media_queue.py').read_bytes(),
+        root / 'media_transcribe.py': (package / 'scripts/media_transcribe.py').read_bytes(),
         skill / 'capture.local.json': (json.dumps({'workflow_root': str(root), 'script': str(script), 'python': sys.executable}, ensure_ascii=False, indent=2)+'\n').encode()
     }
     for dest, raw in files.items():

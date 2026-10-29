@@ -77,6 +77,8 @@ tick分别尝试现有学习收件同步与协作双向交换，一个失败不�
 
 macOS部署为本人LaunchAgent，StartInterval=60、RunAtLoad=true，不改每日23:00的Codex自动化。休眠/离线时不能传输，醒来后下次定时执行补同步；无须全天保持Codex对话在运行。LaunchAgent只负责文件，不会自动唤醒Codex模型。检查、停用时使用安装记录中的Label和plist绝对路径；删除调度不删除收件箱、消息或批准记录。
 
+另外启用[媒体队列](media-queue.md)时，tick在原学习素材同步后发现新增微信学习链接并排队，错误单独记入media_queue，不中断原协作交换。队列不直接打开浏览器；对应Codex媒体定时任务才认领并读取页面。没有media.local.json的既有部署保持原行为。
+
 Windows可在任务计划程序新建“当前用户登录后运行”的任务，选择本人Python绝对路径，参数为`COLLAB --root ROOT --role codex tick --quiet`，起始目录ROOT，重复间隔1分钟，已有实例运行时不启动新实例。不存账号密码、不填写其他成员的路径；本人SSH须先能在非交互模式连接。脚本有Windows文件锁和UTF-8路径处理；macOS验收不能代替真实Windows调度验收。
 
 ## 验收

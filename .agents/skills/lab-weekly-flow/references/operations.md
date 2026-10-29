@@ -79,3 +79,5 @@ python FLOW --root ROOT archive --draft 周报草稿.md --start 2026-10-26 --end
 运行`python scripts/test_learning_flow.py`检查去重、日期筛选、测试隔离、批准绑定、冲突保护和本地传输。真实微信用户收件与跨机SSH另外验证。
 
 Windows另按[Windows指南](windows.md)运行`test_portable_cli.py`，使用配置生成器，优先UTF-8文件输入而非旧版PowerShell管道。
+
+微信手动采集省略--date，由脚本取当前北京时间。显式传错日期会拒绝写入；--historical只用于本人明确要求的历史补录，不因报错自动追加。已核实的旧采集日期错误可在日期更正/原编号.json保留绑定event_id、text_sha256、original_date、collection_date与basis的version=1说明；同步和prepare均校验，原件保持不变。

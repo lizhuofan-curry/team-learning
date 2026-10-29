@@ -33,3 +33,12 @@ collaboration.local*.json
 auto_capture.local*.json
 协作消息/
 自动采集状态/
+
+# 媒体处理与日期更正属于成员私有工作流，不是共享学习材料
+media.local*.json
+media-policy.local*.json
+媒体队列/
+媒体缓存/
+媒体结果/
+日期更正/
+本机维护备份/

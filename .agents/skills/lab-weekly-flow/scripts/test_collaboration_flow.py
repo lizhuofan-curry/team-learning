@@ -12,6 +12,22 @@ import collaboration_flow as c
 
 
 class CollaborationTests(unittest.TestCase):
+    def test_optional_media_queue_is_discovered_after_sync(self):
+        (self.a/'config.local.json').write_text('{"mode":"local"}')
+        (self.a/'media.local.json').write_text('{"enabled":true,"since":"2026-10-29","grace_seconds":0}')
+        c.flow.capture(self.a,'2026-10-29','https://example.com/article','wechat','user-original','wx-media','resource')
+        with patch.object(c,'exchange',return_value={'ok':True}):
+            result,code=c.tick(self.a,{'role':'codex'})
+        self.assertEqual(code,0);self.assertEqual(result['media_queue']['added'],1)
+
+    def test_media_failure_does_not_skip_existing_collaboration(self):
+        (self.a/'config.local.json').write_text('{"mode":"local"}')
+        (self.a/'media.local.json').write_text('{"enabled":true,"since":"bad-date"}')
+        with patch.object(c,'exchange',return_value={'ok':True}) as exchange:
+            result,code=c.tick(self.a,{'role':'codex'})
+        exchange.assert_called_once();self.assertEqual(code,2)
+        self.assertTrue(result['collaboration']['ok']);self.assertEqual(result['errors'],{'media_queue':'ValueError'})
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.a = Path(self.temp.name) / 'Mac'
