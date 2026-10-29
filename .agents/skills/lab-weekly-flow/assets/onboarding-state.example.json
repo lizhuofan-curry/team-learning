@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "updated_at": null,
+  "workflow_timezone": null,
+  "team_revision": null,
+  "locations": {
+    "personal_vault": null,
+    "team_repo": null,
+    "workflow_root": null,
+    "hermes_run_on": null,
+    "hermes_home": null
+  },
+  "modules": {
+    "personal_vault": {"selected": null, "status": "pending", "checked_at": null, "evidence": [], "next_action": null},
+    "personal_git_remote": {"selected": null, "status": "pending", "checked_at": null, "evidence": [], "next_action": null},
+    "obsidian": {"selected": null, "status": "pending", "checked_at": null, "evidence": [], "next_action": null},
+    "obsidian_git_plugin": {"selected": null, "status": "pending", "checked_at": null, "evidence": [], "next_action": null},
+    "team_checkout": {"selected": null, "status": "pending", "checked_at": null, "evidence": [], "next_action": null},
+    "hermes": {"selected": null, "status": "pending", "checked_at": null, "evidence": [], "next_action": null},
+    "manual_capture": {"selected": null, "status": "pending", "checked_at": null, "evidence": [], "next_action": null},
+    "voice": {"selected": null, "status": "pending", "checked_at": null, "evidence": [], "next_action": null},
+    "auto_capture": {"selected": null, "status": "pending", "checked_at": null, "evidence": [], "next_action": null},
+    "material_sync": {"selected": null, "status": "pending", "checked_at": null, "evidence": [], "next_action": null},
+    "collaboration": {"selected": null, "status": "pending", "checked_at": null, "evidence": [], "next_action": null},
+    "daily_digest": {"selected": null, "status": "pending", "checked_at": null, "evidence": [], "next_action": null},
+    "media_queue": {"selected": null, "status": "pending", "checked_at": null, "evidence": [], "next_action": null}
+  },
+  "schedules": [],
+  "next_action": null
+}
