@@ -11,6 +11,8 @@ description: 通过本地或云端Hermes收集微信学习素材，由Codex按�
 
 首次部署或队友接入：阅读[新成员首次接入](references/first-run.md)，先检查个人库、共同团队库和运行位置；按需使用`scripts/onboard_member.py`建立成员选定的空个人库与本机配置。该脚本不安装Hermes本体，不代替账号授权。再按[部署与微信接入](references/deployment.md)选择本地或云端方式；已有组件跳过，保留现有配置。
 
+完整接入或中断后继续：按[私人进度与续办](references/onboarding-state.md)保存本人选择和实际证据，分别验收首次接入页中的可选自动化模块。探测报告、已有配置、隔离测试与真人使用分开；未选择的模块不默认开启，状态文件不会自动执行安装或调度。
+
 日常运行：读取用户选定工作流根目录的`config.local.json`。每位成员使用自己选定的个人工作流根目录。可执行脚本在本技能的`scripts/learning_flow.py`，使用Python 3.9及以上，支持Windows/macOS/Linux路径。
 
 已配置`collaboration.local.json`时，按[双向协作](references/collaboration.md)先同步并读取与本任务有关的Hermes未读意见，实际读过才回执；完成本次学习/周报整理后发布有来源的进展，避免把同一素材和协作意见重复计入成果。近实时调度只传文件，不自动唤醒模型或重新生成周报；周报送审成功后再回传精确版本。

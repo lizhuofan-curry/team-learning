@@ -22,6 +22,7 @@ config.local*.json
 config.local.backups/
 capture.local.json
 接入检查.json
+接入状态/
 收件箱/
 待审核/
 批准记录/
