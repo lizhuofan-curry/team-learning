@@ -1,0 +1,81 @@
+{
+  "原始记录SHA256": "02e6dbd3c0bc81f09332a07b5ca56e331160fa21c4900d21e2b347b3b3dcd8cd",
+  "公开范围": "实验内容与输出摘录；省略本机绝对路径及非必要主机状态。不是原始record逐字副本。",
+  "reports": [
+    {
+      "source_run": "handoff_within_window_20261101_150027_129403",
+      "source_sha256": "96882546db654e8c80d0ad6b88deb8e494c8afba19b7811f5dae1a81c78894d1",
+      "arms": {
+        "title_only": {
+          "gate": "needs_more_information_no_action",
+          "can_execute_action": false,
+          "can_forward_full_result": false,
+          "free_text_reason_review": "not_automated; human review required",
+          "model_output_changed": false,
+          "model_decision": "need_info"
+        },
+        "manual_context": {
+          "gate": "decision_verified_reason_review_pending",
+          "can_execute_action": false,
+          "can_forward_full_result": false,
+          "free_text_reason_review": "not_automated; human review required",
+          "model_output_changed": false,
+          "model_decision": "eligible",
+          "rule_check": {
+            "purchase_date": "2026-10-20",
+            "application_date": "2026-11-01",
+            "elapsed_days": 12,
+            "limit_days": 14,
+            "unused": true,
+            "expected_decision": "eligible",
+            "required_evidence_ids": [
+              "O1",
+              "O2",
+              "O3",
+              "R1"
+            ]
+          }
+        }
+      },
+      "source_unchanged_at_verification": true
+    },
+    {
+      "source_run": "handoff_overdue_20261101_150332_851732",
+      "source_sha256": "3a00c93d28dff53f908f10861d1c2197b6b5765433ab9fbf50af63520c4ddef9",
+      "arms": {
+        "title_only": {
+          "gate": "needs_more_information_no_action",
+          "can_execute_action": false,
+          "can_forward_full_result": false,
+          "free_text_reason_review": "not_automated; human review required",
+          "model_output_changed": false,
+          "model_decision": "need_info"
+        },
+        "manual_context": {
+          "gate": "blocked_decision_mismatch",
+          "can_execute_action": false,
+          "can_forward_full_result": false,
+          "free_text_reason_review": "not_automated; human review required",
+          "model_output_changed": false,
+          "model_decision": "eligible",
+          "rule_check": {
+            "purchase_date": "2026-10-10",
+            "application_date": "2026-11-01",
+            "elapsed_days": 22,
+            "limit_days": 14,
+            "unused": true,
+            "expected_decision": "ineligible",
+            "required_evidence_ids": [
+              "O1",
+              "O3",
+              "R1"
+            ]
+          },
+          "error": "模型决定与交接材料独立核算结果不一致"
+        }
+      },
+      "source_unchanged_at_verification": true
+    }
+  ],
+  "new_model_requests": 0
+}

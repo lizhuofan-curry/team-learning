@@ -1,0 +1,31 @@
+{
+  "source_record_sha256": "2002a63acefc248e262d2dbfc50efa90891e8c7339f15dee411502fc3a1d4605",
+  "reviewer": "Codex; assistant semantic comparison against source, not user comprehension certification",
+  "review_result": "acceptable_for_this_synthetic_receiver_trial",
+  "checks": {
+    "raw_http_and_saved_draft_match": true,
+    "base_and_script_hashes_match": true,
+    "order_id_preserved": true,
+    "rule_limit_14_preserved": true,
+    "both_conditions_preserved": true,
+    "purchase_and_application_dates_preserved": true,
+    "unused_state_preserved": true,
+    "fixed_application_date_preserved": true,
+    "no_refund_decision_precomputed": true
+  },
+  "task_text_exact_match_explanation": "expanded task includes source-supported rules and facts; not verbatim but no observed task-goal change",
+  "redundancy": [
+    "H7 color is irrelevant to rule",
+    "H8 amount is irrelevant to rule",
+    "task field repeats much of materials",
+    "H3 cites several sources for one order id"
+  ],
+  "omitted_source": "S7 staff code and local directory omitted; not needed for this rule",
+  "scope": "one known synthetic case; draft faithful enough for receiver trial, not a claim of optimal compression or general reliability",
+  "generation_requests": 1,
+  "prompt_tokens_reported": 427,
+  "output_tokens_reported": 504,
+  "receiver_requests_at_review": 0,
+  "new_model_requests_for_review": 0,
+  "original_record_preserved": true
+}

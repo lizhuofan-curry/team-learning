@@ -1,0 +1,151 @@
+{
+  "原始记录SHA256": "0aa268382dc651a61c276d51026844d8adc7a5dcb18ba5078d91f1ee5c63f698",
+  "公开范围": "实验内容与输出摘录；省略本机绝对路径及非必要主机状态。不是原始record逐字副本。",
+  "status": "local_timer_demo_checked",
+  "created_at": "2026-11-01T15:26:05.665676+08:00",
+  "events": [
+    {
+      "kind": "timer_set",
+      "elapsed_seconds": 5.916983354836702e-06,
+      "at": "2026-11-01T15:26:05.666001+08:00",
+      "timer_id": "once_demo",
+      "delay_seconds": 2.0,
+      "recurring": false
+    },
+    {
+      "kind": "timer_set",
+      "elapsed_seconds": 0.00019704195437952876,
+      "at": "2026-11-01T15:26:05.666192+08:00",
+      "timer_id": "cancelled_demo",
+      "delay_seconds": 4.0,
+      "recurring": false
+    },
+    {
+      "kind": "timer_set",
+      "elapsed_seconds": 0.0003398749977350235,
+      "at": "2026-11-01T15:26:05.666335+08:00",
+      "timer_id": "recurring_demo",
+      "delay_seconds": 1.0,
+      "recurring": true
+    },
+    {
+      "kind": "timer_cancelled",
+      "elapsed_seconds": 0.00047504197573289275,
+      "at": "2026-11-01T15:26:05.666470+08:00",
+      "timer_id": "cancelled_demo",
+      "fire_count": 0
+    },
+    {
+      "kind": "timer_due",
+      "elapsed_seconds": 1.0074847500072792,
+      "at": "2026-11-01T15:26:06.673483+08:00",
+      "timer_id": "recurring_demo"
+    },
+    {
+      "kind": "timer_due",
+      "elapsed_seconds": 2.0191247499897145,
+      "at": "2026-11-01T15:26:07.685126+08:00",
+      "timer_id": "once_demo"
+    },
+    {
+      "kind": "timer_due",
+      "elapsed_seconds": 2.0228509579901583,
+      "at": "2026-11-01T15:26:07.688847+08:00",
+      "timer_id": "recurring_demo"
+    },
+    {
+      "kind": "timer_due",
+      "elapsed_seconds": 3.032282874977682,
+      "at": "2026-11-01T15:26:08.698285+08:00",
+      "timer_id": "recurring_demo"
+    },
+    {
+      "kind": "timer_cancelled",
+      "elapsed_seconds": 3.036760749993846,
+      "at": "2026-11-01T15:26:08.702757+08:00",
+      "timer_id": "recurring_demo",
+      "fire_count": 3
+    }
+  ],
+  "notifications": [
+    {
+      "notification_id": "3a12aa3d-9240-4fb5-9ecf-9db644b35f86",
+      "timer_id": "recurring_demo",
+      "message": "循环提醒的一次到期。",
+      "at": "2026-11-01T15:26:06.674033+08:00",
+      "local_log_written": true,
+      "terminal_written": true
+    },
+    {
+      "notification_id": "76811250-df04-4949-a383-e3f2210775b4",
+      "timer_id": "once_demo",
+      "message": "一次性提醒到期。",
+      "at": "2026-11-01T15:26:07.686910+08:00",
+      "local_log_written": true,
+      "terminal_written": true
+    },
+    {
+      "notification_id": "0d746c04-9183-462d-ab4a-0bcd57a24cdc",
+      "timer_id": "recurring_demo",
+      "message": "循环提醒的一次到期。",
+      "at": "2026-11-01T15:26:07.689373+08:00",
+      "local_log_written": true,
+      "terminal_written": true
+    },
+    {
+      "notification_id": "a3fddefb-d956-4ad5-80e9-694cb55573df",
+      "timer_id": "recurring_demo",
+      "message": "循环提醒的一次到期。",
+      "at": "2026-11-01T15:26:08.700451+08:00",
+      "local_log_written": true,
+      "terminal_written": true
+    }
+  ],
+  "elapsed_seconds": 4.500103708007373,
+  "checks": {
+    "once_exactly_one": true,
+    "cancelled_timer_zero": true,
+    "recurring_exactly_three": true,
+    "once_terminal_state_fired": true,
+    "cancelled_terminal_state": true,
+    "recurring_cancelled_after_three": true,
+    "all_local_logs_and_terminal_writes_completed": true,
+    "log_contents_match_record": true,
+    "unique_notifications": true
+  },
+  "notification_counts": {
+    "once_demo": 1,
+    "cancelled_demo": 0,
+    "recurring_demo": 3
+  },
+  "model_requests": 0,
+  "mcp_calls": 0,
+  "network_requests": 0,
+  "external_messages_sent": 0,
+  "timers": {
+    "once_demo": {
+      "timer_id": "once_demo",
+      "message": "一次性提醒到期。",
+      "interval_seconds": 2.0,
+      "recurring": false,
+      "status": "fired",
+      "fire_count": 1
+    },
+    "cancelled_demo": {
+      "timer_id": "cancelled_demo",
+      "message": "这条提醒应被提前取消，不应出现。",
+      "interval_seconds": 4.0,
+      "recurring": false,
+      "status": "cancelled",
+      "fire_count": 0
+    },
+    "recurring_demo": {
+      "timer_id": "recurring_demo",
+      "message": "循环提醒的一次到期。",
+      "interval_seconds": 1.0,
+      "recurring": true,
+      "status": "cancelled",
+      "fire_count": 3
+    }
+  }
+}

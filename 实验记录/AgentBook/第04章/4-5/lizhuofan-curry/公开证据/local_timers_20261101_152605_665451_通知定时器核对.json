@@ -1,0 +1,31 @@
+{
+  "source_record_sha256": "0aa268382dc651a61c276d51026844d8adc7a5dcb18ba5078d91f1ee5c63f698",
+  "notification_log_sha256": "38dcc1d6783558246e99bcd9ceb1e4c04adb5de7db110acd0e17b9dd1045f870",
+  "reviewer": "Codex; independent source hash, event order, counts and local log comparison",
+  "checks": {
+    "script_and_official_reference_hashes_match": true,
+    "once_one_cancelled_zero_recurring_three": true,
+    "cancel_before_original_due": true,
+    "observed_until_after_cancelled_timer_original_due": true,
+    "cancelled_timer_has_no_due_event": true,
+    "recurring_cancelled_after_three": true,
+    "notification_log_matches_record": true,
+    "all_nine_runtime_checks_true": true,
+    "no_model_mcp_network_or_external_messages": true
+  },
+  "elapsed_seconds": 4.500103708007373,
+  "timer_due_elapsed_seconds": {
+    "once_demo": [
+      2.0191247499897145
+    ],
+    "cancelled_demo": [],
+    "recurring_demo": [
+      1.0074847500072792,
+      2.0228509579901583,
+      3.032282874977682
+    ]
+  },
+  "scope": "user actually ran single-process local notification demo; not OS notifications, external delivery, restart recovery or proof of independent implementation ability",
+  "new_model_requests_for_review": 0,
+  "raw_files_preserved": true
+}
