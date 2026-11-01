@@ -1,0 +1,28 @@
+{
+  "source_record_sha256": "3a00c93d28dff53f908f10861d1c2197b6b5765433ab9fbf50af63520c4ddef9",
+  "reviewer": "Codex; mechanical verification plus assistant semantic review; not a new user comprehension assessment",
+  "checks": {
+    "saved_answer_matches_raw_http": true,
+    "separate_system_user_messages": true,
+    "between_cases_only_O1_material_changed": true,
+    "title_only_request_identical_between_cases": true,
+    "model_options_schema_and_system_unchanged_between_cases": true
+  },
+  "title_only_review": {
+    "decision_correct_for_missing_materials": true,
+    "order_id_transcription_error": "DEMO-001 was written as DE-001 in missing_information; preserve original"
+  },
+  "manual_context_review": {
+    "days": 22,
+    "expected_decision": "ineligible",
+    "actual_decision": "eligible",
+    "decision_correct": false,
+    "reason_rule_and_dates_correct": true,
+    "cited_materials_support_reason": true,
+    "decision_reason_consistent": false,
+    "judgment": "failed: eligible contradicts reason that 22 days exceeds limit; downstream must not accept as a valid approval"
+  },
+  "new_model_requests": 0,
+  "raw_record_preserved": true,
+  "scope": "two synthetic cases, one run per case and arm; no statistical performance claim; independent receiver simulation, not orchestrated sub-agents"
+}
