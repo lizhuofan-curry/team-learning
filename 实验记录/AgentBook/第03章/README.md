@@ -16,3 +16,4 @@
 | [3-10](3-10/README.md) | 上下文感知检索 | lizhuofan-curry |
 | [3-11](3-11/README.md) | 上下文与双层记忆 | lizhuofan-curry |
 | [3-12](3-12/README.md) | 结构化知识提取 | lizhuofan-curry |
+| [个人Wiki混合RAG](个人Wiki混合RAG/README.md) | 无编号个人应用：三题混合检索与回答审阅 | lizhuofan-curry |
