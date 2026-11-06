@@ -296,9 +296,9 @@ def tick(root, config):
                         if not isinstance(dispatch, dict) or not isinstance(dispatch.get("enabled", False), bool):
                             raise ValueError("证据检查开关必须为布尔值")
                         if dispatch.get("enabled", False):
-                            from 任务中枢.task_worker import run_once
+                            from 任务中枢.task_worker import run_cycle
                             with task_center.sync_lock(root):
-                                state["task_worker"] = run_once(root)
+                                state["task_worker"] = run_cycle(root)
                     except sqlite3.Error as error:
                         failures["task_center"] = type(error).__name__
             except (ImportError, OSError, ValueError, KeyError, TypeError) as error:

@@ -59,6 +59,11 @@ def sync_sources(root, *, sync_state=None):
                                          next_action=projected['next_action'],
                                          expected_revision=task['revision'])
                 updated_tasks += int(revised['revision'] != task['revision'])
+            inspections = []
+            from 任务中枢.task_worker import ACTIONS_BY_SOURCE, dispatch_options, enqueue_inspection
+            options = dispatch_options(root)
+            stale_prs = {item['external_id'] for item in snapshot['observations']
+                         if item['code'] == 'pr_snapshot_stale'}
             for item in snapshot['events']:
                 target = task_ids.get((item['source'], item.get('task_ref')))
                 try:
@@ -71,13 +76,27 @@ def sync_sources(root, *, sync_state=None):
                     continue
                 added_events += int(event['id'] not in event_ids)
                 event_ids.add(event['id'])
+                if (options['enabled'] and options['auto_inspect'] and target
+                        and event['source'] in ACTIONS_BY_SOURCE and item.get('task_ref') not in stale_prs):
+                    inspections.append((hub.get_task(target), event))
+            if inspections:
+                from 任务中枢.task_dispatch import Queue
+                with Queue(root) as queue:
+                    existing_job_ids = {job['id'] for job in queue.list_jobs()}
+                    known = set(existing_job_ids)
+                    for task, event in inspections:
+                        job = enqueue_inspection(queue, task, event)
+                        known.add(job['id'])
+                    inspection_jobs_added = len(known - existing_job_ids)
+            else:
+                inspection_jobs_added = 0
             from 任务中枢.task_routing import route_followups
             routing = route_followups(root, hub, snapshot)
             snapshot['observations'].extend(routing['observations'])
         return dict(tasks_added=added_tasks, tasks_updated=updated_tasks,
                     events_added=added_events, observations=snapshot['observations'],
                     followups_linked=routing['linked'], review_jobs_added=routing['jobs_added'],
-                    execution_started=False)
+                    inspection_jobs_added=inspection_jobs_added, execution_started=False)
 
 
 def view(root):
@@ -140,6 +159,7 @@ def main(argv=None):
     inspect = commands.add_parser('queue-inspection')
     inspect.add_argument('--task', required=True)
     commands.add_parser('work-once')
+    commands.add_parser('work-cycle')
     pr = commands.add_parser('import-pr-snapshot')
     pr.add_argument('--file', required=True, type=Path)
     create = commands.add_parser('create')
@@ -175,10 +195,10 @@ def main(argv=None):
         from 任务中枢.pr_sources import read_json, save_snapshot
         with sync_lock(root):
             result = {'snapshot': str(save_snapshot(root, read_json(args.file)))}
-    elif args.action == 'work-once':
-        from 任务中枢.task_worker import run_once
+    elif args.action in ('work-once', 'work-cycle'):
+        from 任务中枢.task_worker import run_cycle, run_once
         with sync_lock(root):
-            result = run_once(root)
+            result = run_cycle(root) if args.action == 'work-cycle' else run_once(root)
     elif args.action in ('status', 'attention'):
         result = view(root)
         if args.action == 'attention':
@@ -205,13 +225,12 @@ def main(argv=None):
                 result = hub.list_events(task_id=args.task)
             elif args.action == 'queue-inspection':
                 from 任务中枢.task_dispatch import Queue
-                from 任务中枢.task_worker import dispatch_enabled
+                from 任务中枢.task_worker import ACTIONS_BY_SOURCE, dispatch_enabled, enqueue_inspection
                 if not dispatch_enabled(root):
                     raise ValueError('证据检查派工已暂停')
                 task = hub.get_task(args.task)
-                actions = {'experiment': 'inspect_experiment', 'github-pr': 'inspect_pr'}
                 if (not task or task['test_only'] or task['status'] == 'cancelled'
-                        or task['source'] not in actions):
+                        or task['source'] not in ACTIONS_BY_SOURCE):
                     raise ValueError('该任务不能派发证据检查')
                 current = {(item['source'], item['external_id']): item['payload']
                            for item in build_snapshot(root)['events']}
@@ -220,9 +239,7 @@ def main(argv=None):
                 if event is None:
                     raise ValueError('请先同步当前来源，再派发证据检查')
                 with Queue(root) as queue:
-                    result = queue.enqueue(task['id'], event['id'], actions[task['source']],
-                        dict(source=event['source'], external_id=event['external_id'],
-                             source_payload=event['payload'], task_scope=task['scope'], test_only=False))
+                    result = enqueue_inspection(queue, task, event)
             else:
                 task = hub.get_task(args.task)
                 if task is None or task['source'] != 'manual':
