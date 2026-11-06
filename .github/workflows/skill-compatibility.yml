@@ -41,3 +41,5 @@ jobs:
         run: python .agents/skills/lab-weekly-flow/scripts/test_media_queue.py
       - name: Full audio coverage, segment resume and adapter failure
         run: python .agents/skills/lab-weekly-flow/scripts/test_media_transcribe.py
+      - name: Task identity, source integrity, explicit links and optional tick
+        run: python -m unittest discover -s .agents/skills/lab-weekly-flow/scripts/任务中枢 -p "test_task_*.py" -v

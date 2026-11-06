@@ -43,3 +43,8 @@ media-policy.local*.json
 媒体结果/
 日期更正/
 本机维护备份/
+
+# 私人任务索引与本机开关
+task_center.local*.json
+任务中枢/state.sqlite3*
+任务中枢/.sync.lock

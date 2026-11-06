@@ -1,0 +1,3 @@
+state.sqlite3*
+.sync.lock
+__pycache__/
