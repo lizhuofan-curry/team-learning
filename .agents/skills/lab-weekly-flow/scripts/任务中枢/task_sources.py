@@ -101,7 +101,7 @@ def _hermes_record(root, path):
     return record
 
 
-def build_snapshot(root, now=None, include_tests=False, sync_state=None):
+def _base_snapshot(root, now=None, include_tests=False, sync_state=None):
     """Return ``tasks``, unlinked ``events`` and actionable ``observations``.
 
     ``now`` accepts an aware datetime for deterministic checks. No function in
@@ -201,4 +201,16 @@ def build_snapshot(root, now=None, include_tests=False, sync_state=None):
     elif (current - latest).total_seconds() < -60:
         observations.append(_observation(
             "sync_clock_skew", "sync", path, "同步时间晚于当前检查时间，需核对两端时钟。"))
+    return snapshot
+
+
+def build_snapshot(root, now=None, include_tests=False, sync_state=None):
+    snapshot = _base_snapshot(root, now=now, include_tests=include_tests, sync_state=sync_state)
+    from 任务中枢.experiment_sources import build_experiment_snapshot
+    from 任务中枢.pr_sources import build_pr_snapshot
+    from 任务中枢.task_routing import build_wechat_snapshot
+    for adapter in (build_experiment_snapshot, build_pr_snapshot, build_wechat_snapshot):
+        result = adapter(root, now=now, include_tests=include_tests)
+        for key in ('tasks', 'events', 'observations'):
+            snapshot[key].extend(result[key])
     return snapshot

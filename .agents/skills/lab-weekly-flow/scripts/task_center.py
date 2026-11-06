@@ -11,6 +11,9 @@ import sys
 from 任务中枢.task_hub import EventConflict, Hub, STATUSES, state_file
 from 任务中枢.task_sources import build_snapshot
 
+PROJECTED = frozenset(('media', 'experiment', 'github-pr'))
+LIVE_EVENTS = frozenset(('hermes', 'wechat-task'))
+
 
 @contextlib.contextmanager
 def sync_lock(root):
@@ -46,8 +49,10 @@ def sync_sources(root, *, sync_state=None):
         with Hub(root) as hub:
             existing = {t['id']: t for t in hub.list_tasks(include_tests=True)}
             event_ids = {e['id'] for e in hub.list_events(include_tests=True)}
+            task_ids = {}
             for projected in snapshot['tasks']:
                 task = hub.register(**projected)
+                task_ids[(projected['source'], projected['external_id'])] = task['id']
                 added_tasks += int(task['id'] not in existing)
                 revised = hub.set_status(task['id'], projected['status'],
                                          evidence=projected['evidence'],
@@ -55,25 +60,30 @@ def sync_sources(root, *, sync_state=None):
                                          expected_revision=task['revision'])
                 updated_tasks += int(revised['revision'] != task['revision'])
             for item in snapshot['events']:
+                target = task_ids.get((item['source'], item.get('task_ref')))
                 try:
-                    event = hub.ingest_event(item['source'], item['external_id'], item['payload'])
+                    event = hub.ingest_event(item['source'], item['external_id'], item['payload'], task_id=target)
                 except EventConflict:
                     snapshot['observations'].append(dict(
                         code='immutable_event_conflict', severity='warning', source=item['source'],
-                        external_id=item['external_id'], evidence=item['payload']['reference'],
+                        external_id=item['external_id'], evidence=item['payload'].get('reference') or str(root / 'task_center.local.json'),
                         detail='同编号事件的原件版本有变化，历史关联保留，已跳过该事件。'))
                     continue
                 added_events += int(event['id'] not in event_ids)
                 event_ids.add(event['id'])
+            from 任务中枢.task_routing import route_followups
+            routing = route_followups(root, hub, snapshot)
+            snapshot['observations'].extend(routing['observations'])
         return dict(tasks_added=added_tasks, tasks_updated=updated_tasks,
                     events_added=added_events, observations=snapshot['observations'],
+                    followups_linked=routing['linked'], review_jobs_added=routing['jobs_added'],
                     execution_started=False)
 
 
 def view(root):
     root = Path(root)
     snapshot = build_snapshot(root)
-    path = root / '任务中枢' / 'state.sqlite3'
+    path = state_file(root, 'state.sqlite3')
     if not path.exists():
         return dict(initialized=False, tasks=[], unlinked_events=[],
                     observations=snapshot['observations'], next_action='先运行 sync 建立本地索引')
@@ -83,7 +93,7 @@ def view(root):
     # A read view uses current source observations; the stored projection is a cache.
     live = {(t['source'], t['external_id']): t for t in snapshot['tasks']}
     for task in tasks:
-        if task['source'] == 'media':
+        if task['source'] in PROJECTED:
             current = live.get((task['source'], task['external_id']))
             task['indexed_status'] = task['status']
             if current is not None:
@@ -94,19 +104,24 @@ def view(root):
                 task['status'] = 'waiting'
                 task['next_action'] = '源记录当前不可读取；核对源文件，不能据缓存宣称进展'
                 snapshot['observations'].append(dict(
-                    code='indexed_source_unavailable', severity='warning', source='media',
+                    code='indexed_source_unavailable', severity='warning', source=task['source'],
                     external_id=task['external_id'], evidence=task['evidence'],
                     detail=task['next_action']))
     live_events = {(e['source'], e['external_id']): e['payload'] for e in snapshot['events']}
     for event in events:
-        if event['source'] == 'hermes':
+        if event['source'] in LIVE_EVENTS:
             event['source_available'] = live_events.get((event['source'], event['external_id'])) == event['payload']
             if not event['source_available']:
                 snapshot['observations'].append(dict(
-                    code='indexed_event_unavailable', severity='warning', source='hermes',
+                    code='indexed_event_unavailable', severity='warning', source=event['source'],
                     external_id=event['external_id'], evidence=event['payload'].get('reference'),
                     detail='已索引事件的原件缺失或版本不一致；历史记录保留，暂不可关联处理。'))
-    return dict(initialized=True, tasks=tasks,
+    work = []
+    if (state_file(root, 'dispatch.sqlite3')).exists():
+        from 任务中枢.task_dispatch import Queue
+        with Queue(root) as queue:
+            work = queue.list_jobs()
+    return dict(initialized=True, tasks=tasks, work_items=work,
                 unlinked_events=[e for e in events if e['task_id'] is None],
                 observations=snapshot['observations'], execution_started=False)
 
@@ -118,8 +133,15 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root', required=True, help='个人学习工作流根目录')
     commands = parser.add_subparsers(dest='action', required=True)
-    for action in ('preview', 'sync', 'status', 'attention'):
+    for action in ('preview', 'sync', 'status', 'attention', 'recovery-plan'):
         commands.add_parser(action)
+    recovery = commands.add_parser('recover-media')
+    recovery.add_argument('--job', required=True, help='要回传的单个媒体任务原编号')
+    inspect = commands.add_parser('queue-inspection')
+    inspect.add_argument('--task', required=True)
+    commands.add_parser('work-once')
+    pr = commands.add_parser('import-pr-snapshot')
+    pr.add_argument('--file', required=True, type=Path)
     create = commands.add_parser('create')
     create.add_argument('--key', required=True)
     create.add_argument('--title', required=True)
@@ -143,23 +165,37 @@ def main(argv=None):
         result = build_snapshot(root)
     elif args.action == 'sync':
         result = sync_sources(root)
+    elif args.action in ('recovery-plan', 'recover-media'):
+        from 任务中枢.task_recovery import apply_recovery, plan_recovery
+        result = plan_recovery(root)
+        if args.action == 'recover-media':
+            result['actions'] = [a for a in result['actions'] if a['job_id'] == args.job]
+            result = apply_recovery(root, result)
+    elif args.action == 'import-pr-snapshot':
+        from 任务中枢.pr_sources import read_json, save_snapshot
+        with sync_lock(root):
+            result = {'snapshot': str(save_snapshot(root, read_json(args.file)))}
+    elif args.action == 'work-once':
+        from 任务中枢.task_worker import run_once
+        with sync_lock(root):
+            result = run_once(root)
     elif args.action in ('status', 'attention'):
         result = view(root)
         if args.action == 'attention':
-            result['tasks'] = [t for t in result['tasks'] if t['source'] != 'media'
+            result['tasks'] = [t for t in result['tasks'] if t['source'] == 'manual'
                                and t['status'] in ('blocked', 'awaiting_review')]
             result['observations'] = [o for o in result['observations']
                                       if o.get('severity') != 'info']
     else:
-        if args.action != 'create' and not (root / '任务中枢' / 'state.sqlite3').exists():
+        if args.action != 'create' and not (state_file(root, 'state.sqlite3')).exists():
             raise ValueError('任务索引尚未初始化；先运行 sync 或 create')
-        with Hub(root) as hub:
+        with sync_lock(root), Hub(root) as hub:
             if args.action == 'create':
                 result = hub.register('manual', args.key, args.title, args.kind,
                                       next_action=args.next_action, scope=args.scope)
             elif args.action == 'link':
                 event = next((e for e in hub.list_events(include_tests=True) if e['id'] == args.event), None)
-                if event and event['source'] == 'hermes':
+                if event and event['source'] in LIVE_EVENTS:
                     live_events = build_snapshot(root, include_tests=event['test_only'])['events']
                     if not any(e['source'] == event['source'] and e['external_id'] == event['external_id']
                                and e['payload'] == event['payload'] for e in live_events):
@@ -167,6 +203,26 @@ def main(argv=None):
                 result = hub.link_event(args.event, args.task)
             elif args.action == 'events':
                 result = hub.list_events(task_id=args.task)
+            elif args.action == 'queue-inspection':
+                from 任务中枢.task_dispatch import Queue
+                from 任务中枢.task_worker import dispatch_enabled
+                if not dispatch_enabled(root):
+                    raise ValueError('证据检查派工已暂停')
+                task = hub.get_task(args.task)
+                actions = {'experiment': 'inspect_experiment', 'github-pr': 'inspect_pr'}
+                if (not task or task['test_only'] or task['status'] == 'cancelled'
+                        or task['source'] not in actions):
+                    raise ValueError('该任务不能派发证据检查')
+                current = {(item['source'], item['external_id']): item['payload']
+                           for item in build_snapshot(root)['events']}
+                event = next((e for e in reversed(hub.list_events(task_id=task['id']))
+                              if current.get((e['source'], e['external_id'])) == e['payload']), None)
+                if event is None:
+                    raise ValueError('请先同步当前来源，再派发证据检查')
+                with Queue(root) as queue:
+                    result = queue.enqueue(task['id'], event['id'], actions[task['source']],
+                        dict(source=event['source'], external_id=event['external_id'],
+                             source_payload=event['payload'], task_scope=task['scope'], test_only=False))
             else:
                 task = hub.get_task(args.task)
                 if task is None or task['source'] != 'manual':
@@ -174,6 +230,12 @@ def main(argv=None):
                 result = hub.set_status(args.task, args.status, evidence=args.evidence,
                                         next_action=args.next_action,
                                         expected_revision=args.revision)
+                if args.status == 'cancelled' and (state_file(root, 'dispatch.sqlite3')).exists():
+                    from 任务中枢.task_dispatch import Queue
+                    with Queue(root, test_only=task['test_only']) as queue:
+                        for job in queue.list_jobs(include_tests=task['test_only']):
+                            if job['task_id'] == task['id'] and job['state'] in ('pending', 'running'):
+                                queue.cancel(job['id'])
     print(json.dumps(result, ensure_ascii=False))
     return 0
 

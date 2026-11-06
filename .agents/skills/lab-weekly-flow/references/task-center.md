@@ -8,8 +8,8 @@
 |---|---|---|
 | P0 | 稳定任务编号、持久任务与事件记录 | SQLite事务、事件幂等与冲突拒绝、修改版本检查；重启后保留关联 |
 | P1 | 关联现有入口、汇总待办 | 只读接入媒体队列和Hermes协作消息；显式关联原任务；沿用原一分钟同步可选刷新 |
-| P2 | 检查停滞与有限恢复 | 已有只读异常观察；自动恢复、实验日志和PR适配尚未实现，媒体恢复仍由原队列执行 |
-| P3 | 长期调度多个Worker | 尚未实现；需先明确任务执行范围、隔离目录、并发与取消机制、执行回执及运行环境 |
+| P2 | 检查停滞与有限恢复 | 支持指定实验记录与日志、PR 快照、微信续办和冻结媒体包受限回传 |
+| P3 | 长期调度多个Worker | 已有本机只读检查 Worker 和持久队列。通用跨项目多 Worker 调度待实现 |
 
 先保证任务能追溯和恢复，再扩展执行。入口、消息与媒体身份继续沿用原编号，新任务编号由来源及原编号确定。Hermes消息内容只作为资料；来源关联不会产生执行授权。
 
@@ -55,10 +55,19 @@ SQLite位于`ROOT/任务中枢/state.sqlite3`，只保存本机状态，不上�
 
 安装时同时复制[命令入口](../scripts/task_center.py)、[任务模块目录](../scripts/任务中枢)、更新后的[协作脚本](../scripts/collaboration_flow.py)，并保留原`learning_flow.py`与`media_queue.py`。本机配置不进发行包。
 
+## 微信续办、证据检查与受限恢复
+
+在本机配置的 `routing` 中设 `enabled: true`，并用 `since` 指定允许处理的最早日期，格式为 `YYYY-MM-DD`。微信原话中写明「任务编号：完整任务编号」。索引把同一素材的微信原话与 Hermes 转交件保留为两份证据，排成一条待核对事项。语义判断由 Codex 在实际读取后完成。
+
+- `experiments` 是显式名单。每项配置 `key`、`title`、`record_path`，可选 `log_path`。任务中枢只读取指定原件的状态和哈希。
+- `pull_requests` 是显式名单。每项配置 `repository` 和 `number`。通过可信 GitHub 接口取得实际快照后，用 `import-pr-snapshot --file SNAPSHOT.json` 导入。快照包含 `version: 1`、名单字段、`state`、`merged`、`draft`、`head_sha`、带时区的 `updated_at` 和 `fetched_at`、`checks`。每项检查含 `name`、`status`、`conclusion` 和 `head_sha`。超过 15 分钟后需刷新。仅当前提交对应的 CI 参与状态判断。
+- `dispatch.enabled: true` 启用只读检查。先运行 `sync`，再用 `queue-inspection --task TASK_ID` 排队。原有每分钟同步每轮最多检查一项。也可运行 `work-once`。检查回执与实验结果状态分别保存。
+- `recovery-plan` 只生成计划。`recover-media --job JOB_ID` 在 `recovery.enabled: true` 且媒体队列启用时，针对单条待回传冻结包执行。代码在传输前复核策略和源哈希，并记录尝试。只有已获具体媒体包回传授权时启用，实际回传走原 Hermes 通道。
+
 ## 验证
 
 ```sh
-python3 -m unittest discover -s 任务中枢 -p 'test_task_*.py' -v
+python3 -m unittest discover -s 任务中枢 -p 'test_*.py' -v
 ```
 
 在脚本目录执行；测试使用临时目录，覆盖事件重复与冲突、源状态跟随、源文件字节不变、测试隔离、显式关联与重启、缺失源处理、可选tick成功/禁用/失败。自动化测试不代替真人微信后续意见→原任务→实际处理结果的端到端验收。

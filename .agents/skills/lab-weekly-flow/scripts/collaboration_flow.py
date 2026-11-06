@@ -292,6 +292,13 @@ def tick(root, config):
                                           last_success=state["last_success"] if failures else state["last_attempt"],
                                           status="retry_pending" if failures else "ok", errors=failures.copy())
                         state["task_center"] = task_center.sync_sources(root, sync_state=sync_state)
+                        dispatch = center_options.get("dispatch", {})
+                        if not isinstance(dispatch, dict) or not isinstance(dispatch.get("enabled", False), bool):
+                            raise ValueError("证据检查开关必须为布尔值")
+                        if dispatch.get("enabled", False):
+                            from 任务中枢.task_worker import run_once
+                            with task_center.sync_lock(root):
+                                state["task_worker"] = run_once(root)
                     except sqlite3.Error as error:
                         failures["task_center"] = type(error).__name__
             except (ImportError, OSError, ValueError, KeyError, TypeError) as error:
