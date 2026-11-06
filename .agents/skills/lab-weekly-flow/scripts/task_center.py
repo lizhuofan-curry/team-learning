@@ -8,13 +8,13 @@ from pathlib import Path
 import sqlite3
 import sys
 
-from 任务中枢.task_hub import Hub, STATUSES
+from 任务中枢.task_hub import EventConflict, Hub, STATUSES, state_file
 from 任务中枢.task_sources import build_snapshot
 
 
 @contextlib.contextmanager
 def sync_lock(root):
-    path = Path(root) / '任务中枢' / '.sync.lock'
+    path = state_file(root, '.sync.lock')
     path.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
     with path.open('a+b') as stream:
         if os.name == 'nt':
@@ -37,11 +37,11 @@ def sync_lock(root):
                 fcntl.flock(stream.fileno(), fcntl.LOCK_UN)
 
 
-def sync_sources(root):
+def sync_sources(root, *, sync_state=None):
     """Refresh projections only. Source files remain the execution authority."""
     root = Path(root)
     with sync_lock(root):
-        snapshot = build_snapshot(root)
+        snapshot = build_snapshot(root, sync_state=sync_state)
         added_tasks = updated_tasks = added_events = 0
         with Hub(root) as hub:
             existing = {t['id']: t for t in hub.list_tasks(include_tests=True)}
@@ -55,7 +55,14 @@ def sync_sources(root):
                                          expected_revision=task['revision'])
                 updated_tasks += int(revised['revision'] != task['revision'])
             for item in snapshot['events']:
-                event = hub.ingest_event(item['source'], item['external_id'], item['payload'])
+                try:
+                    event = hub.ingest_event(item['source'], item['external_id'], item['payload'])
+                except EventConflict:
+                    snapshot['observations'].append(dict(
+                        code='immutable_event_conflict', severity='warning', source=item['source'],
+                        external_id=item['external_id'], evidence=item['payload']['reference'],
+                        detail='同编号事件的原件版本有变化，历史关联保留，已跳过该事件。'))
+                    continue
                 added_events += int(event['id'] not in event_ids)
                 event_ids.add(event['id'])
         return dict(tasks_added=added_tasks, tasks_updated=updated_tasks,

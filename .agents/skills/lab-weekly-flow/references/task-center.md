@@ -37,7 +37,7 @@ python3 task_center.py --root ROOT events --task TASK_ID
 python3 task_center.py --root ROOT set-status --task TASK_ID --revision REVISION --status completed --evidence EVIDENCE_PATH
 ```
 
-请使用实际返回的编号与revision。`completed`要求提供非空证据引用；程序不据此判断证据内容正确，也不产生“本人已掌握”状态。测试事件和真实任务不可交叉关联。关联不可悄悄转移到另一任务；事件内容变化会明确报冲突。
+请使用实际返回的编号与revision。`completed`要求提供非空证据引用；程序不据此判断证据内容正确，也不产生“本人已掌握”状态。测试事件和真实任务不可交叉关联。关联不可悄悄转移到另一任务。同编号事件内容变化时，`sync` 在 `observations` 中标出 `immutable_event_conflict`，保留旧事件及关联，并继续索引其他记录。
 
 事件只保存原件引用、主题、类型和哈希，不复制消息正文。未关联事件保留待分流，不按标题相似度猜测归属。现阶段关联保存在本机，没有自动把消息投递到执行会话，也没有跨设备同步任务数据库。
 

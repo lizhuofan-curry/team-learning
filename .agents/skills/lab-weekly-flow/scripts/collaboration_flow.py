@@ -288,7 +288,10 @@ def tick(root, config):
                     import sqlite3
                     import task_center
                     try:
-                        state["task_center"] = task_center.sync_sources(root)
+                        sync_state = dict(version=1, last_attempt=state["last_attempt"],
+                                          last_success=state["last_success"] if failures else state["last_attempt"],
+                                          status="retry_pending" if failures else "ok", errors=failures.copy())
+                        state["task_center"] = task_center.sync_sources(root, sync_state=sync_state)
                     except sqlite3.Error as error:
                         failures["task_center"] = type(error).__name__
             except (ImportError, OSError, ValueError, KeyError, TypeError) as error:

@@ -12,6 +12,10 @@ STATUSES = frozenset({"queued", "working", "waiting", "awaiting_review", "blocke
 SCOPES = frozenset({"read_only", "local_prepare"})
 
 
+class EventConflict(ValueError):
+    """An event ID already refers to a different immutable payload."""
+
+
 def _json(value):
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False)
 
@@ -47,11 +51,22 @@ def _state(status, evidence):
         raise ValueError("completed requires evidence; it does not assert personal mastery")
 
 
+def state_file(root, name):
+    root = Path(root).resolve()
+    folder = root / "任务中枢"
+    path = folder / name
+    if folder.is_symlink() or path.is_symlink() or not path.resolve().is_relative_to(root):
+        raise ValueError("task index state cannot use symbolic links")
+    if path.exists() and not path.is_file():
+        raise ValueError("task index state must be a regular file")
+    return path
+
+
 class Hub:
     """One SQLite store under a workflow root. Construct only when initialization is intended."""
 
     def __init__(self, root):
-        self.path = Path(root) / "任务中枢" / "state.sqlite3"
+        self.path = state_file(root, "state.sqlite3")
         self.path.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
         self.connection = sqlite3.connect(str(self.path), timeout=15, isolation_level=None)
         self.connection.row_factory = sqlite3.Row
@@ -185,7 +200,7 @@ class Hub:
             old = self._event(self.connection.execute("SELECT * FROM events WHERE id=?", (identifier,)).fetchone())
             if old is not None:
                 if old["source"] != source or old["external_id"] != external_id or _json(old["payload"]) != encoded:
-                    raise ValueError("immutable event conflict")
+                    raise EventConflict("immutable event conflict")
                 if task_id is not None and old["task_id"] != task_id:
                     raise ValueError("event association differs; use link_event for an unlinked event")
                 return old

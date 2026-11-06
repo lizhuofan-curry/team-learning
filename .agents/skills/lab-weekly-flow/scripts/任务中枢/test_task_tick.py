@@ -127,7 +127,9 @@ class TaskTickTests(unittest.TestCase):
         result = {"tasks": 1, "events": 0, "observations": [observation]}
         self.index.return_value = result
         state, code = self.run_tick()
-        self.index.assert_called_once_with(self.root)
+        self.index.assert_called_once_with(self.root, sync_state=dict(
+            version=1, last_attempt=state["last_attempt"], last_success=state["last_attempt"],
+            status="ok", errors={}))
         self.assertEqual(state["task_center"], result)
         self.assertEqual(state["errors"], {})
         self.assertEqual((state["status"], code), ("ok", 0))
@@ -144,7 +146,9 @@ class TaskTickTests(unittest.TestCase):
         self.assertIn("media_queue", state)
         # Only the exception class is published, not private error text.
         self.assertNotIn("PRIVATE_DIAGNOSTIC", json.dumps(state))
-        self.index.assert_called_once_with(self.root)
+        self.index.assert_called_once_with(self.root, sync_state=dict(
+            version=1, last_attempt=state["last_attempt"], last_success=state["last_attempt"],
+            status="ok", errors={}))
 
     def test_index_value_error_does_not_skip_existing_sync(self):
         self.assert_index_failure_is_isolated(

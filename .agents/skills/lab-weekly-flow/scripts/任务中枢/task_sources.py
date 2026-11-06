@@ -8,6 +8,7 @@ import datetime as dt
 import json
 import math
 from pathlib import Path
+import stat
 import sys
 from urllib.parse import urlsplit
 
@@ -47,13 +48,20 @@ def _time(value):
     return parsed
 
 
-def _read(path):
+def _read(root, path):
     # Reading a malformed or unexpectedly large record should not prevent other
     # independent records from appearing in the snapshot.
-    if path.is_symlink() or path.stat().st_size > 1_000_000:
+    try:
+        resolved = path.resolve()
+    except RuntimeError as error:
+        raise ValueError("unresolvable record path") from error
+    if path.is_symlink() or not resolved.is_relative_to(root):
+        raise ValueError("record outside workflow or symbolic link")
+    info = resolved.stat()
+    if not stat.S_ISREG(info.st_mode) or info.st_size > 1_000_000:
         raise ValueError("unsupported record")
     try:
-        result = json.loads(path.read_text(encoding="utf-8"))
+        result = json.loads(resolved.read_text(encoding="utf-8"))
     except RecursionError as error:
         raise ValueError("record nesting too deep") from error
     if not isinstance(result, dict):
@@ -66,8 +74,8 @@ def _observation(code, source, path, detail, external_id=None, severity="warning
             "external_id": external_id, "evidence": str(path), "detail": detail}
 
 
-def _media_record(path):
-    record = _read(path)
+def _media_record(root, path):
+    record = _read(root, path)
     identifier = record.get("id")
     if (record.get("version") != 1 or not isinstance(identifier, str)
             or not media.JOB.fullmatch(identifier)
@@ -86,14 +94,14 @@ def _media_record(path):
     return record
 
 
-def _hermes_record(path):
-    record = collaboration.validate_message(_read(path))
+def _hermes_record(root, path):
+    record = collaboration.validate_message(_read(root, path))
     if record["sender"] != "hermes" or path.name != record["id"] + ".json":
         raise ValueError("invalid Hermes record location")
     return record
 
 
-def build_snapshot(root, now=None, include_tests=False):
+def build_snapshot(root, now=None, include_tests=False, sync_state=None):
     """Return ``tasks``, unlinked ``events`` and actionable ``observations``.
 
     ``now`` accepts an aware datetime for deterministic checks. No function in
@@ -109,8 +117,8 @@ def build_snapshot(root, now=None, include_tests=False):
     observations = snapshot["observations"]
     for path in sorted((root / "媒体队列" / "任务").glob("*.json")):
         try:
-            record = _media_record(path)
-        except (OSError, ValueError, TypeError, KeyError):
+            record = _media_record(root, path)
+        except (OSError, ValueError, TypeError, KeyError, OverflowError):
             observations.append(_observation(
                 "invalid_source_record", "media", path,
                 "媒体任务记录无法校验；已跳过本条，原文件保持不变。"))
@@ -142,7 +150,7 @@ def build_snapshot(root, now=None, include_tests=False):
 
     for path in sorted((root / "协作消息" / "Hermes发出").glob("*.json")):
         try:
-            record = _hermes_record(path)
+            record = _hermes_record(root, path)
         except (OSError, ValueError, TypeError, KeyError):
             observations.append(_observation(
                 "invalid_source_record", "hermes", path,
@@ -161,12 +169,12 @@ def build_snapshot(root, now=None, include_tests=False):
         })
 
     path = root / "协作消息" / "同步状态" / "latest.json"
-    if not path.exists():
+    if sync_state is None and not path.exists():
         observations.append(_observation(
             "sync_missing", "sync", path, "未找到同步记录，无法判断最近一次传输状态。"))
         return snapshot
     try:
-        sync = _read(path)
+        sync = sync_state if sync_state is not None else _read(root, path)
         if (sync.get("version") != 1 or sync.get("status") not in
                 ("ok", "retry_pending", "not_run") or not isinstance(sync.get("errors", {}), dict)):
             raise ValueError("invalid synchronization status")
