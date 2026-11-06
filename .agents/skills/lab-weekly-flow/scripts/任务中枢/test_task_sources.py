@@ -110,14 +110,14 @@ class SnapshotTests(unittest.TestCase):
 
     def test_media_identity_mismatch_is_rejected(self):
         path = self.media()
-        data = json.loads(path.read_text()); data["url"] += "wrong"
-        path.write_text(json.dumps(data))
+        data = json.loads(path.read_text(encoding="utf-8")); data["url"] += "wrong"
+        path.write_text(json.dumps(data), encoding="utf-8")
         self.assertEqual(self.snapshot()["tasks"], [])
 
     def test_hermes_content_hash_is_verified(self):
         path = self.hermes()
-        data = json.loads(path.read_text()); data["text"] = "tampered"
-        path.write_text(json.dumps(data))
+        data = json.loads(path.read_text(encoding="utf-8")); data["text"] = "tampered"
+        path.write_text(json.dumps(data), encoding="utf-8")
         self.assertEqual(self.snapshot()["events"], [])
 
     def test_missing_sync_does_not_create_directories(self):
