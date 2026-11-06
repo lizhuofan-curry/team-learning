@@ -2,7 +2,9 @@
 import contextlib
 import io
 import json
+import os
 from pathlib import Path
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -24,6 +26,13 @@ class TaskCenterTests(unittest.TestCase):
 
     def tearDown(self):
         self.temp.cleanup()
+
+    def test_cli_emits_utf8_under_a_non_unicode_default_stream(self):
+        environment = dict(os.environ, PYTHONIOENCODING='cp1252', PYTHONUTF8='0')
+        result = subprocess.run([sys.executable, str(WORKFLOW / 'task_center.py'),
+                                 '--root', str(self.root), 'create', '--key', 'encoding',
+                                 '--title', '中文任务'], env=environment, capture_output=True, check=True)
+        self.assertEqual(json.loads(result.stdout.decode('utf-8'))['title'], '中文任务')
 
     def media_record(self):
         return media.request(self.root, "https://example.com/learning", "isolated-fixture")
