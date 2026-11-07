@@ -9,6 +9,7 @@ import hashlib
 import json
 import math
 from pathlib import Path
+import stat
 
 
 TIMEZONE = dt.timezone(dt.timedelta(hours=8))
@@ -36,8 +37,8 @@ def _observation(code, key, path, detail, severity='warning'):
 
 
 def _json_file(path, limit):
-    if path.is_symlink():
-        raise ValueError('symlink record is not supported')
+    if path.is_symlink() or not stat.S_ISREG(path.stat().st_mode):
+        raise ValueError('experiment record must be a regular file')
     with path.open('rb') as stream:
         raw = stream.read(limit + 1)
     if len(raw) > limit:
@@ -52,8 +53,8 @@ def _json_file(path, limit):
 
 
 def _file_metadata(path, limit):
-    if path.is_symlink():
-        raise ValueError('symlink log is not supported')
+    if path.is_symlink() or not stat.S_ISREG(path.stat().st_mode):
+        raise ValueError('experiment log must be a regular file')
     digest, size = hashlib.sha256(), 0
     with path.open('rb') as stream:
         before = path.stat()
@@ -177,7 +178,7 @@ def build_experiment_snapshot(root, now=None, include_tests=False):
             if item['key'] in seen:
                 raise ValueError('duplicate configured experiment key')
             seen.add(item['key'])
-        except (ValueError, TypeError):
+        except (ValueError, TypeError, OverflowError):
             observations.append(_observation('experiment_config_invalid', None, config_path,
                                              '一条实验配置缺少有效路径/编号或编号重复；已跳过。'))
             continue
@@ -190,7 +191,7 @@ def build_experiment_snapshot(root, now=None, include_tests=False):
             if not isinstance(source_test, bool) or source_test != item['test_only']:
                 raise ValueError('configured and source test markers differ')
             status, summary, evidence_fields, action = _project(record)
-        except (OSError, ValueError, TypeError):
+        except (OSError, ValueError, TypeError, OverflowError):
             observations.append(_observation('experiment_record_unavailable', key, path,
                                              '配置的实验记录缺失、过大或无法校验；未读取未配置文件。'))
             continue

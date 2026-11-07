@@ -4,6 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import stat
 
 TIMEZONE = dt.timezone(dt.timedelta(hours=8))
 REPOSITORY = re.compile(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+')
@@ -24,7 +25,13 @@ def identity(repository, number):
 
 def snapshot_path(root, repository, number):
     key = hashlib.sha256(identity(repository, number).encode()).hexdigest()[:24]
-    return Path(root) / '任务中枢' / 'pr_snapshots' / (key + '.json')
+    root = Path(root).resolve()
+    folder = root / '任务中枢' / 'pr_snapshots'
+    path = folder / (key + '.json')
+    if (folder.parent.is_symlink() or folder.is_symlink() or path.is_symlink()
+            or not path.resolve().is_relative_to(root)):
+        raise ValueError('snapshot must remain in selected workflow')
+    return path
 
 
 def timestamp(value):
@@ -69,8 +76,8 @@ def validate_snapshot(value):
 
 
 def read_json(path):
-    if path.is_symlink():
-        raise ValueError('symlink not supported')
+    if path.is_symlink() or not stat.S_ISREG(path.stat().st_mode):
+        raise ValueError('snapshot must be a regular file')
     with path.open('rb') as stream:
         raw = stream.read(1_000_001)
     if len(raw) > 1_000_000:
@@ -134,8 +141,9 @@ def build_pr_snapshot(root, now=None, include_tests=False):
         return result
     for entry in entries:
         key = identity(entry['repository'], entry['number'])
-        path = snapshot_path(root, entry['repository'], entry['number'])
+        path = root / '任务中枢' / 'pr_snapshots'
         try:
+            path = snapshot_path(root, entry['repository'], entry['number'])
             item = validate_snapshot(read_json(path))
             if identity(item['repository'], item['number']) != key:
                 raise ValueError('snapshot identity mismatch')

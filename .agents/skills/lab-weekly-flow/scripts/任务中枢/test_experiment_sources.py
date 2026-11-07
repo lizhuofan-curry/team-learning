@@ -160,6 +160,47 @@ class ExperimentSourceTests(unittest.TestCase):
         for private in ['PRIVATE_COMMAND', 'PRIVATE_KEY', 'PRIVATE_RESULT', 'never-read.log']:
             self.assertNotIn(private, serialized)
 
+    @unittest.skipUnless(hasattr(os, 'mkfifo'), 'FIFO unavailable')
+    def test_nonregular_record_and_log_do_not_block_independent_sources(self):
+        record = self.root / 'record.json'
+        log = self.root / 'output.log'
+        os.mkfifo(record)
+        os.mkfifo(log)
+        self.write('good.json', dict(status='running'))
+        self.configure([
+            dict(key='pipe', title='pipe', record_path='record.json'),
+            dict(key='good', title='good', record_path='good.json', log_path='output.log')])
+        original_open = Path.open
+        def open_regular(path, *args, **kwargs):
+            if path in (record, log):
+                raise AssertionError('must reject a pipe before opening it')
+            return original_open(path, *args, **kwargs)
+        with patch.object(Path, 'open', open_regular):
+            result = self.snapshot()
+        self.assertEqual([t['external_id'] for t in result['tasks']], ['good'])
+        self.assertEqual({o['code'] for o in result['observations']},
+                         {'experiment_record_unavailable', 'experiment_log_unavailable'})
+
+    def test_oversized_numeric_fields_do_not_hide_valid_records(self):
+        self.write('bad.json', dict(status='completed', result=10**400))
+        self.write('good.json', dict(status='completed', result=1))
+        self.configure([
+            dict(key='bad-config', title='bad config', record_path='good.json', stale_seconds=10**400),
+            dict(key='bad-record', title='bad record', record_path='bad.json'),
+            dict(key='good', title='good', record_path='good.json')])
+        result = self.snapshot()
+        self.assertEqual([t['external_id'] for t in result['tasks']], ['good'])
+        self.assertEqual({o['code'] for o in result['observations']},
+                         {'experiment_config_invalid', 'experiment_record_unavailable'})
+
+    def test_explicit_external_experiment_file_remains_supported(self):
+        with tempfile.TemporaryDirectory() as folder:
+            external = Path(folder) / 'record.json'
+            external.write_text('{"status":"completed","result":1}', encoding='utf-8')
+            self.configure(record_path=str(external))
+            result = self.snapshot()
+            self.assertEqual(result['tasks'][0]['evidence'], [str(external)])
+
     def test_size_bounds_and_missing_log_are_reported_without_scanning(self):
         self.configure(log_path='missing.log')
         self.write('runs/record.json', dict(status='running'))

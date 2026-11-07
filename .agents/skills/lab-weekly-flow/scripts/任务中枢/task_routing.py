@@ -4,6 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import stat
 
 import collaboration_flow as collaboration
 import learning_flow as flow
@@ -40,9 +41,15 @@ def _observation(code, source, key, path, detail):
                 evidence=str(path), detail=detail)
 
 
-def _raw(path):
-    if path.is_symlink():
-        raise ValueError('symlink not supported')
+def _raw(root, path):
+    try:
+        resolved = path.resolve()
+    except RuntimeError as error:
+        raise ValueError('unresolvable source path') from error
+    if path.is_symlink() or not resolved.is_relative_to(root):
+        raise ValueError('source must stay within the selected workflow')
+    if not stat.S_ISREG(resolved.stat().st_mode):
+        raise ValueError('source must be a regular file')
     with path.open('rb') as stream:
         raw = stream.read(1_000_001)
     if len(raw) > 1_000_000:
@@ -67,7 +74,7 @@ def build_wechat_snapshot(root, now=None, include_tests=False):
             continue
         for path in sorted(day.glob('*.json')):
             try:
-                raw, item = _raw(path)
+                raw, item = _raw(root, path)
                 item = flow.validate_event(item)
                 if (item['kind'] != 'user-original' or item['channel'] != 'wechat'
                         or item['date'] != day.name or path.name != item['id'] + '.json'):
@@ -116,7 +123,7 @@ def route_followups(root, hub, snapshot):
                 if event['payload'] != item['payload']:
                     raise ValueError('indexed source version differs')
                 path = Path(item['payload']['reference'])
-                raw, record = _raw(path)
+                raw, record = _raw(root, path)
                 if item['source'] == 'hermes':
                     record = collaboration.validate_message(record)
                     if (record['sender'] != 'hermes' or record['id'] != item['external_id']

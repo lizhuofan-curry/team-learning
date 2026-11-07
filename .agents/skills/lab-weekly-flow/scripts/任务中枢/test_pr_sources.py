@@ -2,6 +2,7 @@
 import datetime as dt
 import io
 import json
+import os
 from pathlib import Path
 import sys
 import tempfile
@@ -163,12 +164,41 @@ class PullRequestSourceTests(unittest.TestCase):
         self.assertEqual(result['tasks'], [])
         self.assertEqual(result['observations'][0]['code'], 'pr_snapshot_unavailable')
 
+    def test_snapshot_directory_link_cannot_cross_workflow(self):
+        self.config()
+        other = self.root / 'other-workflow'
+        other.mkdir()
+        folder = self.root / '任务中枢'
+        folder.mkdir()
+        link = folder / 'pr_snapshots'
+        try:
+            link.symlink_to(other, target_is_directory=True)
+        except (OSError, NotImplementedError) as error:
+            self.skipTest(f'symlinks unavailable: {error}')
+        with self.assertRaises(ValueError):
+            source.save_snapshot(self.root, self.record())
+        self.assertEqual(list(other.iterdir()), [])
+        result = self.snapshot()
+        self.assertEqual(result['tasks'], [])
+        self.assertEqual(result['observations'][0]['code'], 'pr_snapshot_unavailable')
+
+    @unittest.skipUnless(hasattr(os, 'mkfifo'), 'FIFO unavailable')
+    def test_named_pipe_snapshot_is_rejected_before_open(self):
+        self.config()
+        path = source.snapshot_path(self.root, self.repository, self.number)
+        path.parent.mkdir(parents=True)
+        os.mkfifo(path)
+        with patch.object(Path, 'open', side_effect=AssertionError('must reject FIFO before opening')):
+            with self.assertRaises(ValueError):
+                source.read_json(path)
+
     def test_oversized_snapshot_is_read_with_a_bounded_budget(self):
         class BoundedReader(io.BytesIO):
             def read(inner_self, size=-1):
                 if not 0 <= size <= 1_000_001:
                     raise AssertionError('snapshot reader requested an unbounded read')
                 return super().read(size)
+        (self.root / 'large.json').touch()
         with patch.object(Path, 'is_symlink', return_value=False), \
              patch.object(Path, 'open', return_value=BoundedReader(b' ' * 1_000_001)):
             with self.assertRaises(ValueError):

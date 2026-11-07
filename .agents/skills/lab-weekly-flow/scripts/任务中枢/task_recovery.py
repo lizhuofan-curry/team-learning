@@ -7,11 +7,13 @@ that transition or silently exceed its per-pass limit.
 import contextlib
 import datetime as dt
 import hashlib
+import inspect
 import json
 import math
 import os
 from pathlib import Path
 import sqlite3
+import stat
 import sys
 import time
 
@@ -47,10 +49,17 @@ def _epoch(value):
     return float(value)
 
 
-def _read(path, limit=1_000_000):
-    if path.is_symlink() or path.stat().st_size > limit:
+def _read(root, path, limit=1_000_000):
+    try:
+        resolved = path.resolve()
+    except RuntimeError as error:
+        raise ValueError('unresolvable recovery record') from error
+    if path.is_symlink() or not resolved.is_relative_to(Path(root).resolve()):
+        raise ValueError('recovery record outside selected workflow')
+    info = resolved.stat()
+    if not stat.S_ISREG(info.st_mode) or info.st_size > limit:
         raise ValueError('unsupported recovery record')
-    raw = path.read_bytes()
+    raw = resolved.read_bytes()
     value = json.loads(raw.decode('utf-8'))
     if not isinstance(value, dict):
         raise ValueError('record must be an object')
@@ -59,7 +68,7 @@ def _read(path, limit=1_000_000):
 
 def _policy(root):
     path = root / 'task_center.local.json'
-    config = _read(path)[0] if path.exists() else {}
+    config = _read(root, path)[0] if path.exists() else {}
     center_enabled = config.get('enabled', False)
     if not isinstance(center_enabled, bool):
         raise ValueError('task center enabled must be boolean')
@@ -90,7 +99,7 @@ def _observation(code, identifier=None, severity='warning'):
 
 def _record(root, identifier):
     path = media.path_for(root, identifier)
-    record, digest = _read(path)
+    record, digest = _read(root, path)
     if (record.get('id') != identifier or record.get('version') != 1
             or not isinstance(record.get('test_only'), bool)
             or identifier != media.job_id(record['url'])):
@@ -100,7 +109,7 @@ def _record(root, identifier):
 
 def _delivery_packet(root, record):
     packet_path = media.safe_file(media.queue(root), record['packet_path'])
-    bundle, _ = _read(packet_path, media.MAX_WIRE)
+    bundle, _ = _read(root, packet_path, media.MAX_WIRE)
     manifest, files = media.verify_bundle(bundle)
     if (manifest['test_only'] or record['test_only']
             or media.flow.digest(files['result.json']) != record['packet_sha256']):
@@ -281,6 +290,12 @@ def apply_recovery(root, plan, now=None):
     if len(plan['actions']) > policy['max_per_tick']:
         raise ValueError('recovery plan exceeds pass limit')
     if not plan['actions']:
+        return result
+    # Partial upgrades must fail before reserving a once-only transfer attempt.
+    try:
+        inspect.signature(media.push).bind(root, '', expected_job_sha256='')
+    except (TypeError, ValueError):
+        result['observations'].append(_observation('recovery_adapter_incompatible'))
         return result
     with _locked(root):
         policy, stop = _live_policy(root, plan['policy_sha256'])

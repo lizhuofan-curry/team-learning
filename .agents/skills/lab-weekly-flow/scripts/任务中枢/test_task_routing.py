@@ -1,6 +1,8 @@
 """Explicit follow-up routing uses temporary original records and never executes them."""
 import hashlib
 import json
+import os
+import subprocess
 from pathlib import Path
 import sys
 import tempfile
@@ -61,6 +63,33 @@ class TaskRoutingTests(unittest.TestCase):
             return []
         with Queue(self.root) as queue:
             return queue.list_jobs(include_tests=include_tests)
+
+    def test_inbox_directory_link_cannot_route_other_workflow(self):
+        foreign = tempfile.TemporaryDirectory()
+        self.addCleanup(foreign.cleanup)
+        other = Path(foreign.name)
+        flow.capture(other, '2026-11-06', '任务编号：' + self.task['id'], 'wechat',
+                     'user-original', source_id='foreign-fixture', category='question')
+        try:
+            (self.root / '收件箱').symlink_to(other / '收件箱', target_is_directory=True)
+        except (OSError, NotImplementedError) as error:
+            self.skipTest(str(error))
+        result = task_center.sync_sources(self.root)
+        self.assertEqual(result['review_jobs_added'], 0)
+        self.assertIn('task_capture_unverified', {o['code'] for o in result['observations']})
+        with Hub(self.root) as hub:
+            self.assertEqual(hub.list_events(), [])
+
+    @unittest.skipUnless(hasattr(os, 'mkfifo'), 'FIFO unavailable')
+    def test_named_pipe_capture_does_not_block_preview(self):
+        folder = self.root / '收件箱/2026-11-06'
+        folder.mkdir(parents=True)
+        os.mkfifo(folder / 'pipe.json')
+        result = subprocess.run(
+            [sys.executable, str(WORKFLOW / 'task_center.py'), '--root', str(self.root), 'preview'],
+            capture_output=True, check=True, timeout=10)
+        snapshot = json.loads(result.stdout)
+        self.assertIn('task_capture_unverified', {o['code'] for o in snapshot['observations']})
 
     def test_explicit_wechat_task_reference_links_and_queues_evidence_review(self):
         self.capture()

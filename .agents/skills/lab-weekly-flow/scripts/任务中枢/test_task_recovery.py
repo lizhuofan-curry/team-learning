@@ -4,8 +4,10 @@ import contextlib
 import datetime as dt
 import hashlib
 import json
+import os
 from pathlib import Path
 import sqlite3
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -72,6 +74,57 @@ class RecoveryTests(unittest.TestCase):
         self.assertEqual(len(plan['actions']), 1)
         self.assertEqual(before, self.source_bytes())
         self.assertFalse((self.root / '任务中枢').exists())
+
+    def test_legacy_adapter_does_not_consume_recovery_attempt(self):
+        self.job()
+        plan = recovery.plan_recovery(self.root)
+        original = media.push
+
+        def legacy_push(root, identifier):
+            raise AssertionError('legacy push must not run')
+
+        with patch.object(media, 'push', legacy_push):
+            result = recovery.apply_recovery(self.root, plan)
+        self.assertEqual(result['attempted'], 0)
+        self.assertIn('recovery_adapter_incompatible', self.codes(result))
+        self.assertEqual(recovery._read_ledger(self.root), [])
+        self.assertEqual(len(recovery.plan_recovery(self.root)['actions']), 1)
+        with patch.object(media, 'push', wraps=original):
+            delivered = recovery.apply_recovery(self.root, plan)
+        self.assertEqual(delivered['outcomes'][0]['outcome'], 'delivered')
+
+    def test_external_record_directory_is_not_read_for_recovery(self):
+        job = self.job()
+        folder = self.root / '媒体队列' / '任务'
+        with tempfile.TemporaryDirectory() as other:
+            external = Path(other) / '任务'
+            folder.rename(external)
+            try:
+                folder.symlink_to(external, target_is_directory=True)
+            except (OSError, NotImplementedError) as error:
+                external.rename(folder)
+                self.skipTest(f'symlinks unavailable: {error}')
+            plan = recovery.plan_recovery(self.root)
+            self.assertEqual(plan['actions'], [])
+            self.assertIn('recovery_source_or_packet_invalid', self.codes(plan))
+            self.assertTrue((external / (job['id'] + '.json')).exists())
+            if os.name == 'nt':
+                folder.rmdir()
+            else:
+                folder.unlink()
+
+    @unittest.skipUnless(hasattr(os, 'mkfifo'), 'FIFO unavailable')
+    def test_nonregular_record_does_not_block_recovery_plan(self):
+        job = self.job()
+        path = media.path_for(self.root, job['id'])
+        path.unlink()
+        os.mkfifo(path)
+        result = subprocess.run(
+            [sys.executable, str(WORKFLOW / 'task_center.py'), '--root', str(self.root), 'recovery-plan'],
+            capture_output=True, check=True, timeout=10)
+        plan = json.loads(result.stdout)
+        self.assertEqual(plan['actions'], [])
+        self.assertIn('recovery_source_or_packet_invalid', self.codes(plan))
 
     def test_disabled_apply_does_not_create_ledger_or_call_push(self):
         self.job()

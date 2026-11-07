@@ -53,7 +53,7 @@ python3 task_center.py --root ROOT set-status --task TASK_ID --revision REVISION
 
 SQLite位于`ROOT/任务中枢/state.sqlite3`，只保存本机状态，不上传团队库。停用时设`enabled=false`，保留数据库和源记录。Mac休眠或离线时不能即时刷新，恢复后下一次既有同步补查；不能承诺持续在线。
 
-安装时同时复制[命令入口](../scripts/task_center.py)、[任务模块目录](../scripts/任务中枢)、更新后的[协作脚本](../scripts/collaboration_flow.py)，并保留原`learning_flow.py`与`media_queue.py`。本机配置不进发行包。
+安装时同时复制[命令入口](../scripts/task_center.py)、[任务模块目录](../scripts/任务中枢)、更新后的[协作脚本](../scripts/collaboration_flow.py)和[媒体队列脚本](../scripts/media_queue.py)，并保留原`learning_flow.py`。受限恢复依赖本版本媒体队列的哈希复核接口，混用旧脚本时会停止并提示适配器不兼容，不登记回传尝试。本机配置不进发行包。
 
 ## 微信续办、证据检查与受限恢复
 
