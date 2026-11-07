@@ -276,6 +276,33 @@ def tick(root, config):
                 state["media_queue"] = media_queue.discover(root)
             except (ImportError, OSError, ValueError, KeyError, TypeError) as error:
                 failures["media_queue"] = type(error).__name__
+        # Optional local index: reuse this pass without starting a model or a
+        # second scheduler. Observations are data, not transport failures.
+        center_config = root / "task_center.local.json"
+        if config.get("role") == "codex" and center_config.exists():
+            try:
+                center_options = flow.read_json(center_config)
+                if not isinstance(center_options, dict) or not isinstance(center_options.get("enabled", False), bool):
+                    raise ValueError("任务中枢enabled必须为布尔值")
+                if center_options.get("enabled", False):
+                    import sqlite3
+                    import task_center
+                    try:
+                        sync_state = dict(version=1, last_attempt=state["last_attempt"],
+                                          last_success=state["last_success"] if failures else state["last_attempt"],
+                                          status="retry_pending" if failures else "ok", errors=failures.copy())
+                        state["task_center"] = task_center.sync_sources(root, sync_state=sync_state)
+                        dispatch = center_options.get("dispatch", {})
+                        if not isinstance(dispatch, dict) or not isinstance(dispatch.get("enabled", False), bool):
+                            raise ValueError("证据检查开关必须为布尔值")
+                        if dispatch.get("enabled", False):
+                            from 任务中枢.task_worker import run_cycle
+                            with task_center.sync_lock(root):
+                                state["task_worker"] = run_cycle(root)
+                    except sqlite3.Error as error:
+                        failures["task_center"] = type(error).__name__
+            except (ImportError, OSError, ValueError, KeyError, TypeError) as error:
+                failures["task_center"] = type(error).__name__
         state["status"] = "retry_pending" if failures else "ok"
         state["errors"] = failures
         if not failures:
