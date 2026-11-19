@@ -1,0 +1,76 @@
+# 统一任务记录与事件关联
+
+借鉴 DeepSeek Super-agent 的任务组织方式，为已有学习工作流补充持久任务编号、状态索引与显式事件关联。它是本工作流的独立实现，没有安装或复用 DeepSeek 原型代码，也不要求更换模型。
+
+## 优先级与实施范围
+
+| 优先级 | 工作 | 当前实现与验收 |
+|---|---|---|
+| P0 | 稳定任务编号、持久任务与事件记录 | SQLite事务、事件幂等与冲突拒绝、修改版本检查；重启后保留关联 |
+| P1 | 关联现有入口、汇总待办 | 只读接入媒体队列和Hermes协作消息；显式关联原任务；沿用原一分钟同步可选刷新 |
+| P2 | 检查停滞与有限恢复 | 支持指定实验记录与日志、PR 快照、微信续办和冻结媒体包受限回传 |
+| P3 | 长期调度多个Worker | 实验和 PR 各有一条本机只读 Worker 通道，可并行认领。更多执行类型及独立云端运行待扩展 |
+
+先保证任务能追溯和恢复，再扩展执行。入口、消息与媒体身份继续沿用原编号，新任务编号由来源及原编号确定。Hermes消息内容只作为资料；来源关联不会产生执行授权。
+
+## 使用
+
+以下在工作流脚本所在目录运行，`ROOT`替换为自己的私人工作流根目录：
+
+```sh
+python3 task_center.py --root ROOT preview
+python3 task_center.py --root ROOT sync
+python3 task_center.py --root ROOT status
+python3 task_center.py --root ROOT attention
+```
+
+`preview`只读取源记录，不创建索引；`sync`更新本地任务索引，不调用网络、模型或原队列的认领/重试操作。`status`给出全部任务与待关联事件；`attention`重点显示受阻、传输待处理、源文件缺失等需核对的事项。它是按需查看入口，没有新增通知服务。
+
+媒体投影状态以原媒体JSON为准，不能用任务中枢CLI手工修改。`delivered`显示“结果已送达，待读取/核对”，不代表Hermes已读、本人掌握或需要逐条本人批准。`partial_ready`保留覆盖缺口提示，不默认变成强制人工待办。源记录缺失或校验失败时，显示待核对，不能用缓存证明仍在正常推进。
+
+独立工作可以手工登记，后续事件明确关联到它：
+
+```sh
+python3 task_center.py --root ROOT create --key my-task --title 一项真实任务 --next-action 核对原始结果
+python3 task_center.py --root ROOT link --event EVENT_ID --task TASK_ID
+python3 task_center.py --root ROOT events --task TASK_ID
+python3 task_center.py --root ROOT set-status --task TASK_ID --revision REVISION --status completed --evidence EVIDENCE_PATH
+```
+
+请使用实际返回的编号与revision。`completed`要求提供非空证据引用；程序不据此判断证据内容正确，也不产生“本人已掌握”状态。测试事件和真实任务不可交叉关联。关联不可悄悄转移到另一任务。同编号事件内容变化时，`sync` 在 `observations` 中标出 `immutable_event_conflict`，保留旧事件及关联，并继续索引其他记录。
+
+事件只保存原件引用、主题、类型和哈希，不复制消息正文。未关联事件保留待分流，不按标题相似度猜测归属。现阶段关联保存在本机，没有自动把消息投递到执行会话，也没有跨设备同步任务数据库。
+
+## 复用现有同步
+
+确认模块已完整安装后，可在私人ROOT新增`task_center.local.json`：
+
+```json
+{"enabled": true}
+```
+
+现有Codex角色的`collaboration_flow.py tick`会在收件、协作与媒体发现之后刷新索引。无需新建定时任务。未配置或`enabled=false`时保持原行为；Hermes角色不运行此索引。索引异常单独记为`task_center`错误，不跳过原有收件和协作交换；观察到媒体受阻本身不算传输失败。
+
+SQLite位于`ROOT/任务中枢/state.sqlite3`，只保存本机状态，不上传团队库。停用时设`enabled=false`，保留数据库和源记录。Mac休眠或离线时不能即时刷新，恢复后下一次既有同步补查；不能承诺持续在线。
+
+安装时同时复制[命令入口](../scripts/task_center.py)、[任务模块目录](../scripts/任务中枢)、更新后的[协作脚本](../scripts/collaboration_flow.py)和[媒体队列脚本](../scripts/media_queue.py)，并保留原`learning_flow.py`。受限恢复依赖本版本媒体队列的哈希复核接口，混用旧脚本时会停止并提示适配器不兼容，不登记回传尝试。本机配置不进发行包。
+
+## 微信续办、证据检查与受限恢复
+
+在本机配置的 `routing` 中设 `enabled: true`，并用 `since` 指定允许处理的最早日期，格式为 `YYYY-MM-DD`。微信原话中写明「任务编号：完整任务编号」。索引把同一素材的微信原话与 Hermes 转交件保留为两份证据，排成一条待核对事项。语义判断由 Codex 在实际读取后完成。
+
+- `experiments` 是显式名单。每项配置 `key`、`title`、`record_path`，可选 `log_path`。任务中枢只读取指定原件的状态和哈希。
+- `pull_requests` 是显式名单。每项配置 `repository` 和 `number`。通过可信 GitHub 接口取得实际快照后，用 `import-pr-snapshot --file SNAPSHOT.json` 导入。快照包含 `version: 1`、名单字段、`state`、`merged`、`draft`、`head_sha`、带时区的 `updated_at` 和 `fetched_at`、`checks`。每项检查含 `name`、`status`、`conclusion` 和 `head_sha`。超过 15 分钟后需刷新。仅当前提交对应的 CI 参与状态判断。
+- `dispatch.enabled: true` 启用只读检查。先运行 `sync`，再用 `queue-inspection --task TASK_ID` 排队。增设 `dispatch.auto_inspect: true` 后，已配置实验和新鲜 PR 快照的每个版本自动入队一次。
+- `dispatch.parallel: true` 让实验和 PR Worker 各自认领一项，独立记回执。沿用每分钟同步，也可运行 `work-cycle`。认领超时由已有队列按重试上限恢复。保留 `work-once` 用于单项检查。检查回执与实验结果状态分别保存。
+- `recovery-plan` 只生成计划。`recover-media --job JOB_ID` 在 `recovery.enabled: true` 且媒体队列启用时，针对单条待回传冻结包执行。代码在传输前复核策略和源哈希，并记录尝试。只有已获具体媒体包回传授权时启用，实际回传走原 Hermes 通道。
+
+## 验证
+
+```sh
+python3 -m unittest discover -s 任务中枢 -p 'test_*.py' -v
+```
+
+在脚本目录执行；测试使用临时目录，覆盖事件重复与冲突、源状态跟随、源文件字节不变、测试隔离、显式关联与重启、缺失源处理、可选tick成功/禁用/失败。自动化测试不代替真人微信后续意见→原任务→实际处理结果的端到端验收。
+
+设计参考：[DeepSeek官方研究原型](https://github.com/deepseek-ai/dsh-superagent-prototype)、[领域模型](https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/001-domain.md)。该项目自身也明确区分研究原型和正式产品；本功能只借鉴组织方法。

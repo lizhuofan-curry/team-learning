@@ -1,0 +1,7 @@
+state.sqlite3*
+dispatch.sqlite3*
+recovery.sqlite3*
+pr_snapshots/
+.sync.lock
+.recovery.lock
+__pycache__/

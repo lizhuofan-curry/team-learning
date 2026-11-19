@@ -346,9 +346,13 @@ def transfer(root,action,extra=(),bundle=None):
     return json.loads(r.stdout)
 
 
-def push(root,identifier):
+def push(root,identifier,expected_job_sha256=None):
     if not config(root).get('enabled'):raise ValueError('media queue disabled')
     with locked(root):
+        if expected_job_sha256 is not None:
+            flow.valid_hash(expected_job_sha256)
+            if flow.digest(path_for(root,identifier).read_bytes())!=expected_job_sha256:
+                raise ValueError('job changed after recovery planning')
         j=flow.read_json(path_for(root,identifier))
         if j['state'] not in ('delivery_pending','delivered'):raise ValueError('not pending delivery')
         b=flow.read_json(safe_file(queue(root),j['packet_path']));m,files=verify_bundle(b)
@@ -362,6 +366,7 @@ def push(root,identifier):
     with locked(root):
         current=flow.read_json(path_for(root,identifier))
         if current.get('packet_sha256')!=j['packet_sha256']:raise ValueError('job changed during transfer')
+        if current['state'] not in ('delivery_pending','delivered'):raise ValueError('delivery was stopped during transfer')
         current.update(state='delivered',delivered_at=current.get('delivered_at',now()),delivery_receipt=receipt);save_job(root,current)
     return {'status':'delivered','id':identifier,'content_status':m['status'],'wechat_sent':False}
 
