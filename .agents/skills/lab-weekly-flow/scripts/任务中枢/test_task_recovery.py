@@ -3,6 +3,7 @@ import base64
 import contextlib
 import datetime as dt
 import hashlib
+import io
 import json
 import os
 from pathlib import Path
@@ -21,6 +22,7 @@ try:
 except ImportError:
     import task_recovery as recovery
 media = recovery.media
+import task_center
 
 
 class RecoveryTests(unittest.TestCase):
@@ -74,6 +76,20 @@ class RecoveryTests(unittest.TestCase):
         self.assertEqual(len(plan['actions']), 1)
         self.assertEqual(before, self.source_bytes())
         self.assertFalse((self.root / '任务中枢').exists())
+
+    def test_cli_selected_job_is_filtered_before_default_pass_limit(self):
+        ordered = sorted([self.job('first')['id'], self.job('second')['id']])
+        self.assertEqual(recovery.plan_recovery(self.root)['actions'][0]['job_id'], ordered[0])
+        stream = io.StringIO()
+        # Local synthetic transport; no network or real media queue is used.
+        with contextlib.redirect_stdout(stream):
+            task_center.main(['--root', str(self.root), 'recover-media', '--job', ordered[1]])
+        result = json.loads(stream.getvalue())
+        self.assertEqual(result['attempted'], 1)
+        self.assertEqual(result['outcomes'][0]['job_id'], ordered[1])
+        self.assertEqual(result['outcomes'][0]['outcome'], 'delivered')
+        states = {item['id']: item['state'] for item in media.jobs(self.root)}
+        self.assertEqual(states, {ordered[0]: 'delivery_pending', ordered[1]: 'delivered'})
 
     def test_legacy_adapter_does_not_consume_recovery_attempt(self):
         self.job()

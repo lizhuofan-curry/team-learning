@@ -217,6 +217,72 @@ class TaskRoutingTests(unittest.TestCase):
             original = next(e for e in events if e['source'] == 'wechat-task')
             self.assertEqual(pending[0]['event_id'], original['id'])
 
+    def test_late_original_reuses_started_hermes_work_and_preserves_receipts(self):
+        for state in ('running', 'completed', 'retry_pending', 'failed'):
+            with self.subTest(state=state):
+                path = self.capture()
+                raw = path.read_bytes()
+                path.unlink()
+                text = '原素材编号：' + path.stem + '\n任务编号：' + self.task['id']
+                collaboration.publish(self.root, 'hermes', 'capture-' + path.stem,
+                                      '同一原话后续', text, kind='correction')
+                task_center.sync_sources(self.root)
+                with Queue(self.root, retry_delay_seconds=0) as queue:
+                    claimed = queue.claim('fixture-reviewer', actions=['review_followup'])
+                    if state == 'completed':
+                        queue.complete(claimed['id'], claimed['lease_token'], {'checked': True})
+                    elif state in ('retry_pending', 'failed'):
+                        queue.fail(claimed['id'], claimed['lease_token'], 'fixture retry')
+                        if state == 'failed':
+                            while next(j for j in queue.list_jobs() if j['id'] == claimed['id'])['state'] != 'failed':
+                                retry = queue.claim('fixture-reviewer', actions=['review_followup'])
+                                queue.fail(retry['id'], retry['lease_token'], 'fixture retry')
+                    before = next(j for j in queue.list_jobs() if j['id'] == claimed['id'])
+                    receipts = queue.list_receipts(claimed['id'])
+                path.write_bytes(raw)
+                result = task_center.sync_sources(self.root)
+                self.assertEqual(result['review_jobs_added'], 0)
+                with Queue(self.root) as queue:
+                    self.assertEqual(next(j for j in queue.list_jobs() if j['id'] == claimed['id']), before)
+                    self.assertEqual(queue.list_receipts(claimed['id']), receipts)
+                with Hub(self.root) as hub:
+                    events = hub.list_events(task_id=self.task['id'])
+                    self.assertTrue(any(e['source'] == 'wechat-task' and e['external_id'] == path.stem
+                                        for e in events))
+                # Keep each case independent of earlier pending retries/leases.
+                with Queue(self.root) as queue:
+                    if before['state'] != 'completed':
+                        queue.cancel(claimed['id'])
+
+    def test_source_pair_is_deduplicated_when_capture_is_processed_first(self):
+        path = self.capture()
+        collaboration.publish(self.root, 'hermes', 'capture-' + path.stem,
+                              '同源后续', '任务编号：' + self.task['id'], kind='correction')
+        snapshot = build_snapshot(self.root)
+        snapshot['events'].sort(key=lambda event: event['source'] != 'wechat-task')
+        with patch.object(task_center, 'build_snapshot', return_value=snapshot):
+            result = task_center.sync_sources(self.root)
+        self.assertEqual(result['review_jobs_added'], 1)
+        self.assertEqual(len(self.jobs()), 1)
+        self.assertEqual(self.jobs()[0]['payload']['source'], 'wechat-task')
+
+    def test_late_original_can_replace_unattempted_pending_hermes_work(self):
+        path = self.capture()
+        raw = path.read_bytes()
+        path.unlink()
+        collaboration.publish(self.root, 'hermes', 'capture-' + path.stem,
+                              '同源后续', '任务编号：' + self.task['id'], kind='correction')
+        task_center.sync_sources(self.root)
+        old = self.jobs()[0]
+        path.write_bytes(raw)
+        task_center.sync_sources(self.root)
+        jobs = self.jobs()
+        self.assertEqual(next(j for j in jobs if j['id'] == old['id'])['state'], 'cancelled')
+        pending = [j for j in jobs if j['state'] == 'pending']
+        self.assertEqual(len(pending), 1)
+        self.assertEqual(pending[0]['payload']['source'], 'wechat-task')
+        self.assertTrue(all(j['attempts'] == 0 for j in jobs))
+
     def test_hermes_status_and_old_requests_do_not_become_commands(self):
         self.hermes(kind='status')
         self.hermes(kind='weekly-version')

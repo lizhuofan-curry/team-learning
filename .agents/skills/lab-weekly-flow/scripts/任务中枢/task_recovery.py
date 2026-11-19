@@ -162,7 +162,7 @@ def _action(identifier, digest, packet_sha):
                 source_sha256=digest, packet_sha256=packet_sha)
 
 
-def plan_recovery(root, now=None):
+def plan_recovery(root, now=None, *, job_id=None):
     """Return a bounded read-only plan; a disabled policy can still be previewed."""
     root = Path(root).resolve()
     current = _epoch(now)
@@ -180,6 +180,8 @@ def plan_recovery(root, now=None):
         return result
     for path in sorted((root / '媒体队列' / '任务').glob('*.json')):
         identifier = path.stem
+        if job_id is not None and identifier != job_id:
+            continue
         try:
             record, digest = _record(root, identifier)
             if record['test_only']:

@@ -187,9 +187,8 @@ def main(argv=None):
         result = sync_sources(root)
     elif args.action in ('recovery-plan', 'recover-media'):
         from 任务中枢.task_recovery import apply_recovery, plan_recovery
-        result = plan_recovery(root)
+        result = plan_recovery(root, job_id=args.job if args.action == 'recover-media' else None)
         if args.action == 'recover-media':
-            result['actions'] = [a for a in result['actions'] if a['job_id'] == args.job]
             result = apply_recovery(root, result)
     elif args.action == 'import-pr-snapshot':
         from 任务中枢.pr_sources import read_json, save_snapshot
@@ -235,7 +234,8 @@ def main(argv=None):
                 current = {(item['source'], item['external_id']): item['payload']
                            for item in build_snapshot(root)['events']}
                 event = next((e for e in reversed(hub.list_events(task_id=task['id']))
-                              if current.get((e['source'], e['external_id'])) == e['payload']), None)
+                              if e['source'] == task['source']
+                              and current.get((e['source'], e['external_id'])) == e['payload']), None)
                 if event is None:
                     raise ValueError('请先同步当前来源，再派发证据检查')
                 with Queue(root) as queue:

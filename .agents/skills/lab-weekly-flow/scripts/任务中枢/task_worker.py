@@ -33,6 +33,8 @@ def dispatch_enabled(root):
 
 
 def enqueue_inspection(queue, task, event):
+    if event['source'] != task['source']:
+        raise ValueError('inspection event must match the task source')
     return queue.enqueue(task['id'], event['id'], ACTIONS_BY_SOURCE[task['source']],
                          dict(source=event['source'], external_id=event['external_id'],
                               source_payload=event['payload'], task_scope=task['scope'], test_only=False))

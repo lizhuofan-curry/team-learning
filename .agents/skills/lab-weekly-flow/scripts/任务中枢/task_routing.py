@@ -112,9 +112,9 @@ def route_followups(root, hub, snapshot):
     with Queue(root) as queue:
         existing_jobs = {job['id']: job for job in queue.list_jobs(include_tests=True)}
         jobs = set(existing_jobs)
+        validated = {}
         indexed_events = {(event['source'], event['external_id']): event
                           for event in hub.list_events(include_tests=True)}
-        live_items = {(item['source'], item['external_id']): item for item in candidates}
         for item in candidates:
             try:
                 if policy(root) != options:
@@ -150,33 +150,54 @@ def route_followups(root, hub, snapshot):
                 was_linked = event['task_id'] is not None
                 hub.link_event(event['id'], task['id'])
                 result['linked'] += int(not was_linked)
-                canonical = event
+                captures = set()
                 if item['source'] == 'hermes':
-                    captures = set(re.findall(r'capture[-:]([a-f0-9]{24})(?![a-f0-9])', record['source_id']))
+                    captures.update(re.findall(r'capture[-:]([a-f0-9]{24})(?![a-f0-9])', record['source_id']))
                     captures.update(re.findall(r'原素材编号\s*[:：]\s*([a-f0-9]{24})(?![a-f0-9])', record['text']))
-                    if len(captures) == 1:
-                        capture_id = next(iter(captures))
-                        original = live_items.get(('wechat-task', capture_id))
-                        if original and original.get('task_ref') == task['id']:
-                            canonical = indexed_events[('wechat-task', capture_id)]
-                            hub.link_event(canonical['id'], task['id'])
-                # Recheck cancellation and the pause switch at the dispatch boundary.
-                if policy(root) != options or hub.get_task(task['id'])['status'] == 'cancelled':
-                    continue
-                job = queue.enqueue(task['id'], canonical['id'], 'review_followup',
-                                    dict(source=canonical['source'], external_id=canonical['external_id'],
-                                         source_payload=canonical['payload'], task_scope=task['scope'],
-                                         test_only=canonical['test_only']), test_only=canonical['test_only'])
-                result['jobs_added'] += int(job['id'] not in jobs)
-                jobs.add(job['id'])
-                for old in existing_jobs.values():
-                    if (old['id'] != job['id'] and old['event_id'] == event['id']
-                            and canonical['id'] != event['id'] and old['task_id'] == task['id']
-                            and old['action'] == 'review_followup' and old['state'] == 'pending'
-                            and old['attempts'] == 0 and old['test_only'] == canonical['test_only']):
-                        queue.cancel(old['id'])
+                validated[(event['source'], event['external_id'])] = (event, task, captures)
             except (OSError, ValueError, TypeError, KeyError, StopIteration, RecursionError):
                 result['observations'].append(_observation('followup_needs_triage', item['source'],
                     item['external_id'], item['payload'].get('reference'),
                     '后续意见无法自动关联；请核对原件、明确任务编号及任务是否已停止。'))
+        # Resolve explicit source pairs before dispatch, independent of arrival/order.
+        groups = {}
+        for event, task, captures in validated.values():
+            canonical = event
+            if len(captures) == 1:
+                original = validated.get(('wechat-task', next(iter(captures))))
+                if original and original[1]['id'] == task['id']:
+                    canonical = original[0]
+            key = (task['id'], canonical['id'])
+            group = groups.setdefault(key, dict(event=canonical, task=task, event_ids=set()))
+            group['event_ids'].add(event['id'])
+            group['event_ids'].add(canonical['id'])
+        for group in groups.values():
+            event, task = group['event'], group['task']
+            try:
+                if policy(root) != options or hub.get_task(task['id'])['status'] == 'cancelled':
+                    continue
+                related = [old for old in existing_jobs.values()
+                           if old['task_id'] == task['id'] and old['action'] == 'review_followup'
+                           and old['event_id'] in group['event_ids']
+                           and old['test_only'] == event['test_only']]
+                # A claimed/finished Hermes review remains the same work when its raw
+                # capture arrives later. Keep its payload, lease and receipts intact.
+                started = next((old for old in related
+                                if old['attempts'] > 0 or old['state'] in ('running', 'completed', 'failed')), None)
+                if started:
+                    job = started
+                else:
+                    job = queue.enqueue(task['id'], event['id'], 'review_followup',
+                                        dict(source=event['source'], external_id=event['external_id'],
+                                             source_payload=event['payload'], task_scope=task['scope'],
+                                             test_only=event['test_only']), test_only=event['test_only'])
+                    result['jobs_added'] += int(job['id'] not in jobs)
+                    jobs.add(job['id'])
+                for old in related:
+                    if old['id'] != job['id'] and old['state'] == 'pending' and old['attempts'] == 0:
+                        queue.cancel(old['id'])
+            except (OSError, ValueError, TypeError, KeyError, RecursionError):
+                result['observations'].append(_observation('followup_needs_triage', event['source'],
+                    event['external_id'], event['payload'].get('reference'),
+                    '后续意见无法自动派发；保留既有工作及证据，待核对。'))
     return result

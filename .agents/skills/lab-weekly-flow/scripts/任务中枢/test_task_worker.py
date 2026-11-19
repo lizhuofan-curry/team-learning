@@ -1,5 +1,7 @@
 """Integration tests for versioned, independent inspection lanes."""
 import datetime as dt
+import contextlib
+import io
 import json
 from pathlib import Path
 import sys
@@ -12,9 +14,11 @@ from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import task_center
+import collaboration_flow as collaboration
 from 任务中枢 import task_worker
 from 任务中枢.pr_sources import save_snapshot
 from 任务中枢.task_dispatch import Queue
+from 任务中枢.task_hub import Hub
 
 
 class WorkerCycleTests(unittest.TestCase):
@@ -39,6 +43,31 @@ class WorkerCycleTests(unittest.TestCase):
 
     def write_config(self):
         (self.root / 'task_center.local.json').write_text(json.dumps(self.config), encoding='utf-8')
+
+    def test_manual_inspection_uses_own_source_after_newer_linked_hermes_event(self):
+        self.config['dispatch']['auto_inspect'] = False
+        self.write_config()
+        task_center.sync_sources(self.root)
+        with Hub(self.root) as hub:
+            tasks = hub.list_tasks()
+        for task in tasks:
+            with self.subTest(source=task['source']):
+                message = collaboration.publish(self.root, 'hermes', 'status-' + task['source'],
+                                                '隔离状态', '只读关联更新', kind='status')
+                task_center.sync_sources(self.root)
+                with Hub(self.root) as hub:
+                    event = next(e for e in hub.list_events() if e['external_id'] == message['id'])
+                    hub.link_event(event['id'], task['id'])
+                with Queue(self.root) as queue:
+                    with self.assertRaisesRegex(ValueError, 'must match'):
+                        task_worker.enqueue_inspection(queue, task, event)
+                stream = io.StringIO()
+                with contextlib.redirect_stdout(stream):
+                    task_center.main(['--root', str(self.root), 'queue-inspection', '--task', task['id']])
+                queued = json.loads(stream.getvalue())
+                self.assertEqual(queued['payload']['source'], task['source'])
+                result = task_worker.run_once(self.root, action=queued['action'])
+                self.assertEqual(result['state'], 'completed')
 
     def test_two_lanes_overlap_and_each_version_gets_one_receipt(self):
         self.assertEqual(task_center.sync_sources(self.root)['inspection_jobs_added'], 2)
