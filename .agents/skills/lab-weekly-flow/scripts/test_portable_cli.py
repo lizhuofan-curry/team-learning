@@ -121,6 +121,40 @@ class PortableTests(unittest.TestCase):
         draft=client/'待审核'/f'{key}.md'
         self.run_cli('learning_flow.py','--root',client,'archive','--draft',draft,'--start','2026-10-26','--end','2026-11-01')
 
+    def test_chatgpt_local_recipe_roundtrip_preserves_roles_and_excludes_wechat_raw(self):
+        # Synthetic materials stay inside this temporary workflow; no account access.
+        client=self.root/'桌面工作流';server=self.root/'模拟云端';raw=self.root/'微信原话'
+        server.mkdir()
+        (server/'config.local.json').write_text(json.dumps({'mode':'local','raw_captures':str(raw)},ensure_ascii=False),encoding='utf-8')
+        prefix='chatgpt:synthetic-thread:synthetic-turn:synthetic-message:question:'
+        samples=[('original','user-original','隔离合成原话：值传递和地址传递有何区别？\r\n'),
+                 ('summary','assistant-summary','隔离合成AI摘要：给出了参数传递解释；本人掌握情况未确认。\r\n')]
+        for suffix,kind,text in samples:
+            material=self.root/(suffix+'.txt');material.write_bytes(text.encode('utf-8'))
+            args=['--root',client,'capture','--date','2026-01-01','--text-file',material,
+                  '--channel','local','--kind',kind,'--category','question','--source-id',prefix+suffix]
+            self.run_cli('learning_flow.py',*args)
+            self.run_cli('learning_flow.py',*args)
+        bundle=self.run_cli('learning_flow.py','--root',client,'export').stdout
+        for _ in range(2):
+            self.run_cli('learning_flow.py','--root',server,'import',input=bundle)
+        events=json.loads(self.run_cli('learning_flow.py','--root',server,'export').stdout)['events']
+        self.assertEqual(len(events),2)
+        self.assertEqual({e['kind'] for e in events},{'user-original','assistant-summary'})
+        self.assertEqual({e['source_id'] for e in events},{prefix+'original',prefix+'summary'})
+        self.assertEqual({e['text'] for e in events},{sample[2] for sample in samples})
+        result=self.run_cli('learning_flow.py','--root',server,'archive-captures')
+        self.assertEqual(json.loads(result.stdout)['raw_captures'],[])
+        self.assertFalse(raw.exists())
+        prepared=self.run_cli('learning_flow.py','--root',server,'prepare','--start','2026-01-01','--end','2026-01-01')
+        packet=json.loads(Path(prepared.stdout.decode('utf-8').strip()).read_text(encoding='utf-8'))
+        self.assertEqual({e['id'] for e in packet['events']},{e['id'] for e in events})
+        # A revised summary under the old source id must preserve the first bytes.
+        self.run_cli('learning_flow.py','--root',server,'capture','--date','2026-01-01','--text-file','-',
+                     '--channel','local','--kind','assistant-summary','--category','question',
+                     '--source-id',prefix+'summary',input='不同摘要'.encode('utf-8'),ok=False)
+        self.assertEqual(self.run_cli('learning_flow.py','--root',server,'export').stdout,bundle)
+
     def test_member_onboarding_creates_only_empty_personal_vault(self):
         workflow=self.root/'个人工作流';vault=self.root/'个人知识库';team=self.root/'团队克隆'
         args=['--root',workflow,'--personal-vault',vault,'--team-repo',team,'--team-url','https://github.com/example/shared-team','--initialize-personal-vault']

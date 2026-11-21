@@ -21,7 +21,7 @@ description: 通过本地或云端Hermes收集微信学习素材，由Codex按�
 
 详细命令与审核规则见[日常运行](references/operations.md)。Hermes侧技能源在[采集技能模板](assets/hermes-skill/capture-skill.md)，通过`scripts/install_hermes.py`安装为Hermes中的SKILL.md；模板不作为Codex独立技能发现。脚本及这份技能需要一起安装，不能只复制说明文件。
 
-汇总每天与Codex的学习对话和微信学习计划，或收到语音、视频/文章链接时，阅读[对话与多媒体](references/conversations-and-media.md)。仅从可见消息与实际读取内容抽取，保留来源和日期；计划不算完成，同一事项跨入口不重复统计。
+汇总每天与Codex、本人已启用的ChatGPT网页版学习对话和微信学习计划，或收到语音、视频/文章链接时，阅读[对话与多媒体](references/conversations-and-media.md)。仅从可见消息与实际读取内容抽取，保留来源和日期；计划不算完成，同一事项跨入口不重复统计。
 
 验收或排查语音、文章、视频入口时，按[媒体验收](references/media-acceptance.md)保存样本类型、真实读取范围与错误阶段；合成音、字幕和真人微信分别验收，不把传输中断写成模型识别失败。
 
